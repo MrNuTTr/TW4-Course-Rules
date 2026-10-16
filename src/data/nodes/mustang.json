@@ -1,0 +1,139 @@
+{
+  "id": "mustang",
+  "name": "Mustang",
+  "fullName": "Mustang Working Areas",
+  "kind": "work-area",
+  "endsRoute": true,
+  "inputs": [
+    {
+      "id": "area",
+      "label": "Working area",
+      "optionLabel": "{value}",
+      "options": ["Area 1", "Area 2", "Area 3", "Area 4", "Area 5", "Area 6", "Area 7", "Area 8", "Central"],
+      "details": {
+        "Area 1": {
+          "region": "north",
+          "checkin": "Mustang North",
+          "spoken": "1",
+          "poly": "Mustang Working Areas/Mustang North 1",
+          "transition": "(KNGP) Corpus Christi NAS/Beach Line Departures/Foxtrot/Noth Mustang Transition",
+          "waypoint": "(KRAS) Mustang Beach Airport/KRAS",
+          "entryTurn": "Once abeam your area, turn toward it",
+          "limits": "6,500–15,000 ft MSL"
+        },
+        "Area 2": {
+          "region": "north",
+          "checkin": "Mustang North",
+          "spoken": "2",
+          "poly": "Mustang Working Areas/Mustang North 2",
+          "transition": "(KNGP) Corpus Christi NAS/Beach Line Departures/Foxtrot/Noth Mustang Transition",
+          "waypoint": "(KRAS) Mustang Beach Airport/KRAS",
+          "entryTurn": "Once abeam your area, turn toward it",
+          "limits": "6,500–15,000 ft MSL"
+        },
+        "Area 3": {
+          "region": "south",
+          "checkin": "Mustang South",
+          "spoken": "3",
+          "poly": "Mustang Working Areas/Mustang South 3",
+          "transition": "(KNGP) Corpus Christi NAS/Beach Line Departures/South Mustang Transition",
+          "waypoint": "(KNGP) Corpus Christi NAS/Beach Line Departures/Padre Balli Park",
+          "entryTurn": "Once abeam your area, turn toward it",
+          "limits": "6,500–15,000 ft MSL"
+        },
+        "Area 4": {
+          "region": "south",
+          "checkin": "Mustang South",
+          "spoken": "4",
+          "poly": "Mustang Working Areas/Mustang South 4",
+          "transition": "(KNGP) Corpus Christi NAS/Beach Line Departures/South Mustang Transition",
+          "waypoint": "(KNGP) Corpus Christi NAS/Beach Line Departures/Padre Balli Park",
+          "entryTurn": "Once abeam your area, turn toward it",
+          "limits": "6,500–15,000 ft MSL"
+        },
+        "Area 5": {
+          "region": "north",
+          "checkin": "Mustang North",
+          "spoken": "5",
+          "poly": "Mustang Working Areas/Mustang North 5",
+          "transition": "(KNGP) Corpus Christi NAS/Beach Line Departures/Foxtrot/Noth Mustang Transition",
+          "waypoint": "(KRAS) Mustang Beach Airport/KRAS",
+          "entryTurn": "Once abeam your area, turn away from the beach toward it",
+          "limits": "6,500–15,000 ft MSL"
+        },
+        "Area 6": {
+          "region": "north",
+          "checkin": "Mustang North",
+          "spoken": "6",
+          "poly": "Mustang Working Areas/Mustang North 6",
+          "transition": "(KNGP) Corpus Christi NAS/Beach Line Departures/Foxtrot/Noth Mustang Transition",
+          "waypoint": "(KRAS) Mustang Beach Airport/KRAS",
+          "entryTurn": "Once abeam your area, turn away from the beach toward it",
+          "limits": "6,500–15,000 ft MSL"
+        },
+        "Area 7": {
+          "region": "south",
+          "checkin": "Mustang South",
+          "spoken": "7",
+          "poly": "Mustang Working Areas/Mustang South 7",
+          "transition": "(KNGP) Corpus Christi NAS/Beach Line Departures/South Mustang Transition",
+          "waypoint": "(KNGP) Corpus Christi NAS/Beach Line Departures/Padre Balli Park",
+          "entryTurn": "Once abeam your area, turn away from the beach toward it",
+          "limits": "6,500–15,000 ft MSL"
+        },
+        "Area 8": {
+          "region": "south",
+          "checkin": "Mustang South",
+          "spoken": "8",
+          "poly": "Mustang Working Areas/Mustang South 8",
+          "transition": "(KNGP) Corpus Christi NAS/Beach Line Departures/South Mustang Transition",
+          "waypoint": "(KNGP) Corpus Christi NAS/Beach Line Departures/Padre Balli Park",
+          "entryTurn": "Once abeam your area, turn away from the beach toward it",
+          "limits": "6,500–15,000 ft MSL"
+        },
+        "Central": {
+          "region": "central",
+          "checkin": "Mustang Central",
+          "spoken": "Central",
+          "poly": "Mustang Working Areas/Mustang Central",
+          "transition": "Mustang Working Areas/Mustang Central",
+          "waypoint": "(KRAS) Mustang Beach Airport/KRAS Stand Off",
+          "entryTurn": "",
+          "limits": "Assigned by Corpus Departure"
+        }
+      }
+    }
+  ],
+  "info": [
+    {
+      "type": "checkpoint",
+      "title": "Mustang working areas",
+      "instructions": [
+        "Working altitudes 6,500–15,000 ft MSL",
+        "Solos use Areas 1, 2, 3 and 4 only",
+        "Area 6 is not normally used unless Corpus Approach can support traffic advisories for Seagull course rules traffic"
+      ],
+      "source": "Binder, p. 19; Feb 2026 PPT, Part 1, slide 76."
+    },
+    {
+      "type": "checkpoint",
+      "title": "Stay 3 NM clear of KRAS",
+      "mapFocus": "(KRAS) Mustang Beach Airport/KRAS Stand Off",
+      "instructions": [
+        "Maintain a 3 NM stand-off from Mustang Beach Airport when para-jumping is in effect",
+        "Confirm with ATC that para-jumping is not in effect before working within 3 NM",
+        "The stand-off applies to working altitudes below 11,500 ft MSL"
+      ],
+      "source": "Binder, p. 19; Feb 2026 PPT, Part 1, slide 75."
+    },
+    {
+      "type": "checkpoint",
+      "title": "No aerobatics west of the beach line",
+      "instructions": [
+        "Aerobatics, spins and stalls are prohibited west of the beach line",
+        "Federal Airway V-13-20-163: no aerobatic flight within 4 NM of the centerline (FAR 91.303)"
+      ],
+      "source": "Binder, p. 19; Feb 2026 PPT, Part 1, slide 75."
+    }
+  ]
+}

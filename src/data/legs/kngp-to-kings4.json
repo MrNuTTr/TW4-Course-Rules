@@ -18,7 +18,7 @@
   "cards": [
     { "use": "kngp-ground-{from.runway.flow}" },
     { "use": "kngp-tower-departure" },
-    { "use": "rusty-takeoff" },
+    { "use": "kngp-climbout" },
     { "use": "rusty-checkin-kings4" },
     { "use": "rusty-turn" },
     { "use": "kings4-entry" }

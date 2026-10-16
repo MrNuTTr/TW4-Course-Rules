@@ -41,11 +41,13 @@ fallback behavior.
   match throws), no stranded routes, and well-formed cards.
 - Currently loaded (from the binder and Feb 2026 PowerPoints): the Rusty
   departure from all 7 runways (13L/13R/18/04/31L/31R/36) → KINGS 4 (any
-  high/low area) or Goliad via Bayside → KNGP. Legs use `{from.X}`, `{to.X}` and `{to.X.detail}` tokens, resolved from the
+  high/low area) or Goliad via Bayside → KNGP; plus the Beach Line departure
+  → Mustang (Areas 1–8, Central; the route currently ends there, exits and
+  arrivals come in a later phase). Legs use `{from.X}`, `{to.X}` and `{to.X.detail}` tokens, resolved from the
   chosen inputs and the per-option `details` in the node file, so one leg file
   covers every runway. A missing detail fails the tests.
 - `src/data/map-extras.json` holds derived map points and lines not in the KML (Goliad
-  4 NM initials, Berclair avoid area, Bayside). Extras with `coordinates` are lines
+  4 NM initials, Berclair avoid area, Bayside, Padre Balli Park (approximate)). Extras with `coordinates` are lines
   (`kind: line`); the rest are points, drawn as ★ and a
   dashed red circle, and `mapFocus` may be a list of ids to frame several
   features at once.

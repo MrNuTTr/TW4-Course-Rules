@@ -30,7 +30,7 @@
   "cards": [
     { "use": "kngp-ground-{from.runway.flow}" },
     { "use": "kngp-tower-departure" },
-    { "use": "rusty-takeoff" },
+    { "use": "kngp-climbout" },
     { "use": "rusty-checkin-goliad" },
     { "use": "rusty-turn" },
     { "use": "rusty-to-goliad" },

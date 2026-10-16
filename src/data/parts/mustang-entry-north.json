@@ -1,0 +1,69 @@
+{
+  "id": "mustang-entry-north",
+  "cards": [
+    {
+      "type": "action",
+      "title": "Passing Port Royal",
+      "mapFocus": "{to.area.waypoint}",
+      "instructions": [
+        "Look for Mustang Beach Airport (KRAS)",
+        "Stay 3 NM clear of KRAS when para-jumping is in effect"
+      ],
+      "source": "Binder, p. 20; Feb 2026 PPT, Part 1, slide 79."
+    },
+    {
+      "type": "radio",
+      "title": "Abeam Mustang Beach: switch to CH 17",
+      "mapFocus": "{to.area.waypoint}",
+      "leadIn": "Abeam Mustang Beach, auto-switch to CH 17 (no check-in on CH 17 is required). Expect ATC to switch you. If not directed, request the switch:",
+      "radio": {
+        "channel": "Corpus Departure · UHF CH 8",
+        "exchange": [
+          {
+            "speaker": "Pilot",
+            "text": "Corpus Departure, <callsign>, abeam Mustang Beach, request switch CH 17."
+          },
+          {
+            "speaker": "Departure",
+            "text": "<callsign>, Corpus Departure, contact approach / change to my frequency, CH 17."
+          },
+          {
+            "speaker": "Pilot",
+            "text": "<callsign>, switch CH 17."
+          }
+        ]
+      },
+      "detail": "Monitor IP Common 126.2.",
+      "source": "Binder, p. 20; Feb 2026 PPT, Part 1, slide 79."
+    },
+    {
+      "type": "radio",
+      "title": "Check in on CH 17",
+      "mapFocus": "{to.area.poly}",
+      "radio": {
+        "channel": "Corpus Approach · UHF CH 17",
+        "exchange": [
+          {
+            "speaker": "Pilot",
+            "text": "Corpus Approach, <callsign>, on CH 17 for Mustang {to.area.spoken}."
+          },
+          {
+            "speaker": "Approach",
+            "text": "<callsign>, Corpus Approach, roger."
+          }
+        ]
+      },
+      "source": "Binder, p. 20."
+    },
+    {
+      "type": "action",
+      "title": "Turn into {to.area}",
+      "mapFocus": "{to.area.poly}",
+      "instructions": [
+        "{to.area.entryTurn}",
+        "Climb to your working altitude once established under the area"
+      ],
+      "source": "Binder, p. 20; Feb 2026 PPT, Part 1, slide 79."
+    }
+  ]
+}

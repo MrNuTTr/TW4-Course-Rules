@@ -1,0 +1,16 @@
+{
+  "id": "beachline-climbout",
+  "cards": [
+    {
+      "type": "action",
+      "title": "Climb out RWY {from.runway}",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Beach Line Departures/{from.runway}",
+      "instructions": [
+        "Climb to 500 ft MSL, 200 KIAS",
+        "{from.runway.firstTurn}",
+        "No turns before 300 ft AGL"
+      ],
+      "source": "Binder, p. 16; Feb 2026 PPT, Part 1, slide 46."
+    }
+  ]
+}

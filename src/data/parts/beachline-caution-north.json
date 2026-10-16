@@ -1,0 +1,16 @@
+{
+  "id": "beachline-caution-north",
+  "cards": [
+    {
+      "type": "checkpoint",
+      "title": "Recovery traffic caution",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Beach Line Departures/{from.runway}",
+      "instructions": [
+        "Use extreme caution for recovery traffic inbound from PT Shamrock at 1,000 ft MSL",
+        "Do not delay the climb to 2,500 ft once clear of the pattern",
+        "Be alert for traffic established on the Southern Arrival at 1,000 ft MSL"
+      ],
+      "source": "Binder, p. 16."
+    }
+  ]
+}

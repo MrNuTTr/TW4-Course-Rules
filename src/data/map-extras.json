@@ -67,5 +67,13 @@
       [-97.6147, 28.6134]
     ],
     "description": "Direct from Bayside to NOLF Goliad. Illustrative straight line derived from KML points; the binder gives about 322°."
+  },
+  {
+    "folder": "(KNGP) Corpus Christi NAS/Beach Line Departures",
+    "name": "Padre Balli Park",
+    "kind": "waypoint",
+    "lat": 27.5806,
+    "lon": -97.217,
+    "description": "Padre Balli Park (Old Bob Hall Pier). Approximate position; the South Mustang entry switch point."
   }
 ]

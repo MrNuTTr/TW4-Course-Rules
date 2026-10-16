@@ -1,0 +1,30 @@
+{
+  "id": "mustang-entry-central",
+  "cards": [
+    {
+      "type": "action",
+      "title": "At 10 DME: turn to ~035°",
+      "mapFocus": "{to.area.waypoint}",
+      "instructions": [
+        "Stay outside the Central eastern boundary",
+        "Maintain a 3 NM stand-off from KRAS and from Point Shamrock",
+        "Turn inbound to the area 500 ft before your designated altitude",
+        "If the climb will take you north of Central, make a right 270° climbing turn to enter at your assigned altitude. Do not enter Mustang Area 2",
+        "If you have not reached your altitude by the southern boundary of Area 2, make a right 270° turn to continue the climb before entering Central"
+      ],
+      "source": "Binder, p. 24; Feb 2026 PPT, Part 1, slide 81."
+    },
+    {
+      "type": "radio",
+      "title": "Switch to CH 18 and self-announce",
+      "mapFocus": "{to.area.poly}",
+      "leadIn": "Auto-switch to CH 18 UHF (Central Common). Other flights will execute a roll call from bottom working block to top:",
+      "radio": {
+        "channel": "Central Common · UHF CH 18",
+        "script": "99 Central, <callsign>, working <altitude>."
+      },
+      "detail": "Example altitude: 7,500.",
+      "source": "Binder, p. 24."
+    }
+  ]
+}

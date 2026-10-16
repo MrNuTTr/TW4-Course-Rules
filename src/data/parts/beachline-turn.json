@@ -1,0 +1,16 @@
+{
+  "id": "beachline-turn",
+  "cards": [
+    {
+      "type": "action",
+      "title": "{from.runway.beachTitle}",
+      "mapFocus": "{from.runway.beachFocus}",
+      "instructions": [
+        "{from.runway.beachTurn}",
+        "Fly HDG 105° toward the beach line",
+        "Climb to 2,500 ft MSL and accelerate to 240 KIAS"
+      ],
+      "source": "Binder, p. 16; Feb 2026 PPT, Part 1, slides 46–47."
+    }
+  ]
+}

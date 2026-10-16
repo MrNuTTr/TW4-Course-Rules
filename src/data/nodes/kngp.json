@@ -22,7 +22,10 @@
           "firstTurn": "Fly HDG 125° until the High Bridge",
           "turnTitle": "Abeam the High Bridge",
           "turnCourse": "~350°",
-          "turnFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/High Bridge"
+          "turnFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/High Bridge",
+          "beachTitle": "Abeam the High Bridge",
+          "beachTurn": "Turn left to HDG 105°",
+          "beachFocus": "(KNGP) Corpus Christi NAS/Beach Line Departures/High Bridge"
         },
         "13R": {
           "flow": "south",
@@ -36,7 +39,10 @@
           "firstTurn": "Fly HDG 135° until the High Bridge",
           "turnTitle": "Abeam the High Bridge",
           "turnCourse": "~350°",
-          "turnFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/High Bridge"
+          "turnFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/High Bridge",
+          "beachTitle": "Abeam the High Bridge",
+          "beachTurn": "Turn left to HDG 105°",
+          "beachFocus": "(KNGP) Corpus Christi NAS/Beach Line Departures/High Bridge"
         },
         "18": {
           "flow": "south",
@@ -50,7 +56,10 @@
           "firstTurn": "When clear of the pattern, turn left to HDG 105° until the High Bridge",
           "turnTitle": "Abeam the High Bridge",
           "turnCourse": "~350°",
-          "turnFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/High Bridge"
+          "turnFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/High Bridge",
+          "beachTitle": "Abeam the High Bridge",
+          "beachTurn": "Continue HDG 105°",
+          "beachFocus": "(KNGP) Corpus Christi NAS/Beach Line Departures/High Bridge"
         },
         "04": {
           "flow": "north",
@@ -64,7 +73,10 @@
           "firstTurn": "Fly runway heading until clear of the pattern",
           "turnTitle": "Once clear of the pattern",
           "turnCourse": "~010°",
-          "turnFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/04"
+          "turnFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/04",
+          "beachTitle": "Once clear of the pattern",
+          "beachTurn": "Turn to HDG 105°",
+          "beachFocus": "(KNGP) Corpus Christi NAS/Beach Line Departures/04"
         },
         "31L": {
           "flow": "north",
@@ -78,7 +90,10 @@
           "firstTurn": "Fly HDG 305° until cleared by Tower",
           "turnTitle": "Once cleared by Tower",
           "turnCourse": "~015°",
-          "turnFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/31L"
+          "turnFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/31L",
+          "beachTitle": "Once cleared by Tower",
+          "beachTurn": "Turn to HDG 105°",
+          "beachFocus": "(KNGP) Corpus Christi NAS/Beach Line Departures/31L"
         },
         "31R": {
           "flow": "north",
@@ -92,7 +107,10 @@
           "firstTurn": "Fly HDG 315° until clear of the pattern",
           "turnTitle": "Once clear of the pattern",
           "turnCourse": "~015°",
-          "turnFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/31R"
+          "turnFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/31R",
+          "beachTitle": "Once clear of the pattern",
+          "beachTurn": "Turn to HDG 105°",
+          "beachFocus": "(KNGP) Corpus Christi NAS/Beach Line Departures/31R"
         },
         "36": {
           "flow": "north",
@@ -106,7 +124,10 @@
           "firstTurn": "Fly runway heading until clear of the pattern",
           "turnTitle": "Once clear of the pattern",
           "turnCourse": "~360°",
-          "turnFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/36"
+          "turnFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/36",
+          "beachTitle": "Once clear of the pattern",
+          "beachTurn": "Turn to HDG 105°",
+          "beachFocus": "(KNGP) Corpus Christi NAS/Beach Line Departures/36"
         }
       }
     },

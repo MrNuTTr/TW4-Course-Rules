@@ -1,0 +1,38 @@
+{
+  "id": "beachline-checkin-mustang",
+  "cards": [
+    {
+      "type": "radio",
+      "title": "Check in with Corpus Departure",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Beach Line Departures/{from.runway}",
+      "leadIn": "At 500 ft MSL, when directed by Tower, contact Corpus Departure (UHF CH 12). When directed, switch to CH 8:",
+      "radio": {
+        "channel": "Corpus Departure · UHF CH 8",
+        "exchange": [
+          {
+            "speaker": "Pilot",
+            "text": "Corpus Departure, <callsign>, 500 feet off Navy Corpus, {to.area.checkin}."
+          },
+          {
+            "speaker": "Departure",
+            "text": "<callsign>, Corpus Departure, ident."
+          },
+          {
+            "speaker": "Pilot",
+            "text": "<callsign>, ident."
+          },
+          {
+            "speaker": "Departure",
+            "text": "<callsign>, Corpus Departure, radar contact <distance and direction> of Navy Corpus. Proceed course rules {to.area.checkin}."
+          },
+          {
+            "speaker": "Pilot",
+            "text": "<callsign>, proceed course rules {to.area.checkin}."
+          }
+        ]
+      },
+      "detail": "The binder gives no check-in phrase for Mustang Central; it is assumed to follow the North/South pattern. Verify with an instructor.",
+      "source": "Binder, p. 16."
+    }
+  ]
+}

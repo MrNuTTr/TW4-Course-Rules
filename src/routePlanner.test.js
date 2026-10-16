@@ -130,7 +130,7 @@ describe('leg planning', () => {
 
   it('offers KINGS 4 and Goliad from KNGP, with all high and low areas', () => {
     const destinations = getDestinations('kngp', { runway: '13L' });
-    expect(destinations.map(({ node }) => node.id).sort()).toEqual(['goliad', 'kings4']);
+    expect(destinations.map(({ node }) => node.id).sort()).toEqual(['goliad', 'kings4', 'mustang']);
     const kings4 = destinations.find(({ node }) => node.id === 'kings4');
     expect(kings4.inputs[0].options).toContain('3 High');
     expect(kings4.inputs[0].options).toContain('9 Low');
@@ -177,6 +177,23 @@ describe('leg planning', () => {
       for (const card of leg.cards) if (card.use) visit(card.use);
     }
     expect([...GRAPH.parts.keys()].filter((id) => !used.has(id))).toEqual([]);
+  });
+
+  it('builds Beach Line departures to north, south and Central Mustang', () => {
+    const north = findLeg('kngp', { runway: '31L' }, 'mustang', { area: 'Area 5' });
+    const south = findLeg('kngp', { runway: '13L' }, 'mustang', { area: 'Area 3' });
+    const central = findLeg('kngp', { runway: '13R' }, 'mustang', { area: 'Central' });
+    const text = (leg) => JSON.stringify(leg.cards);
+    expect(text(north)).toMatch(/abeam Mustang Beach/);
+    expect(text(north)).toMatch(/extreme caution|Use extreme caution/);
+    expect(text(south)).toMatch(/abeam Padre Balli Park/);
+    expect(text(south)).toMatch(/Southern Arrival/);
+    expect(text(central)).toMatch(/99 Central/);
+    expect(text(central)).toMatch(/270°/);
+    for (const leg of [north, south, central]) {
+      expect(text(leg)).toMatch(/UHF CH 8/);
+      expect(text(leg)).not.toMatch(/\{[a-z]+\./);
+    }
   });
 
   it('chains KINGS 4 → Goliad → KNGP and ends there', () => {

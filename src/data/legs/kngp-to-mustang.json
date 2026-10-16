@@ -1,0 +1,29 @@
+{
+  "id": "kngp-to-mustang",
+  "from": "kngp",
+  "to": "mustang",
+  "when": {},
+  "title": "KNGP RWY {from.runway} → MUSTANG {to.area}",
+  "featureIds": [
+    "(KNGP) Corpus Christi NAS/KNGP",
+    "(KNGP) Corpus Christi NAS/Beach Line Departures/{from.runway}",
+    "{from.runway.beachFocus}",
+    "{to.area.transition}",
+    "{to.area.waypoint}",
+    "{to.area.poly}"
+  ],
+  "arrivalFeatureIds": [
+    "{to.area.poly}",
+    "(KRAS) Mustang Beach Airport/KRAS Stand Off"
+  ],
+  "cards": [
+    { "use": "kngp-ground-{from.runway.flow}" },
+    { "use": "kngp-tower-departure" },
+    { "use": "beachline-climbout" },
+    { "use": "beachline-turn" },
+    { "use": "beachline-caution-{from.runway.flow}" },
+    { "use": "beachline-checkin-mustang" },
+    { "use": "mustang-transition-{to.area.region}" },
+    { "use": "mustang-entry-{to.area.region}" }
+  ]
+}

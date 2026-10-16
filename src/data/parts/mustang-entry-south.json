@@ -1,0 +1,69 @@
+{
+  "id": "mustang-entry-south",
+  "cards": [
+    {
+      "type": "action",
+      "title": "Approaching Padre Balli Park",
+      "mapFocus": "{to.area.waypoint}",
+      "instructions": [
+        "Padre Balli Park is the old Bob Hall Pier",
+        "Keep paralleling the beach line at ½ WTD, 5,500 ft, 240 KIAS"
+      ],
+      "detail": "Padre Balli Park is not in the KML; its map position is approximate.",
+      "source": "Binder, p. 22; Feb 2026 PPT, Part 1, slide 80."
+    },
+    {
+      "type": "radio",
+      "title": "Abeam Padre Balli Park: switch to CH 17",
+      "mapFocus": "{to.area.waypoint}",
+      "leadIn": "Abeam Padre Balli Park, auto-switch to CH 17 (no check-in on CH 17 is required). Expect ATC to switch you. If not directed, request the switch:",
+      "radio": {
+        "channel": "Corpus Departure · UHF CH 8",
+        "exchange": [
+          {
+            "speaker": "Pilot",
+            "text": "Corpus Departure, <callsign>, abeam Padre Balli Park, request switch CH 17."
+          },
+          {
+            "speaker": "Departure",
+            "text": "<callsign>, Corpus Departure, contact approach / change to my frequency, CH 17."
+          },
+          {
+            "speaker": "Pilot",
+            "text": "<callsign>, switch CH 17."
+          }
+        ]
+      },
+      "source": "Binder, p. 22."
+    },
+    {
+      "type": "radio",
+      "title": "Check in on CH 17",
+      "mapFocus": "{to.area.poly}",
+      "radio": {
+        "channel": "Corpus Approach · UHF CH 17",
+        "exchange": [
+          {
+            "speaker": "Pilot",
+            "text": "Corpus Approach, <callsign>, on CH 17 for Mustang {to.area.spoken}."
+          },
+          {
+            "speaker": "Approach",
+            "text": "<callsign>, Corpus Approach, roger."
+          }
+        ]
+      },
+      "source": "Binder, p. 22."
+    },
+    {
+      "type": "action",
+      "title": "Turn into {to.area}",
+      "mapFocus": "{to.area.poly}",
+      "instructions": [
+        "{to.area.entryTurn}",
+        "Climb to your working altitude once established under the area"
+      ],
+      "source": "Binder, p. 22; Feb 2026 PPT, Part 1, slide 80."
+    }
+  ]
+}

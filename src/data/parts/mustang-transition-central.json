@@ -1,0 +1,17 @@
+{
+  "id": "mustang-transition-central",
+  "cards": [
+    {
+      "type": "action",
+      "title": "Cross the beach line, continue climb",
+      "mapFocus": "{to.area.transition}",
+      "instructions": [
+        "Corpus Departure coordinates a working altitude with you",
+        "Cross the beach line on HDG 105°",
+        "Continue the climb to your assigned altitude",
+        "Comply with the Central entry procedure"
+      ],
+      "source": "Binder, p. 18; Feb 2026 PPT, Part 1, slide 78."
+    }
+  ]
+}
