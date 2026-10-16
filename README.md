@@ -1,4 +1,4 @@
-﻿# Course Rules Route Planner prototype
+﻿# Course Rules Route Planner
 
 This project starts from Microsoft's [Azure Static Web Apps React basic
 template](https://github.com/staticwebdev/react-basic), documented in the
@@ -7,12 +7,13 @@ The starter was modernized from Create React App to Vite; the original
 `staticwebapp.config.json` is retained for Azure Static Web Apps navigation
 fallback behavior.
 
-## Prototype scope
+## Features
 
-- Chunked, leg-by-leg flow: pick a departure runway and first destination,
-  fly that leg one card at a time, read a short destination info page on
-  arrival, then pick the next destination (and its runway/area) until the
-  route ends at KNGP. The map shows only the active leg's KML features.
+- Chunked, leg-by-leg flow: pick a departure runway, then a destination type
+  (Outlying Fields or Working Areas, with Shamrock Re-entry counted as
+  outlying) and a destination. Fly that leg one card at a time, read a short
+  destination info page on arrival, then pick the next destination (and its
+  runway/area) until the route ends at KNGP. The map shows only the active leg's KML features.
   Channel labels and compact instructions are shown prominently.
 - Data is a small graph of human-editable JSON files, loaded by
   `src/routePlanner.js` (separate from the UI):
@@ -60,8 +61,7 @@ fallback behavior.
   borrow another node's inputs (Shamrock Re-entry lands on the KNGP runways).
   Loaded: Shamrock Re-entry, Oso Transition (KNGP ↔ Waldron), Sunrise
   Transition (Waldron → KNGP), Nueces Transition (KNGP ↔ KCRP) and Portland Low
-  (name, Tower call and map track only; no altitude or speed data exists in the
-  sources). KINGS 4 also returns to KNGP via Woodsboro and the Goliad/Northern
+  (hidden from the destination list; see `hidden`). KINGS 4 also returns to KNGP via Woodsboro and the Goliad/Northern
   Arrival. Not loaded because the sources don't tie them to a route or
   destination: the Western and Lex Arrivals, Cabaniss as a destination, and
   KINGS 4 → Ingleside.
@@ -84,7 +84,8 @@ fallback behavior.
 - Private source PDFs are not bundled with the application. Extracted text is
   a draft for UI evaluation, not approved flight guidance, and must be checked
   by a qualified reviewer against current authorized material before
-  operational use.
+  operational use. Items assumed rather than sourced are marked "Check with an
+  instructor."
 
 Specific route compatibility and all unpopulated procedure branches require
 reviewed, authoritative data.
@@ -106,6 +107,6 @@ npm run build
 ```
 
 The production site is generated in `dist/`, ready to configure as the app
-artifact for Azure Static Web Apps. No Azure Functions API is needed for this
-static prototype.
+artifact for Azure Static Web Apps. No Azure Functions API is needed for this
+static site.
 
