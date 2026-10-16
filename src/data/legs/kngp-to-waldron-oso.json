@@ -7,6 +7,7 @@
   "featureIds": [
     "(KNGP) Corpus Christi NAS/KNGP",
     "(KNGP) Corpus Christi NAS/Oso Transition / South Arrivals & Departures/Oso Bridge (West Side)",
+    "(KNGP) Corpus Christi NAS/Oso Transition / South Arrivals & Departures/{from.runway}",
     "(KNWL) Waldron NOLF/Oso Transition / North Arrivals/Oso Bridge (West Side)",
     "(KNWL) Waldron NOLF/Oso Transition / North Arrivals/Cooling Pond",
     "(KNWL) Waldron NOLF/Oso Transition / North Arrivals/Yorktown Bridge",
@@ -26,7 +27,10 @@
     {
       "type": "action",
       "title": "Fly to the Oso Bridge",
-      "mapFocus": "(KNGP) Corpus Christi NAS/Oso Transition / South Arrivals & Departures/Oso Bridge (West Side)",
+      "mapFocus": [
+        "(KNGP) Corpus Christi NAS/Oso Transition / South Arrivals & Departures/{from.runway}",
+        "(KNGP) Corpus Christi NAS/Oso Transition / South Arrivals & Departures/Oso Bridge (West Side)"
+      ],
       "leadIn": "When directed by Tower:",
       "instructions": [
         "Climb to 1,000' MSL · accelerate to 200 KIAS",

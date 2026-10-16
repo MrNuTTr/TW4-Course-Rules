@@ -12,6 +12,7 @@
     "(KNWL) Waldron NOLF/Oso Transition / North Departures/Yorktown Bridge",
     "(KNWL) Waldron NOLF/Oso Transition / North Departures/Water Tower",
     "(KNGP) Corpus Christi NAS/Oso Transition / South Arrivals & Departures/Oso Bridge (West Side)",
+    "(KNGP) Corpus Christi NAS/Oso Transition / South Arrivals & Departures/{to.runway}",
     "(KNGP) Corpus Christi NAS/KNGP",
     "{to.runway.entryLine}"
   ],
@@ -52,7 +53,10 @@
     {
       "type": "radio",
       "title": "Contact Navy Corpus Tower",
-      "mapFocus": "(KNGP) Corpus Christi NAS/Oso Transition / South Arrivals & Departures/Oso Bridge (West Side)",
+      "mapFocus": [
+        "(KNGP) Corpus Christi NAS/Oso Transition / South Arrivals & Departures/Oso Bridge (West Side)",
+        "(KNGP) Corpus Christi NAS/Oso Transition / South Arrivals & Departures/{to.runway}"
+      ],
       "radio": {
         "channel": "Navy Corpus Tower · UHF CH 4",
         "script": "“Navy Corpus Tower, <callsign>, Oso Bridge, Oso Transition inbound, with information <code>.”"
