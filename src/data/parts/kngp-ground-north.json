@@ -1,7 +1,7 @@
 {
   "id": "kngp-ground-north",
   "cards": [
-    { "use": "kngp-pre-taxi" },
+    { "use": "kngp-pre-taxi-{to.node.clearance}" },
     {
       "type": "radio",
       "title": "Request taxi to the run-ups",
@@ -26,7 +26,7 @@
       },
       "source": "Binder, p. 2; Feb 2026 PPT, Part 1, slides 24–26, 32–34."
     },
-    { "use": "kngp-clearance" },
+    { "use": "kngp-clearance-{to.node.clearance}" },
     {
       "type": "radio",
       "title": "Request further taxi",

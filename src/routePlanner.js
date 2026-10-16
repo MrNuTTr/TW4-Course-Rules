@@ -82,7 +82,7 @@ export function resolveLeg(leg, fromChoices = {}, toChoices = {}, graph = GRAPH)
 
   function lookup(side, inputId, detail) {
     const { node, choices } = sides[side];
-    if (inputId === 'node' && !detail) return node.name;
+    if (inputId === 'node') return detail ? String(node[detail] ?? 'none') : node.name;
     const value = choices[inputId];
     if (value === undefined) {
       throw new Error(`Leg ${leg.id} needs ${side}.${inputId}, which was not chosen`);

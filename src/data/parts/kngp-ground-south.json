@@ -1,8 +1,8 @@
 {
   "id": "kngp-ground-south",
   "cards": [
-    { "use": "kngp-pre-taxi" },
-    { "use": "kngp-clearance" },
+    { "use": "kngp-pre-taxi-{to.node.clearance}" },
+    { "use": "kngp-clearance-{to.node.clearance}" },
     {
       "type": "radio",
       "title": "Request taxi",

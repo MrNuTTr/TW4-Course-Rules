@@ -1,0 +1,24 @@
+{
+  "id": "kngp-base-outbound",
+  "cards": [
+    {
+      "type": "radio",
+      "title": "Report outbound to Boomer/Ranger Base",
+      "mapFocus": "(KNGP) Corpus Christi NAS/KNGP",
+      "radio": {
+        "channel": "Boomer/Ranger Base · UHF CH 19",
+        "exchange": [
+          {
+            "speaker": "Pilot",
+            "text": "Boomer/Ranger Base, <callsign>, <IP/SNA names>, <event>, outbound."
+          },
+          {
+            "speaker": "Base",
+            "text": "<callsign>, Boomer/Ranger Base, roger."
+          }
+        ]
+      },
+      "source": "Binder, p. 2."
+    }
+  ]
+}

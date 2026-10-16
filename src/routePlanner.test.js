@@ -240,6 +240,8 @@ describe('leg planning', () => {
     const nwlHome = findLeg('waldron', { runway: '13' }, 'kngp', { runway: '04', entry: 'Straight-in' });
     expect(JSON.stringify(nwlHome.cards)).toMatch(/Southern Arrival/);
     expect(getDestinations('ingleside', { runway: '13' }).map(({ node }) => node.id)).toEqual(['kngp']);
+    for (const dest of [rkp, nwl]) expect(JSON.stringify(dest.cards)).not.toMatch(/ZOMBIE/);
+    expect(JSON.stringify(rkp.cards)).toMatch(/Boomer\/Ranger Base/);
     for (const leg of [rkp, viaGoliad, rkpHome, nwl, nwlHome]) {
       expect(JSON.stringify(leg.cards)).not.toMatch(/\{[a-z]+\./);
     }

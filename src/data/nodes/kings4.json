@@ -3,6 +3,7 @@
   "name": "KINGS 4",
   "fullName": "KINGS 4 MOA",
   "kind": "work-area",
+  "clearance": "zombie",
   "inputs": [
     {
       "id": "area",
