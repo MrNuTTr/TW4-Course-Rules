@@ -183,8 +183,15 @@ describe('leg planning', () => {
     expect(getDestinations('kings4', { area: '3 High' }).map(({ node }) => node.id)).toEqual([
       'goliad',
     ]);
-    const arrival = findLeg('goliad', { runway: '17' }, 'kngp', {});
-    expect(arrival.cards.at(-1).title).toMatch(/Tower handoff/);
+    const south = findLeg('goliad', { runway: '17' }, 'kngp', { runway: '13L' });
+    expect(south.cards.at(-1).title).toMatch(/Numbers call/);
+    expect(JSON.stringify(south.cards)).toMatch(/crossing the extended centerline of Runway 18/);
+    expect(JSON.stringify(south.cards)).not.toMatch(/9 Mile/);
+    const north = findLeg('goliad', { runway: '17' }, 'kngp', { runway: '04' });
+    expect(JSON.stringify(north.cards)).toMatch(/Point Dimmit/);
+    expect(getDestinations('goliad', { runway: '17' })[0].inputs[0].options).toEqual(
+      GRAPH.nodes.get('kngp').inputs[0].options,
+    );
     expect(GRAPH.nodes.get('kngp').endsRoute).toBe(true);
   });
 });

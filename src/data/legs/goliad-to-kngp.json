@@ -11,8 +11,11 @@
     "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Goliad Arrivals",
     "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Port Bay Bridge",
     "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Aransas Pass Causeway",
-    "(KNGP) Corpus Christi NAS/Shamrock Arrivals/9 Mile Point",
-    "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/PT Shamrock"
+    "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/PT Shamrock",
+    "{to.runway.viaA}",
+    "{to.runway.viaB}",
+    "{to.runway.viaC}",
+    "{to.runway.entryLine}"
   ],
   "arrivalFeatureIds": [
     "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/PT Shamrock"
@@ -83,31 +86,20 @@
         "Woodsboro to Bayside: approximately 145°",
         "Bayside to Port Bay Bridge: approximately 155°",
         "Passing Port Bay Bridge, descend to 1,000 ft MSL · maintain 240 KIAS",
-        "Fly direct to Aransas Causeway, approximately 150°",
-        "Join the Northern Arrival"
+        "Fly direct to Aransas Causeway, approximately 150°"
       ],
-      "source": "Binder, p. 62."
-    },
-    {
-      "type": "action",
-      "title": "Join the Northern Arrival",
-      "mapFocus": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/9 Mile Point",
-      "instructions": [
-        "Establish southbound over the Intracoastal Waterway at 1,500 ft MSL · 240 KIAS",
-        "Contact Corpus Approach (UHF CH 8) no later than 9 Mile Point"
-      ],
-      "detail": "The binder gives 1,000 ft at the Goliad Arrival's causeway crossing and 1,500 ft on the Northern Arrival, but does not show where to make that climb. Confirm the transition with an instructor.",
-      "source": "Binder, pp. 62–63."
+      "source": "Binder, p. 62; Feb 2026 PPT, Part 2, slides 99–102."
     },
     {
       "type": "action",
       "title": "Cross Aransas Pass Causeway",
       "mapFocus": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Aransas Pass Causeway",
       "instructions": [
-        "At the causeway, descend to 1,000 ft MSL · maintain 240 KIAS",
-        "Proceed direct to Point Shamrock"
+        "Cross the causeway at 1,000 ft MSL · 240 KIAS",
+        "Be alert for Northern Arrival traffic at the causeway",
+        "Proceed direct to Point Shamrock, maintain 1,000 ft MSL"
       ],
-      "source": "Binder, p. 63."
+      "source": "Binder, p. 63; Feb 2026 PPT, Part 2, slides 102–103."
     },
     {
       "type": "radio",
@@ -128,16 +120,6 @@
       },
       "source": "Binder, p. 63."
     },
-    {
-      "type": "checkpoint",
-      "title": "Tower handoff; recovery runway not selected",
-      "mapFocus": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/PT Shamrock",
-      "prompt": "At Point Shamrock, switch to Navy Corpus Tower (UHF CH 4) and state your recovery intentions. The runway-specific KNGP entry is not included because the arrival flow and recovery runway are not selected.",
-      "radio": {
-        "channel": "Navy Corpus Tower · UHF CH 4",
-        "script": "“Navy Corpus Tower, <callsign>, Shamrock, <full stop / touch-and-go / straight-in>.”"
-      },
-      "source": "Binder, pp. 63–64."
-    }
+    { "use": "kngp-shamrock-entry-{to.runway.flow}" }
   ]
 }

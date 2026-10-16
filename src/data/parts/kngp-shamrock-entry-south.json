@@ -1,0 +1,63 @@
+{
+  "id": "kngp-shamrock-entry-south",
+  "cards": [
+    {
+      "type": "action",
+      "title": "At Point Shamrock",
+      "mapFocus": [
+        "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/PT Shamrock",
+        "{to.runway.viaA}"
+      ],
+      "instructions": [
+        "Slow to 200 KIAS",
+        "Turn HDG 255° toward the northwest corner of TAMUCC",
+        "Maintain 1,000 ft MSL"
+      ],
+      "source": "Binder, pp. 64–65; Feb 2026 PPT, Part 2, slide 114."
+    },
+    {
+      "type": "radio",
+      "title": "Check in with Navy Corpus Tower",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/PT Shamrock",
+      "leadIn": "State your intentions:",
+      "radio": {
+        "channel": "Navy Corpus Tower · UHF CH 4",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Navy Corpus Tower, <callsign>, Shamrock, <full stop / touch-and-go's>." },
+          { "speaker": "Tower", "text": "<callsign>, Navy Corpus Tower, report initial RWY {to.runway}." },
+          { "speaker": "Pilot", "text": "<callsign>, report initial RWY {to.runway}." }
+        ]
+      },
+      "source": "Binder, pp. 64–65."
+    },
+    {
+      "type": "radio",
+      "title": "Report initial RWY {to.runway}",
+      "mapFocus": [
+        "{to.runway.viaA}",
+        "{to.runway.entryLine}"
+      ],
+      "leadIn": "Continue HDG 255° toward TAMUCC. {to.runway.initialWhen}, then turn inbound:",
+      "radio": {
+        "channel": "Navy Corpus Tower · UHF CH 4",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Navy Corpus Tower, <callsign>, initial RWY {to.runway}." },
+          { "speaker": "Tower", "text": "<callsign>, Navy Corpus Tower, report the numbers RWY {to.runway}." },
+          { "speaker": "Pilot", "text": "<callsign>, report numbers RWY {to.runway}." }
+        ]
+      },
+      "source": "Binder, pp. 64–65; Feb 2026 PPT, Part 2, slides 114–117."
+    },
+    {
+      "type": "radio",
+      "title": "Numbers call",
+      "mapFocus": "{to.runway.entryLine}",
+      "leadIn": "At the approach end numbers:",
+      "radio": {
+        "channel": "Navy Corpus Tower · UHF CH 4",
+        "script": "“Navy Corpus Tower, <callsign>, numbers RWY {to.runway}.”"
+      },
+      "source": "Binder, pp. 64–65."
+    }
+  ]
+}

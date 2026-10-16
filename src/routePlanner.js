@@ -165,7 +165,7 @@ export function getDestinations(from, fromChoices, graph = GRAPH) {
     return {
       node,
       // Only offer input values that have at least one leg loaded.
-      inputs: (node.endsRoute ? [] : node.inputs ?? []).map((input) => ({
+      inputs: (node.inputs ?? []).map((input) => ({
         ...input,
         options: input.options.filter((option) =>
           graph.legs.some(

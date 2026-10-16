@@ -1,0 +1,77 @@
+{
+  "id": "kngp-shamrock-entry-north",
+  "cards": [
+    {
+      "type": "action",
+      "title": "At Point Shamrock",
+      "mapFocus": [
+        "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/PT Shamrock",
+        "{to.runway.viaA}"
+      ],
+      "instructions": [
+        "Slow to 200 KIAS",
+        "Turn HDG 200° toward the High Bridge",
+        "Maintain 1,000 ft MSL"
+      ],
+      "source": "Binder, pp. 64–66; Feb 2026 PPT, Part 2, slide 111."
+    },
+    {
+      "type": "radio",
+      "title": "Check in with Navy Corpus Tower",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/PT Shamrock",
+      "leadIn": "State your intentions:",
+      "radio": {
+        "channel": "Navy Corpus Tower · UHF CH 4",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Navy Corpus Tower, <callsign>, Shamrock, <full stop / touch-and-go's>." },
+          { "speaker": "Tower", "text": "<callsign>, Navy Corpus Tower, report initial RWY {to.runway}." },
+          { "speaker": "Pilot", "text": "<callsign>, report initial RWY {to.runway}." }
+        ]
+      },
+      "source": "Binder, p. 66."
+    },
+    {
+      "type": "radio",
+      "title": "Abeam Point Dimmit",
+      "mapFocus": [
+        "{to.runway.viaA}",
+        "{to.runway.viaB}"
+      ],
+      "leadIn": "Report initial abeam Point Dimmit:",
+      "radio": {
+        "channel": "Navy Corpus Tower · UHF CH 4",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Navy Corpus Tower, <callsign>, initial RWY {to.runway}." },
+          { "speaker": "Tower", "text": "<callsign>, Navy Corpus Tower, report the numbers RWY {to.runway}." },
+          { "speaker": "Pilot", "text": "<callsign>, report numbers RWY {to.runway}." }
+        ]
+      },
+      "source": "Binder, p. 66; Feb 2026 PPT, Part 2, slides 111–113."
+    },
+    {
+      "type": "action",
+      "title": "From Point Dimmit",
+      "mapFocus": [
+        "{to.runway.viaB}",
+        "{to.runway.viaC}",
+        "{to.runway.entryLine}"
+      ],
+      "instructions": [
+        "{to.runway.afterDimmit}",
+        "Maintain 1,000 ft MSL · 200 KIAS"
+      ],
+      "source": "Binder, p. 66; Feb 2026 PPT, Part 2, slides 112–113."
+    },
+    {
+      "type": "radio",
+      "title": "Numbers call",
+      "mapFocus": "{to.runway.entryLine}",
+      "leadIn": "At the approach end numbers:",
+      "radio": {
+        "channel": "Navy Corpus Tower · UHF CH 4",
+        "script": "“Navy Corpus Tower, <callsign>, numbers RWY {to.runway}.”"
+      },
+      "source": "Binder, p. 66."
+    }
+  ]
+}
