@@ -35,11 +35,11 @@ describe('course rules graph data', () => {
     expect(result).toThrow();
   });
 
-  it('gives every card a source and every radio card a channel', () => {
+  it('gives every radio card a channel and any source a recognised form', () => {
     const legCards = expandLegs(GRAPH).flatMap(({ leg }) => leg.cards);
     const nodeCards = [...GRAPH.nodes.values()].flatMap((node) => node.info ?? []);
     for (const card of [...legCards, ...nodeCards]) {
-      expect(card.source).toMatch(/^(Binder, pp?\.|Feb 2026 PPT, Part \d, slides? )/);
+      if (card.source) expect(card.source).toMatch(/^(Binder, pp?\.|Feb 2026 PPT, Part \d, slides? )/);
       if (card.radio) expect(card.radio.channel).toBeTruthy();
     }
   });

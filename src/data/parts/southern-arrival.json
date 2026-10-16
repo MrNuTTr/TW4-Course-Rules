@@ -24,6 +24,7 @@
           { "speaker": "Pilot", "text": "<callsign>, proceed course rules Shamrock." }
         ]
       },
+      "detail": "Check with an instructor: the binder check-in reads 1,500 ft, but the arrival is flown at 1,000' MSL. The altitude to report is not confirmed.",
       "source": "Binder, p. 64."
     },
     {
