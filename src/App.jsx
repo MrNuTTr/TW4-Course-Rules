@@ -8,6 +8,7 @@ import {
   buildPlannedRoute,
   getCompatibleSecondStops,
   getStopsByCategory,
+  KINGS4_HIGH_AREAS,
 } from './routePlanner.js';
 
 function SchematicRoute({ steps, activeStepId }) {
@@ -69,17 +70,50 @@ function RouteStep({ step, index, active, onSelect }) {
       <span className="step-content">
         <span className="step-title">{step.title}</span>
         <span className="step-detail">{step.detail}</span>
-        <span className="detail-label">What happens</span>
-        <span className="placeholder-copy">
-          Procedure details will be added after review against approved sources.
-        </span>
-        <span className="detail-label">Heading / altitude</span>
-        <span className="placeholder-copy">Not provided in this prototype.</span>
-        <span className="detail-label">Radio calls</span>
-        <span className="callout">
-          Placeholder only: add an approved call script and its applicable
-          conditions.
-        </span>
+        {step.briefing ? (
+          <>
+            <span className="detail-label">What happens</span>
+            <ul className="briefing-list">
+              {step.briefing.whatHappens.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+            <span className="detail-label">Heading / altitude</span>
+            <ul className="briefing-list">
+              {step.briefing.headingAltitude.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+            <span className="detail-label">Radio calls</span>
+            {step.briefing.radioCalls.map((call) => (
+              <div className="radio-call" key={call.label}>
+                <span className="radio-label">{call.label}</span>
+                <span className="callout">{call.script}</span>
+                <span className="source-citation">{call.source}</span>
+              </div>
+            ))}
+            <span className="detail-label">Source references</span>
+            <ul className="source-list">
+              {step.briefing.sources.map((source) => (
+                <li key={source}>{source}</li>
+              ))}
+            </ul>
+          </>
+        ) : (
+          <>
+            <span className="detail-label">What happens</span>
+            <span className="placeholder-copy">
+              No source-cited briefing details are loaded for this route
+              selection. This is an unpopulated demo option.
+            </span>
+            <span className="detail-label">Heading / altitude</span>
+            <span className="placeholder-copy">Not provided in this prototype.</span>
+            <span className="detail-label">Radio calls</span>
+            <span className="callout">
+              No call script is loaded for this route selection.
+            </span>
+          </>
+        )}
       </span>
     </button>
   );
@@ -89,14 +123,17 @@ export default function App() {
   const [runway, setRunway] = useState(DEMO_RUNWAYS[0]);
   const [firstCategory, setFirstCategory] = useState(STOP_CATEGORIES.WORK_AREA);
   const [firstStopId, setFirstStopId] = useState('kings-4');
-  const [secondStopId, setSecondStopId] = useState('');
+  const [secondStopId, setSecondStopId] = useState('goliad-nolf');
+  const [kings4Area, setKings4Area] = useState('3');
   const [activeStepId, setActiveStepId] = useState('departure');
 
   const firstStopOptions = getStopsByCategory(firstCategory);
   const secondStopOptions = getCompatibleSecondStops(firstStopId);
+  const kings4Selected =
+    firstStopId === 'kings-4' || secondStopId === 'kings-4';
   const plannedRoute = useMemo(
-    () => buildPlannedRoute({ runway, firstStopId, secondStopId }),
-    [runway, firstStopId, secondStopId],
+    () => buildPlannedRoute({ runway, firstStopId, secondStopId, kings4Area }),
+    [runway, firstStopId, secondStopId, kings4Area],
   );
   const activeStepIndex = plannedRoute.steps.findIndex(
     (step) => step.id === activeStepId,
@@ -135,10 +172,10 @@ export default function App() {
       </header>
 
       <aside className="safety-notice" aria-label="Prototype limitation">
-        <strong>Demonstration only.</strong> Stop names and runway choices are
-        sample inputs. The diagram is not geographic; routes, headings,
-        altitudes, procedures, and radio scripts are intentionally not
-        represented as real guidance.
+        <strong>Draft source extracts — not for flight.</strong> This example
+        transcribes selected text from the cited SOP documents for interface
+        evaluation; it is not complete, approved, or current operational
+        guidance. The diagram is schematic and has no geographic positions.
       </aside>
 
       <div className="planner-layout">
@@ -216,11 +253,31 @@ export default function App() {
               ))}
             </select>
             <p className="field-help">
-              A Work Area cannot be followed by another Work Area in this
-              prototype; the same rule applies to two consecutive OLF stops.
-              Specific route compatibility still needs reviewed data.
+              This demo filters to the opposite stop type. It does not encode
+              source-reviewed compatibility for other routes.
             </p>
           </div>
+
+          {kings4Selected && (
+            <div className="form-field">
+              <label htmlFor="kings4-area">KINGS 4 high working area</label>
+              <select
+                id="kings4-area"
+                value={kings4Area}
+                onChange={(event) => setKings4Area(event.target.value)}
+              >
+                {KINGS4_HIGH_AREAS.map((area) => (
+                  <option key={area.id} value={area.id}>
+                    {area.label}
+                  </option>
+                ))}
+              </select>
+              <p className="field-help">
+                Area 3 High is selected for this source-extract test. Other areas
+                do not have route-specific detail in this prototype.
+              </p>
+            </div>
+          )}
 
           <div className="generated-route" aria-live="polite">
             <span className="detail-label">Generated route</span>
@@ -239,6 +296,22 @@ export default function App() {
             </div>
             <span className="step-count">{plannedRoute.steps.length} steps</span>
           </div>
+
+          <aside className="draft-notice">
+            {plannedRoute.sourceBackedTestCase ? (
+              <>
+                <strong>Draft source extraction — not for flight.</strong>{' '}
+                {plannedRoute.scope} Confirm current authorized procedures,
+                weather, airspace status, and ATC instructions; this preview is
+                not complete or approved.
+              </>
+            ) : (
+              <>
+                <strong>Unpopulated route variant.</strong> No source-reviewed
+                procedures or radio scripts are loaded for this selection.
+              </>
+            )}
+          </aside>
 
           <div className="map-card">
             <div className="map-card-heading">
@@ -274,8 +347,10 @@ export default function App() {
             ))}
           </div>
           <p className="source-note">
-            Prototype content only. No course-rule documents have been imported
-            into the app.
+            The source PDFs remain private and are not bundled with the app.
+            Citations identify the supplied document revision and printed or
+            slide page. The route diagram is schematic and has no geographic
+            coordinates.
           </p>
         </section>
       </div>

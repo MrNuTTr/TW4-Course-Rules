@@ -188,6 +188,22 @@ h3 {
   line-height: 1.5;
 }
 
+.draft-notice {
+  margin-bottom: 18px;
+  padding: 13px 14px;
+  border: 1px solid #cf8f42;
+  border-left-width: 5px;
+  border-radius: 7px;
+  background: #fff5e8;
+  color: #5a3914;
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.draft-notice strong {
+  color: #8a4316;
+}
+
 .generated-route {
   margin-top: 21px;
   padding: 14px;
@@ -414,6 +430,39 @@ h3 {
 .step-content .detail-label {
   margin-top: 8px;
   margin-bottom: -2px;
+}
+
+.briefing-list,
+.source-list {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding-left: 18px;
+  color: #344454;
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.source-list {
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.radio-call {
+  display: grid;
+  gap: 5px;
+}
+
+.radio-label {
+  color: #334657;
+  font-size: 0.77rem;
+  font-weight: 700;
+}
+
+.source-citation {
+  color: var(--muted);
+  font-size: 0.68rem;
+  line-height: 1.4;
 }
 
 .callout {

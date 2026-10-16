@@ -14,16 +14,22 @@ fallback behavior.
   an automatically generated return step to KNGP.
 - A schematic sequence display and selectable step-by-step cards.
 - Input options and route generation live in `src/demoData.js` and
-  `src/routePlanner.js`, separate from the presentation.
-- All values are demonstration inputs. The diagram has no geographic
-  coordinates, and no SOP, KML, or other course-rule source documents are
-  loaded into this application. Headings, altitudes, procedures, and
-  communications are intentionally placeholders—not flight guidance.
+  `src/routePlanner.js`, separate from the presentation. The selected
+  KNGP Runway 13L → KINGS 4 Area 3 High → NOLF Goliad → KNGP test case has
+  source-cited draft extracts in `src/testRouteData.js`.
+- Only that exact test case has source-derived briefing text. Other selections
+  remain unpopulated and must not inherit its content. KNGP arrival flow/runway
+  is intentionally unresolved in the test case.
+- The schematic has no geographic coordinates. Private source PDFs are not
+  bundled with the application; the on-screen citations name their revisions
+  and pages. Extracted text is a draft for UI evaluation, not approved flight
+  guidance, and must be checked by a qualified reviewer against current
+  authorized material before operational use.
 
-The prototype currently filters out a second stop of the same category. It
-does not yet encode specific route compatibility or procedure rules; those
-must be established from reviewed, authoritative sources before real data is
-added.
+The prototype currently filters out a second stop of the same category. That
+is only a UI rule, not an operational route-compatibility determination.
+Specific route compatibility and all unpopulated procedure branches require
+reviewed, authoritative data.
 
 ## Run locally
 
