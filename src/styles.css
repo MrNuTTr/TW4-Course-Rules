@@ -82,18 +82,6 @@ h3 {
   font-size: 1rem;
 }
 
-.prototype-badge {
-  flex: 0 0 auto;
-  padding: 8px 11px;
-  border: 1px solid #c8513d;
-  border-radius: 5px;
-  background: #fff0ed;
-  color: #9b2c1c;
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-}
-
 .safety-notice {
   margin-bottom: 22px;
   padding: 14px 16px;
@@ -770,10 +758,6 @@ h3 {
     gap: 12px;
   }
 
-  .prototype-badge {
-    justify-self: start;
-  }
-
   .safety-notice {
     padding: 12px;
     font-size: 0.8rem;
@@ -812,6 +796,15 @@ h3 {
   color: var(--muted);
   font-size: 0.85rem;
   font-weight: 600;
+}
+
+.section-heading h2 {
+  font-size: 1.15rem;
+}
+
+.destination-category label {
+  font-size: 1.15rem;
+  letter-spacing: -0.025em;
 }
 
 .destination-category {

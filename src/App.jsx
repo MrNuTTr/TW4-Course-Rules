@@ -372,9 +372,7 @@ export default function App() {
                     : 'Plan your next leg'}
           </h1>
         </div>
-        {phase === 'plan' && isStart ? (
-          <span className="prototype-badge">PROTOTYPE · NOT FOR FLIGHT</span>
-        ) : (
+        {phase === 'plan' && isStart ? null : (
           <div className="header-actions">
             {trail.length > 0 && (
               <button type="button" className="home-button" onClick={goLastLeg}>
