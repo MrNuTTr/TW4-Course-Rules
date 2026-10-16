@@ -125,8 +125,8 @@ export function resolveLeg(leg, fromChoices = {}, toChoices = {}, graph = GRAPH)
 
 // Every concrete (resolved) version of every leg, for validation.
 export function expandLegs(graph = GRAPH) {
-  const optionSets = (node, fixed = {}) => {
-    const inputs = node.inputs ?? [];
+  const optionSets = (node, fixed = {}, isOrigin = false) => {
+    const inputs = (node.inputs ?? []).filter((input) => !(isOrigin && input.arrivalOnly));
     return inputs.reduce(
       (sets, input) =>
         sets.flatMap((set) =>
@@ -141,7 +141,7 @@ export function expandLegs(graph = GRAPH) {
   return graph.legs.flatMap((leg) => {
     const fromNode = getNode(leg.from, graph);
     const toNode = getNode(leg.to, graph);
-    return optionSets(fromNode, leg.when?.from).flatMap((fromChoices) =>
+    return optionSets(fromNode, leg.when?.from, true).flatMap((fromChoices) =>
       optionSets(toNode, leg.when?.to).map((toChoices) => ({
         fromChoices,
         toChoices,
@@ -185,15 +185,17 @@ export function getDestinations(from, fromChoices, graph = GRAPH) {
 export function getOriginInputs(nodeId, graph = GRAPH) {
   const node = getNode(nodeId, graph);
   const outgoing = graph.legs.filter((leg) => leg.from === nodeId);
-  return (node.inputs ?? []).map((input) => ({
-    ...input,
-    options: input.options.filter((option) =>
-      outgoing.some(
-        (leg) =>
-          leg.when?.from?.[input.id] === undefined || leg.when.from[input.id] === option,
+  return (node.inputs ?? [])
+    .filter((input) => !input.arrivalOnly)
+    .map((input) => ({
+      ...input,
+      options: input.options.filter((option) =>
+        outgoing.some(
+          (leg) =>
+            leg.when?.from?.[input.id] === undefined || leg.when.from[input.id] === option,
+        ),
       ),
-    ),
-  }));
+    }));
 }
 
 export function optionLabel(input, value) {

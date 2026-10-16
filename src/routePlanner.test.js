@@ -183,15 +183,17 @@ describe('leg planning', () => {
     expect(getDestinations('kings4', { area: '3 High' }).map(({ node }) => node.id)).toEqual([
       'goliad',
     ]);
-    const south = findLeg('goliad', { runway: '17' }, 'kngp', { runway: '13L' });
+    const south = findLeg('goliad', { runway: '17' }, 'kngp', { runway: '13L', entry: 'Standard entry' });
     expect(south.cards.at(-1).title).toMatch(/Numbers call/);
     expect(JSON.stringify(south.cards)).toMatch(/crossing the extended centerline of Runway 18/);
     expect(JSON.stringify(south.cards)).not.toMatch(/9 Mile/);
-    const north = findLeg('goliad', { runway: '17' }, 'kngp', { runway: '04' });
+    const north = findLeg('goliad', { runway: '17' }, 'kngp', { runway: '04', entry: 'Standard entry' });
     expect(JSON.stringify(north.cards)).toMatch(/Point Dimmit/);
-    expect(getDestinations('goliad', { runway: '17' })[0].inputs[0].options).toEqual(
-      GRAPH.nodes.get('kngp').inputs[0].options,
-    );
+    const straightSouth = findLeg('goliad', { runway: '17' }, 'kngp', { runway: '13L', entry: 'Straight-in' });
+    expect(JSON.stringify(straightSouth.cards)).toMatch(/left base gear down/);
+    const straightNorth = findLeg('goliad', { runway: '17' }, 'kngp', { runway: '36', entry: 'Straight-in' });
+    expect(JSON.stringify(straightNorth.cards)).toMatch(/right base gear down/);
+    expect(getOriginInputs('kngp').map((input) => input.id)).toEqual(['runway']);
     expect(GRAPH.nodes.get('kngp').endsRoute).toBe(true);
   });
 });

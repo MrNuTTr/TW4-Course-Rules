@@ -1,0 +1,80 @@
+{
+  "id": "kngp-straight-in-north",
+  "cards": [
+    {
+      "type": "action",
+      "title": "At Point Shamrock",
+      "mapFocus": [
+        "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/PT Shamrock",
+        "{to.runway.viaA}"
+      ],
+      "instructions": [
+        "Slow to 200 KIAS",
+        "Turn HDG 200° toward the High Bridge",
+        "Maintain 1,000 ft MSL"
+      ],
+      "source": "Binder, p. 68; Feb 2026 PPT, Part 2, slides 110–111."
+    },
+    {
+      "type": "radio",
+      "title": "Request the straight-in",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/PT Shamrock",
+      "leadIn": "Terminate with Approach, then contact Tower:",
+      "radio": {
+        "channel": "Navy Corpus Tower · UHF CH 4",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Navy Corpus Tower, <callsign>, Shamrock, straight-in." },
+          { "speaker": "Tower", "text": "<callsign>, Navy Corpus Tower, report initial RWY {to.runway}." },
+          { "speaker": "Pilot", "text": "<callsign>, report initial RWY {to.runway}." }
+        ]
+      },
+      "source": "Binder, p. 68."
+    },
+    {
+      "type": "action",
+      "title": "Cleared for the straight-in",
+      "mapFocus": [
+        "{to.runway.viaA}",
+        "{to.runway.viaB}"
+      ],
+      "instructions": [
+        "Descend and level off at 500 ft MSL",
+        "Approaching initial: slow below 150 KIAS",
+        "Gear down, flaps as required, Before Landing checklist"
+      ],
+      "source": "Binder, p. 68; Feb 2026 PPT, Part 2, slide 110."
+    },
+    {
+      "type": "radio",
+      "title": "Abeam Point Dimmit",
+      "mapFocus": [
+        "{to.runway.viaA}",
+        "{to.runway.viaB}"
+      ],
+      "leadIn": "Report initial abeam Point Dimmit:",
+      "radio": {
+        "channel": "Navy Corpus Tower · UHF CH 4",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Navy Corpus Tower, <callsign>, initial RWY {to.runway}." },
+          { "speaker": "Tower", "text": "<callsign>, Navy Corpus Tower, roger, report right base RWY {to.runway}." },
+          { "speaker": "Pilot", "text": "<callsign>, report right base RWY {to.runway}." }
+        ]
+      },
+      "source": "Binder, p. 68."
+    },
+    {
+      "type": "radio",
+      "title": "Right base, gear down",
+      "mapFocus": [
+        "{to.runway.viaB}",
+        "{to.runway.entryLine}"
+      ],
+      "leadIn": "From Point Dimmit, turn to intercept the extended centerline, then descend to the runway:",
+      "radio": {
+        "channel": "Navy Corpus Tower · UHF CH 4",
+        "script": "“Navy Corpus Tower, <callsign>, right base gear down.”"
+      },
+      "source": "Binder, p. 68; Feb 2026 PPT, Part 2, slide 110."
+    }
+  ]
+}

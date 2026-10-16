@@ -109,6 +109,17 @@
           "turnFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/36"
         }
       }
+    },
+    {
+      "id": "entry",
+      "label": "Entry",
+      "arrivalOnly": true,
+      "optionLabel": "{value}",
+      "options": ["Standard entry", "Straight-in"],
+      "details": {
+        "Standard entry": { "part": "shamrock-entry" },
+        "Straight-in": { "part": "straight-in" }
+      }
     }
   ],
   "info": []

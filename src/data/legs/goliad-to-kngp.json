@@ -120,6 +120,6 @@
       },
       "source": "Binder, p. 63."
     },
-    { "use": "kngp-shamrock-entry-{to.runway.flow}" }
+    { "use": "kngp-{to.entry.part}-{to.runway.flow}" }
   ]
 }
