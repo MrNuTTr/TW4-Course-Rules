@@ -1,0 +1,25 @@
+{
+  "id": "kngp-pre-taxi",
+  "cards": [
+    {
+      "type": "radio",
+      "title": "Put ZOMBIE 1 on request",
+      "mapFocus": "(KNGP) Corpus Christi NAS/KNGP",
+      "leadIn": "Before taxi:",
+      "radio": {
+        "channel": "Navy Corpus Clearance · UHF CH 2",
+        "exchange": [
+          {
+            "speaker": "Pilot",
+            "text": "Navy Corpus Clearance, <callsign>, put a ZOMBIE 1 on request, time immediate."
+          },
+          {
+            "speaker": "Clearance",
+            "text": "<callsign>, Navy Corpus Clearance, roger, on request."
+          }
+        ]
+      },
+      "source": "Binder, p. 2."
+    }
+  ]
+}

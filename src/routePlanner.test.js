@@ -125,56 +125,66 @@ describe('graph integrity (run on every data import)', () => {
 describe('leg planning', () => {
   it('offers only loaded runways at KNGP', () => {
     const [runway] = getOriginInputs('kngp');
-    expect(runway.options).toEqual(['13L']);
+    expect(runway.options).toEqual(['13L', '13R', '18', '04', '31L', '31R', '36']);
   });
 
-  it('offers KINGS 4 from KNGP 13L with only loaded areas', () => {
+  it('offers KINGS 4 and Goliad from KNGP, with all high and low areas', () => {
     const destinations = getDestinations('kngp', { runway: '13L' });
-    expect(destinations.map(({ node }) => node.id)).toEqual(['kings4']);
-    expect(destinations[0].inputs[0].options).toEqual(['3']);
-    expect(getDestinations('kngp', { runway: '31R' })).toEqual([]);
+    expect(destinations.map(({ node }) => node.id).sort()).toEqual(['goliad', 'kings4']);
+    const kings4 = destinations.find(({ node }) => node.id === 'kings4');
+    expect(kings4.inputs[0].options).toContain('3 High');
+    expect(kings4.inputs[0].options).toContain('9 Low');
+    expect(kings4.inputs[0].options).not.toContain('5 Low');
   });
 
   it('finds the KNGP to KINGS 4 leg with 5,500 ft up to Rusty then 14,500 at Rusty', () => {
-    const leg = findLeg('kngp', { runway: '13L' }, 'kings4', { area: '3' });
+    const leg = findLeg('kngp', { runway: '13L' }, 'kings4', { area: '3 High' });
     const text = JSON.stringify(leg.cards);
     expect(leg.cards[0].title).toMatch(/ZOMBIE 1/);
     expect(text).toMatch(/5,500/);
     expect(text).toMatch(/14,500/);
     expect(text).not.toMatch(/Class D/);
-    expect(getDestinations('kngp', { runway: '13L' })[0].inputs[0].options).not.toContain('4');
   });
 
-  it('expands parts and the {to.node} token, and rejects unknown parts', () => {
-    const leg = findLeg('kngp', { runway: '13L' }, 'kings4', { area: '3' });
+  it('uses south-flow ground comms for 13L and north-flow for 31L', () => {
+    const south = JSON.stringify(findLeg('kngp', { runway: '13L' }, 'kings4', { area: '3 High' }).cards);
+    const north = JSON.stringify(findLeg('kngp', { runway: '31L' }, 'kings4', { area: '3 High' }).cards);
+    expect(south).toMatch(/Sierra run-up/);
+    expect(north).toMatch(/holding short Compass Rose/);
+  });
+
+  it('expands nested parts and tokens, and rejects unknown parts', () => {
+    const leg = findLeg('kngp', { runway: '13L' }, 'kings4', { area: '3 High' });
     expect(leg.cards.map((card) => card.title)).toContain('Claim Area 3 High');
     expect(JSON.stringify(leg.cards)).toMatch(/VFR KINGS 4/);
-    expect(JSON.stringify(leg.cards)).toMatch(/taxi to RWY 13L/);
+    expect(JSON.stringify(leg.cards)).toMatch(/taxi to Runway 13L/);
     expect(() =>
       resolveLeg({ id: 'x', from: 'kngp', to: 'kings4', cards: [{ use: 'nope' }] }),
     ).toThrow('unknown part');
   });
 
-  it('uses every part from at least one leg', () => {
+  it('uses every part from at least one leg, including nested parts', () => {
     const used = new Set();
-    for (const leg of GRAPH.legs) {
-      for (const card of leg.cards) {
-        if (!card.use) continue;
-        for (const id of GRAPH.parts.keys()) {
-          const pattern = new RegExp(`^${card.use.replace(/\{[^}]+\}/g, '.+')}$`);
-          if (pattern.test(id)) used.add(id);
-        }
+    const visit = (ref) => {
+      const pattern = new RegExp(`^${ref.replace(/\{[^}]+\}/g, '.+')}$`);
+      for (const [id, part] of GRAPH.parts) {
+        if (!pattern.test(id) || used.has(id)) continue;
+        used.add(id);
+        for (const card of part.cards) if (card.use) visit(card.use);
       }
+    };
+    for (const leg of GRAPH.legs) {
+      for (const card of leg.cards) if (card.use) visit(card.use);
     }
     expect([...GRAPH.parts.keys()].filter((id) => !used.has(id))).toEqual([]);
   });
 
   it('chains KINGS 4 → Goliad → KNGP and ends there', () => {
-    expect(getDestinations('kings4', { area: '3' }).map(({ node }) => node.id)).toEqual([
+    expect(getDestinations('kings4', { area: '3 High' }).map(({ node }) => node.id)).toEqual([
       'goliad',
     ]);
     const arrival = findLeg('goliad', { runway: '17' }, 'kngp', {});
     expect(arrival.cards.at(-1).title).toMatch(/Tower handoff/);
-    expect(getDestinations('kngp', {})).toEqual([]);
+    expect(GRAPH.nodes.get('kngp').endsRoute).toBe(true);
   });
 });

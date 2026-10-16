@@ -8,12 +8,72 @@
     {
       "id": "runway",
       "label": "Runway",
-      "options": [
-        "13L",
-        "31R",
-        "18",
-        "36"
-      ]
+      "options": ["13L", "13R", "18", "04", "31L", "31R", "36"],
+      "details": {
+        "13L": {
+          "flow": "south",
+          "taxiRoute": "via Sierra, Charlie, 22, cross Runway 18",
+          "holdShort": "VFR: hold short offset to the right side of RWY 04/22. If several aircraft hold short of 13L, do not block Yankee taxiway.",
+          "firstTurn": "Fly HDG 125° until the High Bridge",
+          "turnTitle": "Abeam the High Bridge",
+          "turnCourse": "~350°",
+          "turnFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/High Bridge"
+        },
+        "13R": {
+          "flow": "south",
+          "taxiRoute": "via Sierra, Charlie, 22, cross Runway 18 and 13L",
+          "holdShort": "VFR: hold short offset to the right side of RWY 04/22.",
+          "firstTurn": "Fly HDG 135° until the High Bridge",
+          "turnTitle": "Abeam the High Bridge",
+          "turnCourse": "~350°",
+          "turnFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/High Bridge"
+        },
+        "18": {
+          "flow": "south",
+          "taxiRoute": "via Sierra, Charlie, 22",
+          "holdShort": "VFR: hold short offset to the right side of RWY 04/22.",
+          "firstTurn": "When clear of the pattern, turn left to HDG 105° until the High Bridge",
+          "turnTitle": "Abeam the High Bridge",
+          "turnCourse": "~350°",
+          "turnFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/High Bridge"
+        },
+        "04": {
+          "flow": "north",
+          "taxiRoute": "via Echo, cross Runways 31L/R, 36",
+          "holdShort": "Hold short in sequence, in one line.",
+          "firstTurn": "Fly runway heading until clear of the pattern",
+          "turnTitle": "Once clear of the pattern",
+          "turnCourse": "~010°",
+          "turnFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/04"
+        },
+        "31L": {
+          "flow": "north",
+          "taxiRoute": "via Echo, Yankee",
+          "holdShort": "Hold short in sequence, in one line.",
+          "firstTurn": "Fly HDG 305° until cleared by Tower",
+          "turnTitle": "Once cleared by Tower",
+          "turnCourse": "~015°",
+          "turnFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/31L"
+        },
+        "31R": {
+          "flow": "north",
+          "taxiRoute": "via Echo, Yankee",
+          "holdShort": "Hold short in sequence, in one line.",
+          "firstTurn": "Fly HDG 315° until clear of the pattern",
+          "turnTitle": "Once clear of the pattern",
+          "turnCourse": "~015°",
+          "turnFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/31R"
+        },
+        "36": {
+          "flow": "north",
+          "taxiRoute": "via Echo, Yankee, Zulu, cross Runways 31 Left, 31 Right",
+          "holdShort": "Hold short in sequence, in one line.",
+          "firstTurn": "Fly runway heading until clear of the pattern",
+          "turnTitle": "Once clear of the pattern",
+          "turnCourse": "~360°",
+          "turnFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/36"
+        }
+      }
     }
   ],
   "info": []

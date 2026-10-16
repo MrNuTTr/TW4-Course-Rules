@@ -1,0 +1,29 @@
+{
+  "id": "rusty-turn",
+  "cards": [
+    {
+      "type": "action",
+      "title": "{from.runway.turnTitle}",
+      "mapFocus": "{from.runway.turnFocus}",
+      "leadIn": "Thence:",
+      "instructions": [
+        "Turn direct to PT RUSTY ({from.runway.turnCourse})",
+        "Climb initially and maintain 2,500 ft MSL",
+        "Accelerate to 240 KIAS"
+      ],
+      "source": "Binder, p. 8; Feb 2026 PPT, Part 1, slide 56."
+    },
+    {
+      "type": "action",
+      "title": "Continue to Point Rusty",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/PT Rusty",
+      "instructions": [
+        "When cleared on course by Corpus Approach, climb and maintain 5,500 ft MSL",
+        "Maintain 5,500 ft MSL up to Point Rusty",
+        "Expect switch to Corpus Approach (UHF CH 6) when directed",
+        "Watch for formation traffic in Mustang Central at 6,500 ft and above"
+      ],
+      "source": "Binder, p. 8; Feb 2026 PPT, Part 1, slide 55."
+    }
+  ]
+}

@@ -108,14 +108,19 @@ export function resolveLeg(leg, fromChoices = {}, toChoices = {}, graph = GRAPH)
     return value;
   }
 
-  const cards = leg.cards.flatMap((card) => {
-    if (!card.use) return [card];
-    const partId = substitute(card.use);
-    const part = graph.parts?.get(partId);
-    if (!part) throw new Error(`Leg ${leg.id} uses unknown part: ${partId}`);
-    return part.cards;
-  });
-  return substitute({ ...leg, cards });
+  // Parts may use other parts; the depth cap catches accidental cycles.
+  function expandCards(cardList, depth = 0) {
+    if (depth > 4) throw new Error(`Leg ${leg.id}: parts are nested too deeply`);
+    return cardList.flatMap((card) => {
+      if (!card.use) return [card];
+      const partId = substitute(card.use);
+      const part = graph.parts?.get(partId);
+      if (!part) throw new Error(`Leg ${leg.id} uses unknown part: ${partId}`);
+      return expandCards(part.cards, depth + 1);
+    });
+  }
+
+  return substitute({ ...leg, cards: expandCards(leg.cards) });
 }
 
 // Every concrete (resolved) version of every leg, for validation.

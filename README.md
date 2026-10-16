@@ -26,11 +26,12 @@ fallback behavior.
     exist, so adding a leg file adds it to the UI. No code change is needed.
   - `src/data/parts/*.json`: reusable card blocks (`{id, cards}`). A leg's
     `cards` can contain `{"use": "part-id"}` entries; the id may use tokens
-    (e.g. `rusty-departure-{from.runway}`). Shared parts hold text that is the
+    (e.g. `kngp-ground-{from.runway.flow}`). Parts can nest other `use`
+    entries. Shared parts hold text that is the
     same for every runway/area, using `{from.runway}`, `{to.area}`, `{to.node}`
     and `{to.area.limits}`-style tokens; per-option facts live in the node's
-    input `details`. To add a runway, add a leg file (`kngp-to-kings4-<rwy>.json`)
-    and a runway departure part. To add a KINGS 4 area, add it to the node's
+    input `details`. To add a runway, add it to the KNGP node's `options` and
+    `details`. To add a KINGS 4 area, add it to the node's
     `options` and `details` (the tests fail until every token resolves).
 - Cards store concise instructions, optional radio channel/script or
   exchange, and per-card source provenance (hidden in the UI). Tests validate
@@ -38,13 +39,14 @@ fallback behavior.
   integrity rules to run after every import: unique map ids, `when` values
   that match real options, exactly one leg per choice combination (an ambiguous
   match throws), no stranded routes, and well-formed cards.
-- Currently loaded (draft, from the binder and Feb 2026 PowerPoints): KNGP
-  RWY 13L → KINGS 4 Area 3 High → Goliad (RWY 11/17/29/35) → KNGP. The Goliad
-  legs use `{from.X}`, `{to.X}` and `{to.X.detail}` tokens, resolved from the
+- Currently loaded (from the binder and Feb 2026 PowerPoints): the Rusty
+  departure from all 7 runways (13L/13R/18/04/31L/31R/36) → KINGS 4 (any
+  high/low area) or Goliad via Bayside → KNGP. Legs use `{from.X}`, `{to.X}` and `{to.X.detail}` tokens, resolved from the
   chosen inputs and the per-option `details` in the node file, so one leg file
   covers every runway. A missing detail fails the tests.
-- `src/data/map-extras.json` holds derived map points not in the KML (Goliad
-  4 NM initials, Berclair avoid area). They are approximate, drawn as ★ and a
+- `src/data/map-extras.json` holds derived map points and lines not in the KML (Goliad
+  4 NM initials, Berclair avoid area, Bayside). Extras with `coordinates` are lines
+  (`kind: line`); the rest are points, drawn as ★ and a
   dashed red circle, and `mapFocus` may be a list of ids to frame several
   features at once.
 - Some radio cards store a turn-by-turn exchange so the pilot call,

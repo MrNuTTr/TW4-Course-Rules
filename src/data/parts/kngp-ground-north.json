@@ -1,0 +1,55 @@
+{
+  "id": "kngp-ground-north",
+  "cards": [
+    { "use": "kngp-pre-taxi" },
+    {
+      "type": "radio",
+      "title": "Request taxi to the run-ups",
+      "mapFocus": "(KNGP) Corpus Christi NAS/KNGP",
+      "leadIn": "At Taxiway Charlie / Compass Rose:",
+      "radio": {
+        "channel": "Navy Corpus Ground · UHF CH 3",
+        "exchange": [
+          {
+            "speaker": "Pilot",
+            "text": "Navy Corpus Ground, <callsign>, holding short Compass Rose, taxi information <ATIS>, VFR {to.node}."
+          },
+          {
+            "speaker": "Ground",
+            "text": "<callsign>, Navy Corpus Ground, taxi to the run-ups for Runway {from.runway} via Compass Rose, Echo."
+          },
+          {
+            "speaker": "Pilot",
+            "text": "Navy Corpus Ground, <callsign>, taxi to the run-ups for Runway {from.runway} via Compass Rose, Echo."
+          }
+        ]
+      },
+      "source": "Binder, p. 2; Feb 2026 PPT, Part 1, slides 24–26, 32–34."
+    },
+    { "use": "kngp-clearance" },
+    {
+      "type": "radio",
+      "title": "Request further taxi",
+      "mapFocus": "(KNGP) Corpus Christi NAS/KNGP",
+      "leadIn": "Once run-up is complete:",
+      "radio": {
+        "channel": "Navy Corpus Ground · UHF CH 3",
+        "exchange": [
+          {
+            "speaker": "Pilot",
+            "text": "Navy Corpus Ground, <callsign>, further taxi."
+          },
+          {
+            "speaker": "Ground",
+            "text": "<callsign>, Navy Corpus Ground, taxi to Runway {from.runway} {from.runway.taxiRoute}."
+          },
+          {
+            "speaker": "Pilot",
+            "text": "Navy Corpus Ground, <callsign>, taxi to Runway {from.runway} {from.runway.taxiRoute}."
+          }
+        ]
+      },
+      "source": "Binder, p. 2; Feb 2026 PPT, Part 1, slides 32–34."
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "kngp-to-goliad",
+  "from": "kngp",
+  "to": "goliad",
+  "when": {},
+  "title": "KNGP RWY {from.runway} → Goliad RWY {to.runway}",
+  "featureIds": [
+    "(KNGP) Corpus Christi NAS/KNGP",
+    "(KNGP) Corpus Christi NAS/Rusty Departures/{from.runway}",
+    "{from.runway.turnFocus}",
+    "(KNGP) Corpus Christi NAS/Rusty Departures/PT Rusty",
+    "(KNGP) Corpus Christi NAS/Rusty Departures/PT Rusty to Bayside (~360°)",
+    "(KNGP) Corpus Christi NAS/Rusty Departures/Bayside",
+    "(KNGP) Corpus Christi NAS/Rusty Departures/Bayside to Goliad (~322°)",
+    "(KNGT) Goliad NOLF/KNGT",
+    "(KNGT) Goliad NOLF/{to.runway.runwayLine}",
+    "(KNGT) Goliad NOLF/Arrivals/4 NM Radius",
+    "(KNGT) Goliad NOLF/Arrivals/{to.runway}",
+    "(KNGT) Goliad NOLF/Initial {to.runway}",
+    "(KNGT) Goliad NOLF/Berclair (do not overfly)"
+  ],
+  "arrivalFeatureIds": [
+    "(KNGT) Goliad NOLF/KNGT",
+    "(KNGT) Goliad NOLF/{to.runway.runwayLine}",
+    "(KNGT) Goliad NOLF/Arrivals/4 NM Radius",
+    "(KNGT) Goliad NOLF/Arrivals/{to.runway}",
+    "(KNGT) Goliad NOLF/Initial {to.runway}",
+    "(KNGT) Goliad NOLF/Berclair (do not overfly)"
+  ],
+  "cards": [
+    { "use": "kngp-ground-{from.runway.flow}" },
+    { "use": "kngp-tower-departure" },
+    { "use": "rusty-takeoff" },
+    { "use": "rusty-checkin-goliad" },
+    { "use": "rusty-turn" },
+    { "use": "rusty-to-goliad" },
+    { "use": "goliad-arrival" }
+  ]
+}

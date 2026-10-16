@@ -1,0 +1,26 @@
+{
+  "id": "kngp-to-kings4",
+  "from": "kngp",
+  "to": "kings4",
+  "when": {},
+  "title": "KNGP RWY {from.runway} → KINGS 4 Area {to.area}",
+  "featureIds": [
+    "(KNGP) Corpus Christi NAS/KNGP",
+    "(KNGP) Corpus Christi NAS/Rusty Departures/{from.runway}",
+    "{from.runway.turnFocus}",
+    "(KNGP) Corpus Christi NAS/Rusty Departures/PT Rusty",
+    "Kings 4 MOAs/Rusty Entry",
+    "{to.area.moa}"
+  ],
+  "arrivalFeatureIds": [
+    "{to.area.moa}"
+  ],
+  "cards": [
+    { "use": "kngp-ground-{from.runway.flow}" },
+    { "use": "kngp-tower-departure" },
+    { "use": "rusty-takeoff" },
+    { "use": "rusty-checkin-kings4" },
+    { "use": "rusty-turn" },
+    { "use": "kings4-entry" }
+  ]
+}

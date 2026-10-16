@@ -39,5 +39,33 @@
     "lat": 28.53083333,
     "lon": -97.59111111,
     "description": "Avoid overflying the town of Berclair (noise). Approximate town position from public gazetteer coordinates; the circle is illustrative, not a defined boundary."
+  },
+  {
+    "folder": "(KNGP) Corpus Christi NAS/Rusty Departures",
+    "name": "Bayside",
+    "kind": "waypoint",
+    "lat": 28.0797910109765,
+    "lon": -97.23111176568834,
+    "description": "Bayside. Position taken from the bend in the KML Rusty Entry track; approximate."
+  },
+  {
+    "folder": "(KNGP) Corpus Christi NAS/Rusty Departures",
+    "name": "PT Rusty to Bayside (~360°)",
+    "kind": "line",
+    "coordinates": [
+      [-97.26353134401023, 27.88647269540229],
+      [-97.23111176568834, 28.0797910109765]
+    ],
+    "description": "Straight line from PT Rusty to Bayside. Illustrative, derived from KML points."
+  },
+  {
+    "folder": "(KNGP) Corpus Christi NAS/Rusty Departures",
+    "name": "Bayside to Goliad (~322°)",
+    "kind": "line",
+    "coordinates": [
+      [-97.23111176568834, 28.0797910109765],
+      [-97.6147, 28.6134]
+    ],
+    "description": "Direct from Bayside to NOLF Goliad. Illustrative straight line derived from KML points; the binder gives about 322°."
   }
 ]

@@ -1,0 +1,55 @@
+{
+  "id": "rusty-to-goliad",
+  "cards": [
+    {
+      "type": "action",
+      "title": "At Point Rusty",
+      "mapFocus": [
+        "(KNGP) Corpus Christi NAS/Rusty Departures/PT Rusty",
+        "(KNGP) Corpus Christi NAS/Rusty Departures/PT Rusty to Bayside (~360°)"
+      ],
+      "instructions": [
+        "Turn right toward Bayside, HDG ~360°",
+        "Maintain 5,500 ft MSL, 240 KIAS",
+        "Remain clear of Goliad arrival traffic at 2,500 ft MSL between Woodsboro and Bayside"
+      ],
+      "source": "Binder, pp. 8–9, 30; Feb 2026 PPT, Part 2, slides 14–15."
+    },
+    {
+      "type": "action",
+      "title": "Abeam Bayside",
+      "mapFocus": [
+        "(KNGP) Corpus Christi NAS/Rusty Departures/Bayside",
+        "(KNGP) Corpus Christi NAS/Rusty Departures/Bayside to Goliad (~322°)"
+      ],
+      "instructions": [
+        "Turn direct to NOLF Goliad, HDG ~322°",
+        "Climb or descend to 4,500 ft or 6,500 ft MSL",
+        "Maintain 240 KIAS"
+      ],
+      "source": "Binder, p. 30; Feb 2026 PPT, Part 2, slides 14–15."
+    },
+    {
+      "type": "radio",
+      "title": "Leave Corpus Departure",
+      "mapFocus": [
+        "(KNGP) Corpus Christi NAS/Rusty Departures/Bayside"
+      ],
+      "leadIn": "When Corpus Departure terminates radar service:",
+      "radio": {
+        "channel": "Corpus Departure · UHF CH 6",
+        "exchange": [
+          {
+            "speaker": "Departure",
+            "text": "<callsign>, Corpus Departure, leaving my airspace to the north, radar services are terminated, squawk appropriate code, frequency change approved."
+          },
+          {
+            "speaker": "Pilot",
+            "text": "<callsign>, squawk appropriate code, frequency change approved."
+          }
+        ]
+      },
+      "source": "Binder, pp. 9, 30."
+    }
+  ]
+}

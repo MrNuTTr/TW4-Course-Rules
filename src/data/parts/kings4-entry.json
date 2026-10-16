@@ -4,18 +4,42 @@
     {
       "type": "action",
       "title": "At Point Rusty",
-      "mapFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/PT Rusty",
-      "instructions": [
-        "For KINGS 4, begin climb to 14,500 ft MSL",
-        "Enter the MOA via the approved entry procedure when cleared"
+      "mapFocus": [
+        "(KNGP) Corpus Christi NAS/Rusty Departures/PT Rusty",
+        "Kings 4 MOAs/Rusty Entry"
       ],
-      "source": "Binder, pp. 8–10."
+      "instructions": [
+        "Turn right toward Bayside (~360°)",
+        "Climb to 14,500 ft MSL",
+        "Execute the area entry procedures"
+      ],
+      "source": "Binder, pp. 8–9; Feb 2026 PPT, Part 1, slide 57."
+    },
+    {
+      "type": "radio",
+      "title": "Hand-off to Houston Center",
+      "mapFocus": "Kings 4 MOAs/Rusty Entry",
+      "leadIn": "When directed by Corpus Departure:",
+      "radio": {
+        "channel": "Corpus Departure · UHF CH 6",
+        "exchange": [
+          {
+            "speaker": "Departure",
+            "text": "<callsign>, Corpus Departure, contact Houston Center on 135.05."
+          },
+          {
+            "speaker": "Pilot",
+            "text": "<callsign>, contact Houston Center on 135.05."
+          }
+        ]
+      },
+      "source": "Binder, p. 9."
     },
     {
       "type": "radio",
       "title": "Obtain KINGS 4 clearance",
-      "mapFocus": "Kings 4 MOAs/Kings 4 MOA {to.area}",
-      "leadIn": "When directed by Corpus Approach, before entering the MOA:",
+      "mapFocus": "Kings 4 MOAs/Rusty Entry",
+      "leadIn": "Before entering the MOA:",
       "radio": {
         "channel": "Houston Center · VHF CH 22",
         "exchange": [
@@ -37,40 +61,48 @@
     },
     {
       "type": "radio",
-      "title": "Claim Area {to.area} High",
-      "mapFocus": "Kings 4 MOAs/Kings 4 MOA {to.area}",
-      "leadIn": "Before proceeding to the selected block:",
+      "title": "Claim Area {to.area}",
+      "mapFocus": "{to.area.moa}",
+      "leadIn": "Before proceeding to the block:",
       "instructions": [
         "Wait for responses before claiming the area"
       ],
       "radio": {
         "channel": "KINGS 4 Common · UHF CH 20",
-        "script": "“99 KINGS 4, anybody working area {to.area} high?” After responses: “99 KINGS 4, <callsign> claims area {to.area} high.”"
+        "exchange": [
+          {
+            "speaker": "Pilot",
+            "text": "99 KINGS 4, anybody working area {to.area.spoken}?"
+          },
+          {
+            "speaker": "Pilot",
+            "text": "99 KINGS 4, <callsign> claims area {to.area.spoken}."
+          }
+        ]
       },
-      "source": "Binder, p. 10."
+      "source": "Binder, p. 10; Feb 2026 PPT, Part 1, slide 70."
     },
     {
       "type": "action",
-      "title": "Enter KINGS 4 through the transition layer",
-      "mapFocus": "Kings 4 MOAs/Kings 4 MOA {to.area}",
+      "title": "Enter KINGS 4",
+      "mapFocus": "{to.area.moa}",
       "instructions": [
-        "When cleared, enter via the transition layer",
-        "Maintain 14,500 ft MSL until within the lateral confines of the MOA",
-        "Once within the MOA, use the appropriate transition altitude: east 14,700 ft MSL; west 14,200 ft MSL"
+        "Do not enter the MOA until established at 14,500 ft MSL and cleared by Houston Center",
+        "Enter via the transition layer",
+        "{to.area.entryNote}"
       ],
-      "detail": "{to.area.entryNote}",
-      "source": "Binder, pp. 10–11."
+      "source": "Binder, pp. 10–11; Feb 2026 PPT, Part 1, slides 70–71."
     },
     {
       "type": "action",
-      "title": "Work Area {to.area} High",
-      "mapFocus": "Kings 4 MOAs/Kings 4 MOA {to.area}",
+      "title": "Work Area {to.area}",
+      "mapFocus": "{to.area.moa}",
       "instructions": [
         "Maintain a listening watch with Houston Center",
-        "Use the Navy Corpus altimeter setting",
-        "Area {to.area} High limits: {to.area.limits}; these are block limits, not an assigned altitude"
+        "Use the ATC-supplied altimeter setting",
+        "Block limits: {to.area.limits}; these are limits, not an assigned altitude"
       ],
-      "source": "Binder, p. 11."
+      "source": "Binder, p. 11; Feb 2026 PPT, Part 1, slide 68."
     }
   ]
 }

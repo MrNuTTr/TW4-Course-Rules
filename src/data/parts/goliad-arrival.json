@@ -1,0 +1,88 @@
+{
+  "id": "goliad-arrival",
+  "cards": [
+    {
+      "type": "radio",
+      "title": "Get Goliad ASOS information",
+      "mapFocus": "(KNGT) Goliad NOLF/KNGT",
+      "radio": { "channel": "Goliad ASOS · UHF CH 14" },
+      "source": "Binder, pp. 14, 30."
+    },
+    {
+      "type": "radio",
+      "title": "Call Goliad",
+      "mapFocus": "(KNGT) Goliad NOLF/KNGT",
+      "radio": {
+        "channel": "KNGT Common · UHF/VHF CH 15",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Goliad, <callsign>, landing." },
+          { "speaker": "RDO", "text": "<callsign>, Goliad landing RWY {to.runway}, <number> in the pattern. No solos." }
+        ]
+      },
+      "source": "Binder, pp. 14, 30; Feb 2026 PPT, Part 2, slides 12–14."
+    },
+    {
+      "type": "action",
+      "title": "Find the RWY {to.runway} initial",
+      "mapFocus": [
+        "(KNGT) Goliad NOLF/Initial {to.runway}",
+        "(KNGT) Goliad NOLF/Arrivals/{to.runway}"
+      ],
+      "leadIn": "Stay outside 5 NM or above 5,000' MSL until set up:",
+      "instructions": [
+        "Initial is 4 NM out on the extended centerline",
+        "Look for: {to.runway.landmark}",
+        "Intercept centerline at 45° or less",
+        "Do not overfly Berclair"
+      ],
+      "source": "Feb 2026 PPT, Part 2, slides 12–14, 18–22."
+    },
+    {
+      "type": "radio",
+      "title": "At the 4 NM initial",
+      "mapFocus": [
+        "(KNGT) Goliad NOLF/Initial {to.runway}",
+        "(KNGT) Goliad NOLF/Arrivals/{to.runway}"
+      ],
+      "leadIn": "1,300' MSL · 200 KIAS, offset ¼ WTD to the {to.runway.patternSide} (pattern) side:",
+      "radio": {
+        "channel": "KNGT Common · UHF CH 15",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Goliad RDO, <callsign>, initial RWY {to.runway}." },
+          { "speaker": "RDO", "text": "<callsign>, you are number <number> for the break, and number <number> when you get here." },
+          { "speaker": "Pilot", "text": "<callsign>, number <number> for the break, number <number> when I get here." }
+        ]
+      },
+      "detail": "No acknowledgement from the RDO by 2 NM: discontinued entry.",
+      "source": "Binder, pp. 32–35; Feb 2026 PPT, Part 2, slides 17, 24."
+    },
+    {
+      "type": "radio",
+      "title": "Numbers call",
+      "mapFocus": [
+        "(KNGT) Goliad NOLF/{to.runway.runwayLine}",
+        "(KNGT) Goliad NOLF/Arrivals/{to.runway}"
+      ],
+      "leadIn": "Abeam the approach end numbers:",
+      "radio": {
+        "channel": "KNGT Common · UHF CH 15",
+        "script": "“<callsign>, numbers RWY {to.runway}.”"
+      },
+      "source": "Binder, pp. 32–35; Feb 2026 PPT, Part 2, slide 17."
+    },
+    {
+      "type": "radio",
+      "title": "Crosswind break",
+      "mapFocus": [
+        "(KNGT) Goliad NOLF/{to.runway.runwayLine}",
+        "(KNGT) Goliad NOLF/Arrivals/{to.runway}"
+      ],
+      "leadIn": "Abeam the upwind numbers, with interval:",
+      "radio": {
+        "channel": "KNGT Common · UHF CH 15",
+        "script": "“Goliad RDO, <callsign>, crosswind break.”"
+      },
+      "source": "Binder, pp. 32–35; Feb 2026 PPT, Part 2, slide 17."
+    }
+  ]
+}

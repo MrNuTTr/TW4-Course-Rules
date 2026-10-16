@@ -1,0 +1,31 @@
+{
+  "id": "kngp-ground-south",
+  "cards": [
+    { "use": "kngp-pre-taxi" },
+    { "use": "kngp-clearance" },
+    {
+      "type": "radio",
+      "title": "Request taxi",
+      "mapFocus": "(KNGP) Corpus Christi NAS/KNGP",
+      "leadIn": "Once run-up is complete:",
+      "radio": {
+        "channel": "Navy Corpus Ground · UHF CH 3",
+        "exchange": [
+          {
+            "speaker": "Pilot",
+            "text": "Navy Corpus Ground, <callsign>, Sierra run-up, taxi information <ATIS>, VFR {to.node}."
+          },
+          {
+            "speaker": "Ground",
+            "text": "<callsign>, Navy Corpus Ground, taxi to Runway {from.runway} {from.runway.taxiRoute}."
+          },
+          {
+            "speaker": "Pilot",
+            "text": "Navy Corpus Ground, <callsign>, taxi to Runway {from.runway} {from.runway.taxiRoute}."
+          }
+        ]
+      },
+      "source": "Binder, p. 2; Feb 2026 PPT, Part 1, slides 26–31."
+    }
+  ]
+}

@@ -59,7 +59,9 @@ function buildExtraFeatures() {
     return {
       type: 'Feature',
       id,
-      geometry: { type: 'Point', coordinates: [extra.lon, extra.lat] },
+      geometry: extra.coordinates
+        ? { type: 'LineString', coordinates: extra.coordinates }
+        : { type: 'Point', coordinates: [extra.lon, extra.lat] },
       properties: {
         mapId: id,
         mapLabel: extra.name,
@@ -82,7 +84,7 @@ const featuresById = new Map(
 );
 
 export function getCourseRulesMapFeatures(featureIds) {
-  return featureIds.map((featureId) => {
+  return [...new Set(featureIds)].map((featureId) => {
     const feature = featuresById.get(featureId);
     if (!feature) {
       throw new Error(`KML map feature not found: ${featureId}`);

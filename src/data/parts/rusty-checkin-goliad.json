@@ -1,0 +1,38 @@
+{
+  "id": "rusty-checkin-goliad",
+  "cards": [
+    {
+      "type": "radio",
+      "title": "Check in with Corpus Departure",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/{from.runway}",
+      "leadIn": "At 500 ft MSL, when directed by Tower:",
+      "radio": {
+        "channel": "Corpus Departure · UHF CH 12",
+        "exchange": [
+          {
+            "speaker": "Pilot",
+            "text": "Corpus Departure, <callsign>, 500 feet off Navy Corpus, course rules Goliad."
+          },
+          {
+            "speaker": "Departure",
+            "text": "<callsign>, Corpus Departure, ident."
+          },
+          {
+            "speaker": "Pilot",
+            "text": "<callsign>, ident."
+          },
+          {
+            "speaker": "Departure",
+            "text": "<callsign>, Corpus Departure, radar contact <distance and direction> of Navy Corpus. Proceed course rules Goliad."
+          },
+          {
+            "speaker": "Pilot",
+            "text": "<callsign>, proceed course rules Goliad."
+          }
+        ]
+      },
+      "detail": "The binder also places a CH 12 switch in the \"Thence\" sequence. This guide models one CH 12 contact; verify the exact transfer timing with an instructor.",
+      "source": "Binder, p. 8."
+    }
+  ]
+}

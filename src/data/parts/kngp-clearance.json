@@ -1,0 +1,52 @@
+{
+  "id": "kngp-clearance",
+  "cards": [
+    {
+      "type": "radio",
+      "title": "Copy ZOMBIE 1 clearance",
+      "mapFocus": "(KNGP) Corpus Christi NAS/KNGP",
+      "leadIn": "At the run-up:",
+      "radio": {
+        "channel": "Navy Corpus Clearance · UHF CH 2",
+        "exchange": [
+          {
+            "speaker": "Pilot",
+            "text": "Navy Corpus Clearance, <callsign>, ZOMBIE 1 on request, ready to copy."
+          },
+          {
+            "speaker": "Clearance",
+            "text": "<callsign>, Navy Corpus Clearance, for VFR flight, squawk <code>."
+          },
+          {
+            "speaker": "Pilot",
+            "text": "<callsign>, squawk <code>."
+          },
+          {
+            "speaker": "Clearance",
+            "text": "<callsign>, read back correct."
+          }
+        ]
+      },
+      "source": "Binder, p. 2."
+    },
+    {
+      "type": "radio",
+      "title": "Report outbound to Boomer/Ranger Base",
+      "mapFocus": "(KNGP) Corpus Christi NAS/KNGP",
+      "radio": {
+        "channel": "Boomer/Ranger Base · UHF CH 19",
+        "exchange": [
+          {
+            "speaker": "Pilot",
+            "text": "Boomer/Ranger Base, <callsign>, <IP/SNA names>, <event>, outbound."
+          },
+          {
+            "speaker": "Base",
+            "text": "<callsign>, Boomer/Ranger Base, roger."
+          }
+        ]
+      },
+      "source": "Binder, p. 2."
+    }
+  ]
+}
