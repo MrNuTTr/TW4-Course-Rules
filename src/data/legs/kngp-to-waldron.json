@@ -1,0 +1,76 @@
+{
+  "id": "kngp-to-waldron",
+  "from": "kngp",
+  "to": "waldron",
+  "when": {},
+  "title": "KNGP RWY {from.runway} → Waldron RWY {to.runway}",
+  "featureIds": [
+    "(KNGP) Corpus Christi NAS/KNGP",
+    "(KNGP) Corpus Christi NAS/Beach Line Departures/{from.runway}",
+    "{from.runway.beachFocus}",
+    "(KNGP) Corpus Christi NAS/Beach Line Departures/Waldron Arrival",
+    "(KNWL) Waldron NOLF/KNWL",
+    "(KNWL) Waldron NOLF/{to.runway.runwayLine}",
+    "(KNWL) Waldron NOLF/South Arrivals/Camel Humps",
+    "(KNWL) Waldron NOLF/South Arrivals/Shrimp Pond",
+    "(KNWL) Waldron NOLF/South Arrivals/Cooling Pond",
+    "(KNWL) Waldron NOLF/South Arrivals/Yorktown Bridge",
+    "(KNWL) Waldron NOLF/South Arrivals/Power Plant",
+    "(KNWL) Waldron NOLF/South Arrivals/{to.runway}"
+  ],
+  "arrivalFeatureIds": [
+    "(KNWL) Waldron NOLF/KNWL",
+    "(KNWL) Waldron NOLF/{to.runway.runwayLine}",
+    "(KNWL) Waldron NOLF/South Arrivals/{to.runway}"
+  ],
+  "cards": [
+    { "use": "kngp-ground-{from.runway.flow}" },
+    { "use": "kngp-tower-departure" },
+    { "use": "beachline-climbout" },
+    { "use": "beachline-turn" },
+    { "use": "beachline-caution-{from.runway.flow}" },
+    {
+      "type": "radio",
+      "title": "Check in with Corpus Departure",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Beach Line Departures/{from.runway}",
+      "leadIn": "At 500 ft MSL, when directed by Tower, contact Corpus Departure (UHF CH 12). When directed, switch to CH 8:",
+      "radio": {
+        "channel": "Corpus Departure · UHF CH 8",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Corpus Departure, <callsign>, 500 feet off Navy Corpus, course rules Waldron." },
+          { "speaker": "Departure", "text": "<callsign>, Corpus Departure, ident." },
+          { "speaker": "Pilot", "text": "<callsign>, ident." },
+          { "speaker": "Departure", "text": "<callsign>, Corpus Departure, radar contact <distance and direction> of Navy Corpus. Proceed course rules Waldron." },
+          { "speaker": "Pilot", "text": "<callsign>, proceed course rules Waldron." }
+        ]
+      },
+      "detail": "The binder gives the Approach request \"course rules / high key to Waldron\" but no Departure-specific phrase; this follows the Mustang check-in pattern. Verify with an instructor.",
+      "source": "Binder, pp. 16, 48–49."
+    },
+    {
+      "type": "action",
+      "title": "Turn south along the beach line",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Beach Line Departures/Waldron Arrival",
+      "instructions": [
+        "Cross the beach line and turn right (south), paralleling the beach at ½ WTD",
+        "Maintain 2,500' MSL · 240 KIAS",
+        "Fly to the Camel Humps"
+      ],
+      "source": "Binder, pp. 48–49; Feb 2026 PPT, Part 2, slides 52–53."
+    },
+    {
+      "type": "radio",
+      "title": "Terminate at the Camel Humps",
+      "mapFocus": "(KNWL) Waldron NOLF/South Arrivals/Camel Humps",
+      "radio": {
+        "channel": "Corpus Approach · UHF CH 8",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Corpus Approach, <callsign>, Camel Humps, terminate." },
+          { "speaker": "Approach", "text": "<callsign>, terminate." }
+        ]
+      },
+      "source": "Binder, p. 48."
+    },
+    { "use": "waldron-arrival" }
+  ]
+}

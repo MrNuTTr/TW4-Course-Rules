@@ -285,27 +285,27 @@ h3 {
 }
 
 .guide-title {
-  margin: 13px 0 9px;
+  margin: 13px 0 16px;
   font-size: clamp(1.3rem, 4vw, 1.8rem);
   line-height: 1.25;
 }
 
 .event-instructions {
-  margin: 0 0 16px;
+  margin: 0 0 20px;
   color: #24394b;
   font-size: clamp(1.1rem, 3.4vw, 1.35rem);
   line-height: 1.5;
 }
 
 .instruction-lead-in {
-  margin: 0 0 8px;
+  margin: 0 0 14px;
   color: var(--blue-dark);
   font-weight: 800;
 }
 
 .instruction-list {
   display: grid;
-  gap: 5px;
+  gap: 14px;
   margin: 0;
   padding: 0;
   list-style: none;

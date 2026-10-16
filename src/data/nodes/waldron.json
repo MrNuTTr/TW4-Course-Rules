@@ -1,0 +1,87 @@
+{
+  "id": "waldron",
+  "name": "Waldron",
+  "fullName": "NOLF Waldron (KNWL)",
+  "kind": "olf",
+  "inputs": [
+    {
+      "id": "runway",
+      "label": "Runway",
+      "options": ["13", "18", "31", "36"],
+      "details": {
+        "13": {
+          "depWord": "upwind",
+          "runwayLine": "13/31",
+          "patternSide": "right",
+          "initialFocus": "(KNWL) Waldron NOLF/South Arrivals/Yorktown Bridge",
+          "initialA": "At the Shrimp Ponds, turn left toward the southwest corner of the Cooling Ponds",
+          "initialB": "Stay on the west side of Oso Creek and call \"initial\" over the Yorktown Bridge",
+          "depWhen": "When #1 upwind:",
+          "depClimb": "Fly runway heading, climb to 500' MSL, accelerate to 240 KIAS",
+          "depTurn": "Turn eastbound to avoid the Power Plant; once feet wet, turn to cross Padre Island (~120°)"
+        },
+        "18": {
+          "depWord": "upwind",
+          "runwayLine": "18/36",
+          "patternSide": "right",
+          "initialFocus": "(KNWL) Waldron NOLF/South Arrivals/Yorktown Bridge",
+          "initialA": "At the Shrimp Ponds, turn left toward the southwest corner of the Cooling Ponds; maneuver ¼ WTD toward the pattern side",
+          "initialB": "Stay on the west side of Oso Creek and call \"initial\" over the Yorktown Bridge",
+          "depWhen": "When #1 upwind:",
+          "depClimb": "Fly runway heading, climb to 500' MSL, accelerate to 240 KIAS",
+          "depTurn": "Turn eastbound to avoid the Power Plant; once south of the Power Plant, turn to cross Padre Island (~120°)"
+        },
+        "31": {
+          "depWord": "downwind",
+          "runwayLine": "13/31",
+          "patternSide": "left",
+          "initialFocus": "(KNWL) Waldron NOLF/South Arrivals/Shrimp Pond",
+          "initialA": "Call \"initial\" abeam the Shrimp Ponds",
+          "initialB": "Remain east of the Power Plant (do not overfly it), then turn inbound for the overhead",
+          "depWhen": "When #1 downwind at the 180:",
+          "depClimb": "Fly the reciprocal heading, descend to 500' MSL, accelerate to 240 KIAS",
+          "depTurn": "Turn eastbound to avoid the Power Plant; once feet wet, turn to cross Padre Island (~120°)"
+        },
+        "36": {
+          "depWord": "downwind",
+          "runwayLine": "18/36",
+          "patternSide": "left",
+          "initialFocus": "(KNWL) Waldron NOLF/South Arrivals/Shrimp Pond",
+          "initialA": "Call \"initial\" abeam the Shrimp Ponds",
+          "initialB": "Remain west of the Power Plant (do not overfly it), then turn inbound for the overhead",
+          "depWhen": "When #1 downwind at the 180:",
+          "depClimb": "Fly the reciprocal heading, descend to 500' MSL, accelerate to 240 KIAS",
+          "depTurn": "Turn eastbound to avoid the Power Plant; once south of the Power Plant, turn to cross Padre Island (~120°)"
+        }
+      }
+    }
+  ],
+  "info": [
+    {
+      "type": "checkpoint",
+      "title": "Waldron at a glance",
+      "instructions": [
+        "Waldron Tower: UHF CH 30",
+        "Unlit, daytime VFR touch and go only; Tower open and crash crew on station",
+        "Mon–Fri, from 30 min after KNGP opens until 1900 or sunset",
+        "RWY 13 and 18 right pattern; RWY 31 and 36 left pattern",
+        "Break/initial 1,000' · Pattern 800' · Delta 2,000'",
+        "Max 6 in the pattern · IFR arrivals not available"
+      ],
+      "mapFocus": ["(KNWL) Waldron NOLF/KNWL"],
+      "source": "Binder, p. 47; Feb 2026 PPT, Part 2, slides 48–51."
+    },
+    {
+      "type": "checkpoint",
+      "title": "Warnings",
+      "mapFocus": ["(KNWL) Waldron NOLF/KNWL"],
+      "instructions": [
+        "Do NOT overfly the Waldron Power Plant",
+        "Remain south of the Flour Bluff Water Tower to stay clear of NAS runways",
+        "Roads run close to the runway ends",
+        "No Padre Island National Seashore overflight below 3,000' AGL"
+      ],
+      "source": "Binder, pp. 47–55."
+    }
+  ]
+}

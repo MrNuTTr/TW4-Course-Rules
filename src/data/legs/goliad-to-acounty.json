@@ -1,0 +1,25 @@
+{
+  "id": "goliad-to-acounty",
+  "from": "goliad",
+  "to": "acounty",
+  "when": {},
+  "title": "Goliad RWY {from.runway} → Aransas County RWY {to.runway}",
+  "featureIds": [
+    "(KNGT) Goliad NOLF/KNGT",
+    "(KNGT) Goliad NOLF/{from.runway.runwayLine}",
+    "(KNGT) Goliad NOLF/Departures/{from.runway}",
+    "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Goliad Arrivals",
+    "(KRKP) Aransas County Airport/KRKP",
+    "(KRKP) Aransas County Airport/{to.runway.runwayLine}",
+    "(KRKP) Aransas County Airport/Arrivals/{to.runway}"
+  ],
+  "arrivalFeatureIds": [
+    "(KRKP) Aransas County Airport/KRKP",
+    "(KRKP) Aransas County Airport/{to.runway.runwayLine}",
+    "(KRKP) Aransas County Airport/Arrivals/{to.runway}"
+  ],
+  "cards": [
+    { "use": "goliad-depart-to-woodsboro" },
+    { "use": "acounty-woodsboro-entry" }
+  ]
+}

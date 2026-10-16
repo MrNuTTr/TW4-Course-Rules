@@ -1,0 +1,41 @@
+{
+  "id": "kngp-to-ingleside",
+  "from": "kngp",
+  "to": "ingleside",
+  "when": {},
+  "title": "KNGP RWY {from.runway} → Ingleside RWY {to.runway}",
+  "featureIds": [
+    "(KNGP) Corpus Christi NAS/KNGP",
+    "(KNGP) Corpus Christi NAS/Rusty Departures/{from.runway}",
+    "{from.runway.turnFocus}",
+    "(KNGP) Corpus Christi NAS/Rusty Departures/PT Rusty",
+    "(KTFP) Ingleside Regional Airport/KTFP",
+    "(KTFP) Ingleside Regional Airport/{to.runway}",
+    "(KTFP) Ingleside Regional Airport/KNGP Arrivals/{to.runway}"
+  ],
+  "arrivalFeatureIds": [
+    "(KTFP) Ingleside Regional Airport/KTFP",
+    "(KTFP) Ingleside Regional Airport/{to.runway}",
+    "(KTFP) Ingleside Regional Airport/KNGP Arrivals/{to.runway}"
+  ],
+  "cards": [
+    { "use": "kngp-ground-{from.runway.flow}" },
+    { "use": "kngp-tower-departure" },
+    { "use": "kngp-climbout" },
+    { "use": "rusty-checkin-ingleside" },
+    {
+      "type": "action",
+      "title": "Proceed to Ingleside",
+      "mapFocus": [
+        "(KNGP) Corpus Christi NAS/Rusty Departures/PT Rusty",
+        "(KTFP) Ingleside Regional Airport/KNGP Arrivals/{to.runway}"
+      ],
+      "instructions": [
+        "Execute the Rusty Departure procedures and state your intentions to Corpus Departure",
+        "When cleared, proceed direct to Ingleside Regional"
+      ],
+      "source": "Binder, p. 58; Feb 2026 PPT, Part 2, slide 88."
+    },
+    { "use": "ingleside-pattern-entry" }
+  ]
+}

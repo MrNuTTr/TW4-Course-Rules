@@ -1,0 +1,35 @@
+{
+  "id": "northern-arrival-tail",
+  "cards": [
+    {
+      "type": "action",
+      "title": "Cross Aransas Pass Causeway",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Aransas Pass Causeway",
+      "instructions": [
+        "Cross the causeway at 1,000 ft MSL · 240 KIAS",
+        "Be alert for other Northern Arrival traffic at the causeway",
+        "Proceed direct to Point Shamrock, maintain 1,000 ft MSL"
+      ],
+      "source": "Binder, p. 63; Feb 2026 PPT, Part 2, slides 102–103."
+    },
+    {
+      "type": "radio",
+      "title": "Terminate with Corpus Approach at Shamrock",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/PT Shamrock",
+      "radio": {
+        "channel": "Corpus Approach · UHF CH 8",
+        "exchange": [
+          {
+            "speaker": "Pilot",
+            "text": "Corpus Approach, <callsign>, Shamrock, terminate."
+          },
+          {
+            "speaker": "Approach",
+            "text": "<callsign>, Corpus Approach, terminate."
+          }
+        ]
+      },
+      "source": "Binder, p. 63."
+    }
+  ]
+}

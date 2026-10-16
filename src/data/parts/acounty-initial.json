@@ -1,0 +1,59 @@
+{
+  "id": "acounty-initial",
+  "cards": [
+    {
+      "type": "action",
+      "title": "Fly to the 2 NM initial, RWY {to.runway}",
+      "mapFocus": [
+        "(KRKP) Aransas County Airport/Arrivals/{to.runway}",
+        "(KRKP) Aransas County Airport/{to.runway.runwayLine}"
+      ],
+      "instructions": [
+        "Initial point: {to.runway.initialLandmark}",
+        "Intercept the extended centerline 2 NM out at no more than a 45° angle",
+        "1,000' MSL · 200 KIAS"
+      ],
+      "source": "Binder, pp. 40–41; Feb 2026 PPT, Part 2, slides 38–43."
+    },
+    {
+      "type": "radio",
+      "title": "Terminate with Corpus Approach",
+      "mapFocus": "(KRKP) Aransas County Airport/KRKP",
+      "radio": {
+        "channel": "Corpus Approach · UHF CH 8",
+        "exchange": [
+          {
+            "speaker": "Pilot",
+            "text": "Corpus Approach, <callsign>, approaching A-County, terminate."
+          },
+          {
+            "speaker": "Approach",
+            "text": "<callsign>, Corpus Approach, no observed traffic between you and the Rockport Airport, change to advisory frequency is approved."
+          }
+        ]
+      },
+      "source": "Binder, pp. 40–41."
+    },
+    {
+      "type": "radio",
+      "title": "Self-announce on A-County CTAF",
+      "mapFocus": "(KRKP) Aransas County Airport/KRKP",
+      "radio": {
+        "channel": "A-County CTAF · VHF CH 21 (123.05)",
+        "script": "“Aransas County Traffic, <callsign>, <direction and distance from airfield> at <altitude>, inbound for a left overhead RWY {to.runway}, Aransas County Traffic.”"
+      },
+      "source": "Binder, pp. 40–41."
+    },
+    {
+      "type": "radio",
+      "title": "Check in on KRKP Common",
+      "mapFocus": "(KRKP) Aransas County Airport/KRKP",
+      "radio": {
+        "channel": "TW-4 KRKP Common · UHF CH 21",
+        "script": "“Any Texans working Aransas County?”"
+      },
+      "detail": "Report the 2 NM initial on CTAF: \"2 mile initial RWY {to.runway} for a left overhead, Aransas County Traffic.\"",
+      "source": "Binder, pp. 40–42; Feb 2026 PPT, Part 2, slide 37."
+    }
+  ]
+}

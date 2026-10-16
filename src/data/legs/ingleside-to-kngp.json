@@ -1,0 +1,78 @@
+{
+  "id": "ingleside-to-kngp",
+  "from": "ingleside",
+  "to": "kngp",
+  "when": {},
+  "title": "Ingleside RWY {from.runway} → KNGP RWY {to.runway}",
+  "featureIds": [
+    "(KTFP) Ingleside Regional Airport/KTFP",
+    "(KTFP) Ingleside Regional Airport/{from.runway}",
+    "(KTFP) Ingleside Regional Airport/Single Departures/{from.runway}",
+    "(KTFP) Ingleside Regional Airport/Formation Departures/{from.runway}",
+    "(KNGP) Corpus Christi NAS/Shamrock Arrivals/North Arrivals",
+    "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Aransas Pass Causeway",
+    "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/PT Shamrock",
+    "{to.runway.viaA}",
+    "{to.runway.viaB}",
+    "{to.runway.viaC}",
+    "{to.runway.entryLine}"
+  ],
+  "arrivalFeatureIds": [
+    "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/PT Shamrock"
+  ],
+  "cards": [
+    {
+      "type": "radio",
+      "title": "Request course rules to Shamrock",
+      "mapFocus": "(KTFP) Ingleside Regional Airport/KTFP",
+      "leadIn": "While in the pattern, monitor CTAF and contact Approach:",
+      "radio": {
+        "channel": "Corpus Approach · UHF CH 8",
+        "script": "“Corpus Approach, <callsign>, request course rules to Shamrock.”"
+      },
+      "detail": "Formation, or if contacting Approach in the pattern is impractical: depart northbound toward Bayside at 1,000' MSL · 240 KIAS and contact Approach on CH 6 to join the Goliad Arrival. If there is no contact by Bayside, join the Goliad Arrival and keep trying.",
+      "source": "Binder, pp. 59–60; Feb 2026 PPT, Part 2, slide 93."
+    },
+    {
+      "type": "action",
+      "title": "Exit north toward Bayside",
+      "mapFocus": [
+        "(KTFP) Ingleside Regional Airport/Single Departures/{from.runway}",
+        "(KTFP) Ingleside Regional Airport/Formation Departures/{from.runway}"
+      ],
+      "instructions": [
+        "Exit north (~350°) toward Bayside",
+        "Climb to 1,000' MSL once clear of the pattern",
+        "Accelerate to 240 KIAS"
+      ],
+      "source": "Binder, p. 59; Feb 2026 PPT, Part 2, slide 93."
+    },
+    {
+      "type": "radio",
+      "title": "Check in with Corpus Approach",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/North Arrivals",
+      "radio": {
+        "channel": "Corpus Approach · UHF CH 8",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Corpus Approach, <callsign>, <altitude> <direction> off Ingleside Regional, course rules Shamrock, with information <code>." },
+          { "speaker": "Approach", "text": "<callsign>, Corpus Approach, radar contact, proceed course rules Shamrock." },
+          { "speaker": "Pilot", "text": "<callsign>, proceed course rules Shamrock." }
+        ]
+      },
+      "source": "Binder, p. 59; Feb 2026 PPT, Part 2, slide 93."
+    },
+    {
+      "type": "action",
+      "title": "Join the Northern Arrival",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/North Arrivals",
+      "leadIn": "Once cleared:",
+      "instructions": [
+        "Proceed east to the Intracoastal Waterway",
+        "Join the Northern Arrival southbound at 240 KIAS"
+      ],
+      "source": "Binder, p. 59; Feb 2026 PPT, Part 2, slide 93."
+    },
+    { "use": "northern-arrival-tail" },
+    { "use": "kngp-{to.entry.part}-{to.runway.flow}" }
+  ]
+}

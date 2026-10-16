@@ -21,32 +21,7 @@
     "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/PT Shamrock"
   ],
   "cards": [
-    {
-      "type": "action",
-      "title": "Depart the Goliad pattern",
-      "mapFocus": [
-        "(KNGT) Goliad NOLF/{from.runway.runwayLine}",
-        "(KNGT) Goliad NOLF/Departures/{from.runway}"
-      ],
-      "leadIn": "Once number one upwind:",
-      "instructions": [
-        "Climb to 800' MSL · 240 KIAS",
-        "Turn 45° away from the RWY {from.runway} heading, opposite the pattern ({from.runway.patternSide} side is the pattern)",
-        "At or below pattern altitude until clear of the pattern"
-      ],
-      "source": "Feb 2026 PPT, Part 2, slide 29."
-    },
-    {
-      "type": "action",
-      "title": "Direct Woodsboro",
-      "mapFocus": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Goliad Arrivals",
-      "leadIn": "Once clear of the pattern:",
-      "instructions": [
-        "Direct Woodsboro, approximately 140°",
-        "Climb to 2,500' MSL · 240 KIAS"
-      ],
-      "source": "Binder, p. 62; Feb 2026 PPT, Part 2, slide 29."
-    },
+    { "use": "goliad-depart-to-woodsboro" },
     {
       "type": "radio",
       "title": "Check in with Corpus Approach at Woodsboro",
@@ -90,36 +65,7 @@
       ],
       "source": "Binder, p. 62; Feb 2026 PPT, Part 2, slides 99–102."
     },
-    {
-      "type": "action",
-      "title": "Cross Aransas Pass Causeway",
-      "mapFocus": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Aransas Pass Causeway",
-      "instructions": [
-        "Cross the causeway at 1,000 ft MSL · 240 KIAS",
-        "Be alert for Northern Arrival traffic at the causeway",
-        "Proceed direct to Point Shamrock, maintain 1,000 ft MSL"
-      ],
-      "source": "Binder, p. 63; Feb 2026 PPT, Part 2, slides 102–103."
-    },
-    {
-      "type": "radio",
-      "title": "Terminate with Corpus Approach at Shamrock",
-      "mapFocus": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/PT Shamrock",
-      "radio": {
-        "channel": "Corpus Approach · UHF CH 8",
-        "exchange": [
-          {
-            "speaker": "Pilot",
-            "text": "Corpus Approach, <callsign>, Shamrock, terminate."
-          },
-          {
-            "speaker": "Approach",
-            "text": "<callsign>, Corpus Approach, terminate."
-          }
-        ]
-      },
-      "source": "Binder, p. 63."
-    },
+    { "use": "northern-arrival-tail" },
     { "use": "kngp-{to.entry.part}-{to.runway.flow}" }
   ]
 }

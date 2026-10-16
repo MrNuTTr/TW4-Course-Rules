@@ -1,0 +1,43 @@
+{
+  "id": "southern-arrival",
+  "cards": [
+    {
+      "type": "action",
+      "title": "Join the Southern Arrival",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/South Arrivals",
+      "instructions": [
+        "Establish 1 WTD northbound at 1,000' MSL · 240 KIAS",
+        "Turn direct to Point Shamrock between Twin Condos and Port Royal",
+        "Maintain 1,000' MSL · 240 KIAS"
+      ],
+      "source": "Binder, p. 64; Feb 2026 PPT, Part 2, slide 108."
+    },
+    {
+      "type": "radio",
+      "title": "Check in with Corpus Approach",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/South Arrivals",
+      "radio": {
+        "channel": "Corpus Approach · UHF CH 8",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Corpus Approach, <callsign>, off Waldron, <altitude>, course rules Shamrock, with information <code>." },
+          { "speaker": "Approach", "text": "<callsign>, Corpus Approach, radar contact, proceed course rules Shamrock." },
+          { "speaker": "Pilot", "text": "<callsign>, proceed course rules Shamrock." }
+        ]
+      },
+      "source": "Binder, p. 64."
+    },
+    {
+      "type": "radio",
+      "title": "Terminate at Shamrock",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/PT Shamrock",
+      "radio": {
+        "channel": "Corpus Approach · UHF CH 8",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Corpus Approach, <callsign>, Shamrock, terminate." },
+          { "speaker": "Approach", "text": "<callsign>, Corpus Approach, terminate." }
+        ]
+      },
+      "source": "Binder, p. 64."
+    }
+  ]
+}

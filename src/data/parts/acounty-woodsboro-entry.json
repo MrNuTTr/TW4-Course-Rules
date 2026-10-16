@@ -1,0 +1,60 @@
+{
+  "id": "acounty-woodsboro-entry",
+  "cards": [
+    {
+      "type": "radio",
+      "title": "Check in with Corpus Approach at Woodsboro",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Goliad Arrivals",
+      "leadIn": "Crossing Woodsboro at 2,500' MSL · 240 KIAS:",
+      "radio": {
+        "channel": "Corpus Approach · UHF CH 6",
+        "exchange": [
+          {
+            "speaker": "Pilot",
+            "text": "Corpus Approach, <callsign>, over Woodsboro at 2,500 feet, course rules Aransas County."
+          },
+          {
+            "speaker": "Approach",
+            "text": "<callsign>, Corpus Approach, ident."
+          },
+          {
+            "speaker": "Pilot",
+            "text": "<callsign>, ident."
+          },
+          {
+            "speaker": "Approach",
+            "text": "<callsign>, Corpus Approach, radar contact <position>, proceed course rules Aransas County."
+          },
+          {
+            "speaker": "Pilot",
+            "text": "<callsign>, proceed course rules A-County."
+          }
+        ]
+      },
+      "source": "Binder, p. 41; Feb 2026 PPT, Part 2, slides 34–35."
+    },
+    {
+      "type": "action",
+      "title": "Woodsboro to Bayside",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Goliad Arrivals",
+      "instructions": [
+        "Fly approximately 145° toward Bayside",
+        "Maintain 2,500' MSL · 240 KIAS"
+      ],
+      "source": "Binder, p. 41; Feb 2026 PPT, Part 2, slides 34–35."
+    },
+    {
+      "type": "action",
+      "title": "Going feet wet",
+      "mapFocus": "(KRKP) Aransas County Airport/Arrivals/{to.runway}",
+      "instructions": [
+        "Descend to 1,000' MSL",
+        "Decelerate to 200 KIAS",
+        "Self-announce on A-County CTAF (VHF CH 21)",
+        "{to.runway.feetWet}"
+      ],
+      "source": "Binder, p. 41; Feb 2026 PPT, Part 2, slides 35–36."
+    },
+    { "use": "acounty-initial" }
+  ]
+}

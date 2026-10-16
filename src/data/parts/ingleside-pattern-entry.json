@@ -1,0 +1,31 @@
+{
+  "id": "ingleside-pattern-entry",
+  "cards": [
+    {
+      "type": "radio",
+      "title": "Terminate with Corpus Approach",
+      "mapFocus": "(KTFP) Ingleside Regional Airport/KTFP",
+      "radio": {
+        "channel": "Corpus Approach · UHF CH 8",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Corpus Approach, <callsign>, approaching Ingleside, terminate." },
+          { "speaker": "Approach", "text": "<callsign>, Corpus Approach, no observed traffic between you and the Ingleside Airport, change to advisory frequency is approved." },
+          { "speaker": "Pilot", "text": "<callsign>, change to advisory." }
+        ]
+      },
+      "detail": "Approach may instead report traffic between you and the Rockport Airport when arriving from the south or east.",
+      "source": "Binder, pp. 55–58; Feb 2026 PPT, Part 2, slides 85–93."
+    },
+    {
+      "type": "radio",
+      "title": "Self-announce on Ingleside CTAF",
+      "mapFocus": "(KTFP) Ingleside Regional Airport/KTFP",
+      "radio": {
+        "channel": "Ingleside CTAF · 122.7",
+        "script": "“Ingleside Traffic, <callsign>, <direction and distance from airfield> at <altitude>, inbound for a left overhead RWY {to.runway}, Ingleside Traffic.”"
+      },
+      "detail": "Pattern calls follow the Aransas County format: initial, numbers, left crosswind, left base. Pattern is left-hand at 800', break at 1,000'.",
+      "source": "Binder, pp. 55–58; Feb 2026 PPT, Part 2, slides 85–93."
+    }
+  ]
+}

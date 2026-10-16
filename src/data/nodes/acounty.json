@@ -1,0 +1,109 @@
+{
+  "id": "acounty",
+  "name": "Aransas County",
+  "fullName": "Aransas County Airport (KRKP)",
+  "kind": "olf",
+  "inputs": [
+    {
+      "id": "runway",
+      "label": "Runway",
+      "options": ["14", "18", "32", "36"],
+      "details": {
+        "14": {
+          "runwayLine": "14/32",
+          "initialLandmark": "Abeam Redfish Point",
+          "feetWet": "Proceed northeast in Copano Bay, then turn to intercept the 2 NM initial",
+          "beachNote": "Cross the Intracoastal Waterway at 2,500' MSL · 240 KIAS",
+          "depWhen": "When #1 downwind at the 180:",
+          "depAlt": "Descend to 500' MSL",
+          "depTurn": "Continue northbound and circle around Redfish Point to the east",
+          "depCall": "<callsign>, number one downwind, departing to the east, Aransas County Traffic."
+        },
+        "18": {
+          "runwayLine": "18/36",
+          "initialLandmark": "On the extended centerline, 2 NM out (the sources give no landmark for RWY 18)",
+          "feetWet": "Proceed northeast in Copano Bay, then turn to intercept the 2 NM initial",
+          "beachNote": "Cross the Intracoastal Waterway at 2,500' MSL · 240 KIAS",
+          "depWhen": "When #1 downwind at the 180:",
+          "depAlt": "Descend to 500' MSL",
+          "depTurn": "Going \"feet wet\", turn east",
+          "depCall": "<callsign>, number one downwind, departing to the east, Aransas County Traffic."
+        },
+        "32": {
+          "runwayLine": "14/32",
+          "initialLandmark": "Downtown Rockport",
+          "feetWet": "Proceed easterly across Rockport, then turn north to intercept the 2 NM initial once feet wet",
+          "beachNote": "Maneuver directly to the 2 NM initial",
+          "depWhen": "When #1 upwind:",
+          "depAlt": "Climb to 500' MSL",
+          "depTurn": "Turn northbound and circle around Redfish Point to the east",
+          "depCall": "<callsign>, number one upwind, departing to the east, Aransas County Traffic."
+        },
+        "36": {
+          "runwayLine": "18/36",
+          "initialLandmark": "Oak Bay Golf Course",
+          "feetWet": "Proceed easterly across Rockport, then turn north to intercept the 2 NM initial once feet wet",
+          "beachNote": "Maneuver directly to the 2 NM initial",
+          "depWhen": "When #1 upwind:",
+          "depAlt": "Climb to 500' MSL",
+          "depTurn": "Going \"feet wet\", turn east",
+          "depCall": "<callsign>, number one upwind, departing to the east, Aransas County Traffic."
+        }
+      }
+    }
+  ],
+  "info": [
+    {
+      "type": "checkpoint",
+      "title": "Aransas County at a glance",
+      "instructions": [
+        "CTAF: VHF CH 21 (123.05) · TW-4 KRKP Common: UHF CH 21",
+        "ASOS: 119.275 VHF",
+        "Left-hand pattern (infield side) for all runways",
+        "Break 1,000' · Pattern 800' · High key 3,000' · Low key 1,500'",
+        "Max 4 aircraft in the pattern, civilian included",
+        "Open 0800–1800 Mon–Thu; an ARDO must be in position"
+      ],
+      "mapFocus": ["(KRKP) Aransas County Airport/KRKP"],
+      "source": "Binder, pp. 39–40; Feb 2026 PPT, Part 2, slides 30–33."
+    },
+    {
+      "type": "radio",
+      "title": "Pattern radio calls",
+      "mapFocus": ["(KRKP) Aransas County Airport/KRKP"],
+      "leadIn": "On CTAF (VHF CH 21), each ending \"Aransas County Traffic\":",
+      "instructions": [
+        "2 mile initial (RWY #) for a left overhead",
+        "Numbers (RWY #), left overhead",
+        "Left crosswind (RWY #)",
+        "Left base (RWY #), touch and go"
+      ],
+      "source": "Binder, p. 42; Feb 2026 PPT, Part 2, slide 37."
+    },
+    {
+      "type": "checkpoint",
+      "title": "Practice PELs",
+      "mapFocus": ["(KRKP) Aransas County Airport/KRKP"],
+      "instructions": [
+        "Authorized for all runways with 2 or fewer aircraft in the pattern",
+        "Request from Corpus Approach, announce on CTAF and report High Key on KRKP Common",
+        "Call high left crosswind and high left base on CTAF",
+        "Practice PELs already in the pattern are unlimited if separated",
+        "If you doubt a civilian understands your PEL, reset to high key"
+      ],
+      "source": "Binder, pp. 42–44."
+    },
+    {
+      "type": "checkpoint",
+      "title": "Warnings",
+      "mapFocus": ["(KRKP) Aransas County Airport/KRKP"],
+      "instructions": [
+        "Extreme caution descending to the initial: traffic may be on course rules at 1,500' over the Intracoastal, inbound from Bayside",
+        "Overhead entry from Foxtrot or Mustang: cross the ICW at 2,500' or above",
+        "Approaching from the north: overfly the wildlife refuge at 3,000' or above",
+        "No instrument approaches while the VFR pattern is open"
+      ],
+      "source": "Binder, pp. 39–40; Feb 2026 PPT, Part 2, slide 37."
+    }
+  ]
+}

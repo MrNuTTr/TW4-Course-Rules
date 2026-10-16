@@ -130,7 +130,7 @@ describe('leg planning', () => {
 
   it('offers KINGS 4 and Goliad from KNGP, with all high and low areas', () => {
     const destinations = getDestinations('kngp', { runway: '13L' });
-    expect(destinations.map(({ node }) => node.id).sort()).toEqual(['foxtrot', 'goliad', 'kings4', 'mustang']);
+    expect(destinations.map(({ node }) => node.id).sort()).toEqual(['acounty', 'foxtrot', 'goliad', 'ingleside', 'kings4', 'mustang', 'waldron']);
     const kings4 = destinations.find(({ node }) => node.id === 'kings4');
     expect(kings4.inputs[0].options).toContain('3 High');
     expect(kings4.inputs[0].options).toContain('9 Low');
@@ -209,6 +209,7 @@ describe('leg planning', () => {
 
   it('chains KINGS 4 → Goliad → KNGP and ends there', () => {
     expect(getDestinations('kings4', { area: '3 High' }).map(({ node }) => node.id)).toEqual([
+      'acounty',
       'goliad',
     ]);
     const south = findLeg('goliad', { runway: '17' }, 'kngp', { runway: '13L', entry: 'Standard entry' });
@@ -223,5 +224,24 @@ describe('leg planning', () => {
     expect(JSON.stringify(straightNorth.cards)).toMatch(/right base gear down/);
     expect(getOriginInputs('kngp').map((input) => input.id)).toEqual(['runway']);
     expect(GRAPH.nodes.get('kngp').endsRoute).toBe(true);
+  });
+
+  it('plans outlying field arrivals and returns to KNGP', () => {
+    const rkp = findLeg('kngp', { runway: '13L' }, 'acounty', { runway: '32' });
+    expect(JSON.stringify(rkp.cards)).toMatch(/Downtown Rockport/);
+    expect(JSON.stringify(rkp.cards)).toMatch(/course rules Aransas County/);
+    const viaGoliad = findLeg('goliad', { runway: '17' }, 'acounty', { runway: '14' });
+    expect(JSON.stringify(viaGoliad.cards)).toMatch(/Copano Bay/);
+    const rkpHome = findLeg('acounty', { runway: '36' }, 'kngp', { runway: '13L', entry: 'Standard entry' });
+    expect(JSON.stringify(rkpHome.cards)).toMatch(/LBJ Causeway/);
+    expect(JSON.stringify(rkpHome.cards)).toMatch(/Shamrock, terminate/);
+    const nwl = findLeg('kngp', { runway: '31L' }, 'waldron', { runway: '36' });
+    expect(JSON.stringify(nwl.cards)).toMatch(/west of the Power Plant/);
+    const nwlHome = findLeg('waldron', { runway: '13' }, 'kngp', { runway: '04', entry: 'Straight-in' });
+    expect(JSON.stringify(nwlHome.cards)).toMatch(/Southern Arrival/);
+    expect(getDestinations('ingleside', { runway: '13' }).map(({ node }) => node.id)).toEqual(['kngp']);
+    for (const leg of [rkp, viaGoliad, rkpHome, nwl, nwlHome]) {
+      expect(JSON.stringify(leg.cards)).not.toMatch(/\{[a-z]+\./);
+    }
   });
 });

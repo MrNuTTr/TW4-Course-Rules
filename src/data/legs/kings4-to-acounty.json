@@ -1,0 +1,62 @@
+{
+  "id": "kings4-to-acounty",
+  "from": "kings4",
+  "to": "acounty",
+  "when": {},
+  "title": "KINGS 4 Area {from.area} → Aransas County RWY {to.runway}",
+  "featureIds": [
+    "{from.area.moa}",
+    "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Goliad Arrivals",
+    "(KRKP) Aransas County Airport/KRKP",
+    "(KRKP) Aransas County Airport/{to.runway.runwayLine}",
+    "(KRKP) Aransas County Airport/Arrivals/{to.runway}"
+  ],
+  "arrivalFeatureIds": [
+    "(KRKP) Aransas County Airport/KRKP",
+    "(KRKP) Aransas County Airport/{to.runway.runwayLine}",
+    "(KRKP) Aransas County Airport/Arrivals/{to.runway}"
+  ],
+  "cards": [
+    {
+      "type": "radio",
+      "title": "Terminate with Houston Center",
+      "mapFocus": "{from.area.moa}",
+      "leadIn": "Before leaving the MOA:",
+      "radio": {
+        "channel": "Houston Center · VHF CH 22",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Houston Center, <callsign>, complete KINGS 4, terminate Aransas County." },
+          { "speaker": "Houston Center", "text": "<callsign>, Houston Center, roger, radar services terminated, squawk appropriate code, frequency change approved." },
+          { "speaker": "Pilot", "text": "<callsign>, squawk <code>, frequency change approved." }
+        ]
+      },
+      "detail": "Phraseology adapted from the Goliad exit; the binder gives no Aransas County–specific Houston call. Verify with an instructor.",
+      "source": "Binder, p. 12; Feb 2026 PPT, Part 1, slide 73."
+    },
+    {
+      "type": "radio",
+      "title": "State your departure on KINGS 4 Common",
+      "mapFocus": "{from.area.moa}",
+      "radio": {
+        "channel": "KINGS 4 Common · UHF CH 20",
+        "script": "“99 KINGS 4, <callsign> departing area {from.area.spoken}, Aransas County.”"
+      },
+      "source": "Binder, p. 12; Feb 2026 PPT, Part 1, slide 73."
+    },
+    {
+      "type": "action",
+      "title": "Descend and proceed to Woodsboro",
+      "mapFocus": [
+        "{from.area.moa}",
+        "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Goliad Arrivals"
+      ],
+      "instructions": [
+        "Descend within the lateral confines of the MOA to 2,500' MSL",
+        "At 2,500' MSL, proceed direct to Woodsboro",
+        "Cross Woodsboro at 2,500' MSL · 240 KIAS"
+      ],
+      "source": "Binder, p. 41; Feb 2026 PPT, Part 2, slide 34."
+    },
+    { "use": "acounty-woodsboro-entry" }
+  ]
+}

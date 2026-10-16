@@ -1,0 +1,59 @@
+{
+  "id": "goliad-to-ingleside",
+  "from": "goliad",
+  "to": "ingleside",
+  "when": {},
+  "title": "Goliad RWY {from.runway} → Ingleside RWY {to.runway}",
+  "featureIds": [
+    "(KNGT) Goliad NOLF/KNGT",
+    "(KNGT) Goliad NOLF/{from.runway.runwayLine}",
+    "(KNGT) Goliad NOLF/Departures/{from.runway}",
+    "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Goliad Arrivals",
+    "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Port Bay Bridge",
+    "(KTFP) Ingleside Regional Airport/KTFP",
+    "(KTFP) Ingleside Regional Airport/{to.runway}",
+    "(KTFP) Ingleside Regional Airport/Goliad Arrivals/{to.runway}"
+  ],
+  "arrivalFeatureIds": [
+    "(KTFP) Ingleside Regional Airport/KTFP",
+    "(KTFP) Ingleside Regional Airport/{to.runway}",
+    "(KTFP) Ingleside Regional Airport/Goliad Arrivals/{to.runway}"
+  ],
+  "cards": [
+    { "use": "goliad-depart-to-woodsboro" },
+    {
+      "type": "radio",
+      "title": "Contact Corpus Approach at Woodsboro",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Goliad Arrivals",
+      "leadIn": "At Woodsboro, 2,500' MSL · 240 KIAS:",
+      "radio": {
+        "channel": "Corpus Approach · UHF CH 6",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Corpus Approach, <callsign>, over Woodsboro at 2,500 feet, course rules Ingleside." },
+          { "speaker": "Approach", "text": "<callsign>, Corpus Approach, ident." },
+          { "speaker": "Pilot", "text": "<callsign>, ident." },
+          { "speaker": "Approach", "text": "<callsign>, Corpus Approach, radar contact <position>, proceed course rules Ingleside Regional." },
+          { "speaker": "Pilot", "text": "<callsign>, proceed course rules Ingleside Regional." }
+        ]
+      },
+      "detail": "Phrasing follows the Aransas County Woodsboro call; the PPT only says to state intentions. Verify with an instructor.",
+      "source": "Binder, p. 57; Feb 2026 PPT, Part 2, slide 92."
+    },
+    {
+      "type": "action",
+      "title": "Follow the Goliad Arrival",
+      "mapFocus": [
+        "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Goliad Arrivals",
+        "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Port Bay Bridge",
+        "(KTFP) Ingleside Regional Airport/Goliad Arrivals/{to.runway}"
+      ],
+      "instructions": [
+        "Maintain 2,500' MSL · 240 KIAS",
+        "Ingleside north flow: expect to continue to Port Bay Bridge, then direct to KTFP",
+        "Ingleside south flow: expect to proceed direct to KTFP"
+      ],
+      "source": "Binder, p. 57; Feb 2026 PPT, Part 2, slide 92."
+    },
+    { "use": "ingleside-pattern-entry" }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "id": "ingleside",
+  "name": "Ingleside",
+  "fullName": "Ingleside Regional Airport (KTFP)",
+  "kind": "olf",
+  "inputs": [
+    {
+      "id": "runway",
+      "label": "Runway",
+      "options": ["13", "31"]
+    }
+  ],
+  "info": [
+    {
+      "type": "checkpoint",
+      "title": "Ingleside at a glance",
+      "instructions": [
+        "CTAF: 122.7 · ASOS: 118.775",
+        "Uncontrolled, daylight only, left-hand pattern",
+        "Break 1,000' · Pattern 800' · High key 3,000' · Low key 1,500'",
+        "Max 5 aircraft in the pattern, military or civil"
+      ],
+      "mapFocus": ["(KTFP) Ingleside Regional Airport/KTFP"],
+      "source": "Binder, p. 55; Feb 2026 PPT, Part 2, slide 85."
+    },
+    {
+      "type": "checkpoint",
+      "title": "Caution",
+      "mapFocus": ["(KTFP) Ingleside Regional Airport/KTFP"],
+      "instructions": [
+        "The transitions conflict with multiple VFR routes and IFR approaches",
+        "Contact Approach as soon as possible for flight following",
+        "Be alert for IFR traffic at 1,600' MSL; remain below 3,000' unless in contact with Approach"
+      ],
+      "source": "Binder, p. 56; Feb 2026 PPT, Part 2, slide 86."
+    }
+  ]
+}

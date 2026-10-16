@@ -1,0 +1,95 @@
+{
+  "id": "acounty-to-kngp",
+  "from": "acounty",
+  "to": "kngp",
+  "when": {},
+  "title": "Aransas County RWY {from.runway} → KNGP RWY {to.runway}",
+  "featureIds": [
+    "(KRKP) Aransas County Airport/KRKP",
+    "(KRKP) Aransas County Airport/{from.runway.runwayLine}",
+    "(KRKP) Aransas County Airport/Departures/{from.runway}",
+    "(KRKP) Aransas County Airport/Departures/Redfish Point",
+    "(KRKP) Aransas County Airport/Departures/LBJ Causeway",
+    "(KRKP) Aransas County Airport/Departures/9 Mile Point",
+    "(KNGP) Corpus Christi NAS/Shamrock Arrivals/North Arrivals",
+    "(KNGP) Corpus Christi NAS/Shamrock Arrivals/9 Mile Point",
+    "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Aransas Pass Causeway",
+    "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/PT Shamrock",
+    "{to.runway.viaA}",
+    "{to.runway.viaB}",
+    "{to.runway.viaC}",
+    "{to.runway.entryLine}"
+  ],
+  "arrivalFeatureIds": [
+    "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/PT Shamrock"
+  ],
+  "cards": [
+    {
+      "type": "action",
+      "title": "Depart the Aransas County pattern",
+      "mapFocus": [
+        "(KRKP) Aransas County Airport/Departures/{from.runway}",
+        "(KRKP) Aransas County Airport/Departures/Redfish Point"
+      ],
+      "leadIn": "{from.runway.depWhen}",
+      "instructions": [
+        "{from.runway.depAlt}",
+        "{from.runway.depTurn}",
+        "Thence: climb toward the LBJ Causeway"
+      ],
+      "source": "Binder, pp. 45–46; Feb 2026 PPT, Part 2, slides 44–46."
+    },
+    {
+      "type": "radio",
+      "title": "Announce your departure on CTAF",
+      "mapFocus": "(KRKP) Aransas County Airport/KRKP",
+      "radio": {
+        "channel": "A-County CTAF · VHF CH 21",
+        "script": "“{from.runway.depCall}”"
+      },
+      "source": "Binder, p. 45; Feb 2026 PPT, Part 2, slides 44–46."
+    },
+    {
+      "type": "action",
+      "title": "Cross the LBJ Causeway",
+      "mapFocus": "(KRKP) Aransas County Airport/Departures/LBJ Causeway",
+      "instructions": [
+        "Climb to cross the causeway at 1,500' MSL",
+        "Accelerate to 240 KIAS",
+        "Obtain the KNGP ATIS without delay",
+        "Monitor CTAF until 9 Mile Point"
+      ],
+      "source": "Binder, p. 45; Feb 2026 PPT, Part 2, slides 44–46."
+    },
+    {
+      "type": "radio",
+      "title": "Check in with Corpus Approach",
+      "mapFocus": "(KRKP) Aransas County Airport/Departures/LBJ Causeway",
+      "radio": {
+        "channel": "Corpus Approach · UHF CH 8",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Corpus Approach, <callsign>, <altitude> off Aransas County, course rules Shamrock, with information <code>." },
+          { "speaker": "Approach", "text": "<callsign>, Corpus Approach, radar contact off A-County, proceed course rules Shamrock." },
+          { "speaker": "Pilot", "text": "<callsign>, proceed course rules Shamrock." }
+        ]
+      },
+      "source": "Binder, pp. 45, 62–63; Feb 2026 PPT, Part 2, slide 46."
+    },
+    {
+      "type": "action",
+      "title": "Southbound on the Northern Arrival",
+      "mapFocus": [
+        "(KNGP) Corpus Christi NAS/Shamrock Arrivals/North Arrivals",
+        "(KNGP) Corpus Christi NAS/Shamrock Arrivals/9 Mile Point"
+      ],
+      "instructions": [
+        "Establish southbound over the Intracoastal Waterway at 1,500' MSL · 240 KIAS",
+        "Contact Approach no later than 9 Mile Point",
+        "When clear of 9 Mile Point, make a last call on CTAF: “clear to the south”"
+      ],
+      "source": "Binder, pp. 45, 63; Feb 2026 PPT, Part 2, slide 46."
+    },
+    { "use": "northern-arrival-tail" },
+    { "use": "kngp-{to.entry.part}-{to.runway.flow}" }
+  ]
+}

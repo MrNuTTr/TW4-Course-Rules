@@ -1,0 +1,60 @@
+{
+  "id": "waldron-arrival",
+  "cards": [
+    {
+      "type": "action",
+      "title": "Passing the Camel Humps",
+      "mapFocus": "(KNWL) Waldron NOLF/South Arrivals/Camel Humps",
+      "instructions": [
+        "Descend to 1,000' MSL · slow to 200 KIAS",
+        "Proceed north up the shoreline toward the Shrimp Ponds, paralleling the Intracoastal Waterway",
+        "Stay south of the Flour Bluff Water Tower"
+      ],
+      "source": "Binder, p. 49; Feb 2026 PPT, Part 2, slides 53, 55."
+    },
+    {
+      "type": "radio",
+      "title": "Contact Waldron Tower",
+      "mapFocus": "(KNWL) Waldron NOLF/South Arrivals/Camel Humps",
+      "radio": {
+        "channel": "Waldron Tower · UHF CH 30",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Waldron Tower, <callsign>, Camel Humps for touch and gos." },
+          { "speaker": "Tower", "text": "<callsign>, Waldron Tower, report the initial RWY {to.runway}." }
+        ]
+      },
+      "detail": "Tower provides airfield wind, altimeter and runway information at check-in.",
+      "source": "Binder, p. 49; Feb 2026 PPT, Part 2, slide 53."
+    },
+    {
+      "type": "action",
+      "title": "Fly to the initial, RWY {to.runway}",
+      "mapFocus": [
+        "{to.runway.initialFocus}",
+        "(KNWL) Waldron NOLF/South Arrivals/Power Plant"
+      ],
+      "instructions": [
+        "{to.runway.initialA}",
+        "{to.runway.initialB}",
+        "1,000' MSL · 200 KIAS",
+        "Do NOT overfly the Power Plant"
+      ],
+      "source": "Binder, pp. 49–50; Feb 2026 PPT, Part 2, slides 56–62."
+    },
+    {
+      "type": "radio",
+      "title": "Initial and numbers",
+      "mapFocus": "(KNWL) Waldron NOLF/{to.runway.runwayLine}",
+      "radio": {
+        "channel": "Waldron Tower · UHF CH 30",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Waldron Tower, <callsign>, initial RWY {to.runway}." },
+          { "speaker": "Tower", "text": "<callsign>, Waldron Tower, report the numbers RWY {to.runway}." },
+          { "speaker": "Pilot", "text": "Waldron Tower, <callsign>, numbers RWY {to.runway}." }
+        ]
+      },
+      "detail": "Pattern is {to.runway.patternSide}-hand. If two-way contact is not established by the Shrimp Ponds, or the pattern is full, turn right, fly south along the center of the ICW at 1,000' MSL and contact Corpus Approach (CH 8).",
+      "source": "Binder, pp. 49–50; Feb 2026 PPT, Part 2, slides 56, 62."
+    }
+  ]
+}

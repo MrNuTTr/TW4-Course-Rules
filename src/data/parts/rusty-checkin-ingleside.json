@@ -1,0 +1,23 @@
+{
+  "id": "rusty-checkin-ingleside",
+  "cards": [
+    {
+      "type": "radio",
+      "title": "Check in with Corpus Departure",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/{from.runway}",
+      "leadIn": "At 500 ft MSL, when directed by Tower:",
+      "radio": {
+        "channel": "Corpus Departure · UHF CH 12",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Corpus Departure, <callsign>, 500 feet off Navy Corpus, course rules Ingleside." },
+          { "speaker": "Departure", "text": "<callsign>, Corpus Departure, ident." },
+          { "speaker": "Pilot", "text": "<callsign>, ident." },
+          { "speaker": "Departure", "text": "<callsign>, Corpus Departure, radar contact <distance and direction> of Navy Corpus. Proceed course rules Ingleside." },
+          { "speaker": "Pilot", "text": "<callsign>, proceed course rules Ingleside." }
+        ]
+      },
+      "detail": "The binder shows the Rusty check-in for Kings 4 and Goliad; the Ingleside phrase follows it. Verify with an instructor.",
+      "source": "Binder, pp. 8, 56–58; Feb 2026 PPT, Part 2, slide 88."
+    }
+  ]
+}

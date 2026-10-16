@@ -1,0 +1,91 @@
+{
+  "id": "waldron-to-kngp",
+  "from": "waldron",
+  "to": "kngp",
+  "when": {},
+  "title": "Waldron RWY {from.runway} → KNGP RWY {to.runway}",
+  "featureIds": [
+    "(KNWL) Waldron NOLF/KNWL",
+    "(KNWL) Waldron NOLF/{from.runway.runwayLine}",
+    "(KNWL) Waldron NOLF/East Departures/{from.runway}",
+    "(KNWL) Waldron NOLF/East Departures/Sandbar",
+    "(KNWL) Waldron NOLF/South Arrivals/Power Plant",
+    "(KNGP) Corpus Christi NAS/Shamrock Arrivals/South Arrivals",
+    "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/PT Shamrock",
+    "{to.runway.viaA}",
+    "{to.runway.viaB}",
+    "{to.runway.viaC}",
+    "{to.runway.entryLine}"
+  ],
+  "arrivalFeatureIds": [
+    "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/PT Shamrock"
+  ],
+  "cards": [
+    {
+      "type": "action",
+      "title": "Depart the Waldron pattern",
+      "mapFocus": [
+        "(KNWL) Waldron NOLF/East Departures/{from.runway}",
+        "(KNWL) Waldron NOLF/South Arrivals/Power Plant"
+      ],
+      "leadIn": "{from.runway.depWhen}",
+      "instructions": [
+        "{from.runway.depClimb}",
+        "{from.runway.depTurn}",
+        "Cross Padre Island at 500' MSL"
+      ],
+      "source": "Binder, pp. 54–55; Feb 2026 PPT, Part 2, slides 68–75."
+    },
+    {
+      "type": "action",
+      "title": "Stay clear of the Seashore",
+      "mapFocus": "(KNWL) Waldron NOLF/East Departures/Sandbar",
+      "instructions": [
+        "Remain north of the sandbar (no overflight of Padre Island National Seashore below 3,000' AGL)",
+        "Remain south of the Padre Island residential areas"
+      ],
+      "source": "Binder, pp. 54–55; Feb 2026 PPT, Part 2, slides 70–75."
+    },
+    {
+      "type": "radio",
+      "title": "Terminate with Waldron Tower",
+      "mapFocus": "(KNWL) Waldron NOLF/KNWL",
+      "radio": {
+        "channel": "Waldron Tower · UHF CH 30",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Waldron Tower, <callsign>, number one {from.runway.depWord}, departing." },
+          { "speaker": "Tower", "text": "<callsign>, Waldron Tower, roger, contact departure." }
+        ]
+      },
+      "source": "Binder, p. 55; Feb 2026 PPT, Part 2, slides 68–75."
+    },
+    {
+      "type": "radio",
+      "title": "Check in with Corpus Approach",
+      "mapFocus": "(KNWL) Waldron NOLF/South Arrivals/Power Plant",
+      "radio": {
+        "channel": "Corpus Approach · UHF CH 8",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Corpus Approach, <callsign>, <altitude> off Waldron, with information <code>, course rules Shamrock." },
+          { "speaker": "Approach", "text": "<callsign>, Corpus Approach, radar contact, proceed course rules Shamrock." },
+          { "speaker": "Pilot", "text": "<callsign>, proceed course rules Shamrock." }
+        ]
+      },
+      "detail": "Contact Approach as soon as possible. If you cannot make contact, join the Southern Arrival and keep trying.",
+      "source": "Binder, p. 55; Feb 2026 PPT, Part 2, slides 68–75."
+    },
+    {
+      "type": "action",
+      "title": "Turn northeast along the beach line",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/South Arrivals",
+      "instructions": [
+        "Crossing the beach line, turn northeast and parallel it",
+        "Climb to 1,000' MSL · accelerate to 240 KIAS",
+        "Be alert for traffic already established on the Southern Arrival at 1,000' MSL"
+      ],
+      "source": "Binder, pp. 55, 64; Feb 2026 PPT, Part 2, slides 68–75."
+    },
+    { "use": "southern-arrival" },
+    { "use": "kngp-{to.entry.part}-{to.runway.flow}" }
+  ]
+}
