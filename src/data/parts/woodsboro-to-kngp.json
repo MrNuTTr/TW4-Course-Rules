@@ -1,0 +1,34 @@
+{
+  "id": "woodsboro-to-kngp",
+  "cards": [
+    {
+      "type": "radio",
+      "title": "Check in with Corpus Approach at Woodsboro",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Goliad Arrivals",
+      "radio": {
+        "channel": "Corpus Approach · UHF CH 6",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Corpus Approach, <callsign>, Woodsboro at 2,500 feet, course rules Shamrock, with ATIS <code>." },
+          { "speaker": "Approach", "text": "<callsign>, Corpus Approach, ident." },
+          { "speaker": "Pilot", "text": "<callsign>, ident." },
+          { "speaker": "Approach", "text": "<callsign>, Corpus Approach, radar contact <direction and distance> from Rooke Airport, proceed course rules Shamrock." },
+          { "speaker": "Pilot", "text": "<callsign>, proceed course rules Shamrock." }
+        ]
+      },
+      "source": "Binder, p. 62."
+    },
+    {
+      "type": "action",
+      "title": "From Woodsboro to Aransas Causeway",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Port Bay Bridge",
+      "instructions": [
+        "Woodsboro to Bayside: approximately 145°",
+        "Bayside to Port Bay Bridge: approximately 155°",
+        "Passing Port Bay Bridge, descend to 1,000 ft MSL · maintain 240 KIAS",
+        "Fly direct to Aransas Causeway, approximately 150°"
+      ],
+      "source": "Binder, p. 62; Feb 2026 PPT, Part 2, slides 99–102."
+    },
+    { "use": "northern-arrival-tail" }
+  ]
+}

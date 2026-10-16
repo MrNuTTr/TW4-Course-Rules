@@ -60,7 +60,10 @@ fallback behavior.
   Loaded: Shamrock Re-entry, Oso Transition (KNGP ↔ Waldron), Sunrise
   Transition (Waldron → KNGP), Nueces Transition (KNGP ↔ KCRP) and Portland Low
   (name, Tower call and map track only; no altitude or speed data exists in the
-  sources).
+  sources). KINGS 4 also returns to KNGP via Woodsboro and the Goliad/Northern
+  Arrival. Not loaded because the sources don't tie them to a route or
+  destination: the Western and Lex Arrivals, Cabaniss as a destination, and
+  KINGS 4 → Ingleside.
 - `src/data/map-extras.json` holds derived map points and lines not in the KML (Goliad
   4 NM initials, Berclair avoid area, Bayside, Padre Balli Park (approximate)). Extras with `coordinates` are lines
   (`kind: line`); the rest are points, drawn as ★ and a
