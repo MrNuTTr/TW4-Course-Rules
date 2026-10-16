@@ -88,7 +88,8 @@
       "mapFocus": "{to.area.moa}",
       "instructions": [
         "Do not enter the MOA until established at 14,500 ft MSL and cleared by Houston Center",
-        "Enter via the transition layer",
+        "Enter via the transition layer, except border areas where no transition altitude is needed (see below)",
+        "If you need extra climb or a weather deviation, climb while paralleling the eastern MOA boundary and advise ATC",
         "{to.area.entryNote}"
       ],
       "source": "Binder, pp. 10–11; Feb 2026 PPT, Part 1, slides 70–71."

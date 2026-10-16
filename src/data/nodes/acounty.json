@@ -90,8 +90,9 @@
         "Authorized for all runways with 2 or fewer aircraft in the pattern",
         "Request from Corpus Approach, announce on CTAF and report High Key on KRKP Common",
         "Call high left crosswind and high left base on CTAF",
-        "Practice PELs already in the pattern are unlimited if separated",
-        "If you doubt a civilian understands your PEL, reset to high key"
+        "Practice approaches to a low approach are authorized outside scheduled pattern hours (limit 1 per sortie); circling to a low approach is approved",
+        "Practice PELs already in the pattern are unlimited if separated (check with an instructor)",
+        "If you doubt a civilian understands your PEL, reset to high key (check with an instructor)"
       ],
       "source": "Binder, pp. 42–44."
     },

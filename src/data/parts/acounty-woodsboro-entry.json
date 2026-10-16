@@ -4,7 +4,10 @@
     {
       "type": "radio",
       "title": "Check in with Corpus Approach at Woodsboro",
-      "mapFocus": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Goliad Arrivals",
+      "mapFocus": [
+        "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Goliad Arrivals",
+        "(KNGP) Corpus Christi NAS/Rusty Departures/Woodsboro"
+      ],
       "leadIn": "Crossing Woodsboro at 2,500' MSL · 240 KIAS:",
       "radio": {
         "channel": "Corpus Approach · UHF CH 6",

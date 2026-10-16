@@ -83,5 +83,84 @@
     "lat": 27.7704,
     "lon": -97.5012,
     "description": "Corpus Christi International Airport. Approximate position from public airport data; not in the original KML."
+  },
+  {
+    "folder": "(KNGP) Corpus Christi NAS/Rusty Departures",
+    "name": "Woodsboro",
+    "kind": "waypoint",
+    "lat": 28.23661729855666,
+    "lon": -97.32213655939522,
+    "description": "Woodsboro. Position taken from the shared endpoint of the KML Goliad departure tracks."
+  },
+  {
+    "folder": "(KNGT) Goliad NOLF",
+    "name": "5 NM maneuvering limit",
+    "kind": "hazard",
+    "radiusNm": 5,
+    "lat": 28.61336508046538,
+    "lon": -97.614694850772,
+    "description": "While maneuvering to the initial, remain outside 5 NM or above 5,000 ft MSL. Not an absolute no-go ring above 5,000 ft."
+  },
+  {
+    "folder": "(KRKP) Aransas County Airport",
+    "name": "Initial 14",
+    "kind": "initial",
+    "lat": 28.11771135,
+    "lon": -97.07549813,
+    "description": "Approximate 2 NM initial on the RWY 14 extended centerline (abeam Redfish Point per the PPT), projected from the KML runway. Check with an instructor for the exact point."
+  },
+  {
+    "folder": "(KRKP) Aransas County Airport",
+    "name": "Initial 18",
+    "kind": "initial",
+    "lat": 28.12498104,
+    "lon": -97.03887243,
+    "description": "Approximate 2 NM initial on the RWY 18 extended centerline, projected from the KML runway. Check with an instructor for the exact point."
+  },
+  {
+    "folder": "(KRKP) Aransas County Airport",
+    "name": "Initial 32",
+    "kind": "initial",
+    "lat": 28.05628998,
+    "lon": -97.01890177,
+    "description": "Approximate 2 NM initial on the RWY 32 extended centerline (Downtown Rockport per the PPT), projected from the KML runway. Check with an instructor for the exact point."
+  },
+  {
+    "folder": "(KRKP) Aransas County Airport",
+    "name": "Initial 36",
+    "kind": "initial",
+    "lat": 28.04736084,
+    "lon": -97.0411617,
+    "description": "Approximate 2 NM initial on the RWY 36 extended centerline (Oak Bay Golf Course per the PPT), projected from the KML runway. Check with an instructor for the exact point."
+  },
+  {
+    "folder": "(KTFP) Ingleside Regional Airport",
+    "name": "Initial 13",
+    "kind": "initial",
+    "lat": 27.93932133,
+    "lon": -97.24497311,
+    "description": "Approximate 2 NM initial on the RWY 13 extended centerline, projected from the KML runway."
+  },
+  {
+    "folder": "(KTFP) Ingleside Regional Airport",
+    "name": "Initial 31",
+    "kind": "initial",
+    "lat": 27.88686664,
+    "lon": -97.17807427,
+    "description": "Approximate 2 NM initial on the RWY 31 extended centerline, projected from the KML runway."
+  },
+  {
+    "folder": "(KTFP) Ingleside Regional Airport/Course Rules Departures",
+    "name": "13",
+    "kind": "line",
+    "coordinates": [[-97.20705012, 27.90841209], [-97.23111177, 28.07979101]],
+    "description": "Exit north (~350°) toward Bayside from RWY 13. Illustrative straight line; the KML Ingleside departure tracks go south."
+  },
+  {
+    "folder": "(KTFP) Ingleside Regional Airport/Course Rules Departures",
+    "name": "31",
+    "kind": "line",
+    "coordinates": [[-97.21611215, 27.91795092], [-97.23111177, 28.07979101]],
+    "description": "Exit north (~350°) toward Bayside from RWY 31. Illustrative straight line; the KML Ingleside departure tracks go south."
   }
 ]

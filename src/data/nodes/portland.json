@@ -4,6 +4,7 @@
   "fullName": "Portland Low Departure (PT Silver)",
   "kind": "work-area",
   "endsRoute": true,
+  "hidden": true,
   "inputs": [],
   "info": []
 }

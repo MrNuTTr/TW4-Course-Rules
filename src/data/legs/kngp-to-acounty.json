@@ -11,7 +11,8 @@
     "(KNGP) Corpus Christi NAS/Beach Line Departures/Foxtrot/Noth Mustang Transition",
     "(KRKP) Aransas County Airport/KRKP",
     "(KRKP) Aransas County Airport/{to.runway.runwayLine}",
-    "(KRKP) Aransas County Airport/Arrivals/{to.runway}"
+    "(KRKP) Aransas County Airport/Arrivals/{to.runway}",
+    "(KRKP) Aransas County Airport/Initial {to.runway}"
   ],
   "arrivalFeatureIds": [
     "(KRKP) Aransas County Airport/KRKP",

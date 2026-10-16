@@ -6,7 +6,7 @@
       "type": "radio",
       "title": "Request taxi to the run-ups",
       "mapFocus": "(KNGP) Corpus Christi NAS/KNGP",
-      "leadIn": "At Taxiway Charlie / Compass Rose:",
+      "leadIn": "At Taxiway Charlie / Compass Rose. You need a crossing clearance for every runway on your route; without one, hold short even if the runway is inactive:",
       "radio": {
         "channel": "Navy Corpus Ground · UHF CH 3",
         "exchange": [

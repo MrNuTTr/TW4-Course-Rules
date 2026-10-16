@@ -55,9 +55,16 @@
       "mapFocus": "(KNGP) Corpus Christi NAS/Nueces Transition / East Arrivals & Departures/KCRP",
       "instructions": [
         "Maintain 1,500' MSL · 200 KIAS to the Crosstown Expressway",
-        "Then comply with CRP Tower instructions for a straight-in or overhead (RWY 31/36 and 18/13)"
+        "Remain north of SPID; do not fly south of SPID before the Crosstown Expressway",
+        "At Point Sunrise, contact Cabaniss Tower (UHF CH 27) or Corpus Christi Tower as directed",
+        "Then comply with CRP Tower instructions for a straight-in or overhead (RWY 31/36 and 18/13)",
+        "If directed, or if weather precludes 1,500', a one-in/one-out procedure at 1,000' MSL may be used"
       ],
-      "detail": "The KCRP tower frequency and phraseology are not in the sources. Check with an instructor.",
+      "radio": {
+        "channel": "Cabaniss Tower · UHF CH 27",
+        "script": "“Cabaniss Tower, <callsign>, Nueces transition.”"
+      },
+      "detail": "Handoff per the Manual, §2-9. Check with an instructor for the exact CRP Tower frequency.",
       "source": "Feb 2026 PPT, Part 1, slides 58–61; Part 2, slides 119–121."
     }
   ]

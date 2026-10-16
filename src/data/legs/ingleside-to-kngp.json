@@ -7,8 +7,8 @@
   "featureIds": [
     "(KTFP) Ingleside Regional Airport/KTFP",
     "(KTFP) Ingleside Regional Airport/{from.runway}",
-    "(KTFP) Ingleside Regional Airport/Single Departures/{from.runway}",
-    "(KTFP) Ingleside Regional Airport/Formation Departures/{from.runway}",
+    "(KTFP) Ingleside Regional Airport/Course Rules Departures/{from.runway}",
+    "(KNGP) Corpus Christi NAS/Rusty Departures/Bayside",
     "(KNGP) Corpus Christi NAS/Shamrock Arrivals/North Arrivals",
     "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Aransas Pass Causeway",
     "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/PT Shamrock",
@@ -37,8 +37,8 @@
       "type": "action",
       "title": "Exit north toward Bayside",
       "mapFocus": [
-        "(KTFP) Ingleside Regional Airport/Single Departures/{from.runway}",
-        "(KTFP) Ingleside Regional Airport/Formation Departures/{from.runway}"
+        "(KTFP) Ingleside Regional Airport/Course Rules Departures/{from.runway}",
+        "(KNGP) Corpus Christi NAS/Rusty Departures/Bayside"
       ],
       "instructions": [
         "Exit north (~350°) toward Bayside",

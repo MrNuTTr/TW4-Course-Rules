@@ -19,6 +19,7 @@
           { "speaker": "RDO", "text": "<callsign>, Goliad landing RWY {to.runway}, <number> in the pattern. No solos." }
         ]
       },
+      "detail": "The RDO reports the actual number of solos in the pattern; \"No solos\" is the PPT example. Check with an instructor.",
       "source": "Binder, pp. 14, 30; Feb 2026 PPT, Part 2, slides 12–14."
     },
     {

@@ -10,7 +10,7 @@
         "Fly to the Camel Humps",
         "Scan for KNWL course rules departure traffic"
       ],
-      "detail": "The binder says to execute the area exit procedures and then fly to Waldron, but gives no separate track from South Mustang. This follows the beach line departure routing. Check with an instructor.",
+      "detail": "The binder says to execute the area exit procedures and then fly to Waldron, but gives no separate track from South Mustang. This follows the beach line departure routing. The PPT also says to overfly the Camel Humps from the south at 1,000' MSL · 240 KIAS (slide 52) but to descend to 1,000' and slow to 200 KIAS at the Humps (slide 53). Check with an instructor.",
       "source": "Binder, p. 48; Feb 2026 PPT, Part 2, slides 52–53."
     },
     { "use": "waldron-terminate-camel-humps" },

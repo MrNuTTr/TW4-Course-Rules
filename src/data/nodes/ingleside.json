@@ -32,7 +32,11 @@
       "instructions": [
         "The transitions conflict with multiple VFR routes and IFR approaches",
         "Contact Approach as soon as possible for flight following",
-        "Be alert for IFR traffic at 1,600' MSL; remain below 3,000' unless in contact with Approach"
+        "Be alert for IFR traffic at 1,600' MSL; remain below 3,000' unless in contact with Approach",
+        "Contact Approach on CH 6 before climbing to the 3,000' high key",
+        "KRAS RNAV RWY 12 final is 1 NM southwest of KTFP (minimum 1,500')",
+        "Civil and military traffic: the military aircraft gives way; keep a continuous lookout",
+        "Runway initial points are not given in the sources. Check with an instructor."
       ],
       "source": "Binder, p. 56; Feb 2026 PPT, Part 2, slide 86."
     }

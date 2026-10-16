@@ -18,7 +18,8 @@ fallback behavior.
   `src/routePlanner.js` (separate from the UI):
   - `src/data/nodes/*.json`: places (KNGP, KINGS 4, Goliad...) with the
     `inputs` to ask (runway, area), generic `info` cards shown on arrival, and
-    `endsRoute` for the final node.
+    `endsRoute` for the final node. `hidden: true` keeps a node's legs in the
+    data but removes it from the destination list (used for Portland Low).
   - `src/data/legs/*.json`: one file per leg: `from`, `to`, a `when` condition
     (`from`/`to` choices such as runway or area; the most specific match wins),
     the leg's `cards`, `featureIds` for the map and `arrivalFeatureIds` for the

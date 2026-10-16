@@ -6,6 +6,7 @@
       "title": "Fly to the 2 NM initial, RWY {to.runway}",
       "mapFocus": [
         "(KRKP) Aransas County Airport/Arrivals/{to.runway}",
+        "(KRKP) Aransas County Airport/Initial {to.runway}",
         "(KRKP) Aransas County Airport/{to.runway.runwayLine}"
       ],
       "instructions": [

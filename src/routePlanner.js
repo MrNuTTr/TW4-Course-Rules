@@ -175,7 +175,7 @@ export function getDestinations(from, fromChoices, graph = GRAPH) {
         .filter((leg) => leg.from === from && matches(leg.when?.from, fromChoices))
         .map((leg) => leg.to),
     ),
-  ];
+  ].filter((id) => !getNode(id, graph).hidden);
   return ids.map((id) => {
     const node = getNode(id, graph);
     return {

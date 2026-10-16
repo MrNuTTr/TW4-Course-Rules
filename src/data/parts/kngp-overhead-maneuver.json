@@ -1,0 +1,18 @@
+{
+  "id": "kngp-overhead-maneuver",
+  "cards": [
+    {
+      "type": "action",
+      "title": "Overhead maneuver, RWY {to.runway}",
+      "mapFocus": "{to.runway.entryLine}",
+      "instructions": [
+        "1,000' MSL · 200 KIAS, level flight",
+        "Offset ¼ WTD from the runway centerline toward the pattern side ({to.runway.patternSide} traffic)",
+        "Break, then pattern altitude 800' MSL",
+        "Tower may instead specify a straight-in, downwind or base entry"
+      ],
+      "detail": "Normal entry is from the initial to an overhead maneuver. The break point and landing-checklist timing are not written in the sources used here. Check with an instructor.",
+      "source": "Binder, p. 3; Manual 3710.14, p. 3-38; CR2025 summary of changes."
+    }
+  ]
+}

@@ -15,6 +15,7 @@
         "13L": {
           "flow": "south",
           "entryLine": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/13L",
+        "patternSide": "left",
           "viaA": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/TAMUCC NW Corner",
           "viaB": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/TAMUCC NW Corner",
           "viaC": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/TAMUCC NW Corner",
@@ -32,6 +33,7 @@
         "13R": {
           "flow": "south",
           "entryLine": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/13R",
+        "patternSide": "right",
           "viaA": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/TAMUCC NW Corner",
           "viaB": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/TAMUCC NW Corner",
           "viaC": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/TAMUCC NW Corner",
@@ -49,6 +51,7 @@
         "18": {
           "flow": "south",
           "entryLine": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/18",
+        "patternSide": "right",
           "viaA": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/TAMUCC NW Corner",
           "viaB": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/TAMUCC NW Corner",
           "viaC": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/TAMUCC NW Corner",
@@ -66,6 +69,7 @@
         "04": {
           "flow": "north",
           "entryLine": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/04",
+        "patternSide": "left",
           "viaA": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/High Bridge",
           "viaB": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/PT DIMMIT",
           "viaC": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/Low Bridge",
@@ -83,6 +87,7 @@
         "31L": {
           "flow": "north",
           "entryLine": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/31L",
+        "patternSide": "left",
           "viaA": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/High Bridge",
           "viaB": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/PT DIMMIT",
           "viaC": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/PT DIMMIT",
@@ -100,6 +105,7 @@
         "31R": {
           "flow": "north",
           "entryLine": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/31R",
+        "patternSide": "right",
           "viaA": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/High Bridge",
           "viaB": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/PT DIMMIT",
           "viaC": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/PT DIMMIT",
@@ -117,6 +123,7 @@
         "36": {
           "flow": "north",
           "entryLine": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/36",
+        "patternSide": "left",
           "viaA": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/High Bridge",
           "viaB": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/PT DIMMIT",
           "viaC": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/Low Bridge",

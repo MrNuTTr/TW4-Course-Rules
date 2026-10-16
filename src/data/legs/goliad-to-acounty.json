@@ -11,7 +11,9 @@
     "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Goliad Arrivals",
     "(KRKP) Aransas County Airport/KRKP",
     "(KRKP) Aransas County Airport/{to.runway.runwayLine}",
-    "(KRKP) Aransas County Airport/Arrivals/{to.runway}"
+    "(KRKP) Aransas County Airport/Arrivals/{to.runway}",
+    "(KRKP) Aransas County Airport/Initial {to.runway}",
+    "(KNGP) Corpus Christi NAS/Rusty Departures/Woodsboro"
   ],
   "arrivalFeatureIds": [
     "(KRKP) Aransas County Airport/KRKP",

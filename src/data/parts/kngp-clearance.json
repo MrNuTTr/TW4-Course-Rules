@@ -15,7 +15,7 @@
           },
           {
             "speaker": "Clearance",
-            "text": "<callsign>, Navy Corpus Clearance, for VFR flight, squawk <code>."
+            "text": "<callsign>, Navy Corpus Clearance, for VFR flight following, squawk <code>."
           },
           {
             "speaker": "Pilot",

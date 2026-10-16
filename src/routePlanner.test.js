@@ -130,7 +130,7 @@ describe('leg planning', () => {
 
   it('offers KINGS 4 and Goliad from KNGP, with all high and low areas', () => {
     const destinations = getDestinations('kngp', { runway: '13L' });
-    expect(destinations.map(({ node }) => node.id).sort()).toEqual(['acounty', 'foxtrot', 'goliad', 'ingleside', 'kcrp', 'kings4', 'mustang', 'portland', 'reentry', 'waldron']);
+    expect(destinations.map(({ node }) => node.id).sort()).toEqual(['acounty', 'foxtrot', 'goliad', 'ingleside', 'kcrp', 'kings4', 'mustang', 'reentry', 'waldron']);
     const kings4 = destinations.find(({ node }) => node.id === 'kings4');
     expect(kings4.inputs[0].options).toContain('3 High');
     expect(kings4.inputs[0].options).toContain('9 Low');
@@ -218,7 +218,7 @@ describe('leg planning', () => {
     expect(JSON.stringify(k4home.cards)).toMatch(/Aransas Causeway/);
     expect(JSON.stringify(k4home.cards)).not.toMatch(/\{[a-z]+\./);
     const south = findLeg('goliad', { runway: '17' }, 'kngp', { runway: '13L', entry: 'Standard entry' });
-    expect(south.cards.at(-1).title).toMatch(/Numbers call/);
+    expect(south.cards.map((c) => c.title).join('|')).toMatch(/Numbers call/);
     expect(JSON.stringify(south.cards)).toMatch(/crossing the extended centerline of Runway 18/);
     expect(JSON.stringify(south.cards)).not.toMatch(/9 Mile/);
     const north = findLeg('goliad', { runway: '17' }, 'kngp', { runway: '04', entry: 'Standard entry' });

@@ -6,7 +6,7 @@
       "title": "Enter the pattern as Tower directs",
       "mapFocus": "{to.runway.entryLine}",
       "instructions": [
-        "Expect an overhead, base, or straight-in entry at Tower's discretion",
+        "Expect an overhead, downwind, base, or straight-in entry at Tower's discretion",
         "Comply with Navy Corpus Tower instructions for RWY {to.runway}"
       ],
       "detail": "Transition arrivals are tower-directed, so there is no Shamrock entry to choose. Check with an instructor for the entry details of each runway.",
