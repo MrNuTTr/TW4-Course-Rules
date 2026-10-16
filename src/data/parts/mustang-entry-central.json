@@ -18,12 +18,12 @@
       "type": "radio",
       "title": "Switch to CH 18 and self-announce",
       "mapFocus": "{to.area.poly}",
-      "leadIn": "Auto-switch to CH 18 UHF (Central Common). Other flights will execute a roll call from bottom working block to top:",
+      "leadIn": "Auto-switch to CH 18 UHF (Central Common) and self-announce:",
       "radio": {
         "channel": "Central Common · UHF CH 18",
         "script": "99 Central, <callsign>, working <altitude>."
       },
-      "detail": "Example altitude: 7,500.",
+      "detail": "Example altitude: 7,500. You make only this call; there is no roll call for you to initiate. The binder notes other flights will execute a roll call from the bottom working block to the top.",
       "source": "Binder, p. 24."
     }
   ]
