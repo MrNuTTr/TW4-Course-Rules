@@ -814,6 +814,10 @@ h3 {
   font-weight: 600;
 }
 
+.destination-category {
+  margin-top: 26px;
+}
+
 .destination-prompt {
   margin: 26px 0 10px;
   font-size: 0.85rem;

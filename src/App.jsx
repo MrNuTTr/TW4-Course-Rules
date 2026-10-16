@@ -160,6 +160,15 @@ function PlanScreen({ place, isStart, onStart }) {
       : {},
   );
   const selected = destinations.find(({ node }) => node.id === destId);
+  const categoryOf = (entry) => (entry.node.kind === 'work-area' ? 'working' : 'outlying');
+  const categories = [
+    { id: 'outlying', label: 'Outlying Fields' },
+    { id: 'working', label: 'Working Areas' },
+  ].filter((c) => destinations.some((entry) => categoryOf(entry) === c.id));
+  const [category, setCategory] = useState(() =>
+    destinations.length === 1 ? categoryOf(destinations[0]) : '',
+  );
+  const shownDestinations = destinations.filter((entry) => categoryOf(entry) === category);
 
   function pickDestination(entry) {
     setDestId(entry.node.id);
@@ -204,9 +213,28 @@ function PlanScreen({ place, isStart, onStart }) {
         </div>
       ))}
 
-      <p className="destination-prompt">Choose a destination</p>
+      <div className="form-field destination-category">
+        <label htmlFor="destination-category">Choose a destination</label>
+        <select
+          id="destination-category"
+          value={category}
+          onChange={(event) => {
+            setCategory(event.target.value);
+            setDestId('');
+          }}
+        >
+          <option value="" disabled>
+            Select a type…
+          </option>
+          {categories.map((c) => (
+            <option key={c.id} value={c.id}>
+              {c.label}
+            </option>
+          ))}
+        </select>
+      </div>
       <div className="destination-list" role="group" aria-label="Destination">
-        {destinations.map((entry) => (
+        {shownDestinations.map((entry) => (
           <button
             type="button"
             key={entry.node.id}
