@@ -204,6 +204,7 @@ function PlanScreen({ place, isStart, onStart }) {
         </div>
       ))}
 
+      <p className="destination-prompt">Choose a destination</p>
       <div className="destination-list" role="group" aria-label="Destination">
         {destinations.map((entry) => (
           <button
@@ -251,7 +252,7 @@ function PlanScreen({ place, isStart, onStart }) {
         disabled={!leg}
         onClick={() => onStart({ originChoices: fromChoices, leg, destChoices })}
       >
-        {leg ? 'Start leg' : 'Choose a destination'}
+        {leg ? 'Start leg' : 'Start'}
       </button>
     </section>
   );
