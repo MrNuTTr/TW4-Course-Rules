@@ -1,0 +1,32 @@
+{
+  "id": "kngp-to-reentry",
+  "from": "kngp",
+  "to": "reentry",
+  "when": {},
+  "title": "KNGP RWY {from.runway} → Shamrock Re-entry → RWY {to.runway}",
+  "featureIds": [
+    "(KNGP) Corpus Christi NAS/KNGP",
+    "(KNGP) Corpus Christi NAS/Beach Line Departures/{from.runway}",
+    "{from.runway.beachFocus}",
+    "(KNGP) Corpus Christi NAS/Beach Line Departures/Shamrock Re-entry",
+    "(KNGP) Corpus Christi NAS/Shamrock Arrivals/South Arrivals",
+    "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/PT Shamrock",
+    "{to.runway.viaA}",
+    "{to.runway.viaB}",
+    "{to.runway.viaC}",
+    "{to.runway.entryLine}"
+  ],
+  "arrivalFeatureIds": [
+    "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/PT Shamrock"
+  ],
+  "cards": [
+    { "use": "kngp-ground-{from.runway.flow}" },
+    { "use": "kngp-tower-departure" },
+    { "use": "beachline-climbout" },
+    { "use": "beachline-turn" },
+    { "use": "beachline-caution-{from.runway.flow}" },
+    { "use": "beachline-checkin-reentry" },
+    { "use": "shamrock-reentry-{from.runway.flow}" },
+    { "use": "kngp-{to.entry.part}-{to.runway.flow}" }
+  ]
+}

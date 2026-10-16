@@ -1,0 +1,18 @@
+{
+  "id": "shamrock-reentry-north",
+  "cards": [
+    {
+      "type": "action",
+      "title": "Re-entry: north flow",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Beach Line Departures/Shamrock Re-entry",
+      "instructions": [
+        "HDG 105° · 2,500' MSL · 240 KIAS",
+        "Maintain 2,500' until you are BOTH cleared for re-entry AND past the beach line",
+        "Then descend to 1,000' MSL, parallel the beach line at 1 WTD at 240 KIAS, and join the Southern Arrival"
+      ],
+      "source": "Binder, p. 17; Feb 2026 PPT, Part 1, slides 62–65."
+    },
+    { "use": "southern-arrival-join" },
+    { "use": "shamrock-terminate" }
+  ]
+}

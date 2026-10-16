@@ -1,0 +1,61 @@
+{
+  "id": "kngp-to-portland",
+  "from": "kngp",
+  "to": "portland",
+  "when": {},
+  "title": "KNGP RWY {from.runway} → Portland Low",
+  "featureIds": [
+    "(KNGP) Corpus Christi NAS/KNGP",
+    "(KNGP) Corpus Christi NAS/Portland Departures/{from.runway}",
+    "(KNGP) Corpus Christi NAS/Portland Departures/PT Silver"
+  ],
+  "arrivalFeatureIds": [
+    "(KNGP) Corpus Christi NAS/Portland Departures/PT Silver"
+  ],
+  "cards": [
+    { "use": "kngp-ground-{from.runway.flow}" },
+    {
+      "type": "radio",
+      "title": "Call Tower when number one",
+      "mapFocus": "(KNGP) Corpus Christi NAS/KNGP",
+      "leadIn": "Do not call while waiting in sequence:",
+      "instructions": [
+        "{from.runway.holdShort}"
+      ],
+      "radio": {
+        "channel": "Navy Corpus Tower · UHF CH 4",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Navy Corpus Tower, <callsign>, ready for departure, Portland low departure." },
+          { "speaker": "Tower", "text": "<callsign>, Navy Corpus Tower, winds <wind>, cleared for takeoff RWY {from.runway}." },
+          { "speaker": "Pilot", "text": "<callsign>, cleared for takeoff RWY {from.runway}." }
+        ]
+      },
+      "source": "Feb 2026 PPT, Part 1, slides 43, 46."
+    },
+    {
+      "type": "action",
+      "title": "Climb out RWY {from.runway} toward Point Silver",
+      "mapFocus": [
+        "(KNGP) Corpus Christi NAS/Portland Departures/{from.runway}",
+        "(KNGP) Corpus Christi NAS/Portland Departures/PT Silver"
+      ],
+      "instructions": [
+        "Follow the Portland departure track from RWY {from.runway} to Point Silver, due north of KNGP"
+      ],
+      "detail": "The sources give only the name, the Tower call and the track on the map. Altitudes, airspeeds and turn points are not written down. Check with an instructor.",
+      "source": "Feb 2026 PPT, Part 1, slides 43, 46."
+    },
+    {
+      "type": "radio",
+      "title": "Check in with Corpus Departure",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Portland Departures/PT Silver",
+      "leadIn": "When directed by Tower, contact Corpus Departure (UHF CH 12), then switch to CH 8 when directed:",
+      "radio": {
+        "channel": "Corpus Departure · UHF CH 8",
+        "script": "“Corpus Departure, <callsign>, off Navy Corpus, Portland low.”"
+      },
+      "detail": "The check-in phrase is assumed. Check with an instructor.",
+      "source": "Feb 2026 PPT, Part 1, slide 46."
+    }
+  ]
+}

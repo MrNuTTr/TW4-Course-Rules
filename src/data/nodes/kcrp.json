@@ -1,0 +1,21 @@
+{
+  "id": "kcrp",
+  "name": "Corpus Christi Intl",
+  "fullName": "Corpus Christi International (KCRP)",
+  "kind": "airfield",
+  "inputs": [],
+  "info": [
+    {
+      "type": "checkpoint",
+      "title": "Nueces Transition at a glance",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Nueces Transition / East Arrivals & Departures/KCRP",
+      "instructions": [
+        "Rapid transit between KNGP and the landing pattern at Corpus Christi International",
+        "Outbound: 1,500' MSL · 200 KIAS to the Crosstown Expressway",
+        "Inbound: 1,000' MSL · 200 KIAS, north of SPID",
+        "Remain clear of NOLF Cabaniss",
+        "The KCRP tower frequency and phraseology are not in the sources. Check with an instructor."
+      ]
+    }
+  ]
+}

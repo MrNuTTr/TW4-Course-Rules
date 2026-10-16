@@ -2,7 +2,7 @@
   "id": "waldron-to-kngp",
   "from": "waldron",
   "to": "kngp",
-  "when": {},
+  "when": { "to": { "route": "Course rules" } },
   "title": "Waldron RWY {from.runway} → KNGP RWY {to.runway}",
   "featureIds": [
     "(KNWL) Waldron NOLF/KNWL",

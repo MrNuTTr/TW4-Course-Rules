@@ -52,6 +52,15 @@ fallback behavior.
   (`intent`, `foxtrotCall`) are available as `{to.node.intent}` tokens. Legs use `{from.X}`, `{to.X}` and `{to.X.detail}` tokens, resolved from the
   chosen inputs and the per-option `details` in the node file, so one leg file
   covers every runway. A missing detail fails the tests.
+- Transitions and special exits: an input with `explicitOnly: true` (the
+  `route` input on KNGP and Waldron) is offered only where a leg names it in
+  `when`, and `hideWhen` hides another input for chosen values (tower-directed
+  transition arrivals have no Shamrock entry to pick). `inputsFrom` lets a node
+  borrow another node's inputs (Shamrock Re-entry lands on the KNGP runways).
+  Loaded: Shamrock Re-entry, Oso Transition (KNGP ↔ Waldron), Sunrise
+  Transition (Waldron → KNGP), Nueces Transition (KNGP ↔ KCRP) and Portland Low
+  (name, Tower call and map track only; no altitude or speed data exists in the
+  sources).
 - `src/data/map-extras.json` holds derived map points and lines not in the KML (Goliad
   4 NM initials, Berclair avoid area, Bayside, Padre Balli Park (approximate)). Extras with `coordinates` are lines
   (`kind: line`); the rest are points, drawn as ★ and a

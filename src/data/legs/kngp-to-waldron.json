@@ -2,7 +2,7 @@
   "id": "kngp-to-waldron",
   "from": "kngp",
   "to": "waldron",
-  "when": {},
+  "when": { "to": { "route": "Course rules" } },
   "title": "KNGP RWY {from.runway} → Waldron RWY {to.runway}",
   "featureIds": [
     "(KNGP) Corpus Christi NAS/KNGP",

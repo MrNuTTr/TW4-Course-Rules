@@ -224,7 +224,13 @@ function PlanScreen({ place, isStart, onStart }) {
 
       {selected &&
         selected.inputs
-          .filter((input) => input.options.length > 0)
+          .filter(
+            (input) =>
+              input.options.length > 0 &&
+              !Object.entries(input.hideWhen ?? {}).some(([key, values]) =>
+                [values].flat().includes(destChoices[key]),
+              ),
+          )
           .map((input) => (
             <div className="form-field" key={input.id}>
               <label htmlFor={`dest-${input.id}`}>

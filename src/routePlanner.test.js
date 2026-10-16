@@ -130,7 +130,7 @@ describe('leg planning', () => {
 
   it('offers KINGS 4 and Goliad from KNGP, with all high and low areas', () => {
     const destinations = getDestinations('kngp', { runway: '13L' });
-    expect(destinations.map(({ node }) => node.id).sort()).toEqual(['acounty', 'foxtrot', 'goliad', 'ingleside', 'kings4', 'mustang', 'waldron']);
+    expect(destinations.map(({ node }) => node.id).sort()).toEqual(['acounty', 'foxtrot', 'goliad', 'ingleside', 'kcrp', 'kings4', 'mustang', 'portland', 'reentry', 'waldron']);
     const kings4 = destinations.find(({ node }) => node.id === 'kings4');
     expect(kings4.inputs[0].options).toContain('3 High');
     expect(kings4.inputs[0].options).toContain('9 Low');
@@ -235,9 +235,9 @@ describe('leg planning', () => {
     const rkpHome = findLeg('acounty', { runway: '36' }, 'kngp', { runway: '13L', entry: 'Standard entry' });
     expect(JSON.stringify(rkpHome.cards)).toMatch(/LBJ Causeway/);
     expect(JSON.stringify(rkpHome.cards)).toMatch(/Shamrock, terminate/);
-    const nwl = findLeg('kngp', { runway: '31L' }, 'waldron', { runway: '36' });
+    const nwl = findLeg('kngp', { runway: '31L' }, 'waldron', { route: 'Course rules', runway: '36' });
     expect(JSON.stringify(nwl.cards)).toMatch(/west of the Power Plant/);
-    const nwlHome = findLeg('waldron', { runway: '13' }, 'kngp', { runway: '04', entry: 'Straight-in' });
+    const nwlHome = findLeg('waldron', { runway: '13' }, 'kngp', { route: 'Course rules', runway: '04', entry: 'Straight-in' });
     expect(JSON.stringify(nwlHome.cards)).toMatch(/Southern Arrival/);
     expect(getDestinations('ingleside', { runway: '13' }).map(({ node }) => node.id)).toEqual(['kngp']);
     for (const dest of [rkp, nwl]) expect(JSON.stringify(dest.cards)).not.toMatch(/ZOMBIE/);
@@ -271,6 +271,31 @@ describe('leg planning', () => {
     expect(destinations('Area 4')).toEqual(['ingleside', 'kngp', 'waldron']);
     expect(destinations('Central')).toEqual(['kngp']);
     for (const leg of [north, south, central, fox, rkp, tfp]) {
+      expect(text(leg)).not.toMatch(/\{[a-z]+\./);
+    }
+  });
+
+  it('plans re-entry, transitions and Portland Low', () => {
+    const text = (leg) => JSON.stringify(leg.cards);
+    const reentry = findLeg('kngp', { runway: '31R' }, 'reentry', { runway: '13L', entry: 'Standard entry' });
+    expect(text(reentry)).toMatch(/BOTH cleared for re-entry AND past the beach line/);
+    const reentrySouth = findLeg('kngp', { runway: '13L' }, 'reentry', { runway: '31L', entry: 'Straight-in' });
+    expect(text(reentrySouth)).toMatch(/High Bridge/);
+    const oso = findLeg('kngp', { runway: '13L' }, 'waldron', { route: 'Oso Transition', runway: '36' });
+    expect(text(oso)).toMatch(/Oso Transition on request/);
+    const course = findLeg('kngp', { runway: '13L' }, 'waldron', { route: 'Course rules', runway: '36' });
+    expect(text(course)).toMatch(/Camel Humps/);
+    expect(getDestinations('kngp', { runway: '13L' }).find(({ node }) => node.id === 'waldron').inputs[0].options).toEqual(['Course rules', 'Oso Transition']);
+    const sunrise = findLeg('waldron', { runway: '18' }, 'kngp', { route: 'Sunrise Transition', runway: '13R', entry: 'Standard entry' });
+    expect(text(sunrise)).toMatch(/Cabaniss Tower/);
+    const nueces = findLeg('kcrp', {}, 'kngp', { route: 'Nueces Transition', runway: '04', entry: 'Standard entry' });
+    expect(text(nueces)).toMatch(/north of SPID/);
+    expect(getDestinations('kcrp', {}).map(({ node }) => node.id)).toEqual(['kngp']);
+    const portland = findLeg('kngp', { runway: '36' }, 'portland', {});
+    expect(text(portland)).toMatch(/Portland low departure/);
+    const route = getDestinations('waldron', { runway: '13' })[0].inputs.find((input) => input.id === 'route');
+    expect(route.options).toEqual(['Course rules', 'Oso Transition', 'Sunrise Transition']);
+    for (const leg of [reentry, reentrySouth, oso, course, sunrise, nueces, portland]) {
       expect(text(leg)).not.toMatch(/\{[a-z]+\./);
     }
   });

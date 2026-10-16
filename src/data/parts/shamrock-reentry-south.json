@@ -1,0 +1,19 @@
+{
+  "id": "shamrock-reentry-south",
+  "cards": [
+    {
+      "type": "action",
+      "title": "Re-entry: south flow",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Beach Line Departures/Shamrock Re-entry",
+      "leadIn": "Follow the beach line departure procedures. Once cleared by Approach:",
+      "instructions": [
+        "Descend to 1,000' MSL and join the Southern Arrival",
+        "Cleared at or before the High Bridge: climb and maintain 1,000' MSL instead of 2,500'",
+        "Cleared after passing the High Bridge: climb or descend to 1,000' MSL, parallel the beach line at 1 WTD, accelerate to 240 KIAS"
+      ],
+      "source": "Binder, p. 17; Feb 2026 PPT, Part 1, slides 62–65."
+    },
+    { "use": "southern-arrival-join" },
+    { "use": "shamrock-terminate" }
+  ]
+}

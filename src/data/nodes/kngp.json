@@ -134,7 +134,16 @@
       }
     },
     {
+      "id": "route",
+      "label": "Route",
+      "arrivalOnly": true,
+      "explicitOnly": true,
+      "optionLabel": "{value}",
+      "options": ["Course rules", "Oso Transition", "Sunrise Transition", "Nueces Transition"]
+    },
+    {
       "id": "entry",
+      "hideWhen": { "route": ["Oso Transition", "Sunrise Transition", "Nueces Transition"] },
       "label": "Entry",
       "arrivalOnly": true,
       "optionLabel": "{value}",

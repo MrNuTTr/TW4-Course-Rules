@@ -1,0 +1,23 @@
+{
+  "id": "kngp-tower-departure-oso",
+  "cards": [
+    {
+      "type": "radio",
+      "title": "Call Tower when number one",
+      "mapFocus": "(KNGP) Corpus Christi NAS/KNGP",
+      "leadIn": "Do not call while waiting in sequence:",
+      "instructions": [
+        "{from.runway.holdShort}"
+      ],
+      "radio": {
+        "channel": "Navy Corpus Tower · UHF CH 4",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Navy Corpus Tower, <callsign>, holding short RWY {from.runway}, ready for departure, Oso Transition on request." },
+          { "speaker": "Tower", "text": "<callsign>, Navy Corpus Tower, winds <wind>, cleared for takeoff RWY {from.runway}." },
+          { "speaker": "Pilot", "text": "<callsign>, cleared for takeoff RWY {from.runway}." }
+        ]
+      },
+      "source": "Binder, p. 25; Feb 2026 PPT, Part 2, slides 63–67."
+    }
+  ]
+}

@@ -33,6 +33,14 @@ export function buildGraph(nodeList, legList, partList = []) {
     if (nodes.has(node.id)) throw new Error(`Duplicate node id: ${node.id}`);
     nodes.set(node.id, node);
   }
+  // A node may borrow another node's inputs (for example a Shamrock re-entry
+  // lands on the same KNGP runways), so the details live in one place.
+  for (const node of nodeList) {
+    if (!node.inputsFrom) continue;
+    const base = nodes.get(node.inputsFrom);
+    if (!base) throw new Error(`Node ${node.id} borrows inputs from unknown node: ${node.inputsFrom}`);
+    nodes.set(node.id, { ...node, inputs: base.inputs });
+  }
   const legIds = new Set();
   for (const leg of legList) {
     if (legIds.has(leg.id)) throw new Error(`Duplicate leg id: ${leg.id}`);
@@ -133,13 +141,16 @@ export function expandLegs(graph = GRAPH) {
   const optionSets = (node, fixed = {}, isOrigin = false) => {
     const inputs = (node.inputs ?? []).filter((input) => !(isOrigin && input.arrivalOnly));
     return inputs.reduce(
-      (sets, input) =>
-        sets.flatMap((set) =>
+      (sets, input) => {
+        // An explicitOnly input only exists for legs that name it in `when`.
+        if (input.explicitOnly && !fixed[input.id]) return sets;
+        return sets.flatMap((set) =>
           (fixed[input.id] ? [fixed[input.id]].flat() : input.options).map((option) => ({
             ...set,
             [input.id]: option,
           })),
-        ),
+        );
+      },
       [{}],
     );
   };
@@ -178,7 +189,9 @@ export function getDestinations(from, fromChoices, graph = GRAPH) {
               leg.from === from &&
               leg.to === id &&
               matches(leg.when?.from, fromChoices) &&
-              (leg.when?.to?.[input.id] === undefined || admits(leg.when.to[input.id], option)),
+              (input.explicitOnly
+                ? leg.when?.to?.[input.id] !== undefined && admits(leg.when.to[input.id], option)
+                : leg.when?.to?.[input.id] === undefined || admits(leg.when.to[input.id], option)),
           ),
         ),
       })),

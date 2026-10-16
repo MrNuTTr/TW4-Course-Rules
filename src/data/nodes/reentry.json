@@ -1,0 +1,9 @@
+{
+  "id": "reentry",
+  "name": "Shamrock Re-entry",
+  "fullName": "KNGP via Shamrock Re-entry",
+  "kind": "airfield",
+  "endsRoute": true,
+  "inputsFrom": "kngp",
+  "info": []
+}

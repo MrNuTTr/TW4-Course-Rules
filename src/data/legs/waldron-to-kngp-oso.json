@@ -1,0 +1,65 @@
+{
+  "id": "waldron-to-kngp-oso",
+  "from": "waldron",
+  "to": "kngp",
+  "when": { "to": { "route": "Oso Transition" } },
+  "title": "Waldron RWY {from.runway} → KNGP RWY {to.runway} (Oso Transition)",
+  "featureIds": [
+    "(KNWL) Waldron NOLF/KNWL",
+    "(KNWL) Waldron NOLF/{from.runway.runwayLine}",
+    "(KNWL) Waldron NOLF/Oso Transition / North Departures/{from.runway}",
+    "(KNWL) Waldron NOLF/Oso Transition / North Departures/Oso Bridge (West Side)",
+    "(KNWL) Waldron NOLF/Oso Transition / North Departures/Yorktown Bridge",
+    "(KNWL) Waldron NOLF/Oso Transition / North Departures/Water Tower",
+    "(KNGP) Corpus Christi NAS/Oso Transition / South Arrivals & Departures/Oso Bridge (West Side)",
+    "(KNGP) Corpus Christi NAS/KNGP",
+    "{to.runway.entryLine}"
+  ],
+  "arrivalFeatureIds": [
+    "(KNGP) Corpus Christi NAS/KNGP",
+    "{to.runway.entryLine}"
+  ],
+  "cards": [
+    {
+      "type": "radio",
+      "title": "Request the Oso Transition",
+      "mapFocus": "(KNWL) Waldron NOLF/KNWL",
+      "radio": {
+        "channel": "Waldron Tower · UHF CH 30",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Waldron Tower, <callsign>, would like to put an Oso Transition on request." },
+          { "speaker": "Tower", "text": "<callsign>, Waldron Tower, right turn out for your Oso Transition is approved, contact Navy Corpus Tower." },
+          { "speaker": "Pilot", "text": "<callsign>, right turn out for Oso Transition approved." }
+        ]
+      },
+      "source": "Binder, p. 26; Feb 2026 PPT, Part 2, slides 78–79."
+    },
+    {
+      "type": "action",
+      "title": "Depart the Waldron pattern",
+      "mapFocus": [
+        "(KNWL) Waldron NOLF/Oso Transition / North Departures/{from.runway}",
+        "(KNWL) Waldron NOLF/Oso Transition / North Departures/Oso Bridge (West Side)"
+      ],
+      "leadIn": "{from.runway.osoWhen}",
+      "instructions": [
+        "Turn right and fly direct to the west end of the Oso Bay Bridge",
+        "Climb to 1,000' MSL · accelerate to 200 KIAS",
+        "Do not overfly the Power Plant"
+      ],
+      "source": "Binder, p. 26; Feb 2026 PPT, Part 2, slides 78–79."
+    },
+    {
+      "type": "radio",
+      "title": "Contact Navy Corpus Tower",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Oso Transition / South Arrivals & Departures/Oso Bridge (West Side)",
+      "radio": {
+        "channel": "Navy Corpus Tower · UHF CH 4",
+        "script": "“Navy Corpus Tower, <callsign>, Oso Bridge, Oso Transition inbound, with information <code>.”"
+      },
+      "detail": "The binder says to contact Navy Corpus Tower but does not give the check-in phrase; this one is assumed. Check with an instructor.",
+      "source": "Binder, p. 26."
+    },
+    { "use": "kngp-tower-directed-entry" }
+  ]
+}

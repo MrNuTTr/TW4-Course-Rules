@@ -1,0 +1,23 @@
+{
+  "id": "beachline-checkin-reentry",
+  "cards": [
+    {
+      "type": "radio",
+      "title": "Request the Shamrock Re-entry",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Beach Line Departures/{from.runway}",
+      "leadIn": "At 500 ft MSL, when directed by Tower, contact Corpus Departure (UHF CH 12). When directed, switch to CH 8:",
+      "radio": {
+        "channel": "Corpus Departure · UHF CH 8",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Corpus Departure, <callsign>, 500 feet off Navy Corpus, Shamrock re-entry." },
+          { "speaker": "Departure", "text": "<callsign>, Corpus Departure, ident." },
+          { "speaker": "Pilot", "text": "<callsign>, ident." },
+          { "speaker": "Departure", "text": "<callsign>, Corpus Departure, radar contact <distance and direction> of Navy Corpus. Proceed course rules Shamrock re-entry." },
+          { "speaker": "Pilot", "text": "<callsign>, proceed course rules Shamrock re-entry." }
+        ]
+      },
+      "detail": "Shamrock Re-entry is one of the course rules requests made on Corpus Departure. The exact phrases follow the Mustang check-in pattern and are not written out in the binder. Check with an instructor.",
+      "source": "Binder, p. 17; Feb 2026 PPT, Part 1, slides 46, 62–65."
+    }
+  ]
+}

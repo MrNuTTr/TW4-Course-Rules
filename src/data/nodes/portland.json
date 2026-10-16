@@ -1,0 +1,9 @@
+{
+  "id": "portland",
+  "name": "Portland Low",
+  "fullName": "Portland Low Departure (PT Silver)",
+  "kind": "work-area",
+  "endsRoute": true,
+  "inputs": [],
+  "info": []
+}

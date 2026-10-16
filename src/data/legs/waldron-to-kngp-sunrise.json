@@ -1,0 +1,96 @@
+{
+  "id": "waldron-to-kngp-sunrise",
+  "from": "waldron",
+  "to": "kngp",
+  "when": { "to": { "route": "Sunrise Transition" } },
+  "title": "Waldron RWY {from.runway} → KNGP RWY {to.runway} (Sunrise Transition)",
+  "featureIds": [
+    "(KNWL) Waldron NOLF/KNWL",
+    "(KNWL) Waldron NOLF/{from.runway.runwayLine}",
+    "(KNWL) Waldron NOLF/Sunrise Transition / North Departures/{from.runway}",
+    "(KNWL) Waldron NOLF/Sunrise Transition / North Departures/PT Chapman",
+    "(KNWL) Waldron NOLF/Sunrise Transition / North Departures/PT Sunrise",
+    "(KNGP) Corpus Christi NAS/Sunrise Transition / South Arrivals/PT Sunrise",
+    "(KNGP) Corpus Christi NAS/KNGP",
+    "{to.runway.entryLine}"
+  ],
+  "arrivalFeatureIds": [
+    "(KNGP) Corpus Christi NAS/KNGP",
+    "{to.runway.entryLine}"
+  ],
+  "cards": [
+    {
+      "type": "radio",
+      "title": "Request the Sunrise Transition",
+      "mapFocus": "(KNWL) Waldron NOLF/KNWL",
+      "radio": {
+        "channel": "Waldron Tower · UHF CH 30",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Waldron Tower, <callsign>, would like to put a Sunrise on request." },
+          { "speaker": "Tower", "text": "<callsign>, Waldron Tower, Sunrise Transition is approved, at Point Chapman contact Cabaniss Tower." },
+          { "speaker": "Pilot", "text": "<callsign>, Sunrise Transition approved, at Point Chapman contact Cabaniss Tower." }
+        ]
+      },
+      "detail": "The readback is written in the same pattern as the other approvals. Check with an instructor.",
+      "source": "Binder, p. 26; Feb 2026 PPT, Part 2, slides 80–84."
+    },
+    {
+      "type": "action",
+      "title": "Fly to Point Chapman",
+      "mapFocus": [
+        "(KNWL) Waldron NOLF/Sunrise Transition / North Departures/{from.runway}",
+        "(KNWL) Waldron NOLF/Sunrise Transition / North Departures/PT Chapman"
+      ],
+      "leadIn": "{from.runway.sunriseWhen}",
+      "instructions": [
+        "Fly direct to Point Chapman (~270°)",
+        "Descend to 500' MSL · accelerate to 200 KIAS",
+        "Aim for the first big bend in Oso Creek, then fly up the creek at 500' MSL · 200 KIAS",
+        "Remain clear of NOLF Cabaniss"
+      ],
+      "detail": "The binder text could be read as climb or descend to 500'. Check with an instructor.",
+      "source": "Binder, p. 26; Feb 2026 PPT, Part 2, slides 80–84."
+    },
+    {
+      "type": "radio",
+      "title": "Contact Cabaniss Tower",
+      "mapFocus": "(KNWL) Waldron NOLF/Sunrise Transition / North Departures/PT Chapman",
+      "leadIn": "At Point Chapman, climb to 1,000' MSL, maintain 200 KIAS and call Cabaniss:",
+      "radio": {
+        "channel": "Cabaniss Tower · UHF CH 27",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Cabaniss Tower, <callsign>, Point Chapman, Sunrise Transition to Navy." },
+          { "speaker": "Tower", "text": "<callsign>, Cabaniss landing <runway>, <number> aircraft in the pattern, Navy landing Runway <runway>, altimeter <XX.XX>, at Point Sunrise contact Navy Corpus Tower." },
+          { "speaker": "Pilot", "text": "<callsign>, altimeter <XX.XX>, at Point Sunrise contact Navy Corpus Tower." }
+        ]
+      },
+      "source": "Binder, p. 26; Feb 2026 PPT, Part 2, slides 80–84."
+    },
+    {
+      "type": "action",
+      "title": "Proceed to Point Sunrise",
+      "mapFocus": [
+        "(KNWL) Waldron NOLF/Sunrise Transition / North Departures/PT Sunrise",
+        "(KNGP) Corpus Christi NAS/Sunrise Transition / South Arrivals/PT Sunrise"
+      ],
+      "instructions": [
+        "Proceed to Point Sunrise (~025°)",
+        "1,000' MSL · 200 KIAS"
+      ],
+      "source": "Binder, p. 26; Feb 2026 PPT, Part 2, slides 80–84."
+    },
+    {
+      "type": "radio",
+      "title": "Contact Navy Corpus Tower",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Sunrise Transition / South Arrivals/PT Sunrise",
+      "leadIn": "At Point Sunrise, when directed:",
+      "radio": {
+        "channel": "Navy Corpus Tower · UHF CH 4",
+        "script": "“Navy Corpus Tower, <callsign>, Point Sunrise, Sunrise Transition, with information <code>.”"
+      },
+      "detail": "The binder gives no check-in phrase for this call; this one is assumed. Check with an instructor.",
+      "source": "Binder, p. 26."
+    },
+    { "use": "kngp-tower-directed-entry" }
+  ]
+}

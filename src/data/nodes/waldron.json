@@ -7,12 +7,24 @@
   "foxtrotCall": "the North to South Transition",
   "inputs": [
     {
+      "id": "route",
+      "label": "Route",
+      "arrivalOnly": true,
+      "explicitOnly": true,
+      "options": ["Course rules", "Oso Transition"]
+    },
+    {
       "id": "runway",
       "label": "Runway",
       "options": ["13", "18", "31", "36"],
       "details": {
         "13": {
           "depWord": "upwind",
+          "osoWhen": "At the 180 and when cleared:",
+          "sunriseWhen": "From the downwind/crosswind and when cleared:",
+          "osoA": "Proceed southwest from the west side of the Oso Bridge, ½ WTD west of the Oso River",
+          "osoB": "Turn to intercept the extended centerline of RWY 13 and report the initial",
+          "osoDetail": "The PPT adds: RWY 13, proceed south over Main Side, then turn direct to the numbers.",
           "runwayLine": "13/31",
           "patternSide": "right",
           "initialFocus": "(KNWL) Waldron NOLF/South Arrivals/Yorktown Bridge",
@@ -24,6 +36,11 @@
         },
         "18": {
           "depWord": "upwind",
+          "osoWhen": "At the 180 and when cleared:",
+          "sunriseWhen": "From the downwind/crosswind and when cleared:",
+          "osoA": "Proceed southwest from the west side of the Oso Bridge, ½ WTD west of the Oso River",
+          "osoB": "Turn to intercept the extended centerline of RWY 18 and report the initial",
+          "osoDetail": "The PPT adds: RWY 18, proceed direct to the numbers.",
           "runwayLine": "18/36",
           "patternSide": "right",
           "initialFocus": "(KNWL) Waldron NOLF/South Arrivals/Yorktown Bridge",
@@ -35,6 +52,11 @@
         },
         "31": {
           "depWord": "downwind",
+          "osoWhen": "When #1 upwind and cleared:",
+          "sunriseWhen": "When #1 upwind and cleared:",
+          "osoA": "Proceed southwest from the west side of the Oso Bridge, ½ WTD west of the Oso River, toward the southwest corner of the Cooling Ponds",
+          "osoB": "Abeam the Cooling Ponds turn left along their southern edge; abeam the Power Plant report the initial (stay east of the Power Plant)",
+          "osoDetail": "The PPT adds: proceed south past the Cooling Ponds, then turn east; continue east south of the Power Plant, then turn north.",
           "runwayLine": "13/31",
           "patternSide": "left",
           "initialFocus": "(KNWL) Waldron NOLF/South Arrivals/Shrimp Pond",
@@ -46,6 +68,11 @@
         },
         "36": {
           "depWord": "downwind",
+          "osoWhen": "When #1 upwind and cleared:",
+          "sunriseWhen": "When #1 upwind and cleared:",
+          "osoA": "Proceed southwest from the west side of the Oso Bridge, ½ WTD west of the Oso River, toward the southwest corner of the Cooling Ponds",
+          "osoB": "Abeam the Cooling Ponds turn left along their southern edge; abeam the Power Plant report the initial (stay west of the Power Plant)",
+          "osoDetail": "The PPT adds: proceed south past the Cooling Ponds, then turn east; remain west of the Power Plant.",
           "runwayLine": "18/36",
           "patternSide": "left",
           "initialFocus": "(KNWL) Waldron NOLF/South Arrivals/Shrimp Pond",

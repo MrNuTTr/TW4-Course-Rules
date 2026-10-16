@@ -75,5 +75,13 @@
     "lat": 27.5806,
     "lon": -97.217,
     "description": "Padre Balli Park (Old Bob Hall Pier). Approximate position; the South Mustang entry switch point."
+  },
+  {
+    "folder": "(KNGP) Corpus Christi NAS/Nueces Transition / East Arrivals & Departures",
+    "name": "KCRP",
+    "kind": "waypoint",
+    "lat": 27.7704,
+    "lon": -97.5012,
+    "description": "Corpus Christi International Airport. Approximate position from public airport data; not in the original KML."
   }
 ]

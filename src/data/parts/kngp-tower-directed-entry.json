@@ -1,0 +1,16 @@
+{
+  "id": "kngp-tower-directed-entry",
+  "cards": [
+    {
+      "type": "action",
+      "title": "Enter the pattern as Tower directs",
+      "mapFocus": "{to.runway.entryLine}",
+      "instructions": [
+        "Expect an overhead, base, or straight-in entry at Tower's discretion",
+        "Comply with Navy Corpus Tower instructions for RWY {to.runway}"
+      ],
+      "detail": "Transition arrivals are tower-directed, so there is no Shamrock entry to choose. Check with an instructor for the entry details of each runway.",
+      "source": "Binder, pp. 25–26; Feb 2026 PPT, Part 2, slides 80–84, 119–121."
+    }
+  ]
+}

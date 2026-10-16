@@ -1,0 +1,49 @@
+{
+  "id": "kcrp-to-kngp",
+  "from": "kcrp",
+  "to": "kngp",
+  "when": { "to": { "route": "Nueces Transition" } },
+  "title": "Corpus Christi Intl → KNGP RWY {to.runway} (Nueces Transition)",
+  "featureIds": [
+    "(KNGP) Corpus Christi NAS/Nueces Transition / East Arrivals & Departures/KCRP",
+    "(KNGP) Corpus Christi NAS/Nueces Transition / East Arrivals & Departures/PT Sunrise",
+    "(KNGP) Corpus Christi NAS/KNGP",
+    "{to.runway.entryLine}"
+  ],
+  "arrivalFeatureIds": [
+    "(KNGP) Corpus Christi NAS/KNGP",
+    "{to.runway.entryLine}"
+  ],
+  "cards": [
+    {
+      "type": "action",
+      "title": "Depart KCRP toward Point Sunrise",
+      "mapFocus": [
+        "(KNGP) Corpus Christi NAS/Nueces Transition / East Arrivals & Departures/KCRP",
+        "(KNGP) Corpus Christi NAS/Nueces Transition / East Arrivals & Departures/PT Sunrise"
+      ],
+      "leadIn": "When cleared by CRP Tower:",
+      "instructions": [
+        "Climb to 1,000' MSL · accelerate to 200 KIAS",
+        "Proceed north of SPID (South Padre Island Drive)",
+        "Remain clear of NOLF Cabaniss and the Crosstown Expressway",
+        "Maintain 1,000' MSL · 200 KIAS, north of SPID, to Point Sunrise"
+      ],
+      "detail": "The KCRP tower frequency and phraseology are not in the sources. Check with an instructor.",
+      "source": "Feb 2026 PPT, Part 2, slides 119–121."
+    },
+    {
+      "type": "radio",
+      "title": "Contact Navy Corpus Tower",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Nueces Transition / East Arrivals & Departures/PT Sunrise",
+      "leadIn": "At Point Sunrise, when directed:",
+      "radio": {
+        "channel": "Navy Corpus Tower · UHF CH 4",
+        "script": "“Navy Corpus Tower, <callsign>, Point Sunrise, Nueces Transition, with information <code>.”"
+      },
+      "detail": "The sources give no check-in phrase for this call; this one is assumed. Check with an instructor.",
+      "source": "Feb 2026 PPT, Part 2, slides 119–121."
+    },
+    { "use": "kngp-tower-directed-entry" }
+  ]
+}

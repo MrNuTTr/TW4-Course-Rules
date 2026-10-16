@@ -1,0 +1,64 @@
+{
+  "id": "kngp-to-kcrp",
+  "from": "kngp",
+  "to": "kcrp",
+  "when": {},
+  "title": "KNGP RWY {from.runway} → Corpus Christi Intl (Nueces Transition)",
+  "featureIds": [
+    "(KNGP) Corpus Christi NAS/KNGP",
+    "(KNGP) Corpus Christi NAS/Nueces Transition / East Arrivals & Departures/{from.runway}",
+    "(KNGP) Corpus Christi NAS/Nueces Transition / East Arrivals & Departures/PT Sunrise",
+    "(KNGP) Corpus Christi NAS/Nueces Transition / East Arrivals & Departures/KCRP"
+  ],
+  "arrivalFeatureIds": [
+    "(KNGP) Corpus Christi NAS/Nueces Transition / East Arrivals & Departures/KCRP"
+  ],
+  "cards": [
+    { "use": "kngp-ground-{from.runway.flow}" },
+    {
+      "type": "radio",
+      "title": "Call Tower when number one",
+      "mapFocus": "(KNGP) Corpus Christi NAS/KNGP",
+      "leadIn": "Do not call while waiting in sequence:",
+      "instructions": [
+        "{from.runway.holdShort}"
+      ],
+      "radio": {
+        "channel": "Navy Corpus Tower · UHF CH 4",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Navy Corpus Tower, <callsign>, ready for departure, Nueces Transition." },
+          { "speaker": "Tower", "text": "<callsign>, Navy Corpus Tower, winds <wind>, cleared for takeoff RWY {from.runway}." },
+          { "speaker": "Pilot", "text": "<callsign>, cleared for takeoff RWY {from.runway}." }
+        ]
+      },
+      "detail": "The sources do not give the Nueces request phrase. Check with an instructor.",
+      "source": "Feb 2026 PPT, Part 1, slides 58–61."
+    },
+    {
+      "type": "action",
+      "title": "Fly to Point Sunrise",
+      "mapFocus": [
+        "(KNGP) Corpus Christi NAS/Nueces Transition / East Arrivals & Departures/{from.runway}",
+        "(KNGP) Corpus Christi NAS/Nueces Transition / East Arrivals & Departures/PT Sunrise"
+      ],
+      "leadIn": "When directed by NGP Tower:",
+      "instructions": [
+        "Climb to 1,500' MSL · accelerate to 200 KIAS",
+        "Proceed to Point Sunrise (Sunrise Mall)",
+        "Remain clear of NOLF Cabaniss"
+      ],
+      "source": "Feb 2026 PPT, Part 1, slides 58–61."
+    },
+    {
+      "type": "action",
+      "title": "Continue to the Crosstown Expressway",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Nueces Transition / East Arrivals & Departures/KCRP",
+      "instructions": [
+        "Maintain 1,500' MSL · 200 KIAS to the Crosstown Expressway",
+        "Then comply with CRP Tower instructions for a straight-in or overhead (RWY 31/36 and 18/13)"
+      ],
+      "detail": "The KCRP tower frequency and phraseology are not in the sources. Check with an instructor.",
+      "source": "Feb 2026 PPT, Part 1, slides 58–61; Part 2, slides 119–121."
+    }
+  ]
+}
