@@ -7,6 +7,14 @@ The starter was modernized from Create React App to Vite; the original
 `staticwebapp.config.json` is retained for Azure Static Web Apps navigation
 fallback behavior.
 
+## Site layout
+
+A top bar links Home, Chair Fly (`/chair-fly`), Wiki (`/wiki/*`) and Quiz
+(`/quiz`), using React Router. The Wiki is currently a skeleton: its folder tree
+lives in `src/wiki/structure.js` and pages show placeholders until content is
+filled in from the data files. The Quiz is a placeholder. The
+`staticwebapp.config.json` fallback makes deep links work on Azure.
+
 ## Features
 
 - Chunked, leg-by-leg flow: pick a departure runway, then a destination type
