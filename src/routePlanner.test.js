@@ -59,7 +59,7 @@ describe('prototype route builder', () => {
     expect(route.steps.at(-1).title).toBe('Return to KNGP from Goliad NOLF');
   });
 
-  it('loads source-cited briefing data for the 13L, KINGS 4 Area 3 High, Goliad test case', () => {
+  it('loads the JSON card data only for the 13L, KINGS 4 Area 3 High, Goliad test case', () => {
     const route = buildPlannedRoute({
       runway: '13L',
       firstStopId: 'kings-4',
@@ -72,16 +72,78 @@ describe('prototype route builder', () => {
       'KNGP → KINGS 4 Area 3 High → Goliad NOLF → KNGP',
     );
     expect(route.steps).toHaveLength(4);
-    expect(route.steps.every((step) => step.briefing?.sources.length > 0)).toBe(true);
+    expect(route.steps.every((step) => step.events?.length > 0)).toBe(true);
+    expect(route.steps.every((step) => !Object.hasOwn(step, 'briefing'))).toBe(true);
     expect(
-      route.steps.find((step) => step.id === 'kings-4').briefing.headingAltitude[0],
-    ).toContain('15,000–22,000 feet MSL');
+      route.steps.every((step) =>
+        step.events.every(
+          (event) =>
+            event.source &&
+            (event.prompt ||
+              event.instructions?.length > 0 ||
+              event.radio?.script),
+        ),
+      ),
+    ).toBe(true);
     expect(
-      route.steps.find((step) => step.id === 'goliad-nolf').briefing.radioCalls[0]
-        .script,
+      route.steps
+        .flatMap((step) => step.events)
+        .filter((event) => event.type === 'radio' || event.radio)
+        .every((event) => event.radio?.channel),
+    ).toBe(true);
+    expect(
+      route.steps.find((step) => step.id === 'departure').events.map(
+        ({ type }) => type,
+      ),
+    ).toEqual([
+      'radio',
+      'action',
+      'action',
+      'action',
+      'radio',
+      'action',
+    ]);
+    const departureEvents = route.steps.find(
+      (step) => step.id === 'departure',
+    ).events;
+    expect(departureEvents[1].instructions).toEqual([
+      'Climb to 500 ft MSL; begin turn at 300 ft (200 KIAS)',
+      'When directed by Tower, check in with Corpus Departure',
+    ]);
+    expect(departureEvents[1].radio).toEqual({
+      channel: 'UHF CH 12',
+      script:
+        '“Corpus Departure, <callsign>, 500 feet off Navy Corpus, KINGS 4.”',
+    });
+    expect(departureEvents[3].title).toBe('Abeam the High Bridge');
+    expect(departureEvents[2].instructions[0]).toContain('125°');
+    expect(departureEvents[3].instructions).toEqual([
+      'Turn direct to Point Rusty',
+      'Climb to 2,500 ft MSL — 240 KIAS (climb at 180)',
+    ]);
+    expect(departureEvents[4].leadIn).toMatch(/when instructed/i);
+    expect(departureEvents[4].source).toContain('Rusty Departure');
+    expect(
+      route.steps.find((step) => step.id === 'kings-4').events[3].instructions[2],
+    ).toContain('15,000–22,000 ft MSL');
+    expect(
+      route.steps.find((step) => step.id === 'goliad-nolf').events[0].radio.script,
     ).toContain('Terminate Goliad');
-    expect(route.steps.at(-1).briefing.whatHappens.join(' ')).toContain(
-      'runway was not specified',
+    expect(
+      route.steps.find((step) => step.id === 'goliad-nolf').events.map(
+        ({ type }) => type,
+      ),
+    ).toEqual([
+      'radio',
+      'radio',
+      'action',
+      'action',
+      'action',
+      'radio',
+      'action',
+    ]);
+    expect(route.steps.at(-1).events.at(-1).prompt).toContain(
+      'the KNGP arrival flow and recovery runway are not selected',
     );
   });
 
@@ -94,7 +156,7 @@ describe('prototype route builder', () => {
     });
 
     expect(route.sourceBackedTestCase).toBe(false);
-    expect(route.steps.every((step) => !step.briefing)).toBe(true);
+    expect(route.steps.every((step) => !step.events)).toBe(true);
   });
 
   it('returns to KNGP directly when there is no optional second stop', () => {

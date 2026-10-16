@@ -10,6 +10,11 @@ export const STOP_CATEGORY_LABELS = {
 
 export const DEMO_RUNWAYS = ['13L', '31R', '18', '36'];
 
+export const KINGS4_HIGH_AREAS = Array.from({ length: 9 }, (_, index) => {
+  const id = String(index + 1);
+  return { id, label: `Area ${id} High` };
+});
+
 export const DEMO_STOPS = [
   { id: 'kings-4', name: 'Kings 4', category: STOP_CATEGORIES.WORK_AREA },
   { id: 'mustang', name: 'Mustang', category: STOP_CATEGORIES.WORK_AREA },

@@ -1,13 +1,10 @@
 import {
   DEMO_STOPS,
+  KINGS4_HIGH_AREAS,
   STOP_CATEGORIES,
   STOP_CATEGORY_LABELS,
 } from './demoData.js';
-import {
-  KINGS4_HIGH_AREAS,
-  TEST_ROUTE_BRIEFING,
-  TEST_ROUTE_SCOPE,
-} from './testRouteData.js';
+import TEST_ROUTE_DATA from './data/test-routes.json';
 
 export { KINGS4_HIGH_AREAS };
 
@@ -57,11 +54,14 @@ export function buildPlannedRoute({
 
   const stops = secondStop ? [firstStop, secondStop] : [firstStop];
   const routeIncludesKings4 = stops.some((stop) => stop.id === 'kings-4');
-  const sourceBackedTestCase =
-    runway === '13L' &&
-    firstStop.id === 'kings-4' &&
-    secondStop?.id === 'goliad-nolf' &&
-    kings4Area === '3';
+  const routeData = TEST_ROUTE_DATA.routes.find(
+    (route) =>
+      route.runway === runway &&
+      route.firstStopId === firstStop.id &&
+      route.secondStopId === secondStop?.id &&
+      route.kings4Area === kings4Area,
+  );
+  const sourceBackedTestCase = Boolean(routeData);
   const routeNames = [
     'KNGP',
     ...stops.map((stop) =>
@@ -110,13 +110,10 @@ export function buildPlannedRoute({
     },
   ];
 
-  if (sourceBackedTestCase) {
-    steps[0].briefing = TEST_ROUTE_BRIEFING.departure;
-    steps.find((step) => step.id === 'kings-4').briefing =
-      TEST_ROUTE_BRIEFING['kings-4']({ area: kings4Area });
-    steps.find((step) => step.id === 'goliad-nolf').briefing =
-      TEST_ROUTE_BRIEFING['goliad-nolf'];
-    steps.at(-1).briefing = TEST_ROUTE_BRIEFING.arrival;
+  if (routeData) {
+    for (const step of steps) {
+      step.events = routeData.steps[step.id];
+    }
   }
 
   return {
@@ -125,7 +122,6 @@ export function buildPlannedRoute({
     arrivalFrom: stops.at(-1).name,
     kings4Area: routeIncludesKings4 ? kings4Area : undefined,
     sourceBackedTestCase,
-    scope: sourceBackedTestCase ? TEST_ROUTE_SCOPE : undefined,
     steps,
   };
 }
