@@ -23,7 +23,7 @@
     { "use": "beachline-turn" },
     { "use": "beachline-caution-{from.runway.flow}" },
     { "use": "beachline-checkin-mustang" },
-    { "use": "mustang-transition-{to.area.region}" },
+    { "use": "beachline-transition-{to.area.region}" },
     { "use": "mustang-entry-{to.area.region}" }
   ]
 }

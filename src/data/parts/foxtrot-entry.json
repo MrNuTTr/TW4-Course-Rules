@@ -1,0 +1,50 @@
+{
+  "id": "foxtrot-entry",
+  "cards": [
+    {
+      "type": "action",
+      "title": "Approaching the Foxtrot southern boundary",
+      "mapFocus": "{to.area.poly}",
+      "instructions": [
+        "Terminate with Corpus Approach",
+        "Switch to Foxtrot Common, UHF CH 22, for advisories and area coordination",
+        "Fly ~055° to remain clear of the lateral boundaries until de-conflicted",
+        "Avoid the North Mustang areas at all times",
+        "Minimum altitude over the Aransas Wildlife Refuge is 3,000 ft AGL"
+      ],
+      "source": "Binder, p. 28; Feb 2026 PPT, Part 1, slides 93 and 95."
+    },
+    {
+      "type": "radio",
+      "title": "Ask who is in {to.area} {to.block}",
+      "mapFocus": "{to.area.poly}",
+      "radio": {
+        "channel": "Foxtrot Common · UHF CH 22",
+        "script": "99 Fox, anybody working {to.area} {to.block}."
+      },
+      "source": "Binder, p. 28."
+    },
+    {
+      "type": "radio",
+      "title": "Claim {to.area} {to.block}",
+      "mapFocus": "{to.area.poly}",
+      "leadIn": "If the block is unoccupied:",
+      "radio": {
+        "channel": "Foxtrot Common · UHF CH 22",
+        "script": "99 Fox, <callsign> claims {to.area} {to.block}."
+      },
+      "source": "Binder, p. 28."
+    },
+    {
+      "type": "action",
+      "title": "Climb or descend to {to.block} block",
+      "mapFocus": "{to.area.poly}",
+      "instructions": [
+        "Climb or descend to your working altitude or a transition layer",
+        "{to.block.alt}",
+        "Blocks may be subdivided by altitude; coordinate and de-conflict on Foxtrot Common"
+      ],
+      "source": "Binder, pp. 26–28; Feb 2026 PPT, Part 1, slide 94."
+    }
+  ]
+}

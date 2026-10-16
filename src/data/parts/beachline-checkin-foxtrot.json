@@ -1,0 +1,37 @@
+{
+  "id": "beachline-checkin-foxtrot",
+  "cards": [
+    {
+      "type": "radio",
+      "title": "Check in with Corpus Departure",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Beach Line Departures/{from.runway}",
+      "leadIn": "At 500 ft MSL, when directed by Tower, contact Corpus Departure (UHF CH 12). When directed, switch to CH 8 and remain there for Foxtrot:",
+      "radio": {
+        "channel": "Corpus Departure · UHF CH 8",
+        "exchange": [
+          {
+            "speaker": "Pilot",
+            "text": "Corpus Departure, <callsign>, 500 feet off Navy Corpus, Foxtrot."
+          },
+          {
+            "speaker": "Departure",
+            "text": "<callsign>, Corpus Departure, ident."
+          },
+          {
+            "speaker": "Pilot",
+            "text": "<callsign>, ident."
+          },
+          {
+            "speaker": "Departure",
+            "text": "<callsign>, Corpus Departure, radar contact <distance and direction> of Navy Corpus. Proceed course rules Foxtrot."
+          },
+          {
+            "speaker": "Pilot",
+            "text": "<callsign>, proceed course rules Foxtrot."
+          }
+        ]
+      },
+      "source": "Binder, p. 16; Feb 2026 PPT, Part 1, slide 78."
+    }
+  ]
+}

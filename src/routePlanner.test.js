@@ -130,7 +130,7 @@ describe('leg planning', () => {
 
   it('offers KINGS 4 and Goliad from KNGP, with all high and low areas', () => {
     const destinations = getDestinations('kngp', { runway: '13L' });
-    expect(destinations.map(({ node }) => node.id).sort()).toEqual(['goliad', 'kings4', 'mustang']);
+    expect(destinations.map(({ node }) => node.id).sort()).toEqual(['foxtrot', 'goliad', 'kings4', 'mustang']);
     const kings4 = destinations.find(({ node }) => node.id === 'kings4');
     expect(kings4.inputs[0].options).toContain('3 High');
     expect(kings4.inputs[0].options).toContain('9 Low');
@@ -194,6 +194,17 @@ describe('leg planning', () => {
       expect(text(leg)).toMatch(/UHF CH 8/);
       expect(text(leg)).not.toMatch(/\{[a-z]+\./);
     }
+  });
+
+  it('builds Beach Line departures to Foxtrot with block claims on CH 22', () => {
+    const leg = findLeg('kngp', { runway: '04' }, 'foxtrot', { area: 'Fox 2', block: 'Middle' });
+    const text = JSON.stringify(leg.cards);
+    expect(leg.cards[0].title).toBeTruthy();
+    expect(text).toMatch(/Proceed course rules Foxtrot/);
+    expect(text).toMatch(/99 Fox, anybody working Fox 2 Middle/);
+    expect(text).toMatch(/99 Fox, <callsign> claims Fox 2 Middle/);
+    expect(text).toMatch(/7,000–11,999/);
+    expect(text).not.toMatch(/\{[a-z]+\./);
   });
 
   it('chains KINGS 4 → Goliad → KNGP and ends there', () => {

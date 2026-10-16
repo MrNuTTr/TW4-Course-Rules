@@ -1,0 +1,27 @@
+{
+  "id": "kngp-to-foxtrot",
+  "from": "kngp",
+  "to": "foxtrot",
+  "when": {},
+  "title": "KNGP RWY {from.runway} → FOXTROT {to.area} {to.block}",
+  "featureIds": [
+    "(KNGP) Corpus Christi NAS/KNGP",
+    "(KNGP) Corpus Christi NAS/Beach Line Departures/{from.runway}",
+    "{from.runway.beachFocus}",
+    "(KNGP) Corpus Christi NAS/Beach Line Departures/Foxtrot/Noth Mustang Transition",
+    "{to.area.poly}"
+  ],
+  "arrivalFeatureIds": [
+    "{to.area.poly}"
+  ],
+  "cards": [
+    { "use": "kngp-ground-{from.runway.flow}" },
+    { "use": "kngp-tower-departure" },
+    { "use": "beachline-climbout" },
+    { "use": "beachline-turn" },
+    { "use": "beachline-caution-{from.runway.flow}" },
+    { "use": "beachline-checkin-foxtrot" },
+    { "use": "beachline-transition-north" },
+    { "use": "foxtrot-entry" }
+  ]
+}

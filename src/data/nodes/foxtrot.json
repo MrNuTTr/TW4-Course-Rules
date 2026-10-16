@@ -1,0 +1,55 @@
+{
+  "id": "foxtrot",
+  "name": "Foxtrot",
+  "fullName": "Foxtrot Working Area (A-632F)",
+  "kind": "work-area",
+  "endsRoute": true,
+  "inputs": [
+    {
+      "id": "area",
+      "label": "Area",
+      "optionLabel": "{value}",
+      "options": ["Fox 1", "Fox 2"],
+      "details": {
+        "Fox 1": { "poly": "Foxtrot Working Areas/Foxtrot 1", "transition": "(KNGP) Corpus Christi NAS/Beach Line Departures/Foxtrot/Noth Mustang Transition" },
+        "Fox 2": { "poly": "Foxtrot Working Areas/Foxtrot 2", "transition": "(KNGP) Corpus Christi NAS/Beach Line Departures/Foxtrot/Noth Mustang Transition" }
+      }
+    },
+    {
+      "id": "block",
+      "label": "Block",
+      "optionLabel": "{value}",
+      "options": ["High", "Middle", "Low"],
+      "details": {
+        "High": { "alt": "High block: 13,000–17,999 ft MSL" },
+        "Middle": { "alt": "Middle block (Hellcat primary): 7,000–11,999 ft MSL" },
+        "Low": { "alt": "Low block (T-44 / T-54 primary): 4,000–5,999 ft MSL" }
+      }
+    }
+  ],
+  "info": [
+    {
+      "type": "checkpoint",
+      "title": "Foxtrot blocks",
+      "instructions": [
+        "High block 13,000–17,999 ft MSL",
+        "High transition 12,000–12,999 ft MSL",
+        "Middle block (Hellcat primary) 7,000–11,999 ft MSL",
+        "Low transition 6,000–6,999 ft MSL",
+        "Low block (T-44 / T-54 primary) 4,000–5,999 ft MSL",
+        "Shared with T-44s and T-54s"
+      ],
+      "source": "Binder, p. 26; Feb 2026 PPT, Part 1, slide 94."
+    },
+    {
+      "type": "checkpoint",
+      "title": "Foxtrot warnings",
+      "instructions": [
+        "Traffic operating in or departing from Foxtrot shall avoid North Mustang (6,500–17,500 ft MSL) at all times",
+        "Minimum altitude over the Aransas Wildlife Refuge is 3,000 ft AGL",
+        "Houston Center will not provide flight following without an explicit request (VHF 135.05 or 128.15)"
+      ],
+      "source": "Binder, p. 27; Feb 2026 PPT, Part 1, slide 93."
+    }
+  ]
+}
