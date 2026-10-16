@@ -7,18 +7,14 @@
     {
       "id": "area",
       "label": "High area",
-      "options": [
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9"
-      ],
-      "optionLabel": "Area {value} High"
+      "options": ["3"],
+      "optionLabel": "Area {value} High",
+      "details": {
+        "3": {
+          "limits": "15,000–22,000 ft MSL",
+          "entryNote": "Area 3 is a border block. The map shows the KML boundary, not an approved entry track."
+        }
+      }
     }
   ],
   "info": [

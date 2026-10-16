@@ -1,0 +1,80 @@
+{
+  "id": "rusty-departure-13L",
+  "cards": [
+    {
+      "type": "action",
+      "title": "Initial climb",
+      "mapFocus": "(KNGP) Corpus Christi NAS/KNGP",
+      "instructions": [
+        "Climb initially to 500 ft MSL at 200 KIAS",
+        "Do not commence turns before 300 ft AGL"
+      ],
+      "source": "Binder, pp. 7–8."
+    },
+    {
+      "type": "radio",
+      "title": "Check in with Corpus Departure",
+      "mapFocus": "(KNGP) Corpus Christi NAS/KNGP",
+      "leadIn": "At 500 ft MSL, when directed by Tower:",
+      "radio": {
+        "channel": "Corpus Departure · UHF CH 12",
+        "exchange": [
+          {
+            "speaker": "Pilot",
+            "text": "Corpus Departure, <callsign>, 500 feet off Navy Corpus, course rules {to.node}."
+          },
+          {
+            "speaker": "Departure",
+            "text": "<callsign>, Corpus Departure, ident."
+          },
+          {
+            "speaker": "Pilot",
+            "text": "<callsign>, ident."
+          },
+          {
+            "speaker": "Departure",
+            "text": "<callsign>, Corpus Departure, radar contact <distance and direction> of Navy Corpus. Proceed course rules {to.node}."
+          },
+          {
+            "speaker": "Pilot",
+            "text": "<callsign>, proceed course rules {to.node}."
+          }
+        ]
+      },
+      "detail": "The binder also places a CH 12 switch in the High Bridge “Thence” sequence. This guide models one CH 12 contact; verify the exact transfer timing with an instructor.",
+      "source": "Binder, p. 8."
+    },
+    {
+      "type": "action",
+      "title": "Fly Runway {from.runway} heading to High Bridge",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/High Bridge",
+      "instructions": [
+        "HDG 125° until High Bridge"
+      ],
+      "source": "Binder, p. 8."
+    },
+    {
+      "type": "action",
+      "title": "Abeam the High Bridge",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/High Bridge",
+      "leadIn": "Thence:",
+      "instructions": [
+        "Turn direct to PT RUSTY",
+        "Climb initially and maintain 2,500 ft MSL",
+        "Accelerate to 240 KIAS"
+      ],
+      "source": "Binder, p. 8."
+    },
+    {
+      "type": "action",
+      "title": "Continue to Point Rusty",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/PT Rusty",
+      "instructions": [
+        "When cleared on course by Corpus Approach, climb and maintain 5,500 ft MSL",
+        "Maintain 5,500 ft MSL up to Point Rusty",
+        "Expect switch to Corpus Approach (UHF CH 6) when directed"
+      ],
+      "source": "Binder, p. 8."
+    }
+  ]
+}

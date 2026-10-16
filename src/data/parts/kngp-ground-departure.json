@@ -1,0 +1,91 @@
+{
+  "id": "kngp-ground-departure",
+  "cards": [
+    {
+      "type": "radio",
+      "title": "Put ZOMBIE 1 on request",
+      "mapFocus": "(KNGP) Corpus Christi NAS/KNGP",
+      "leadIn": "Before taxi:",
+      "radio": {
+        "channel": "Navy Corpus Clearance · UHF CH 2",
+        "exchange": [
+          {
+            "speaker": "Pilot",
+            "text": "Navy Corpus Clearance, <callsign>, put a ZOMBIE 1 on request, time immediate."
+          },
+          {
+            "speaker": "Clearance",
+            "text": "<callsign>, Navy Corpus Clearance, roger, on request."
+          }
+        ]
+      },
+      "source": "Binder, p. 2."
+    },
+    {
+      "type": "radio",
+      "title": "Copy ZOMBIE 1 clearance",
+      "mapFocus": "(KNGP) Corpus Christi NAS/KNGP",
+      "leadIn": "South-flow ground run-up:",
+      "radio": {
+        "channel": "Navy Corpus Clearance · UHF CH 2",
+        "exchange": [
+          {
+            "speaker": "Pilot",
+            "text": "Navy Corpus Clearance, <callsign>, ZOMBIE 1 on request, ready to copy."
+          },
+          {
+            "speaker": "Clearance",
+            "text": "<callsign>, Navy Corpus Clearance, for VFR flight, squawk <code>."
+          },
+          {
+            "speaker": "Pilot",
+            "text": "<callsign>, squawk <code>."
+          },
+          {
+            "speaker": "Clearance",
+            "text": "<callsign>, read back correct."
+          }
+        ]
+      },
+      "source": "Binder, p. 2."
+    },
+    {
+      "type": "radio",
+      "title": "Taxi request south flow",
+      "mapFocus": "(KNGP) Corpus Christi NAS/KNGP",
+      "leadIn": "After run-up",
+      "radio": {
+        "channel": "Navy Corpus Ground · UHF CH 3",
+        "exchange": [
+          {
+            "speaker": "Pilot",
+            "text": "Navy Corpus Ground, <callsign>, holding short Charlie, taxi with ATIS <code>, VFR {to.node}."
+          },
+          {
+            "speaker": "Ground",
+            "text": "<callsign>, Navy Corpus Ground, taxi to RWY {from.runway} via <taxiway>."
+          },
+          {
+            "speaker": "Pilot",
+            "text": "Navy Corpus Ground, <callsign>, taxi to RWY {from.runway} via <taxiway>."
+          }
+        ]
+      },
+      "source": "Binder, p. 2."
+    },
+    {
+      "type": "radio",
+      "title": "Call Tower when number one",
+      "mapFocus": "(KNGP) Corpus Christi NAS/KNGP",
+      "leadIn": "Do not call while waiting in sequence:",
+      "instructions": [
+        "State departure intentions and any additional requests"
+      ],
+      "radio": {
+        "channel": "Navy Corpus Tower · UHF CH 4",
+        "script": "“Navy Corpus Tower, <callsign>, ready for departure, VFR {to.node}.”"
+      },
+      "source": "Binder, p. 3."
+    }
+  ]
+}

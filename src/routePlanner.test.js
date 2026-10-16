@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { describe, expect, it } from 'vitest';
-import { getCourseRulesMapFeatures } from './courseRulesMap.js';
+import { COURSE_RULES_MAP_FEATURES, getCourseRulesMapFeatures } from './courseRulesMap.js';
 import { GRAPH, buildGraph, expandLegs, findLeg, getDestinations, getOriginInputs, resolveLeg } from './routePlanner.js';
 
 describe('course rules graph data', () => {
@@ -45,6 +45,83 @@ describe('course rules graph data', () => {
   });
 });
 
+describe('graph integrity (run on every data import)', () => {
+  const concrete = expandLegs(GRAPH);
+
+  it('has unique map feature ids across KML and map-extras', () => {
+    const ids = COURSE_RULES_MAP_FEATURES.map((feature) => feature.id);
+    const duplicates = ids.filter((id, i) => ids.indexOf(id) !== i);
+    expect([...new Set(duplicates)]).toEqual([]);
+  });
+
+  it('defines inputs with unique options and complete per-option details', () => {
+    for (const node of GRAPH.nodes.values()) {
+      for (const input of node.inputs ?? []) {
+        expect(new Set(input.options).size).toBe(input.options.length);
+        if (input.details) {
+          expect(Object.keys(input.details).sort()).toEqual([...input.options].sort());
+        }
+      }
+    }
+  });
+
+  it('only uses `when` values that are real input options', () => {
+    for (const leg of GRAPH.legs) {
+      for (const side of ['from', 'to']) {
+        const node = GRAPH.nodes.get(leg[side]);
+        for (const [key, value] of Object.entries(leg.when?.[side] ?? {})) {
+          const input = node.inputs?.find((i) => i.id === key);
+          expect(input, `${leg.id}: ${side}.${key}`).toBeDefined();
+          expect(input.options, `${leg.id}: ${side}.${key}`).toContain(value);
+        }
+      }
+    }
+  });
+
+  it('resolves exactly one leg for every concrete from/to choice', () => {
+    for (const { leg, fromChoices, toChoices } of concrete) {
+      const found = findLeg(leg.from, fromChoices, leg.to, toChoices);
+      expect(found.id).toBe(leg.id);
+    }
+  });
+
+  it('never strands a route: every destination ends the route or continues', () => {
+    for (const { leg, toChoices } of concrete) {
+      const node = GRAPH.nodes.get(leg.to);
+      if (node.endsRoute) continue;
+      expect(getDestinations(leg.to, toChoices).length, `${leg.id} -> ${leg.to}`).toBeGreaterThan(0);
+    }
+  });
+
+  it('keeps arrival info-card map focus inside the arrival features', () => {
+    for (const { leg } of concrete) {
+      for (const card of GRAPH.nodes.get(leg.to).info ?? []) {
+        for (const id of [card.mapFocus ?? []].flat()) {
+          expect(leg.arrivalFeatureIds, `${leg.id}: ${card.title}`).toContain(id);
+        }
+      }
+    }
+  });
+
+  it('uses well-formed cards', () => {
+    const nodeCards = [...GRAPH.nodes.values()].flatMap((node) => node.info ?? []);
+    const legCards = concrete.flatMap(({ leg }) => leg.cards);
+    for (const card of [...legCards, ...nodeCards]) {
+      expect(['radio', 'action', 'checkpoint']).toContain(card.type);
+      expect(card.title?.trim()).toBeTruthy();
+      const lines = card.instructions ?? [];
+      expect(new Set(lines).size).toBe(lines.length);
+      if (card.radio) {
+        const { script, exchange } = card.radio;
+        expect(Boolean(script) && Boolean(exchange)).toBe(false);
+        for (const line of exchange ?? []) {
+          expect(line.speaker && line.text).toBeTruthy();
+        }
+      }
+    }
+  });
+});
+
 describe('leg planning', () => {
   it('offers only loaded runways at KNGP', () => {
     const [runway] = getOriginInputs('kngp');
@@ -65,7 +142,31 @@ describe('leg planning', () => {
     expect(text).toMatch(/5,500/);
     expect(text).toMatch(/14,500/);
     expect(text).not.toMatch(/Class D/);
-    expect(findLeg('kngp', { runway: '13L' }, 'kings4', { area: '4' })).toBeUndefined();
+    expect(getDestinations('kngp', { runway: '13L' })[0].inputs[0].options).not.toContain('4');
+  });
+
+  it('expands parts and the {to.node} token, and rejects unknown parts', () => {
+    const leg = findLeg('kngp', { runway: '13L' }, 'kings4', { area: '3' });
+    expect(leg.cards.map((card) => card.title)).toContain('Claim Area 3 High');
+    expect(JSON.stringify(leg.cards)).toMatch(/VFR KINGS 4/);
+    expect(JSON.stringify(leg.cards)).toMatch(/taxi to RWY 13L/);
+    expect(() =>
+      resolveLeg({ id: 'x', from: 'kngp', to: 'kings4', cards: [{ use: 'nope' }] }),
+    ).toThrow('unknown part');
+  });
+
+  it('uses every part from at least one leg', () => {
+    const used = new Set();
+    for (const leg of GRAPH.legs) {
+      for (const card of leg.cards) {
+        if (!card.use) continue;
+        for (const id of GRAPH.parts.keys()) {
+          const pattern = new RegExp(`^${card.use.replace(/\{[^}]+\}/g, '.+')}$`);
+          if (pattern.test(id)) used.add(id);
+        }
+      }
+    }
+    expect([...GRAPH.parts.keys()].filter((id) => !used.has(id))).toEqual([]);
   });
 
   it('chains KINGS 4 → Goliad → KNGP and ends there', () => {

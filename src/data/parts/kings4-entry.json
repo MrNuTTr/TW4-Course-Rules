@@ -1,0 +1,76 @@
+{
+  "id": "kings4-entry",
+  "cards": [
+    {
+      "type": "action",
+      "title": "At Point Rusty",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/PT Rusty",
+      "instructions": [
+        "For KINGS 4, begin climb to 14,500 ft MSL",
+        "Enter the MOA via the approved entry procedure when cleared"
+      ],
+      "source": "Binder, pp. 8–10."
+    },
+    {
+      "type": "radio",
+      "title": "Obtain KINGS 4 clearance",
+      "mapFocus": "Kings 4 MOAs/Kings 4 MOA {to.area}",
+      "leadIn": "When directed by Corpus Approach, before entering the MOA:",
+      "radio": {
+        "channel": "Houston Center · VHF CH 22",
+        "exchange": [
+          {
+            "speaker": "Pilot",
+            "text": "Houston Center, <callsign>, passing <altitude>, working KINGS 4."
+          },
+          {
+            "speaker": "Houston Center",
+            "text": "<callsign>, Houston Center, cleared KINGS 4 MOA."
+          },
+          {
+            "speaker": "Pilot",
+            "text": "<callsign>, cleared KINGS 4 MOA."
+          }
+        ]
+      },
+      "source": "Binder, p. 10."
+    },
+    {
+      "type": "radio",
+      "title": "Claim Area {to.area} High",
+      "mapFocus": "Kings 4 MOAs/Kings 4 MOA {to.area}",
+      "leadIn": "Before proceeding to the selected block:",
+      "instructions": [
+        "Wait for responses before claiming the area"
+      ],
+      "radio": {
+        "channel": "KINGS 4 Common · UHF CH 20",
+        "script": "“99 KINGS 4, anybody working area {to.area} high?” After responses: “99 KINGS 4, <callsign> claims area {to.area} high.”"
+      },
+      "source": "Binder, p. 10."
+    },
+    {
+      "type": "action",
+      "title": "Enter KINGS 4 through the transition layer",
+      "mapFocus": "Kings 4 MOAs/Kings 4 MOA {to.area}",
+      "instructions": [
+        "When cleared, enter via the transition layer",
+        "Maintain 14,500 ft MSL until within the lateral confines of the MOA",
+        "Once within the MOA, use the appropriate transition altitude: east 14,700 ft MSL; west 14,200 ft MSL"
+      ],
+      "detail": "{to.area.entryNote}",
+      "source": "Binder, pp. 10–11."
+    },
+    {
+      "type": "action",
+      "title": "Work Area {to.area} High",
+      "mapFocus": "Kings 4 MOAs/Kings 4 MOA {to.area}",
+      "instructions": [
+        "Maintain a listening watch with Houston Center",
+        "Use the Navy Corpus altimeter setting",
+        "Area {to.area} High limits: {to.area.limits}; these are block limits, not an assigned altitude"
+      ],
+      "source": "Binder, p. 11."
+    }
+  ]
+}

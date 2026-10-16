@@ -24,9 +24,20 @@ fallback behavior.
     the leg's `cards`, `featureIds` for the map and `arrivalFeatureIds` for the
     arrival map. Destinations and input options are derived from the legs that
     exist, so adding a leg file adds it to the UI. No code change is needed.
+  - `src/data/parts/*.json`: reusable card blocks (`{id, cards}`). A leg's
+    `cards` can contain `{"use": "part-id"}` entries; the id may use tokens
+    (e.g. `rusty-departure-{from.runway}`). Shared parts hold text that is the
+    same for every runway/area, using `{from.runway}`, `{to.area}`, `{to.node}`
+    and `{to.area.limits}`-style tokens; per-option facts live in the node's
+    input `details`. To add a runway, add a leg file (`kngp-to-kings4-<rwy>.json`)
+    and a runway departure part. To add a KINGS 4 area, add it to the node's
+    `options` and `details` (the tests fail until every token resolves).
 - Cards store concise instructions, optional radio channel/script or
   exchange, and per-card source provenance (hidden in the UI). Tests validate
-  graph references, KML ids, sources and channels for all data files.
+  graph references, KML ids, sources and channels for all data files, plus
+  integrity rules to run after every import: unique map ids, `when` values
+  that match real options, exactly one leg per choice combination (an ambiguous
+  match throws), no stranded routes, and well-formed cards.
 - Currently loaded (draft, from the binder and Feb 2026 PowerPoints): KNGP
   RWY 13L → KINGS 4 Area 3 High → Goliad (RWY 11/17/29/35) → KNGP. The Goliad
   legs use `{from.X}`, `{to.X}` and `{to.X.detail}` tokens, resolved from the

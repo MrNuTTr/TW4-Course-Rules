@@ -7,12 +7,22 @@ const legFiles = import.meta.glob('./data/legs/*.json', {
   import: 'default',
 });
 
+const partFiles = import.meta.glob('./data/parts/*.json', {
+  eager: true,
+  import: 'default',
+});
+
 function matches(condition = {}, choices = {}) {
   return Object.entries(condition).every(([key, value]) => choices[key] === value);
 }
 
 // Throws on dangling references so bad data files fail loudly.
-export function buildGraph(nodeList, legList) {
+export function buildGraph(nodeList, legList, partList = []) {
+  const parts = new Map();
+  for (const part of partList) {
+    if (parts.has(part.id)) throw new Error(`Duplicate part id: ${part.id}`);
+    parts.set(part.id, part);
+  }
   const nodes = new Map();
   for (const node of nodeList) {
     if (nodes.has(node.id)) throw new Error(`Duplicate node id: ${node.id}`);
@@ -26,12 +36,13 @@ export function buildGraph(nodeList, legList) {
       if (!nodes.has(end)) throw new Error(`Leg ${leg.id} references unknown node: ${end}`);
     }
   }
-  return { nodes, legs: legList };
+  return { nodes, legs: legList, parts };
 }
 
 export const GRAPH = buildGraph(
   Object.values(nodeFiles),
   Object.values(legFiles),
+  Object.values(partFiles),
 );
 
 export function getNode(nodeId, graph = GRAPH) {
@@ -50,12 +61,19 @@ export function findLeg(from, fromChoices, to, toChoices, graph = GRAPH) {
   );
   const specificity = (leg) =>
     Object.keys(leg.when?.from ?? {}).length + Object.keys(leg.when?.to ?? {}).length;
-  const leg = candidates.sort((a, b) => specificity(b) - specificity(a))[0];
+  const top = Math.max(...candidates.map(specificity), 0);
+  const best = candidates.filter((leg) => specificity(leg) === top);
+  if (best.length > 1) {
+    throw new Error(`Ambiguous legs for ${from} -> ${to}: ${best.map((leg) => leg.id).join(', ')}`);
+  }
+  const leg = best[0];
   return leg && resolveLeg(leg, fromChoices, toChoices, graph);
 }
 
-// Replaces {from.input}, {to.input} and {to.input.detail} tokens in a leg. Detail
-// values live in the node's input definition under `details[option]`.
+// Replaces {from.input}, {to.input} and {to.input.detail} tokens in a leg, and
+// {from.node} / {to.node} with the place name. Detail values live in the node's
+// input definition under `details[option]`. Cards of the form {"use": "part-id"}
+// are replaced by that part's cards (the id may itself contain tokens).
 export function resolveLeg(leg, fromChoices = {}, toChoices = {}, graph = GRAPH) {
   const sides = {
     from: { node: getNode(leg.from, graph), choices: fromChoices },
@@ -64,6 +82,7 @@ export function resolveLeg(leg, fromChoices = {}, toChoices = {}, graph = GRAPH)
 
   function lookup(side, inputId, detail) {
     const { node, choices } = sides[side];
+    if (inputId === 'node' && !detail) return node.name;
     const value = choices[inputId];
     if (value === undefined) {
       throw new Error(`Leg ${leg.id} needs ${side}.${inputId}, which was not chosen`);
@@ -89,7 +108,14 @@ export function resolveLeg(leg, fromChoices = {}, toChoices = {}, graph = GRAPH)
     return value;
   }
 
-  return substitute(leg);
+  const cards = leg.cards.flatMap((card) => {
+    if (!card.use) return [card];
+    const partId = substitute(card.use);
+    const part = graph.parts?.get(partId);
+    if (!part) throw new Error(`Leg ${leg.id} uses unknown part: ${partId}`);
+    return part.cards;
+  });
+  return substitute({ ...leg, cards });
 }
 
 // Every concrete (resolved) version of every leg, for validation.
