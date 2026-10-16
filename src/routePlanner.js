@@ -1,127 +1,181 @@
-import {
-  DEMO_STOPS,
-  KINGS4_HIGH_AREAS,
-  STOP_CATEGORIES,
-  STOP_CATEGORY_LABELS,
-} from './demoData.js';
-import TEST_ROUTE_DATA from './data/test-routes.json';
+const nodeFiles = import.meta.glob('./data/nodes/*.json', {
+  eager: true,
+  import: 'default',
+});
+const legFiles = import.meta.glob('./data/legs/*.json', {
+  eager: true,
+  import: 'default',
+});
 
-export { KINGS4_HIGH_AREAS };
-
-export function getStopsByCategory(category) {
-  return DEMO_STOPS.filter((stop) => stop.category === category);
+function matches(condition = {}, choices = {}) {
+  return Object.entries(condition).every(([key, value]) => choices[key] === value);
 }
 
-export function getCompatibleSecondStops(firstStopId) {
-  const firstStop = DEMO_STOPS.find((stop) => stop.id === firstStopId);
-  if (!firstStop) {
-    throw new Error(`Unknown first stop: ${firstStopId}`);
+// Throws on dangling references so bad data files fail loudly.
+export function buildGraph(nodeList, legList) {
+  const nodes = new Map();
+  for (const node of nodeList) {
+    if (nodes.has(node.id)) throw new Error(`Duplicate node id: ${node.id}`);
+    nodes.set(node.id, node);
   }
-
-  const otherCategory =
-    firstStop.category === STOP_CATEGORIES.WORK_AREA
-      ? STOP_CATEGORIES.OLF
-      : STOP_CATEGORIES.WORK_AREA;
-
-  return DEMO_STOPS.filter((stop) => stop.category === otherCategory);
-}
-
-export function buildPlannedRoute({
-  runway,
-  firstStopId,
-  secondStopId = '',
-  kings4Area = '3',
-}) {
-  if (!runway) {
-    throw new Error('Select a departure runway.');
-  }
-
-  const firstStop = DEMO_STOPS.find((stop) => stop.id === firstStopId);
-  if (!firstStop) {
-    throw new Error(`Unknown first stop: ${firstStopId}`);
-  }
-
-  const compatibleStops = getCompatibleSecondStops(firstStopId);
-  const secondStop = secondStopId
-    ? compatibleStops.find((stop) => stop.id === secondStopId)
-    : undefined;
-  if (secondStopId && !secondStop) {
-    throw new Error('The selected second stop is not compatible with the first stop.');
-  }
-  if (!KINGS4_HIGH_AREAS.some((area) => area.id === kings4Area)) {
-    throw new Error(`Unknown KINGS 4 high area: ${kings4Area}`);
-  }
-
-  const stops = secondStop ? [firstStop, secondStop] : [firstStop];
-  const routeIncludesKings4 = stops.some((stop) => stop.id === 'kings-4');
-  const routeData = TEST_ROUTE_DATA.routes.find(
-    (route) =>
-      route.runway === runway &&
-      route.firstStopId === firstStop.id &&
-      route.secondStopId === secondStop?.id &&
-      route.kings4Area === kings4Area,
-  );
-  const sourceBackedTestCase = Boolean(routeData);
-  const routeNames = [
-    'KNGP',
-    ...stops.map((stop) =>
-      stop.id === 'kings-4'
-        ? `KINGS 4 Area ${kings4Area} High`
-        : stop.name,
-    ),
-    'KNGP',
-  ];
-  const steps = [
-    {
-      id: 'departure',
-      kind: 'departure',
-      title: `Depart KNGP — Runway ${runway}`,
-      location: 'KNGP',
-      detail: sourceBackedTestCase
-        ? 'Draft source extract: KNGP RUSTY Departure to the selected KINGS 4 test area.'
-        : `Illustrative departure using runway ${runway}. No departure procedure is included.`,
-    },
-    ...stops.map((stop, index) => ({
-      id: stop.id,
-      kind: stop.category,
-      title:
-        stop.id === 'kings-4'
-          ? `Work KINGS 4 — Area ${kings4Area} High`
-          : `Proceed to ${stop.name}`,
-      location:
-        stop.id === 'kings-4'
-          ? `Area ${kings4Area} High`
-          : stop.name,
-      detail: sourceBackedTestCase
-        ? stop.id === 'kings-4'
-          ? `Source-derived example for KINGS 4 Area ${kings4Area} High.`
-          : 'Source-derived example for NOLF Goliad (KNGT).'
-        : `Illustrative ${STOP_CATEGORY_LABELS[stop.category].toLowerCase()} stop in the selected sequence.`,
-      sequence: index + 1,
-    })),
-    {
-      id: 'arrival',
-      kind: 'arrival',
-      title: `Return to KNGP from ${stops.at(-1).name}`,
-      location: 'KNGP',
-      detail: sourceBackedTestCase
-        ? 'Draft source extract: Goliad arrival toward Point Shamrock. KNGP runway/flow recovery is not selected.'
-        : 'Arrival is generated from the final selected stop. The applicable procedure is not included.',
-    },
-  ];
-
-  if (routeData) {
-    for (const step of steps) {
-      step.events = routeData.steps[step.id];
+  const legIds = new Set();
+  for (const leg of legList) {
+    if (legIds.has(leg.id)) throw new Error(`Duplicate leg id: ${leg.id}`);
+    legIds.add(leg.id);
+    for (const end of [leg.from, leg.to]) {
+      if (!nodes.has(end)) throw new Error(`Leg ${leg.id} references unknown node: ${end}`);
     }
   }
+  return { nodes, legs: legList };
+}
 
-  return {
-    title: routeNames.join(' → '),
-    runway,
-    arrivalFrom: stops.at(-1).name,
-    kings4Area: routeIncludesKings4 ? kings4Area : undefined,
-    sourceBackedTestCase,
-    steps,
+export const GRAPH = buildGraph(
+  Object.values(nodeFiles),
+  Object.values(legFiles),
+);
+
+export function getNode(nodeId, graph = GRAPH) {
+  const node = graph.nodes.get(nodeId);
+  if (!node) throw new Error(`Unknown node: ${nodeId}`);
+  return node;
+}
+
+export function findLeg(from, fromChoices, to, toChoices, graph = GRAPH) {
+  const candidates = graph.legs.filter(
+    (leg) =>
+      leg.from === from &&
+      leg.to === to &&
+      matches(leg.when?.from, fromChoices) &&
+      matches(leg.when?.to, toChoices),
+  );
+  const specificity = (leg) =>
+    Object.keys(leg.when?.from ?? {}).length + Object.keys(leg.when?.to ?? {}).length;
+  const leg = candidates.sort((a, b) => specificity(b) - specificity(a))[0];
+  return leg && resolveLeg(leg, fromChoices, toChoices, graph);
+}
+
+// Replaces {from.input}, {to.input} and {to.input.detail} tokens in a leg. Detail
+// values live in the node's input definition under `details[option]`.
+export function resolveLeg(leg, fromChoices = {}, toChoices = {}, graph = GRAPH) {
+  const sides = {
+    from: { node: getNode(leg.from, graph), choices: fromChoices },
+    to: { node: getNode(leg.to, graph), choices: toChoices },
   };
+
+  function lookup(side, inputId, detail) {
+    const { node, choices } = sides[side];
+    const value = choices[inputId];
+    if (value === undefined) {
+      throw new Error(`Leg ${leg.id} needs ${side}.${inputId}, which was not chosen`);
+    }
+    if (!detail) return value;
+    const text = node.inputs?.find((input) => input.id === inputId)?.details?.[value]?.[detail];
+    if (text === undefined) {
+      throw new Error(`Leg ${leg.id}: no ${detail} for ${side}.${inputId}=${value}`);
+    }
+    return text;
+  }
+
+  function substitute(value) {
+    if (typeof value === 'string') {
+      return value.replace(/\{(from|to)\.(\w+)(?:\.(\w+))?\}/g, (_, side, id, detail) =>
+        lookup(side, id, detail),
+      );
+    }
+    if (Array.isArray(value)) return value.map(substitute);
+    if (value && typeof value === 'object') {
+      return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, substitute(v)]));
+    }
+    return value;
+  }
+
+  return substitute(leg);
+}
+
+// Every concrete (resolved) version of every leg, for validation.
+export function expandLegs(graph = GRAPH) {
+  const optionSets = (node, fixed = {}) => {
+    const inputs = node.inputs ?? [];
+    return inputs.reduce(
+      (sets, input) =>
+        sets.flatMap((set) =>
+          (fixed[input.id] ? [fixed[input.id]] : input.options).map((option) => ({
+            ...set,
+            [input.id]: option,
+          })),
+        ),
+      [{}],
+    );
+  };
+  return graph.legs.flatMap((leg) => {
+    const fromNode = getNode(leg.from, graph);
+    const toNode = getNode(leg.to, graph);
+    return optionSets(fromNode, leg.when?.from).flatMap((fromChoices) =>
+      optionSets(toNode, leg.when?.to).map((toChoices) => ({
+        fromChoices,
+        toChoices,
+        leg: resolveLeg(leg, fromChoices, toChoices, graph),
+      })),
+    );
+  });
+}
+
+// Destinations reachable from a node given what is already chosen there.
+export function getDestinations(from, fromChoices, graph = GRAPH) {
+  const ids = [
+    ...new Set(
+      graph.legs
+        .filter((leg) => leg.from === from && matches(leg.when?.from, fromChoices))
+        .map((leg) => leg.to),
+    ),
+  ];
+  return ids.map((id) => {
+    const node = getNode(id, graph);
+    return {
+      node,
+      // Only offer input values that have at least one leg loaded.
+      inputs: (node.endsRoute ? [] : node.inputs ?? []).map((input) => ({
+        ...input,
+        options: input.options.filter((option) =>
+          graph.legs.some(
+            (leg) =>
+              leg.from === from &&
+              leg.to === id &&
+              matches(leg.when?.from, fromChoices) &&
+              (leg.when?.to?.[input.id] === undefined || leg.when.to[input.id] === option),
+          ),
+        ),
+      })),
+    };
+  });
+}
+
+// Inputs for a starting node, limited to values that have a loaded leg.
+export function getOriginInputs(nodeId, graph = GRAPH) {
+  const node = getNode(nodeId, graph);
+  const outgoing = graph.legs.filter((leg) => leg.from === nodeId);
+  return (node.inputs ?? []).map((input) => ({
+    ...input,
+    options: input.options.filter((option) =>
+      outgoing.some(
+        (leg) =>
+          leg.when?.from?.[input.id] === undefined || leg.when.from[input.id] === option,
+      ),
+    ),
+  }));
+}
+
+export function optionLabel(input, value) {
+  return input.optionLabel ? input.optionLabel.replace('{value}', value) : value;
+}
+
+export function describeChoices(node, choices = {}) {
+  const parts = (node.inputs ?? [])
+    .filter((input) => choices[input.id])
+    .map((input) =>
+      input.optionLabel
+        ? optionLabel(input, choices[input.id])
+        : `${input.label} ${choices[input.id]}`,
+    );
+  return parts.length ? `${node.name} · ${parts.join(' · ')}` : node.name;
 }

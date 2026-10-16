@@ -1,0 +1,43 @@
+[
+  {
+    "folder": "(KNGT) Goliad NOLF",
+    "name": "Initial 11",
+    "kind": "initial",
+    "lat": 28.63933924325642,
+    "lon": -97.68670704015423,
+    "description": "4 NM initial, RWY 11. Position taken from the end of the straight segment of the KML RWY 11 arrival track."
+  },
+  {
+    "folder": "(KNGT) Goliad NOLF",
+    "name": "Initial 17",
+    "kind": "initial",
+    "lat": 28.67999004410303,
+    "lon": -97.63334068699609,
+    "description": "4 NM initial, RWY 17. Position taken from the end of the straight segment of the KML RWY 17 arrival track."
+  },
+  {
+    "folder": "(KNGT) Goliad NOLF",
+    "name": "Initial 29",
+    "kind": "initial",
+    "lat": 28.59860728715609,
+    "lon": -97.54281569164968,
+    "description": "4 NM initial, RWY 29. Position taken from the end of the straight segment of the KML RWY 29 arrival track."
+  },
+  {
+    "folder": "(KNGT) Goliad NOLF",
+    "name": "Initial 35",
+    "kind": "initial",
+    "lat": 28.54930321138114,
+    "lon": -97.60851924465821,
+    "description": "4 NM initial, RWY 35. Position taken from the end of the straight segment of the KML RWY 35 arrival track."
+  },
+  {
+    "folder": "(KNGT) Goliad NOLF",
+    "name": "Berclair (do not overfly)",
+    "kind": "hazard",
+    "radiusNm": 0.5,
+    "lat": 28.53083333,
+    "lon": -97.59111111,
+    "description": "Avoid overflying the town of Berclair (noise). Approximate town position from public gazetteer coordinates; the circle is illustrative, not a defined boundary."
+  }
+]

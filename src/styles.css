@@ -363,6 +363,56 @@ h3 {
   line-height: 1.55;
 }
 
+.script-exchange {
+  display: grid;
+  gap: 5px;
+}
+
+.script-exchange-line {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  align-items: baseline;
+  gap: 8px;
+  padding-top: 7px;
+  border-top: 1px solid #d6e2ec;
+}
+
+.exchange-speaker {
+  color: var(--blue-dark);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.script-exchange-line p {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.exchange-pilot {
+  margin: 0 -8px;
+  padding: 8px;
+  border-radius: 6px;
+  background: #dcecfa;
+}
+
+.exchange-pilot .exchange-speaker {
+  color: var(--blue-dark);
+}
+
+.exchange-other {
+  color: #5d6b3a;
+}
+
+.exchange-other .exchange-speaker {
+  color: #7a6a2a;
+}
+
+.exchange-other p {
+  font-weight: 600;
+}
+
 .timing-note {
   margin: 12px 0;
   color: var(--muted);
@@ -456,11 +506,7 @@ h3 {
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background:
-    linear-gradient(0deg, rgb(215 225 233 / 30%) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(215 225 233 / 30%) 1px, transparent 1px),
-    #f8fafb;
-  background-size: 28px 28px;
+  background: #fff;
 }
 
 .map-card-heading {
@@ -471,70 +517,49 @@ h3 {
   font-size: 0.75rem;
 }
 
-.map-icon {
-  color: #6d7b88;
-  font-size: 1.3rem;
-}
-
-.schematic-wrap {
+.route-map {
   width: 100%;
-  overflow: hidden;
+  height: min(65vh, 480px);
+  min-height: 320px;
 }
 
-.schematic {
-  display: block;
+.route-map .leaflet-container {
   width: 100%;
-  min-height: 210px;
-  max-height: 285px;
-  overflow: visible;
-  padding: 4px 2px;
+  height: 100%;
+  background: #e6edf2;
+  color: var(--ink);
 }
 
-.route-line {
-  fill: none;
-  stroke: #5487ae;
-  stroke-dasharray: 7 7;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 4;
+.map-waypoint-label {
+  padding: 3px 5px;
+  border: 1px solid #bdc9d3;
+  border-radius: 3px;
+  background: rgb(255 255 255 / 92%);
+  box-shadow: 0 1px 3px rgb(23 36 51 / 18%);
+  color: #172433;
+  font-size: 11px;
+  font-weight: 750;
 }
 
-.point-halo {
-  fill: #d7e9f7;
-  stroke: #83aed0;
-  stroke-width: 2;
+.map-waypoint-label::before {
+  display: none;
 }
 
-.point-core {
-  fill: #fff;
-  stroke: var(--blue-dark);
-  stroke-width: 3;
-}
-
-.route-point.is-active .point-halo {
-  fill: #ffedb5;
-  stroke: #d29a19;
-}
-
-.point-number {
-  fill: var(--blue-dark);
-  font-size: 10px;
-  font-weight: 800;
-  text-anchor: middle;
-}
-
-.point-label {
-  fill: var(--ink);
-  font-size: 12px;
-  font-weight: 700;
-  text-anchor: middle;
+.map-unavailable {
+  display: grid;
+  min-height: 320px;
+  margin: 0;
+  padding: 24px;
+  place-items: center;
+  color: var(--muted);
+  text-align: center;
 }
 
 .map-legend {
   display: flex;
   flex-wrap: wrap;
-  gap: 18px;
-  padding: 0 16px 13px;
+  gap: 10px 18px;
+  padding: 12px 16px 6px;
   color: var(--muted);
   font-size: 0.7rem;
 }
@@ -558,8 +583,33 @@ h3 {
 }
 
 .legend-line {
-  width: 19px;
-  border-top: 2px dashed #5487ae;
+  display: inline-block;
+  width: 15px;
+  height: 3px;
+  background: #1769aa;
+}
+
+.legend-area {
+  display: inline-block;
+  width: 15px;
+  height: 10px;
+  border: 1px solid #7752a1;
+  background: rgb(168 140 196 / 30%);
+}
+
+.map-disclosure {
+  margin: 2px 16px 12px;
+  color: var(--muted);
+  font-size: 0.7rem;
+  line-height: 1.4;
+}
+
+@media (max-width: 540px) {
+  .route-map {
+    height: 55vh;
+    min-height: 300px;
+    max-height: 400px;
+  }
 }
 
 .steps-heading {
@@ -755,11 +805,63 @@ h3 {
     font-size: 0.65rem;
   }
 
-  .schematic {
-    min-height: 185px;
-  }
+}
 
-  .point-label {
-    font-size: 10px;
-  }
+.route-trail {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.destination-list {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.destination-button {
+  display: grid;
+  gap: 2px;
+  min-height: 56px;
+  padding: 10px 14px;
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+}
+
+.destination-button span {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.destination-button-selected {
+  border-color: var(--blue);
+  background: var(--blue-pale);
+}
+
+.start-button {
+  width: 100%;
+  min-height: 52px;
+}
+
+.map-star {
+  color: #b26a00;
+  font-size: 24px;
+  line-height: 26px;
+  text-align: center;
+  text-shadow: 0 0 3px #fff, 0 0 3px #fff;
+}
+.map-star-active {
+  color: #e08a00;
+  font-size: 30px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
 }

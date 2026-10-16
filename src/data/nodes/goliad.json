@@ -1,0 +1,65 @@
+{
+  "id": "goliad",
+  "name": "Goliad",
+  "fullName": "NOLF Goliad (KNGT)",
+  "kind": "olf",
+  "inputs": [
+    {
+      "id": "runway",
+      "label": "Runway",
+      "options": ["11", "17", "29", "35"],
+      "details": {
+        "11": {
+          "runwayLine": "11/29",
+          "patternSide": "north",
+          "landmark": "Keyboard Field, the large clearing at the initial"
+        },
+        "17": {
+          "runwayLine": "17/35",
+          "patternSide": "west",
+          "landmark": "Clearing to the right of the dirt road network"
+        },
+        "29": {
+          "runwayLine": "11/29",
+          "patternSide": "north",
+          "landmark": "Pond with trees at the initial; homestead on a road roughly perpendicular to RWY 29 ahead"
+        },
+        "35": {
+          "runwayLine": "17/35",
+          "patternSide": "west",
+          "landmark": "Gravel pit on the left, Berclair on the right (do not overfly)"
+        }
+      }
+    }
+  ],
+  "info": [
+    {
+      "type": "checkpoint",
+      "title": "Goliad at a glance",
+      "instructions": [
+        "Goliad RDO / CTAF: CH 15",
+        "ASOS: UHF CH 14",
+        "Break 1,300' · Pattern 1,100'",
+        "High key 3,300' · Low key 1,800'",
+        "Max 5 in the pattern"
+      ],
+      "mapFocus": ["(KNGT) Goliad NOLF/KNGT"],
+      "source": "Feb 2026 PPT, Part 2, slides 5–7."
+    },
+    {
+      "type": "checkpoint",
+      "title": "Discontinued entry",
+      "leadIn": "Execute immediately if:",
+      "instructions": [
+        "RDO directs it",
+        "RDO has not acknowledged your initial call by 2 NM",
+        "You are lined up on the wrong runway",
+        "PPEL/P not in sight by 2 NM, or a conflict",
+        "Past the upwind numbers and interval is in doubt",
+        "Outside 2 NM: turn 90° or more away from the pattern, hold 1,300' until clear",
+        "Inside 2 NM: hold 1,300' and depart beyond the upwind numbers, clear of traffic"
+      ],
+      "source": "Feb 2026 PPT, Part 2, slides 23–27."
+    }
+  ]
+}

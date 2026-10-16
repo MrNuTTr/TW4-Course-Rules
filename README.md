@@ -1,4 +1,4 @@
-# Course Rules Route Planner prototype
+﻿# Course Rules Route Planner prototype
 
 This project starts from Microsoft's [Azure Static Web Apps React basic
 template](https://github.com/staticwebdev/react-basic), documented in the
@@ -9,37 +9,49 @@ fallback behavior.
 
 ## Prototype scope
 
-- Mobile-friendly route builder for KNGP departure, a selected sample runway,
-  one required work-area/OLF stop, an optional stop of the opposite type, and
-  an automatically generated return step to KNGP.
-- A separate route-setup screen and chair-flying guide that presents one
-  briefing item at a time. A step can combine a concise action with its
-  associated radio call to avoid redundant cards. Channel labels and supporting
-  values are shown prominently. Previous/Next controls advance through the
-  steps. The practice screen puts the schematic route at the top and highlights
-  the active waypoint.
-- Input options and route generation live in `src/demoData.js` and
-  `src/routePlanner.js`, separate from the presentation. The selected
-  KNGP Runway 13L → KINGS 4 Area 3 High → NOLF Goliad → KNGP test case is
-  imported from the human-editable JSON file `src/data/test-routes.json`.
-- Only that exact test case has source-derived briefing events. Other
-  selections remain unpopulated and must not inherit its content. KNGP arrival
-  flow/runway is intentionally unresolved in the test case.
-- The JSON stores the ordered cards used by the guide: concise instructions,
-  optional radio channel/script, and per-card source provenance. It does not
-  duplicate those cards in separate summary fields. Radio channel/frequency
-  labels appear above scripts, and source provenance remains hidden from the
-  practice screen.
-- The Runway 13L High Bridge / “Thence” events incorporate the user-provided
-  Rusty Departure screenshot. The radio-call wording for the intentions /
-  transition is explicitly a template, not a verbatim source script.
-- The schematic has no geographic coordinates. Private source PDFs are not
-  bundled with the application. Extracted text is a draft for UI evaluation,
-  not approved flight guidance, and must be checked by a qualified reviewer
-  against current authorized material before operational use.
+- Chunked, leg-by-leg flow: pick a departure runway and first destination,
+  fly that leg one card at a time, read a short destination info page on
+  arrival, then pick the next destination (and its runway/area) until the
+  route ends at KNGP. The map shows only the active leg's KML features.
+  Channel labels and compact instructions are shown prominently.
+- Data is a small graph of human-editable JSON files, loaded by
+  `src/routePlanner.js` (separate from the UI):
+  - `src/data/nodes/*.json`: places (KNGP, KINGS 4, Goliad...) with the
+    `inputs` to ask (runway, area), generic `info` cards shown on arrival, and
+    `endsRoute` for the final node.
+  - `src/data/legs/*.json`: one file per leg: `from`, `to`, a `when` condition
+    (`from`/`to` choices such as runway or area; the most specific match wins),
+    the leg's `cards`, `featureIds` for the map and `arrivalFeatureIds` for the
+    arrival map. Destinations and input options are derived from the legs that
+    exist, so adding a leg file adds it to the UI. No code change is needed.
+- Cards store concise instructions, optional radio channel/script or
+  exchange, and per-card source provenance (hidden in the UI). Tests validate
+  graph references, KML ids, sources and channels for all data files.
+- Currently loaded (draft, from the binder and Feb 2026 PowerPoints): KNGP
+  RWY 13L → KINGS 4 Area 3 High → Goliad (RWY 11/17/29/35) → KNGP. The Goliad
+  legs use `{from.X}`, `{to.X}` and `{to.X.detail}` tokens, resolved from the
+  chosen inputs and the per-option `details` in the node file, so one leg file
+  covers every runway. A missing detail fails the tests.
+- `src/data/map-extras.json` holds derived map points not in the KML (Goliad
+  4 NM initials, Berclair avoid area). They are approximate, drawn as ★ and a
+  dashed red circle, and `mapFocus` may be a list of ids to frame several
+  features at once.
+- Some radio cards store a turn-by-turn exchange so the pilot call,
+  controller response, and readback stay legible on narrow screens. Cards are
+  transcribed from the user's binder images; the images are not bundled.- Map features are parsed from `kml/TW-4 Primary Course Rules (with notes).kml`
+  in the browser and selected by folder/name references in the route JSON.
+  The file is user-provided reference material, not official documentation;
+  OpenStreetMap tiles provide the map background and require an internet
+  connection. KML tracks are drawn as supplied; the app does not invent
+  connecting legs where the KML has no geometry.
+- Binder details that do not specify a transition or timing are not inferred.
+  The guide marks the CH 12 transfer timing and the altitude change between
+  the Goliad Arrival and Northern Arrival for instructor confirmation.
+- Private source PDFs are not bundled with the application. Extracted text is
+  a draft for UI evaluation, not approved flight guidance, and must be checked
+  by a qualified reviewer against current authorized material before
+  operational use.
 
-The prototype currently filters out a second stop of the same category. That
-is only a UI rule, not an operational route-compatibility determination.
 Specific route compatibility and all unpopulated procedure branches require
 reviewed, authoritative data.
 
@@ -62,3 +74,4 @@ npm run build
 The production site is generated in `dist/`, ready to configure as the app
 artifact for Azure Static Web Apps. No Azure Functions API is needed for this
 static prototype.
+

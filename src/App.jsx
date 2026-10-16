@@ -1,68 +1,22 @@
-import { useMemo, useState } from 'react';
+import { Suspense, lazy, useState } from 'react';
 import {
-  DEMO_RUNWAYS,
-  STOP_CATEGORIES,
-  STOP_CATEGORY_LABELS,
-} from './demoData.js';
-import {
-  buildPlannedRoute,
-  getCompatibleSecondStops,
-  getStopsByCategory,
-  KINGS4_HIGH_AREAS,
+  describeChoices,
+  findLeg,
+  getDestinations,
+  getNode,
+  getOriginInputs,
+  optionLabel,
 } from './routePlanner.js';
+const RouteMap = lazy(() => import('./RouteMap.jsx'));
 
-function SchematicRoute({ steps, activeStepId }) {
-  const positions = steps.map((step, index) => {
-    const horizontalRange = 510;
-    const x = 85 + (horizontalRange * index) / (steps.length - 1);
-    const y = index % 2 === 0 ? 220 : 105;
-    return { step, x, y };
-  });
-  const points = positions.map(({ x, y }) => `${x},${y}`).join(' ');
+const START_NODE_ID = 'kngp';
 
-  return (
-    <div className="schematic-wrap">
-      <svg
-        className="schematic"
-        viewBox="0 0 680 300"
-        role="img"
-        aria-labelledby="schematic-title schematic-description"
-      >
-        <title id="schematic-title">Schematic route display</title>
-        <desc id="schematic-description">
-          An illustrative sequence diagram, not a geographic map. Locations
-          have no real positions. The active waypoint is highlighted.
-        </desc>
-        <path
-          className="route-line"
-          d={`M ${positions.map(({ x, y }) => `${x} ${y}`).join(' L ')}`}
-        />
-        {positions.map(({ step, x, y }, index) => {
-          const isActive = step.id === activeStepId;
-          const labelY = y === 220 ? y + 38 : y - 24;
-          return (
-            <g
-              className={isActive ? 'route-point is-active' : 'route-point'}
-              aria-current={isActive ? 'step' : undefined}
-              key={step.id}
-            >
-              <circle className="point-halo" cx={x} cy={y} r="18" />
-              <circle className="point-core" cx={x} cy={y} r="11" />
-              <text className="point-number" x={x} y={y + 4}>
-                {index + 1}
-              </text>
-              <text className="point-label" x={x} y={labelY}>
-                {step.location}
-              </text>
-            </g>
-          );
-        })}
-      </svg>
-    </div>
-  );
+// A node flagged endsRoute finishes the route when you arrive there.
+function canContinueFrom(nodeId, choices) {
+  return !getNode(nodeId).endsRoute && getDestinations(nodeId, choices).length > 0;
 }
 
-function GuideEvent({ event, eventIndex, eventCount, stageIndex, stageCount }) {
+function GuideEvent({ event, eventIndex, eventCount, label }) {
   const radio = event.radio;
   const eventLabel = {
     radio: 'Radio call',
@@ -73,8 +27,10 @@ function GuideEvent({ event, eventIndex, eventCount, stageIndex, stageCount }) {
   return (
     <article className="guide-event" aria-live="polite">
       <div className="guide-progress">
-        <span>ROUTE POINT {stageIndex + 1} OF {stageCount}</span>
-        <span>BRIEFING ITEM {eventIndex + 1} OF {eventCount}</span>
+        <span>{label}</span>
+        <span>
+          ITEM {eventIndex + 1} OF {eventCount}
+        </span>
       </div>
       <div className={`event-type event-type-${event.type}`}>{eventLabel}</div>
       <h2 className="guide-title">{event.title}</h2>
@@ -96,10 +52,28 @@ function GuideEvent({ event, eventIndex, eventCount, stageIndex, stageCount }) {
       {radio && (
         <div className="script-panel">
           <div className="script-heading">
-            <span className="detail-label">{radio.script ? 'Say' : 'Radio'}</span>
+            <span className="detail-label">
+              {radio.exchange ? 'Exchange' : radio.script ? 'Say' : 'Radio'}
+            </span>
             <span className="channel-label">{radio.channel}</span>
           </div>
-          {radio.script && <p>{radio.script}</p>}
+          {radio.exchange ? (
+            <div className="script-exchange">
+              {radio.exchange.map(({ speaker, text }, index) => (
+                <div
+                  className={`script-exchange-line ${
+                    speaker === 'Pilot' ? 'exchange-pilot' : 'exchange-other'
+                  }`}
+                  key={`${speaker}-${index}`}
+                >
+                  <span className="exchange-speaker">{speaker}</span>
+                  <p>{text}</p>
+                </div>
+              ))}
+            </div>
+          ) : (
+            radio.script && <p>{radio.script}</p>
+          )}
         </div>
       )}
       {event.detail && <p className="event-note">{event.detail}</p>}
@@ -107,285 +81,337 @@ function GuideEvent({ event, eventIndex, eventCount, stageIndex, stageCount }) {
   );
 }
 
+// Map + one-card-at-a-time stepper, used for both legs and destination info pages.
+function CardPlayer({
+  cards,
+  featureIds,
+  defaultFocus,
+  label,
+  completeLabel,
+  onComplete,
+  onPreviousFromFirst,
+  startAtEnd = false,
+}) {
+  const [index, setIndex] = useState(startAtEnd ? cards.length - 1 : 0);
+  const card = cards[index];
+  const isLast = index === cards.length - 1;
+
+  return (
+    <>
+      <div className="map-card map-card-active">
+        <Suspense
+          fallback={
+            <p className="map-unavailable" role="status">
+              Loading map…
+            </p>
+          }
+        >
+          <RouteMap
+            mapData={{ featureIds }}
+            focusFeatureId={card.mapFocus ?? defaultFocus}
+          />
+        </Suspense>
+      </div>
+
+      <GuideEvent event={card} eventIndex={index} eventCount={cards.length} label={label} />
+
+      <nav className="guide-controls" aria-label="Card navigation">
+        <button
+          type="button"
+          className="secondary-button"
+          disabled={index === 0 && !onPreviousFromFirst}
+          onClick={() => (index === 0 ? onPreviousFromFirst() : setIndex(index - 1))}
+        >
+          Previous
+        </button>
+        <span className="next-preview">
+          {isLast ? '' : `Next: ${cards[index + 1].title}`}
+        </span>
+        <button
+          type="button"
+          className="primary-button"
+          onClick={() => (isLast ? onComplete() : setIndex(index + 1))}
+        >
+          {isLast ? completeLabel : 'Next'}
+        </button>
+      </nav>
+    </>
+  );
+}
+
+function PlanScreen({ place, isStart, onStart }) {
+  const originInputs = isStart ? getOriginInputs(place.nodeId) : [];
+  const [originChoices, setOriginChoices] = useState(() =>
+    Object.fromEntries(
+      originInputs.map((input) => [
+        input.id,
+        place.choices[input.id] ?? input.options[0],
+      ]),
+    ),
+  );
+  const fromChoices = isStart ? originChoices : place.choices;
+  const destinations = getDestinations(place.nodeId, fromChoices);
+  const [destId, setDestId] = useState(() =>
+    destinations.length === 1 ? destinations[0].node.id : '',
+  );
+  const [destChoices, setDestChoices] = useState(() =>
+    destinations.length === 1
+      ? Object.fromEntries(destinations[0].inputs.map((i) => [i.id, i.options[0]]))
+      : {},
+  );
+  const selected = destinations.find(({ node }) => node.id === destId);
+
+  function pickDestination(entry) {
+    setDestId(entry.node.id);
+    setDestChoices(
+      Object.fromEntries(entry.inputs.map((input) => [input.id, input.options[0]])),
+    );
+  }
+
+  const leg = selected
+    ? findLeg(place.nodeId, fromChoices, selected.node.id, destChoices)
+    : undefined;
+
+  return (
+    <section className="planner-panel" aria-labelledby="plan-heading">
+      <div className="section-heading">
+        <p className="eyebrow">{isStart ? 'START' : 'NEXT LEG'}</p>
+        <h2 id="plan-heading">
+          {isStart ? 'Where are you departing?' : `Leaving ${getNode(place.nodeId).name}`}
+        </h2>
+        {!isStart && <p>Choose where to go next.</p>}
+      </div>
+
+      {originInputs.map((input) => (
+        <div className="form-field" key={input.id}>
+          <label htmlFor={`origin-${input.id}`}>
+            {getNode(place.nodeId).name} {input.label.toLowerCase()}
+          </label>
+          <select
+            id={`origin-${input.id}`}
+            value={originChoices[input.id]}
+            onChange={(event) => {
+              setOriginChoices({ ...originChoices, [input.id]: event.target.value });
+              setDestId('');
+            }}
+          >
+            {input.options.map((option) => (
+              <option key={option} value={option}>
+                {optionLabel(input, option)}
+              </option>
+            ))}
+          </select>
+        </div>
+      ))}
+
+      <div className="destination-list" role="group" aria-label="Destination">
+        {destinations.map((entry) => (
+          <button
+            type="button"
+            key={entry.node.id}
+            className={`destination-button${
+              destId === entry.node.id ? ' destination-button-selected' : ''
+            }`}
+            aria-pressed={destId === entry.node.id}
+            onClick={() => pickDestination(entry)}
+          >
+            <strong>{entry.node.name}</strong>
+            <span>{entry.node.fullName}</span>
+          </button>
+        ))}
+      </div>
+
+      {selected &&
+        selected.inputs
+          .filter((input) => input.options.length > 0)
+          .map((input) => (
+            <div className="form-field" key={input.id}>
+              <label htmlFor={`dest-${input.id}`}>
+                {selected.node.name} {input.label.toLowerCase()}
+              </label>
+              <select
+                id={`dest-${input.id}`}
+                value={destChoices[input.id]}
+                onChange={(event) =>
+                  setDestChoices({ ...destChoices, [input.id]: event.target.value })
+                }
+              >
+                {input.options.map((option) => (
+                  <option key={option} value={option}>
+                    {optionLabel(input, option)}
+                  </option>
+                ))}
+              </select>
+            </div>
+          ))}
+
+      <button
+        type="button"
+        className="primary-button start-button"
+        disabled={!leg}
+        onClick={() => onStart({ originChoices: fromChoices, leg, destChoices })}
+      >
+        {leg ? 'Start leg' : 'Choose a destination'}
+      </button>
+    </section>
+  );
+}
+
 export default function App() {
-  const [isPracticing, setIsPracticing] = useState(false);
-  const [runway, setRunway] = useState(DEMO_RUNWAYS[0]);
-  const [firstCategory, setFirstCategory] = useState(STOP_CATEGORIES.WORK_AREA);
-  const [firstStopId, setFirstStopId] = useState('kings-4');
-  const [secondStopId, setSecondStopId] = useState('goliad-nolf');
-  const [kings4Area, setKings4Area] = useState('3');
-  const [activeEventIndex, setActiveEventIndex] = useState(0);
+  const [place, setPlace] = useState({ nodeId: START_NODE_ID, choices: {} });
+  const [trail, setTrail] = useState([]);
+  const [phase, setPhase] = useState('plan'); // plan | leg | arrived | done
+  const [activeLeg, setActiveLeg] = useState(null);
 
-  const firstStopOptions = getStopsByCategory(firstCategory);
-  const secondStopOptions = getCompatibleSecondStops(firstStopId);
-  const kings4Selected =
-    firstStopId === 'kings-4' || secondStopId === 'kings-4';
-  const plannedRoute = useMemo(
-    () => buildPlannedRoute({ runway, firstStopId, secondStopId, kings4Area }),
-    [runway, firstStopId, secondStopId, kings4Area],
-  );
-  const guideEvents = useMemo(
-    () =>
-      plannedRoute.steps.flatMap((step, stageIndex) => {
-        const events = step.events ?? [
-          {
-            type: 'checkpoint',
-            title: step.title,
-            prompt:
-              'This route selection has no source-cited guided sequence yet. Choose the configured test case or treat this as a route outline only.',
-            source: 'No source-reviewed event is loaded for this selection.',
-          },
-        ];
-        return events.map((event) => ({
-          ...event,
-          stepId: step.id,
-          stepTitle: step.title,
-          location: step.location,
-          stageIndex,
-        }));
-      }),
-    [plannedRoute],
-  );
-  const currentEventIndex = Math.min(
-    activeEventIndex,
-    Math.max(guideEvents.length - 1, 0),
-  );
-  const currentEvent = guideEvents[currentEventIndex];
-  const nextEvent = guideEvents[currentEventIndex + 1];
+  const node = getNode(place.nodeId);
+  const isStart = trail.length === 0;
 
-  function changeFirstCategory(event) {
-    const nextCategory = event.target.value;
-    const nextFirstStop = getStopsByCategory(nextCategory)[0];
-    setFirstCategory(nextCategory);
-    setFirstStopId(nextFirstStop.id);
-    setSecondStopId('');
-    setActiveEventIndex(0);
+  function goHome() {
+    setPlace({ nodeId: START_NODE_ID, choices: {} });
+    setTrail([]);
+    setActiveLeg(null);
+    setPhase('plan');
+    window.scrollTo({ top: 0 });
   }
 
-  function changeFirstStop(event) {
-    setFirstStopId(event.target.value);
-    setSecondStopId('');
-    setActiveEventIndex(0);
+  function goPlan() {
+    setActiveLeg(null);
+    setPhase('plan');
+    window.scrollTo({ top: 0 });
   }
 
-  function changeSecondStop(event) {
-    setSecondStopId(event.target.value);
-    setActiveEventIndex(0);
+  function goLastLeg() {
+    const last = trail.at(-1);
+    setTrail(trail.slice(0, -1));
+    setPlace(last.from);
+    setActiveLeg({ leg: last.leg, destChoices: last.to.choices, atEnd: true });
+    setPhase('leg');
+    window.scrollTo({ top: 0 });
   }
 
-  function startPractice() {
-    setActiveEventIndex(0);
-    setIsPracticing(true);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  function startLeg({ originChoices, leg, destChoices }) {
+    if (isStart) setPlace({ nodeId: place.nodeId, choices: originChoices });
+    setActiveLeg({ leg, destChoices });
+    setPhase('leg');
+    window.scrollTo({ top: 0 });
   }
 
-  function returnToRouteBuilder() {
-    setActiveEventIndex(0);
-    setIsPracticing(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  function finishLeg() {
+    const { leg, destChoices } = activeLeg;
+    const dest = { nodeId: leg.to, choices: destChoices };
+    setTrail([...trail, { leg, from: place, to: dest }]);
+    setPlace(dest);
+    setActiveLeg(null);
+    const destNode = getNode(leg.to);
+    const hasNext = canContinueFrom(leg.to, destChoices);
+    if (destNode.info?.length) setPhase('arrived');
+    else setPhase(hasNext ? 'plan' : 'done');
+    window.scrollTo({ top: 0 });
   }
+
+  function finishInfo() {
+    setPhase(canContinueFrom(place.nodeId, place.choices) ? 'plan' : 'done');
+    window.scrollTo({ top: 0 });
+  }
+
+  const routeSummary = [
+    describeChoices(getNode(trail[0]?.from.nodeId ?? place.nodeId), trail[0]?.from.choices),
+    ...trail.map(({ to }) => describeChoices(getNode(to.nodeId), to.choices)),
+  ];
+  const legNumber = phase === 'leg' ? trail.length + 1 : trail.length;
 
   return (
     <main className="app-shell">
-      <header className={`site-header${isPracticing ? ' site-header-practice' : ''}`}>
+      <header className={`site-header${phase !== 'plan' || !isStart ? ' site-header-practice' : ''}`}>
         <div>
-          <p className="eyebrow">COURSE RULES ROUTE PLANNER</p>
-          <h1>{isPracticing ? plannedRoute.title : 'Build a sample sortie'}</h1>
+          <p className="eyebrow">COURSE RULES · CHAIR FLY</p>
+          <h1>
+            {phase === 'leg'
+              ? activeLeg.leg.title
+              : phase === 'arrived'
+                ? `Arrived · ${describeChoices(node, place.choices)}`
+                : phase === 'done'
+                  ? 'Route complete'
+                  : isStart
+                    ? 'Plan your first leg'
+                    : 'Plan your next leg'}
+          </h1>
         </div>
-        {isPracticing ? (
-          <button
-            type="button"
-            className="home-button"
-            onClick={returnToRouteBuilder}
-          >
-            Home · New route
-          </button>
-        ) : (
+        {phase === 'plan' && isStart ? (
           <span className="prototype-badge">PROTOTYPE · NOT FOR FLIGHT</span>
+        ) : (
+          <div className="header-actions">
+            {trail.length > 0 && (
+              <button type="button" className="home-button" onClick={goLastLeg}>
+                ← Last leg
+              </button>
+            )}
+            <button type="button" className="home-button" onClick={goHome}>
+              New route
+            </button>
+          </div>
         )}
       </header>
 
       <div className="planner-layout">
-        {!isPracticing ? (
-          <section className="planner-panel" aria-labelledby="planner-heading">
-            <div className="section-heading">
-              <p className="eyebrow">ROUTE BUILDER</p>
-              <h2 id="planner-heading">Choose your sequence</h2>
-              <p>Set the route before starting the guided practice.</p>
-            </div>
+        {trail.length > 0 && phase !== 'done' && (
+          <p className="route-trail" aria-label="Route so far">
+            {routeSummary.join(' → ')}
+          </p>
+        )}
 
-            <div className="form-field">
-              <label htmlFor="departure">Departure</label>
-              <input id="departure" value="KNGP" readOnly />
-            </div>
+        {phase === 'plan' && (
+          <PlanScreen
+            key={`${place.nodeId}-${trail.length}`}
+            place={place}
+            isStart={isStart}
+            onStart={startLeg}
+          />
+        )}
 
-            <div className="form-field">
-              <label htmlFor="runway">Departure runway <span>Demo choice</span></label>
-              <select
-                id="runway"
-                value={runway}
-                onChange={(event) => {
-                  setRunway(event.target.value);
-                  setActiveEventIndex(0);
-                }}
-              >
-                {DEMO_RUNWAYS.map((option) => (
-                  <option key={option} value={option}>
-                    Runway {option}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="form-field">
-              <label htmlFor="first-category">First stop type</label>
-              <select
-                id="first-category"
-                value={firstCategory}
-                onChange={changeFirstCategory}
-              >
-                {Object.values(STOP_CATEGORIES).map((category) => (
-                  <option key={category} value={category}>
-                    {STOP_CATEGORY_LABELS[category]}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="form-field">
-              <label htmlFor="first-stop">First stop</label>
-              <select
-                id="first-stop"
-                value={firstStopId}
-                onChange={changeFirstStop}
-              >
-                {firstStopOptions.map((stop) => (
-                  <option key={stop.id} value={stop.id}>
-                    {stop.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="form-field">
-              <label htmlFor="second-stop">
-                Optional second stop <span>Only the other stop type is offered</span>
-              </label>
-              <select
-                id="second-stop"
-                value={secondStopId}
-                onChange={changeSecondStop}
-              >
-                <option value="">No second stop — return to KNGP</option>
-                {secondStopOptions.map((stop) => (
-                  <option key={stop.id} value={stop.id}>
-                    {stop.name}
-                  </option>
-                ))}
-              </select>
-              <p className="field-help">
-                This demo filters to the opposite stop type. It does not encode
-                source-reviewed compatibility for other routes.
-              </p>
-            </div>
-
-            {kings4Selected && (
-              <div className="form-field">
-                <label htmlFor="kings4-area">KINGS 4 high working area</label>
-                <select
-                  id="kings4-area"
-                  value={kings4Area}
-                  onChange={(event) => {
-                    setKings4Area(event.target.value);
-                    setActiveEventIndex(0);
-                  }}
-                >
-                  {KINGS4_HIGH_AREAS.map((area) => (
-                    <option key={area.id} value={area.id}>
-                      {area.label}
-                    </option>
-                  ))}
-                </select>
-                <p className="field-help">
-                  Area 3 High is selected for this source-extract test. Other areas
-                  do not have route-specific detail in this prototype.
-                </p>
-              </div>
-            )}
-
-            <div className="generated-route" aria-live="polite">
-              <span className="detail-label">Generated route</span>
-              <p>{plannedRoute.title}</p>
-              <span className="arrival-note">
-                KNGP recovery step generated from {plannedRoute.arrivalFrom}.
-              </span>
-            </div>
-            <button
-              type="button"
-              className="primary-button generate-button"
-              onClick={startPractice}
-            >
-              Generate route
-            </button>
-          </section>
-        ) : (
-          <section className="route-panel" aria-labelledby="route-heading">
-            <div className="route-panel-heading">
-              <div>
-                <p className="eyebrow">GUIDED PRACTICE</p>
-                <h2 id="route-heading">Your route</h2>
-              </div>
-              <span className="step-count">{guideEvents.length} briefing items</span>
-            </div>
-
-            <div className="map-card map-card-active">
-              <div className="map-card-heading">
-                <div>
-                  <h3>Route waypoints</h3>
-                  <p>Active waypoint highlights as you advance · schematic only</p>
-                </div>
-              </div>
-              <SchematicRoute
-                steps={plannedRoute.steps}
-                activeStepId={currentEvent.stepId}
-              />
-              <div className="map-legend">
-                <span>
-                  <i className="legend-dot legend-dot-active" /> Current waypoint
-                </span>
-                <span><i className="legend-line" /> Route sequence</span>
-              </div>
-            </div>
-
-            <GuideEvent
-              event={currentEvent}
-              eventIndex={currentEventIndex}
-              eventCount={guideEvents.length}
-              stageIndex={currentEvent.stageIndex}
-              stageCount={plannedRoute.steps.length}
+        {phase === 'leg' && (
+          <section className="route-panel" aria-label="Leg guide">
+            <CardPlayer
+              key={`${activeLeg.leg.id}-${trail.length}`}
+              cards={activeLeg.leg.cards}
+              featureIds={activeLeg.leg.featureIds}
+              label={`LEG ${legNumber}`}
+              completeLabel={`Arrive ${getNode(activeLeg.leg.to).name}`}
+              onComplete={finishLeg}
+              onPreviousFromFirst={goPlan}
+              startAtEnd={Boolean(activeLeg.atEnd)}
             />
+          </section>
+        )}
 
-            <nav className="guide-controls" aria-label="Briefing navigation">
-              <button
-                type="button"
-                className="secondary-button"
-                disabled={currentEventIndex === 0}
-                onClick={() => setActiveEventIndex(currentEventIndex - 1)}
-              >
-                Previous
-              </button>
-              <span className="next-preview">
-                {nextEvent ? `Next: ${nextEvent.title}` : 'End of preview'}
-              </span>
-              <button
-                type="button"
-                className="primary-button"
-                disabled={!nextEvent}
-                onClick={() => setActiveEventIndex(currentEventIndex + 1)}
-              >
-                {nextEvent ? 'Next item' : 'Finished'}
-              </button>
-            </nav>
+        {phase === 'arrived' && (
+          <section className="route-panel" aria-label="Destination information">
+            <CardPlayer
+              key={`arrived-${trail.length}`}
+              cards={node.info}
+              featureIds={trail.at(-1).leg.arrivalFeatureIds}
+              defaultFocus={trail.at(-1).leg.arrivalFeatureIds[0]}
+              label={`${node.name.toUpperCase()} INFO`}
+              completeLabel={
+                canContinueFrom(place.nodeId, place.choices)
+                  ? 'Choose next destination'
+                  : 'Finish'
+              }
+              onComplete={finishInfo}
+            />
+          </section>
+        )}
+
+        {phase === 'done' && (
+          <section className="planner-panel" aria-label="Route complete">
+            <div className="section-heading">
+              <p className="eyebrow">DONE</p>
+              <h2>{routeSummary.join(' → ')}</h2>
+              <p>{trail.length} legs completed. Draft practice data only.</p>
+            </div>
+            <button type="button" className="primary-button start-button" onClick={goHome}>
+              Plan a new route
+            </button>
           </section>
         )}
       </div>

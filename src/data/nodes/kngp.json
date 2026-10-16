@@ -1,0 +1,20 @@
+{
+  "id": "kngp",
+  "name": "KNGP",
+  "fullName": "NAS Corpus Christi",
+  "kind": "airfield",
+  "endsRoute": true,
+  "inputs": [
+    {
+      "id": "runway",
+      "label": "Runway",
+      "options": [
+        "13L",
+        "31R",
+        "18",
+        "36"
+      ]
+    }
+  ],
+  "info": []
+}

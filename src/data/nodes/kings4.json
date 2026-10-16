@@ -1,0 +1,37 @@
+{
+  "id": "kings4",
+  "name": "KINGS 4",
+  "fullName": "KINGS 4 MOA",
+  "kind": "work-area",
+  "inputs": [
+    {
+      "id": "area",
+      "label": "High area",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "optionLabel": "Area {value} High"
+    }
+  ],
+  "info": [
+    {
+      "type": "checkpoint",
+      "title": "KINGS 4 at a glance",
+      "instructions": [
+        "Houston Center: VHF CH 22",
+        "KINGS 4 Common: UHF CH 20",
+        "Transition layer: 14,500 ft MSL",
+        "Altimeter: Navy Corpus"
+      ],
+      "source": "Binder, pp. 10–11."
+    }
+  ]
+}
