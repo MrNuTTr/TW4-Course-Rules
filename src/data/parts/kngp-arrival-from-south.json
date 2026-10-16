@@ -1,0 +1,7 @@
+{
+  "id": "kngp-arrival-from-south",
+  "cards": [
+    { "use": "southern-arrival-join" },
+    { "use": "shamrock-terminate" }
+  ]
+}

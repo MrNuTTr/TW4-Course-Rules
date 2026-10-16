@@ -3,6 +3,8 @@
   "name": "KNGP",
   "fullName": "NAS Corpus Christi",
   "kind": "airfield",
+  "intent": "course rules Shamrock, with information <code>",
+  "foxtrotCall": "the Northern Arrival",
   "endsRoute": true,
   "inputs": [
     {

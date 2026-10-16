@@ -12,8 +12,13 @@ const partFiles = import.meta.glob('./data/parts/*.json', {
   import: 'default',
 });
 
+// A `when` value may be a single option or an array of options.
+function admits(value, option) {
+  return Array.isArray(value) ? value.includes(option) : value === option;
+}
+
 function matches(condition = {}, choices = {}) {
-  return Object.entries(condition).every(([key, value]) => choices[key] === value);
+  return Object.entries(condition).every(([key, value]) => admits(value, choices[key]));
 }
 
 // Throws on dangling references so bad data files fail loudly.
@@ -130,7 +135,7 @@ export function expandLegs(graph = GRAPH) {
     return inputs.reduce(
       (sets, input) =>
         sets.flatMap((set) =>
-          (fixed[input.id] ? [fixed[input.id]] : input.options).map((option) => ({
+          (fixed[input.id] ? [fixed[input.id]].flat() : input.options).map((option) => ({
             ...set,
             [input.id]: option,
           })),
@@ -173,7 +178,7 @@ export function getDestinations(from, fromChoices, graph = GRAPH) {
               leg.from === from &&
               leg.to === id &&
               matches(leg.when?.from, fromChoices) &&
-              (leg.when?.to?.[input.id] === undefined || leg.when.to[input.id] === option),
+              (leg.when?.to?.[input.id] === undefined || admits(leg.when.to[input.id], option)),
           ),
         ),
       })),
@@ -192,7 +197,7 @@ export function getOriginInputs(nodeId, graph = GRAPH) {
       options: input.options.filter((option) =>
         outgoing.some(
           (leg) =>
-            leg.when?.from?.[input.id] === undefined || leg.when.from[input.id] === option,
+            leg.when?.from?.[input.id] === undefined || admits(leg.when.from[input.id], option),
         ),
       ),
     }));

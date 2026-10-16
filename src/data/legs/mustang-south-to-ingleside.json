@@ -1,0 +1,25 @@
+{
+  "id": "mustang-south-to-ingleside",
+  "from": "mustang",
+  "to": "ingleside",
+  "when": { "from": { "area": ["Area 3", "Area 4", "Area 7", "Area 8"] } },
+  "title": "Mustang {from.area} → Ingleside RWY {to.runway}",
+  "featureIds": [
+    "{from.area.poly}",
+    "(KNGP) Corpus Christi NAS/Shamrock Arrivals/South Arrivals",
+    "(KTFP) Ingleside Regional Airport/KTFP",
+    "(KTFP) Ingleside Regional Airport/{to.runway}",
+    "(KTFP) Ingleside Regional Airport/East / South Arrivals/Port Royal",
+    "(KTFP) Ingleside Regional Airport/East / South Arrivals/{to.runway}"
+  ],
+  "arrivalFeatureIds": [
+    "(KTFP) Ingleside Regional Airport/KTFP",
+    "(KTFP) Ingleside Regional Airport/{to.runway}",
+    "(KTFP) Ingleside Regional Airport/East / South Arrivals/{to.runway}"
+  ],
+  "cards": [
+    { "use": "mustang-exit-{from.area.exit}" },
+    { "use": "mustang-exit-call" },
+    { "use": "ingleside-from-south" }
+  ]
+}

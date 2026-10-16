@@ -1,0 +1,23 @@
+{
+  "id": "mustang-north-to-acounty",
+  "from": "mustang",
+  "to": "acounty",
+  "when": { "from": { "area": ["Area 1", "Area 2", "Area 5", "Area 6"] } },
+  "title": "Mustang {from.area} → Aransas County RWY {to.runway}",
+  "featureIds": [
+    "{from.area.poly}",
+    "(KRKP) Aransas County Airport/KRKP",
+    "(KRKP) Aransas County Airport/{to.runway.runwayLine}",
+    "(KRKP) Aransas County Airport/Arrivals/{to.runway}"
+  ],
+  "arrivalFeatureIds": [
+    "(KRKP) Aransas County Airport/KRKP",
+    "(KRKP) Aransas County Airport/{to.runway.runwayLine}",
+    "(KRKP) Aransas County Airport/Arrivals/{to.runway}"
+  ],
+  "cards": [
+    { "use": "mustang-exit-{from.area.exit}" },
+    { "use": "mustang-exit-call" },
+    { "use": "acounty-from-working-area" }
+  ]
+}

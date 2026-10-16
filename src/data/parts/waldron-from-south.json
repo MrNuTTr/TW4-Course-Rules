@@ -1,0 +1,19 @@
+{
+  "id": "waldron-from-south",
+  "cards": [
+    {
+      "type": "action",
+      "title": "Proceed to the Camel Humps",
+      "mapFocus": "(KNWL) Waldron NOLF/South Arrivals/Camel Humps",
+      "instructions": [
+        "Parallel the beach line southbound at 2,500' MSL · 240 KIAS",
+        "Fly to the Camel Humps",
+        "Scan for KNWL course rules departure traffic"
+      ],
+      "detail": "The binder says to execute the area exit procedures and then fly to Waldron, but gives no separate track from South Mustang. This follows the beach line departure routing. Check with an instructor.",
+      "source": "Binder, p. 48; Feb 2026 PPT, Part 2, slides 52–53."
+    },
+    { "use": "waldron-terminate-camel-humps" },
+    { "use": "waldron-arrival" }
+  ]
+}

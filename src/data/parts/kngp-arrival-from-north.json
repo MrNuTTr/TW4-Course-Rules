@@ -1,0 +1,7 @@
+{
+  "id": "kngp-arrival-from-north",
+  "cards": [
+    { "use": "northern-arrival-join" },
+    { "use": "northern-arrival-tail" }
+  ]
+}

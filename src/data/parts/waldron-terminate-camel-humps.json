@@ -1,0 +1,18 @@
+{
+  "id": "waldron-terminate-camel-humps",
+  "cards": [
+    {
+      "type": "radio",
+      "title": "Terminate at the Camel Humps",
+      "mapFocus": "(KNWL) Waldron NOLF/South Arrivals/Camel Humps",
+      "radio": {
+        "channel": "Corpus Approach · UHF CH 8",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Corpus Approach, <callsign>, Camel Humps, terminate." },
+          { "speaker": "Approach", "text": "<callsign>, terminate." }
+        ]
+      },
+      "source": "Binder, p. 48."
+    }
+  ]
+}

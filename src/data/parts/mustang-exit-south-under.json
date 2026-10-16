@@ -1,0 +1,18 @@
+{
+  "id": "mustang-exit-south-under",
+  "cards": [
+    {
+      "type": "action",
+      "title": "Leave {from.area} under the adjacent areas",
+      "mapFocus": "{from.area.poly}",
+      "instructions": [
+        "Proceed toward the beach line and descend to 4,500' MSL before transiting under the adjacent Mustang areas",
+        "Do not breach the boundary of an adjacent Mustang area",
+        "Maintain a vigilant scan for traffic conflicts while transiting below the Mustang areas",
+        "Scan for KNWL course rules departure traffic as you intercept the Southern Arrival"
+      ],
+      "detail": "For a practice PEL, coordinate with ATC and maintain 4,500' MSL until clear of the Mustang areas unless ATC approves otherwise.",
+      "source": "Binder, pp. 10–12, 24; Feb 2026 PPT, Part 1, slides 85–88."
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "southern-arrival-join",
+  "cards": [
+    {
+      "type": "action",
+      "title": "Join the Southern Arrival",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/South Arrivals",
+      "instructions": [
+        "Establish 1 WTD northbound at 1,000' MSL · 240 KIAS",
+        "Turn direct to Point Shamrock between Twin Condos and Port Royal",
+        "Maintain 1,000' MSL · 240 KIAS"
+      ],
+      "source": "Binder, p. 64; Feb 2026 PPT, Part 2, slide 108."
+    }
+  ]
+}

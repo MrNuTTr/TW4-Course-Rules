@@ -1,0 +1,43 @@
+{
+  "id": "foxtrot-exit",
+  "cards": [
+    {
+      "type": "action",
+      "title": "Prepare to leave {from.area} {from.block}",
+      "mapFocus": "{from.area.poly}",
+      "instructions": [
+        "Exit by climbing or descending to a transition layer within the area, through an unoccupied area (coordinate on CH 22), or laterally",
+        "Avoid North Mustang (6,500–17,500 ft MSL) at all times",
+        "Minimum altitude over the Aransas Wildlife Refuge is 3,000 ft AGL"
+      ],
+      "detail": "Proceeding north instead? Contact Houston Center on CH 23 (VHF 128.15) and request flight following. Houston Center will not provide it without an explicit request.",
+      "source": "Binder, p. 14; Feb 2026 PPT, Part 1, slide 96."
+    },
+    {
+      "type": "radio",
+      "title": "Announce your departure on Foxtrot Common",
+      "mapFocus": "{from.area.poly}",
+      "leadIn": "Before vacating your block:",
+      "radio": {
+        "channel": "Foxtrot Common · UHF CH 22",
+        "script": "99 Fox, <callsign> departing {from.area} {from.block} for {to.node.foxtrotCall}."
+      },
+      "source": "Binder, p. 14."
+    },
+    {
+      "type": "radio",
+      "title": "Report complete Foxtrot",
+      "mapFocus": "{from.area.poly}",
+      "radio": {
+        "channel": "Corpus Approach · UHF CH 8",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Corpus Approach, <callsign>, complete Foxtrot, request {to.node.intent}." },
+          { "speaker": "Approach", "text": "<callsign>, Corpus Approach, roger, proceed as requested." },
+          { "speaker": "Pilot", "text": "<callsign>, proceed as requested." }
+        ]
+      },
+      "detail": "The binder gives \"complete Foxtrot, request (transition)\" and a \"Roger, proceed as requested\" reply. Check with an instructor for the exact wording.",
+      "source": "Binder, p. 14."
+    }
+  ]
+}

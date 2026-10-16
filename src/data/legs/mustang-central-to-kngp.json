@@ -1,0 +1,27 @@
+{
+  "id": "mustang-central-to-kngp",
+  "from": "mustang",
+  "to": "kngp",
+  "when": { "from": { "area": "Central" } },
+  "title": "Mustang Central → KNGP RWY {to.runway}",
+  "featureIds": [
+    "{from.area.poly}",
+    "(KNGP) Corpus Christi NAS/Shamrock Arrivals/East Arrivals",
+    "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Twin Condos",
+    "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Port Royal",
+    "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/PT Shamrock",
+    "{to.runway.viaA}",
+    "{to.runway.viaB}",
+    "{to.runway.viaC}",
+    "{to.runway.entryLine}"
+  ],
+  "arrivalFeatureIds": [
+    "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/PT Shamrock"
+  ],
+  "cards": [
+    { "use": "mustang-exit-central" },
+    { "use": "mustang-exit-call" },
+    { "use": "kngp-arrival-from-central" },
+    { "use": "kngp-{to.entry.part}-{to.runway.flow}" }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "ingleside-from-south",
+  "cards": [
+    {
+      "type": "action",
+      "title": "Continue up the beach line",
+      "mapFocus": [
+        "(KNGP) Corpus Christi NAS/Shamrock Arrivals/South Arrivals",
+        "(KTFP) Ingleside Regional Airport/East / South Arrivals/Port Royal"
+      ],
+      "instructions": [
+        "Continue up the beach line at 2,500' MSL · 240 KIAS",
+        "Once abeam Port Royal, proceed direct to Ingleside Regional (about 330°)"
+      ],
+      "source": "Binder, pp. 55–58; Feb 2026 PPT, Part 2, slide 90."
+    },
+    {
+      "type": "action",
+      "title": "Descend into Ingleside",
+      "mapFocus": "(KTFP) Ingleside Regional Airport/East / South Arrivals/{to.runway}",
+      "instructions": [
+        "Maintain 2,500' MSL · 200 KIAS direct to Ingleside Regional",
+        "Once feet dry over Ingleside, begin your descent"
+      ],
+      "detail": "Transitions to and from Ingleside conflict with multiple VFR routes and IFR approaches. Be alert for IFR traffic at 1,600' MSL and stay below 3,000' MSL unless in contact with Corpus Approach.",
+      "source": "Binder, pp. 55–58; Feb 2026 PPT, Part 2, slide 91."
+    },
+    { "use": "ingleside-pattern-entry" }
+  ]
+}

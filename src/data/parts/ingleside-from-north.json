@@ -1,0 +1,21 @@
+{
+  "id": "ingleside-from-north",
+  "cards": [
+    {
+      "type": "action",
+      "title": "Proceed down the Intracoastal",
+      "mapFocus": [
+        "(KTFP) Ingleside Regional Airport/North Arrivals/9 Mile Point",
+        "(KTFP) Ingleside Regional Airport/North Arrivals/{to.runway}"
+      ],
+      "instructions": [
+        "State your intentions to Corpus Approach",
+        "Proceed down the Intracoastal at 1,500' MSL · 240 KIAS",
+        "Once clear of Aransas County Airport, proceed direct to the initial or downwind"
+      ],
+      "detail": "Transitions to and from Ingleside conflict with multiple VFR routes and IFR approaches. Be alert for IFR traffic at 1,600' MSL and stay below 3,000' MSL unless in contact with Corpus Approach.",
+      "source": "Binder, pp. 55–58; Feb 2026 PPT, Part 2, slides 86, 89."
+    },
+    { "use": "ingleside-pattern-entry" }
+  ]
+}

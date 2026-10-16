@@ -72,7 +72,7 @@ describe('graph integrity (run on every data import)', () => {
         for (const [key, value] of Object.entries(leg.when?.[side] ?? {})) {
           const input = node.inputs?.find((i) => i.id === key);
           expect(input, `${leg.id}: ${side}.${key}`).toBeDefined();
-          expect(input.options, `${leg.id}: ${side}.${key}`).toContain(value);
+          expect(input.options, `${leg.id}: ${side}.${key}`).toEqual(expect.arrayContaining([value].flat()));
         }
       }
     }
@@ -244,6 +244,34 @@ describe('leg planning', () => {
     expect(JSON.stringify(rkp.cards)).toMatch(/Boomer\/Ranger Base/);
     for (const leg of [rkp, viaGoliad, rkpHome, nwl, nwlHome]) {
       expect(JSON.stringify(leg.cards)).not.toMatch(/\{[a-z]+\./);
+    }
+  });
+
+  it('plans working area exits to arrivals and outlying fields', () => {
+    const text = (leg) => JSON.stringify(leg.cards);
+    const north = findLeg('mustang', { area: 'Area 5' }, 'kngp', { runway: '13L', entry: 'Standard entry' });
+    expect(text(north)).toMatch(/4,500' MSL before transiting/);
+    expect(text(north)).toMatch(/Northern Arrival/);
+    expect(text(north)).toMatch(/complete Mustang 5, request course rules Shamrock/);
+    const south = findLeg('mustang', { area: 'Area 3' }, 'kngp', { runway: '13L', entry: 'Standard entry' });
+    expect(text(south)).toMatch(/Southern Arrival/);
+    const central = findLeg('mustang', { area: 'Central' }, 'kngp', { runway: '13L', entry: 'Standard entry' });
+    expect(text(central)).toMatch(/Eastern Arrival/);
+    const fox = findLeg('foxtrot', { area: 'Fox 1', block: 'High' }, 'waldron', { runway: '36' });
+    expect(text(fox)).toMatch(/99 Fox, <callsign> departing Fox 1 High for the North to South Transition/);
+    expect(text(fox)).toMatch(/High Bridge/);
+    const rkp = findLeg('mustang', { area: 'Area 2' }, 'acounty', { runway: '14' });
+    expect(text(rkp)).toMatch(/course rules into Aransas County/);
+    expect(findLeg('mustang', { area: 'Area 3' }, 'acounty', { runway: '14' })).toBeUndefined();
+    const tfp = findLeg('mustang', { area: 'Area 7' }, 'ingleside', { runway: '13' });
+    expect(text(tfp)).toMatch(/abeam Port Royal/);
+    const destinations = (area) =>
+      getDestinations('mustang', { area }).map(({ node }) => node.id).sort();
+    expect(destinations('Area 1')).toEqual(['acounty', 'ingleside', 'kngp', 'waldron']);
+    expect(destinations('Area 4')).toEqual(['ingleside', 'kngp', 'waldron']);
+    expect(destinations('Central')).toEqual(['kngp']);
+    for (const leg of [north, south, central, fox, rkp, tfp]) {
+      expect(text(leg)).not.toMatch(/\{[a-z]+\./);
     }
   });
 });

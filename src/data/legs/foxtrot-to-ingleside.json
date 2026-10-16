@@ -1,0 +1,23 @@
+{
+  "id": "foxtrot-to-ingleside",
+  "from": "foxtrot",
+  "to": "ingleside",
+  "when": {},
+  "title": "Foxtrot {from.area} {from.block} → Ingleside RWY {to.runway}",
+  "featureIds": [
+    "{from.area.poly}",
+    "(KTFP) Ingleside Regional Airport/KTFP",
+    "(KTFP) Ingleside Regional Airport/{to.runway}",
+    "(KTFP) Ingleside Regional Airport/North Arrivals/9 Mile Point",
+    "(KTFP) Ingleside Regional Airport/North Arrivals/{to.runway}"
+  ],
+  "arrivalFeatureIds": [
+    "(KTFP) Ingleside Regional Airport/KTFP",
+    "(KTFP) Ingleside Regional Airport/{to.runway}",
+    "(KTFP) Ingleside Regional Airport/North Arrivals/{to.runway}"
+  ],
+  "cards": [
+    { "use": "foxtrot-exit" },
+    { "use": "ingleside-from-north" }
+  ]
+}

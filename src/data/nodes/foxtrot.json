@@ -3,7 +3,6 @@
   "name": "Foxtrot",
   "fullName": "Foxtrot Working Area (A-632F)",
   "kind": "work-area",
-  "endsRoute": true,
   "inputs": [
     {
       "id": "area",

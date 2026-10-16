@@ -1,0 +1,24 @@
+{
+  "id": "mustang-north-to-ingleside",
+  "from": "mustang",
+  "to": "ingleside",
+  "when": { "from": { "area": ["Area 1", "Area 2", "Area 5", "Area 6"] } },
+  "title": "Mustang {from.area} → Ingleside RWY {to.runway}",
+  "featureIds": [
+    "{from.area.poly}",
+    "(KTFP) Ingleside Regional Airport/KTFP",
+    "(KTFP) Ingleside Regional Airport/{to.runway}",
+    "(KTFP) Ingleside Regional Airport/North Arrivals/9 Mile Point",
+    "(KTFP) Ingleside Regional Airport/North Arrivals/{to.runway}"
+  ],
+  "arrivalFeatureIds": [
+    "(KTFP) Ingleside Regional Airport/KTFP",
+    "(KTFP) Ingleside Regional Airport/{to.runway}",
+    "(KTFP) Ingleside Regional Airport/North Arrivals/{to.runway}"
+  ],
+  "cards": [
+    { "use": "mustang-exit-{from.area.exit}" },
+    { "use": "mustang-exit-call" },
+    { "use": "ingleside-from-north" }
+  ]
+}

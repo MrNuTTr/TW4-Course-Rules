@@ -1,0 +1,28 @@
+{
+  "id": "mustang-south-to-waldron",
+  "from": "mustang",
+  "to": "waldron",
+  "when": { "from": { "area": ["Area 3", "Area 4", "Area 7", "Area 8"] } },
+  "title": "Mustang {from.area} → Waldron RWY {to.runway}",
+  "featureIds": [
+    "{from.area.poly}",
+    "(KNWL) Waldron NOLF/KNWL",
+    "(KNWL) Waldron NOLF/{to.runway.runwayLine}",
+    "(KNWL) Waldron NOLF/South Arrivals/Camel Humps",
+    "(KNWL) Waldron NOLF/South Arrivals/Shrimp Pond",
+    "(KNWL) Waldron NOLF/South Arrivals/Cooling Pond",
+    "(KNWL) Waldron NOLF/South Arrivals/Yorktown Bridge",
+    "(KNWL) Waldron NOLF/South Arrivals/Power Plant",
+    "(KNWL) Waldron NOLF/South Arrivals/{to.runway}"
+  ],
+  "arrivalFeatureIds": [
+    "(KNWL) Waldron NOLF/KNWL",
+    "(KNWL) Waldron NOLF/{to.runway.runwayLine}",
+    "(KNWL) Waldron NOLF/South Arrivals/{to.runway}"
+  ],
+  "cards": [
+    { "use": "mustang-exit-{from.area.exit}" },
+    { "use": "mustang-exit-call" },
+    { "use": "waldron-from-south" }
+  ]
+}

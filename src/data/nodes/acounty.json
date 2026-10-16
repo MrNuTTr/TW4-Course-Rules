@@ -3,6 +3,8 @@
   "name": "Aransas County",
   "fullName": "Aransas County Airport (KRKP)",
   "kind": "olf",
+  "intent": "course rules into Aransas County",
+  "foxtrotCall": "Aransas County",
   "inputs": [
     {
       "id": "runway",

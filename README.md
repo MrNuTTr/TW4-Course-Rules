@@ -42,11 +42,14 @@ fallback behavior.
 - Currently loaded (from the binder and Feb 2026 PowerPoints): the Rusty
   departure from all 7 runways (13L/13R/18/04/31L/31R/36) → KINGS 4 (any
   high/low area) or Goliad via Bayside → KNGP; plus the Beach Line departure
-  → Mustang (Areas 1–8, Central) or Foxtrot (Fox 1/2, High/Middle/Low); these
-  working areas end the route until their exits are added. Outlying fields
+  → Mustang (Areas 1–8, Central) or Foxtrot (Fox 1/2, High/Middle/Low). Working
+  area exits lead to KNGP (Northern, Southern or Eastern Arrival), Aransas
+  County, Waldron (Southern or North-to-South Transition) and Ingleside. Outlying fields
   Aransas County, Waldron and Ingleside are reachable from KNGP (Goliad and
   KINGS 4 also reach Aransas County, Goliad also reaches Ingleside) and return
-  to KNGP via the Northern/Southern Arrivals. Legs use `{from.X}`, `{to.X}` and `{to.X.detail}` tokens, resolved from the
+  to KNGP via the Northern/Southern Arrivals. A `when` value may be an array
+  of options so one leg covers several areas. A node's own top-level fields
+  (`intent`, `foxtrotCall`) are available as `{to.node.intent}` tokens. Legs use `{from.X}`, `{to.X}` and `{to.X.detail}` tokens, resolved from the
   chosen inputs and the per-option `details` in the node file, so one leg file
   covers every runway. A missing detail fails the tests.
 - `src/data/map-extras.json` holds derived map points and lines not in the KML (Goliad

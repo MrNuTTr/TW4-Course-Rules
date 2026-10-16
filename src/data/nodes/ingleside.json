@@ -3,6 +3,8 @@
   "name": "Ingleside",
   "fullName": "Ingleside Regional Airport (KTFP)",
   "kind": "olf",
+  "intent": "course rules into Ingleside Regional",
+  "foxtrotCall": "Ingleside",
   "inputs": [
     {
       "id": "runway",

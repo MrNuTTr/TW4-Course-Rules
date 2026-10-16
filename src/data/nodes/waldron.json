@@ -3,6 +3,8 @@
   "name": "Waldron",
   "fullName": "NOLF Waldron (KNWL)",
   "kind": "olf",
+  "intent": "course rules into Waldron",
+  "foxtrotCall": "the North to South Transition",
   "inputs": [
     {
       "id": "runway",

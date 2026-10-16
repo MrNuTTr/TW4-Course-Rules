@@ -1,0 +1,18 @@
+{
+  "id": "mustang-exit-north-under",
+  "cards": [
+    {
+      "type": "action",
+      "title": "Leave {from.area} under the adjacent areas",
+      "mapFocus": "{from.area.poly}",
+      "instructions": [
+        "Proceed toward the beach line and descend to 4,500' MSL before transiting under the adjacent Mustang areas",
+        "Do not breach the boundary of an adjacent Mustang area",
+        "Maintain a vigilant scan for traffic conflicts while transiting below the Mustang areas",
+        "Departing North Mustang for the Northern Arrival, be established at 1,500' MSL no later than 9 Mile Point"
+      ],
+      "detail": "For a practice PEL, coordinate with ATC and maintain 4,500' MSL until clear of the Mustang areas unless ATC approves otherwise.",
+      "source": "Binder, pp. 10–12, 24; Feb 2026 PPT, Part 1, slides 85–88."
+    }
+  ]
+}

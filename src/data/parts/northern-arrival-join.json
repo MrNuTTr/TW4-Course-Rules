@@ -1,0 +1,18 @@
+{
+  "id": "northern-arrival-join",
+  "cards": [
+    {
+      "type": "action",
+      "title": "Join the Northern Arrival",
+      "mapFocus": [
+        "(KNGP) Corpus Christi NAS/Shamrock Arrivals/North Arrivals",
+        "(KNGP) Corpus Christi NAS/Shamrock Arrivals/9 Mile Point"
+      ],
+      "instructions": [
+        "Be established at 1,500' MSL · 240 KIAS no later than 9 Mile Point",
+        "Follow the Northern Arrival down the Intracoastal toward the Aransas Pass Causeway"
+      ],
+      "source": "Binder, pp. 31, 63; Feb 2026 PPT, Part 1, slide 87; Part 2, slides 102–103."
+    }
+  ]
+}

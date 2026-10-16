@@ -3,7 +3,6 @@
   "name": "Mustang",
   "fullName": "Mustang Working Areas",
   "kind": "work-area",
-  "endsRoute": true,
   "inputs": [
     {
       "id": "area",
@@ -14,7 +13,7 @@
         "Area 1": {
           "region": "north",
           "checkin": "Mustang North",
-          "spoken": "1",
+          "spoken": "1", "exit": "north-direct",
           "poly": "Mustang Working Areas/Mustang North 1",
           "transition": "(KNGP) Corpus Christi NAS/Beach Line Departures/Foxtrot/Noth Mustang Transition",
           "waypoint": "(KRAS) Mustang Beach Airport/KRAS",
@@ -24,7 +23,7 @@
         "Area 2": {
           "region": "north",
           "checkin": "Mustang North",
-          "spoken": "2",
+          "spoken": "2", "exit": "north-direct",
           "poly": "Mustang Working Areas/Mustang North 2",
           "transition": "(KNGP) Corpus Christi NAS/Beach Line Departures/Foxtrot/Noth Mustang Transition",
           "waypoint": "(KRAS) Mustang Beach Airport/KRAS",
@@ -34,7 +33,7 @@
         "Area 3": {
           "region": "south",
           "checkin": "Mustang South",
-          "spoken": "3",
+          "spoken": "3", "exit": "south-direct",
           "poly": "Mustang Working Areas/Mustang South 3",
           "transition": "(KNGP) Corpus Christi NAS/Beach Line Departures/South Mustang Transition",
           "waypoint": "(KNGP) Corpus Christi NAS/Beach Line Departures/Padre Balli Park",
@@ -44,7 +43,7 @@
         "Area 4": {
           "region": "south",
           "checkin": "Mustang South",
-          "spoken": "4",
+          "spoken": "4", "exit": "south-direct",
           "poly": "Mustang Working Areas/Mustang South 4",
           "transition": "(KNGP) Corpus Christi NAS/Beach Line Departures/South Mustang Transition",
           "waypoint": "(KNGP) Corpus Christi NAS/Beach Line Departures/Padre Balli Park",
@@ -54,7 +53,7 @@
         "Area 5": {
           "region": "north",
           "checkin": "Mustang North",
-          "spoken": "5",
+          "spoken": "5", "exit": "north-under",
           "poly": "Mustang Working Areas/Mustang North 5",
           "transition": "(KNGP) Corpus Christi NAS/Beach Line Departures/Foxtrot/Noth Mustang Transition",
           "waypoint": "(KRAS) Mustang Beach Airport/KRAS",
@@ -64,7 +63,7 @@
         "Area 6": {
           "region": "north",
           "checkin": "Mustang North",
-          "spoken": "6",
+          "spoken": "6", "exit": "north-under",
           "poly": "Mustang Working Areas/Mustang North 6",
           "transition": "(KNGP) Corpus Christi NAS/Beach Line Departures/Foxtrot/Noth Mustang Transition",
           "waypoint": "(KRAS) Mustang Beach Airport/KRAS",
@@ -74,7 +73,7 @@
         "Area 7": {
           "region": "south",
           "checkin": "Mustang South",
-          "spoken": "7",
+          "spoken": "7", "exit": "south-under",
           "poly": "Mustang Working Areas/Mustang South 7",
           "transition": "(KNGP) Corpus Christi NAS/Beach Line Departures/South Mustang Transition",
           "waypoint": "(KNGP) Corpus Christi NAS/Beach Line Departures/Padre Balli Park",
@@ -84,7 +83,7 @@
         "Area 8": {
           "region": "south",
           "checkin": "Mustang South",
-          "spoken": "8",
+          "spoken": "8", "exit": "south-under",
           "poly": "Mustang Working Areas/Mustang South 8",
           "transition": "(KNGP) Corpus Christi NAS/Beach Line Departures/South Mustang Transition",
           "waypoint": "(KNGP) Corpus Christi NAS/Beach Line Departures/Padre Balli Park",
@@ -94,7 +93,7 @@
         "Central": {
           "region": "central",
           "checkin": "Mustang Central",
-          "spoken": "Central",
+          "spoken": "Central", "exit": "central",
           "poly": "Mustang Working Areas/Mustang Central",
           "transition": "Mustang Working Areas/Mustang Central",
           "waypoint": "(KRAS) Mustang Beach Airport/KRAS Stand Off",

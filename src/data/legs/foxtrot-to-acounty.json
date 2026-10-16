@@ -1,0 +1,22 @@
+{
+  "id": "foxtrot-to-acounty",
+  "from": "foxtrot",
+  "to": "acounty",
+  "when": {},
+  "title": "Foxtrot {from.area} {from.block} → Aransas County RWY {to.runway}",
+  "featureIds": [
+    "{from.area.poly}",
+    "(KRKP) Aransas County Airport/KRKP",
+    "(KRKP) Aransas County Airport/{to.runway.runwayLine}",
+    "(KRKP) Aransas County Airport/Arrivals/{to.runway}"
+  ],
+  "arrivalFeatureIds": [
+    "(KRKP) Aransas County Airport/KRKP",
+    "(KRKP) Aransas County Airport/{to.runway.runwayLine}",
+    "(KRKP) Aransas County Airport/Arrivals/{to.runway}"
+  ],
+  "cards": [
+    { "use": "foxtrot-exit" },
+    { "use": "acounty-from-working-area" }
+  ]
+}

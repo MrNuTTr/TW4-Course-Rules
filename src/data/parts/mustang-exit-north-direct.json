@@ -1,0 +1,16 @@
+{
+  "id": "mustang-exit-north-direct",
+  "cards": [
+    {
+      "type": "action",
+      "title": "Leave {from.area}",
+      "mapFocus": "{from.area.poly}",
+      "instructions": [
+        "Finish your work and clear the area toward the beach line",
+        "Maintain a vigilant scan for Mustang entry traffic at 5,500' MSL",
+        "Departing North Mustang for the Northern Arrival, be established at 1,500' MSL no later than 9 Mile Point"
+      ],
+      "source": "Binder, pp. 10–12, 24; Feb 2026 PPT, Part 1, slides 85–87."
+    }
+  ]
+}

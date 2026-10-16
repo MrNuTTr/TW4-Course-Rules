@@ -1,0 +1,28 @@
+{
+  "id": "mustang-exit-central",
+  "cards": [
+    {
+      "type": "radio",
+      "title": "Make the 99 call on Central Common",
+      "mapFocus": "{from.area.poly}",
+      "radio": {
+        "channel": "Central Common · UHF CH 18",
+        "script": "99 Central, <tac callsign>, complete <area>, <transition>."
+      },
+      "detail": "The binder shows this as \"complete xxxx\" with the transition in brackets; fill in your area and the transition you will use.",
+      "source": "Binder, p. 25."
+    },
+    {
+      "type": "action",
+      "title": "Leave Mustang Central eastbound",
+      "mapFocus": "{from.area.poly}",
+      "instructions": [
+        "Head east, perpendicular to the beach line (about 105°)",
+        "Remain clear of the maintenance area and other Central traffic",
+        "Descend after clearing the Central lateral boundaries, just north of Fish Pass"
+      ],
+      "detail": "Fish Pass is not in the map data, so it is not drawn.",
+      "source": "Binder, p. 25."
+    }
+  ]
+}

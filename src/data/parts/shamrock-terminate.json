@@ -1,0 +1,18 @@
+{
+  "id": "shamrock-terminate",
+  "cards": [
+    {
+      "type": "radio",
+      "title": "Terminate at Shamrock",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/PT Shamrock",
+      "radio": {
+        "channel": "Corpus Approach · UHF CH 8",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Corpus Approach, <callsign>, Shamrock, terminate." },
+          { "speaker": "Approach", "text": "<callsign>, Corpus Approach, terminate." }
+        ]
+      },
+      "source": "Binder, p. 64."
+    }
+  ]
+}

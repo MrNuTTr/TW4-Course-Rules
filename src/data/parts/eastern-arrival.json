@@ -1,0 +1,21 @@
+{
+  "id": "eastern-arrival",
+  "cards": [
+    {
+      "type": "action",
+      "title": "Turn toward Shamrock and join the Eastern Arrival",
+      "mapFocus": [
+        "(KNGP) Corpus Christi NAS/Shamrock Arrivals/East Arrivals",
+        "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Twin Condos",
+        "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Port Royal"
+      ],
+      "instructions": [
+        "Turn left toward Point Shamrock at 14 DME or ½ working altitude, whichever comes first",
+        "Maintain 1,000' MSL · 200 KIAS",
+        "Fly direct between Twin Condos and Port Royal to Point Shamrock"
+      ],
+      "source": "Binder, pp. 25, 61–62."
+    },
+    { "use": "shamrock-terminate" }
+  ]
+}
