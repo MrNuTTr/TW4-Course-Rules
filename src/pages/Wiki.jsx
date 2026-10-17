@@ -5,6 +5,7 @@ import { getNode } from '../routePlanner.js';
 import RouteExplorer from '../wiki/RouteExplorer.jsx';
 import { resolveRoute } from '../wiki/routes.js';
 import { WIKI_TREE, findWikiPage } from '../wiki/structure.js';
+import { COURSE_RULES_MAP_FEATURES } from '../courseRulesMap.js';
 const RouteMap = lazy(() => import('../RouteMap.jsx'));
 
 function TreeItem({ item, parentPath, depth, onNavigate }) {
@@ -61,7 +62,13 @@ function TreeItem({ item, parentPath, depth, onNavigate }) {
 function WikiPage({ page }) {
   const node = page.node ? getNode(page.node) : null;
   const arrival = page.routes?.find((route) => route.to === page.node);
-  const mapIds = arrival ? resolveRoute(arrival).leg?.arrivalFeatureIds : undefined;
+  const arrivalIds = arrival ? resolveRoute(arrival).leg?.arrivalFeatureIds : undefined;
+  const airfieldRoot = arrivalIds?.[0]?.split('/')[0];
+  // Outlying-field pages show the whole field: every initial, runway and arrival track.
+  const showWholeField = node?.kind === 'olf' && airfieldRoot && !airfieldRoot.startsWith('(KNGP)');
+  const mapIds = showWholeField
+    ? COURSE_RULES_MAP_FEATURES.filter((f) => f.id.startsWith(`${airfieldRoot}/`) && !f.id.includes('/Departures/')).map((f) => f.id)
+    : arrivalIds;
 
   return (
     <article className="wiki-article">
@@ -81,7 +88,7 @@ function WikiPage({ page }) {
       {mapIds && (
         <div className="map-card">
           <Suspense fallback={<p className="map-unavailable">Loading map…</p>}>
-            <RouteMap mapData={{ featureIds: mapIds }} />
+            <RouteMap mapData={{ featureIds: mapIds }} maxZoom={showWholeField ? 13 : 11} labelKeyPoints fitToField={showWholeField} />
           </Suspense>
         </div>
       )}

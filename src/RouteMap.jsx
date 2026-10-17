@@ -4,23 +4,30 @@ import { GeoJSON, MapContainer, TileLayer, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { getCourseRulesMapFeatures } from './courseRulesMap.js';
 
-function MapViewport({ features, focusFeatureId: focusIds }) {
+function MapViewport({ features, focusFeatureId: focusIds, maxZoom, focusOnField }) {
   const focusFeatureId = focusIds.join('|');
   const map = useMap();
   const hasFittedRoute = useRef(false);
   const lastFocusFeatureId = useRef(focusFeatureId);
 
   useEffect(() => {
+    const fitFeatures = focusOnField
+      ? features.filter(
+          (f) =>
+            f.geometry.type === 'Point' ||
+            /^\d{2}[LR]?\/\d{2}[LR]?$/.test(f.properties.mapLabel),
+        )
+      : features;
     const bounds = L.geoJSON({
       type: 'FeatureCollection',
-      features,
+      features: fitFeatures.length ? fitFeatures : features,
     }).getBounds();
     if (!bounds.isValid()) {
       throw new Error('The selected KML map features do not have valid coordinates.');
     }
 
     if (!hasFittedRoute.current) {
-      map.fitBounds(bounds, { padding: [24, 24], maxZoom: 9, animate: false });
+      map.fitBounds(bounds, { padding: [24, 24], maxZoom, animate: false });
       hasFittedRoute.current = true;
       lastFocusFeatureId.current = focusFeatureId;
       return;
@@ -52,7 +59,7 @@ function MapViewport({ features, focusFeatureId: focusIds }) {
   return null;
 }
 
-export default function RouteMap({ mapData, focusFeatureId }) {
+export default function RouteMap({ mapData, focusFeatureId, maxZoom = 9, labelKeyPoints = false, fitToField = false }) {
   const focusKey = [focusFeatureId].flat().filter(Boolean).join('|');
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const focusIds = useMemo(() => focusKey.split('|').filter(Boolean), [focusKey]);
@@ -120,8 +127,10 @@ export default function RouteMap({ mapData, focusFeatureId }) {
   }
 
   function onEachFeature(feature, layer) {
-    layer.bindTooltip(feature.properties.mapLabel, {
-      permanent: feature.properties.isActive,
+    const name = feature.properties.mapLabel;
+    const isKeyPoint = labelKeyPoints && feature.properties.customKind === 'initial';
+    layer.bindTooltip(name, {
+      permanent: feature.properties.isActive || isKeyPoint,
       direction: 'top',
       offset: [0, -7],
       className: 'map-waypoint-label',
@@ -164,7 +173,7 @@ export default function RouteMap({ mapData, focusFeatureId }) {
           pointToLayer={pointToLayer}
           onEachFeature={onEachFeature}
         />
-        <MapViewport features={mapFeatures} focusFeatureId={focusIds} />
+        <MapViewport features={mapFeatures} focusFeatureId={focusIds} maxZoom={maxZoom} focusOnField={fitToField} />
       </MapContainer>
     </div>
   );
