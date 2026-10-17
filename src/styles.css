@@ -950,6 +950,15 @@ h3 {
 .start-button {
   width: 100%;
   min-height: 52px;
+  border: 1px solid var(--blue-dark);
+  border-radius: 8px;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.start-button:disabled {
+  border-color: var(--c-aebbc6) !important;
+  cursor: not-allowed;
 }
 
 .map-star {
