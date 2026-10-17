@@ -316,10 +316,9 @@ export default function RouteMap({
         aria-label="Course-rules route map"
       >
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-          subdomains="abcd"
-          maxZoom={20}
+          attribution='Map data: <a href="https://www.usgs.gov/programs/national-geospatial-program/national-map">USGS The National Map</a>'
+          url="https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}"
+          maxZoom={16}
         />
         <HazardPane />
         <GeoJSON
