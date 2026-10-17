@@ -1,12 +1,9 @@
-const RADIO_LABEL = { radio: 'Radio call', action: 'Action', checkpoint: 'Checkpoint' };
-
 // The body of a single card: title, instructions and radio script/exchange.
 export default function CardView({ event }) {
   const radio = event.radio;
 
   return (
     <>
-      <div className={`event-type event-type-${event.type}`}>{RADIO_LABEL[event.type]}</div>
       <h2 className="guide-title">{event.title}</h2>
       {(event.leadIn || event.instructions?.length > 0 || event.prompt) && (
         <div className="event-instructions">

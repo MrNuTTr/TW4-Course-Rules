@@ -249,31 +249,8 @@ h3 {
   letter-spacing: 0.08em;
 }
 
-.event-type {
-  display: inline-flex;
-  margin-top: 20px;
-  padding: 6px 9px;
-  border-radius: 4px;
-  background: #e9f1f7;
-  color: #31516a;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.event-type-radio {
-  background: #e8f2ff;
-  color: #174e82;
-}
-
-.event-type-checkpoint {
-  background: #fff1d9;
-  color: #784b0a;
-}
-
 .guide-title {
-  margin: 13px 0 16px;
+  margin: 20px 0 16px;
   font-size: clamp(1.3rem, 4vw, 1.8rem);
   line-height: 1.25;
 }
