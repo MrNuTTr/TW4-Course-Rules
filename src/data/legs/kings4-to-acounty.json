@@ -1,4 +1,4 @@
-{
+﻿{
   "id": "kings4-to-acounty",
   "from": "kings4",
   "to": "acounty",
@@ -6,7 +6,7 @@
   "title": "KINGS 4 Area {from.area} → Aransas County RWY {to.runway}",
   "featureIds": [
     "{from.area.moa}",
-    "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Goliad Arrivals",
+    "(KNGP) Corpus Christi NAS/Rusty Departures/Woodsboro to Bayside (~145°)",
     "(KRKP) Aransas County Airport/KRKP",
     "(KRKP) Aransas County Airport/{to.runway.runwayLine}",
     "(KRKP) Aransas County Airport/Arrivals/{to.runway}",
@@ -50,7 +50,7 @@
       "title": "Descend and proceed to Woodsboro",
       "mapFocus": [
         "{from.area.moa}",
-        "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Goliad Arrivals"
+        "(KNGP) Corpus Christi NAS/Rusty Departures/Woodsboro to Bayside (~145°)"
       ],
       "instructions": [
         "Descend within the lateral confines of the MOA to 2,500' MSL",
@@ -62,3 +62,6 @@
     { "use": "acounty-woodsboro-entry" }
   ]
 }
+
+
+

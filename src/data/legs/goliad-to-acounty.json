@@ -1,4 +1,4 @@
-{
+﻿{
   "id": "goliad-to-acounty",
   "from": "goliad",
   "to": "acounty",
@@ -13,7 +13,8 @@
     "(KRKP) Aransas County Airport/{to.runway.runwayLine}",
     "(KRKP) Aransas County Airport/Arrivals/{to.runway}",
     "(KRKP) Aransas County Airport/Initial {to.runway}",
-    "(KNGP) Corpus Christi NAS/Rusty Departures/Woodsboro"
+    "(KNGP) Corpus Christi NAS/Rusty Departures/Woodsboro",
+    "(KNGP) Corpus Christi NAS/Rusty Departures/Woodsboro to Bayside (~145°)"
   ],
   "arrivalFeatureIds": [
     "(KRKP) Aransas County Airport/KRKP",
@@ -25,3 +26,4 @@
     { "use": "acounty-woodsboro-entry" }
   ]
 }
+

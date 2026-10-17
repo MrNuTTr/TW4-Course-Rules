@@ -1,11 +1,11 @@
-{
+﻿{
   "id": "acounty-woodsboro-entry",
   "cards": [
     {
       "type": "radio",
       "title": "Check in with Corpus Approach at Woodsboro",
       "mapFocus": [
-        "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Goliad Arrivals",
+        "(KNGP) Corpus Christi NAS/Rusty Departures/Woodsboro to Bayside (~145°)",
         "(KNGP) Corpus Christi NAS/Rusty Departures/Woodsboro"
       ],
       "leadIn": "Crossing Woodsboro at 2,500' MSL · 240 KIAS:",
@@ -39,7 +39,7 @@
     {
       "type": "action",
       "title": "Woodsboro to Bayside",
-      "mapFocus": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Goliad Arrivals",
+      "mapFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/Woodsboro to Bayside (~145°)",
       "instructions": [
         "Fly approximately 145° toward Bayside",
         "Maintain 2,500' MSL · 240 KIAS"
@@ -61,3 +61,5 @@
     { "use": "acounty-initial" }
   ]
 }
+
+

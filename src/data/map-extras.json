@@ -1,4 +1,4 @@
-[
+﻿[
   {
     "folder": "(KNGT) Goliad NOLF",
     "name": "Initial 11",
@@ -57,6 +57,16 @@
       [-97.23111176568834, 28.0797910109765]
     ],
     "description": "Straight line from PT Rusty to Bayside. Illustrative, derived from KML points."
+  },
+  {
+    "folder": "(KNGP) Corpus Christi NAS/Rusty Departures",
+    "name": "Woodsboro to Bayside (~145°)",
+    "kind": "line",
+    "coordinates": [
+      [-97.32213655939522, 28.23661729855666],
+      [-97.23111176568834, 28.0797910109765]
+    ],
+    "description": "Straight line from Woodsboro to Bayside on the way to Aransas County. Illustrative, derived from KML points."
   },
   {
     "folder": "(KNGP) Corpus Christi NAS/Rusty Departures",
@@ -164,3 +174,4 @@
     "description": "Exit north (~350°) toward Bayside from RWY 31. Illustrative straight line; the KML Ingleside departure tracks go south."
   }
 ]
+
