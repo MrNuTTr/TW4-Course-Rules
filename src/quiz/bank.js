@@ -116,9 +116,11 @@ export function chairFlyLegs() {
         fromPicks,
         toPicks,
         cards: leg.cards,
+        featureIds: leg.featureIds,
       });
     }
   }
   return [...seen.values()];
 }
+
 

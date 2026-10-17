@@ -1,6 +1,8 @@
-﻿import { useMemo, useState } from 'react';
+﻿import { Suspense, lazy, useMemo, useState } from 'react';
 import CardView from '../components/CardView.jsx';
 import { buildBank, chairFlyLegs, choicesFor, shuffle } from '../quiz/bank.js';
+
+const RouteMap = lazy(() => import('../RouteMap.jsx'));
 
 const unique = (list) => [...new Set(list)];
 
@@ -186,6 +188,8 @@ function ChairFlyQuiz({ session, setSession }) {
   const [fromPick, setFromPick] = useState('');
   const [to, setTo] = useState('');
   const [toPick, setToPick] = useState('');
+  const [showMap, setShowMap] = useState(false);
+  const [hideOnNext, setHideOnNext] = useState(false);
 
   const matches = legs.filter(
     (leg) =>
@@ -213,6 +217,7 @@ function ChairFlyQuiz({ session, setSession }) {
       );
     }
     const advance = () => {
+      if (hideOnNext) setShowMap(false);
       const lastCard = session.card + 1 >= leg.cards.length;
       setSession({
         ...session,
@@ -231,6 +236,26 @@ function ChairFlyQuiz({ session, setSession }) {
         <p className="quiz-leg">
           {leg.fromNode} {leg.fromPicks.join(', ')} → {leg.toNode} {leg.toPicks.join(', ')}
         </p>
+        <div className="quiz-map-controls">
+          <button type="button" className="home-button" aria-pressed={showMap} onClick={() => setShowMap(!showMap)}>
+            {showMap ? 'Hide map' : 'Show map'}
+          </button>
+          <label>
+            <input type="checkbox" checked={hideOnNext} onChange={(e) => setHideOnNext(e.target.checked)} />
+            Hide map on next question
+          </label>
+        </div>
+        {showMap && (
+          <div className="map-card map-card-active">
+            <Suspense fallback={<p className="map-unavailable">Loading map…</p>}>
+              <RouteMap
+                key={`${session.leg}-${session.card}`}
+                mapData={{ featureIds: leg.featureIds }}
+                focusFeatureId={card.mapFocus}
+              />
+            </Suspense>
+          </div>
+        )}
         {session.revealed ? (
           <CardView event={card} />
         ) : (
@@ -328,6 +353,7 @@ export default function Quiz() {
     </div>
   );
 }
+
 
 
 
