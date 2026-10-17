@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom';
+﻿import { Link } from 'react-router-dom';
 
 const SECTIONS = [
   { to: '/chair-fly', title: 'Chair Fly', text: 'Walk a route leg by leg with the map and radio calls.' },
-  { to: '/wiki', title: 'Wiki', text: 'Browse every departure, working area, outlying field and arrival.' },
+  { to: '/wiki', title: 'Wiki', text: 'Browse every departure, working area, airfield and arrival.' },
   { to: '/quiz', title: 'Quiz', text: 'Test yourself on altitudes, calls and procedures.' },
 ];
 

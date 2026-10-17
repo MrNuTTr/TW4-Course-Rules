@@ -1,4 +1,4 @@
-// Wiki tree. `node` pulls in that place's info cards; `routes` lists the legs
+﻿// Wiki tree. `node` pulls in that place's info cards; `routes` lists the legs
 // shown as explorers on the page. A route may fix or restrict input options
 // (`fixedTo`, `filterFrom`...) so one leg file can serve several pages.
 const r = (from, to, extra = {}) => ({ from, to, ...extra });
@@ -110,9 +110,23 @@ export const WIKI_TREE = [
     ],
   },
   {
-    slug: 'outlying-fields',
-    title: 'Outlying Fields',
+    slug: 'airfields',
+    title: 'Airfields',
     children: [
+      {
+        slug: 'kngp',
+        title: 'KNGP',
+        node: 'kngp',
+        routes: [
+          r('kngp', 'kings4'),
+          r('kngp', 'mustang'),
+          r('kngp', 'foxtrot'),
+          r('kngp', 'goliad'),
+          r('kngp', 'acounty'),
+          r('kngp', 'ingleside'),
+          r('kngp', 'waldron', { fixedTo: { route: 'Course rules' } }),
+        ],
+      },
       {
         slug: 'aransas-county',
         title: 'Aransas County',

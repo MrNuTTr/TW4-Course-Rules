@@ -1,4 +1,4 @@
-import { Suspense, lazy, useState } from 'react';
+﻿import { Suspense, lazy, useState } from 'react';
 import { Link, NavLink, useParams } from 'react-router-dom';
 import CardView from '../components/CardView.jsx';
 import { getNode } from '../routePlanner.js';
@@ -68,7 +68,9 @@ function WikiPage({ page }) {
   const showWholeField = node?.kind !== 'work-area' && airfieldRoot && !airfieldRoot.startsWith('(KNGP)');
   const mapIds = showWholeField
     ? COURSE_RULES_MAP_FEATURES.filter((f) => f.id.startsWith(`${airfieldRoot}/`) && !f.id.includes('Departures')).map((f) => f.id)
-    : arrivalIds;
+    : page.node === 'kngp'
+      ? COURSE_RULES_MAP_FEATURES.filter((f) => f.id.startsWith('(KNGP) Corpus Christi NAS/') && f.id.split('/').length === 2).map((f) => f.id)
+      : arrivalIds;
 
   return (
     <article className="wiki-article">
@@ -88,7 +90,7 @@ function WikiPage({ page }) {
       {mapIds && (
         <div className="map-card">
           <Suspense fallback={<p className="map-unavailable">Loading map…</p>}>
-            <RouteMap key={page.path} mapData={{ featureIds: mapIds }} maxZoom={showWholeField ? 13 : 11} labelKeyPoints fitToField={showWholeField} layerToggles />
+            <RouteMap key={page.path} mapData={{ featureIds: mapIds }} maxZoom={showWholeField || page.node === 'kngp' ? 13 : 11} labelKeyPoints fitToField={showWholeField || page.node === 'kngp'} layerToggles />
           </Suspense>
         </div>
       )}
