@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 const TYPES = [
-  ['discrepancy', 'Discrepancy with the SOP or binder'],
+  ['discrepancy', 'Discrepancy with the SOP'],
   ['bug', 'Bug or something broken'],
   ['other', 'Other feedback'],
 ];
