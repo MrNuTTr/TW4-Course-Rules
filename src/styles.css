@@ -1228,7 +1228,7 @@ h3 {
 .quiz-choice { min-height: 48px; padding: 8px 14px; border: 1px solid #aebbc6; border-radius: 8px; background: #fff; color: var(--ink); font: inherit; text-align: left; cursor: pointer; }
 .quiz-choice.correct { background: #def5e3; border-color: #3a9b57; }
 .quiz-choice.wrong { background: #fde3e3; border-color: #c0392b; }
-.quiz-nav { margin-top: 14px; }
+.quiz-actions.quiz-nav { margin-top: 14px; justify-content: space-between; }
 .quiz-nav .primary-button:disabled { opacity: 0.4; cursor: not-allowed; }
 .quiz-nav .secondary-button:disabled { opacity: 0.4; cursor: not-allowed; }
 .quiz-actions { display: flex; justify-content: flex-end; gap: 10px; width: 100%; }
