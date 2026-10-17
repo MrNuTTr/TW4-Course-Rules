@@ -51,7 +51,7 @@ export const CURATED_A = [
   q('KNGP → KINGS 4', 'Routes', 'You are crossing Point Rusty bound for KINGS 4.',
     'What do you do at Point Rusty?', 'Turn right toward Bayside (~360°) and climb to 14,500\' MSL', ['Turn left toward Woodsboro and climb to 14,500\' MSL', 'Turn right toward Bayside and climb to 5,500\' MSL', 'Continue direct and climb to 15,000\' MSL']),
   q('KNGP → KINGS 4', 'Routes', 'Corpus Departure directs you to contact Houston Center as you proceed to KINGS 4.',
-    'Which frequency do you contact?', '135.05', ['128.15', '118.7', '126.2']),
+    'Which frequency do you contact?', 'VHF CH 22', ['VHF CH 23', 'UHF CH 6', 'UHF CH 20']),
 
   // KNGP -> Foxtrot
   q('KNGP → Foxtrot', 'Routes', 'You crossed the beach line on the beach line departure bound for Fox 1.',
@@ -81,7 +81,7 @@ export const CURATED_A = [
   q('Foxtrot', 'Reference', 'You are leaving the Foxtrot low block southbound and need a transition altitude.',
     'What is the low transition altitude for south/west flight?', '6,200\' MSL', ['6,700\' MSL', '12,200\' MSL', '12,700\' MSL']),
   q('Foxtrot', 'Reference', 'You want flight following from Houston Center while working in Foxtrot.',
-    'What must you do to get it?', 'Explicitly request it (VHF 135.05 or 128.15)', ['Nothing, it is automatic', 'Check in on CH 22', 'Call Corpus Approach on CH 17']),
+    'What must you do to get it?', 'Explicitly request it (VHF CH 22 or CH 23)', ['Nothing, it is automatic', 'Check in on CH 22', 'Call Corpus Approach on CH 17']),
 
   // KINGS 4 reference
   q('KINGS 4', 'Reference', 'You are inbound to Area 2 High and approaching the MOA boundary.',

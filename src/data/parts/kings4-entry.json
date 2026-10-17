@@ -1,4 +1,4 @@
-{
+﻿{
   "id": "kings4-entry",
   "cards": [
     {
@@ -25,11 +25,11 @@
         "exchange": [
           {
             "speaker": "Departure",
-            "text": "<callsign>, Corpus Departure, contact Houston Center on 135.05."
+            "text": "<callsign>, Corpus Departure, contact Houston Center on CH 22."
           },
           {
             "speaker": "Pilot",
-            "text": "<callsign>, contact Houston Center on 135.05."
+            "text": "<callsign>, contact Houston Center on CH 22."
           }
         ]
       },

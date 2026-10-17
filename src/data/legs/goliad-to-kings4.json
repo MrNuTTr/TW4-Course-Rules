@@ -1,4 +1,4 @@
-{
+﻿{
   "id": "goliad-to-kings4",
   "from": "goliad",
   "to": "kings4",
@@ -61,7 +61,7 @@
         "Check with an instructor for the exact wording from Goliad"
       ],
       "radio": {
-        "channel": "Houston Center · VHF CH 22 (135.05)",
+        "channel": "Houston Center · VHF CH 22",
         "exchange": [
           { "speaker": "Pilot", "text": "Houston Center, <callsign>, passing <altitude>, working KINGS 4." },
           { "speaker": "Houston Center", "text": "<callsign>, Houston Center, cleared KINGS 4 MOA." },
@@ -77,7 +77,7 @@
       "leadIn": "Once cleared into the MOA:",
       "instructions": [
         "Switch to KINGS 4 Common (UHF CH 20) no later than 8,000' MSL",
-        "Switch to VHF CH 22/23 (128.15/135.05) when directed by Center"
+        "Switch to VHF CH 22 or CH 23 when directed by Center"
       ],
       "source": "3710.14, para 2.j(2)."
     },

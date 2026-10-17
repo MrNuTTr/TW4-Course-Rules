@@ -1,4 +1,4 @@
-{
+﻿{
   "id": "foxtrot",
   "name": "Foxtrot",
   "fullName": "Foxtrot Working Area (A-632F)",
@@ -48,7 +48,7 @@
       "instructions": [
         "Traffic operating in or departing from Foxtrot shall avoid North Mustang (6,500–17,500 ft MSL) at all times",
         "Minimum altitude over the Aransas Wildlife Refuge is 3,000 ft AGL",
-        "Houston Center will not provide flight following without an explicit request (VHF 135.05 or 128.15)"
+        "Houston Center will not provide flight following without an explicit request (VHF CH 22 or CH 23)"
       ],
       "source": "Binder, p. 27; Feb 2026 PPT, Part 1, slide 93."
     }
