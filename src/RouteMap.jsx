@@ -26,26 +26,26 @@ function layerLabel(feature) {
 const FIELD_ROOT = /^\(K(?!NGP)[A-Z]{3}\)/;
 const AIRPORT_RING = /^(\d+ NM Radius|Class D Airspace)$/;
 
-// Runway number (e.g. "13") a feature belongs to at an outlying field, or null.
-function runwayOf(feature) {
+// Runway numbers (e.g. ["11","29"]) a feature belongs to at an outlying field.
+// Pattern ovals are drawn per runway pair, so a "11/29" feature belongs to both.
+function runwaysOf(feature) {
   const { mapLabel: name, mapFolder } = feature.properties;
-  if (!FIELD_ROOT.test(mapFolder)) return null;
+  if (!FIELD_ROOT.test(mapFolder)) return [];
   const initial = /^Initial (\d{2}[LR]?)$/.exec(name);
-  if (initial) return initial[1];
-  return /^\d{2}[LR]?$/.test(name) ? name : null;
+  if (initial) return [initial[1]];
+  return /^\d{2}[LR]?(\/\d{2}[LR]?)?$/.test(name) ? name.split('/') : [];
 }
 
-// The pattern track sits at the airfield root or in a plain "Arrivals" folder;
-// every other per-runway track is an initial/transition path.
+// The pattern ovals sit at the airfield root; every deeper per-runway track
+// (Arrivals, transitions, departures) is an initial/transition path.
 function isPatternTrack(feature) {
-  const parts = feature.properties.mapFolder.split('/');
-  return parts.length === 1 || (parts.length === 2 && parts[1] === 'Arrivals');
+  return feature.properties.mapFolder.split('/').length === 1 && feature.properties.customKind !== 'initial';
 }
 
 function defaultHidden(features) {
   const hidden = new Set();
   for (const f of features) {
-    if (runwayOf(f) && !isPatternTrack(f)) hidden.add(f.id);
+    if (runwaysOf(f).length && !isPatternTrack(f)) hidden.add(f.id);
     if (f.properties.customKind === 'initial') hidden.add(f.id);
     if (/^5 NM/.test(f.properties.mapLabel)) hidden.add(f.id);
   }
@@ -137,16 +137,16 @@ export default function RouteMap({
     const groups = new Map();
     const others = [];
     for (const f of mapFeatures) {
-      const rwy = runwayOf(f);
-      if (!rwy) {
-        if (!/^\d{2}[LR]?\/\d{2}[LR]?$/.test(f.properties.mapLabel)) {
-          others.push({ id: f.id, label: layerLabel(f) });
-        }
+      const rwys = runwaysOf(f);
+      if (!rwys.length) {
+        others.push({ id: f.id, label: layerLabel(f) });
         continue;
       }
-      const group = groups.get(rwy) ?? { rwy, pattern: [], paths: [] };
-      (isPatternTrack(f) && f.properties.customKind !== 'initial' ? group.pattern : group.paths).push(f.id);
-      groups.set(rwy, group);
+      for (const rwy of rwys) {
+        const group = groups.get(rwy) ?? { rwy, pattern: [], paths: [] };
+        (isPatternTrack(f) ? group.pattern : group.paths).push(f.id);
+        groups.set(rwy, group);
+      }
     }
     return { runwayGroups: [...groups.values()].sort((a, b) => a.rwy.localeCompare(b.rwy)), otherItems: others };
   }, [mapFeatures]);
