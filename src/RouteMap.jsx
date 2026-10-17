@@ -4,6 +4,15 @@ import { GeoJSON, MapContainer, TileLayer, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { getCourseRulesMapFeatures } from './courseRulesMap.js';
 
+// Hazard circles sit below the tracks so they never block clicks on them.
+function HazardPane() {
+  const map = useMap();
+  if (!map.getPane('hazardPane')) {
+    map.createPane('hazardPane').style.zIndex = 350;
+  }
+  return null;
+}
+
 function MapViewport({ features, focusFeatureId: focusIds, maxZoom, focusOnField }) {
   const focusFeatureId = focusIds.join('|');
   const map = useMap();
@@ -99,6 +108,7 @@ export default function RouteMap({ mapData, focusFeatureId, maxZoom = 9, labelKe
     const isActive = feature.properties.isActive;
     if (feature.properties.customKind === 'hazard') {
       return L.circle(latlng, {
+        pane: 'hazardPane',
         radius: (feature.properties.radiusNm ?? 0.5) * 1852,
         color: '#c62828',
         weight: 2,
@@ -166,6 +176,7 @@ export default function RouteMap({ mapData, focusFeatureId, maxZoom = 9, labelKe
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+        <HazardPane />
         <GeoJSON
           key={focusKey}
           data={{ type: 'FeatureCollection', features: mapFeatures }}
