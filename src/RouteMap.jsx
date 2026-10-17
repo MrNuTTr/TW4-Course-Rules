@@ -13,17 +13,33 @@ const USGS = {
   maxZoom: 16,
 };
 
-const MAPTILER = MAPTILER_KEY && {
-  attribution:
-    '&copy; <a href="https://www.maptiler.com/copyright/">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-  url: `https://api.maptiler.com/maps/streets-v2/256/{z}/{x}/{y}.png?key=${MAPTILER_KEY}`,
-  maxZoom: 18,
-};
+const maptiler = (style) =>
+  MAPTILER_KEY && {
+    attribution:
+      '&copy; <a href="https://www.maptiler.com/copyright/">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    url: `https://api.maptiler.com/maps/${style}/256/{z}/{x}/{y}.png?key=${MAPTILER_KEY}`,
+    maxZoom: 18,
+  };
+const MAPTILER = maptiler('streets-v2');
+const MAPTILER_DARK = maptiler('streets-v2-dark');
+
+const isDarkTheme = () => document.documentElement.getAttribute('data-theme') === 'dark';
+
+function useDarkTheme() {
+  const [dark, setDark] = useState(isDarkTheme);
+  useEffect(() => {
+    const observer = new MutationObserver(() => setDark(isDarkTheme()));
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    return () => observer.disconnect();
+  }, []);
+  return dark;
+}
 
 // MapTiler when a key is configured; falls back to USGS if the key is rejected.
 // MapTiler serves a 403 as a PNG, so Leaflet never reports a tile error. Probe one tile instead.
 function BaseLayer() {
   const [failed, setFailed] = useState(false);
+  const dark = useDarkTheme();
   useEffect(() => {
     if (!MAPTILER) return undefined;
     const probe = MAPTILER.url.replace('{z}', '0').replace('{x}', '0').replace('{y}', '0');
@@ -37,8 +53,18 @@ function BaseLayer() {
       cancelled = true;
     };
   }, []);
-  const base = MAPTILER && !failed ? MAPTILER : USGS;
-  return <TileLayer key={base.url} attribution={base.attribution} url={base.url} maxZoom={base.maxZoom} referrerPolicy="origin" />;
+  const useMaptiler = MAPTILER && !failed;
+  const base = useMaptiler ? (dark ? MAPTILER_DARK : MAPTILER) : USGS;
+  return (
+    <TileLayer
+      key={base.url}
+      attribution={base.attribution}
+      url={base.url}
+      maxZoom={base.maxZoom}
+      referrerPolicy="origin"
+      className={useMaptiler ? '' : 'usgs-tiles'}
+    />
+  );
 }
 
 // Hazard circles sit below the tracks so they never block clicks on them.

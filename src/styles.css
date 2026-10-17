@@ -1389,5 +1389,5 @@ h3 {
 .contact-error { color: var(--c-b3261e); margin: 0; }
 .theme-toggle { min-height: 36px; min-width: 36px; padding: 0 8px; border: 0; border-radius: 8px; background: transparent; color: inherit; font-size: 1.15rem; cursor: pointer; }
 .theme-toggle:hover { background: var(--c-e8edf2); }
-:root[data-theme='dark'] .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(0.95) contrast(0.9); }
+:root[data-theme='dark'] .usgs-tiles { filter: invert(1) hue-rotate(180deg) brightness(0.95) contrast(0.9); }
 :root[data-theme='dark'] .leaflet-bar a, :root[data-theme='dark'] .leaflet-control-attribution { background-color: var(--c-ffffff); color: var(--ink); }
