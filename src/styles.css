@@ -1391,3 +1391,16 @@ h3 {
 .theme-toggle:hover { background: var(--c-e8edf2); }
 :root[data-theme='dark'] .usgs-tiles { filter: invert(1) hue-rotate(180deg) brightness(0.95) contrast(0.9); }
 :root[data-theme='dark'] .leaflet-bar a, :root[data-theme='dark'] .leaflet-control-attribution { background-color: var(--c-ffffff); color: var(--ink); }
+/* Top nav: links sit inline on wide screens; a hamburger menu on narrow ones. */
+.top-nav { flex-wrap: wrap; }
+.top-nav-actions { display: flex; align-items: center; gap: 4px; order: 3; }
+.top-nav-links { order: 2; margin-left: auto; }
+.nav-menu-button { display: none; min-height: 40px; min-width: 40px; border: 0; border-radius: 8px; background: transparent; color: inherit; font-size: 1.4rem; cursor: pointer; }
+@media (max-width: 700px) {
+  .top-nav { padding: 6px 14px; }
+  .top-nav-brand { margin-right: auto; }
+  .nav-menu-button { display: inline-block; }
+  .top-nav-links { display: none; order: 4; flex-basis: 100%; flex-direction: column; margin: 6px 0 4px; padding-top: 6px; border-top: 1px solid var(--line); }
+  .top-nav.menu-open .top-nav-links { display: flex; }
+  .top-nav-links a { padding: 14px 12px; font-size: 1.05rem; }
+}
