@@ -105,7 +105,8 @@ function TopicQuiz({ session, setSession }) {
 }
 
 function TopicSession({ session, setSession }) {
-  const { items, index, score, answered, revealed } = session;
+  const { items, index } = session;
+  const score = items.reduce((sum, entry) => sum + (entry.gained || 0), 0);
   if (index >= items.length) {
     return (
       <section className="quiz-card">
@@ -121,9 +122,22 @@ function TopicSession({ session, setSession }) {
   }
   const item = items[index];
   const mc = Boolean(item.choices);
-  const next = (gained) =>
-    setSession({ ...session, index: index + 1, score: score + gained, answered: null, revealed: false });
+  const { answered, revealed } = item;
   const correct = item.answers[0];
+  const update = (patch) =>
+    setSession({ ...session, items: items.map((entry, i) => (i === index ? { ...entry, ...patch } : entry)) });
+  const go = (delta) => setSession({ ...session, index: index + delta });
+  const done = mc ? Boolean(answered) : item.gained !== undefined;
+  const nav = (
+    <div className="quiz-actions quiz-nav">
+      <button type="button" className="secondary-button" disabled={index === 0} onClick={() => go(-1)}>
+        Previous
+      </button>
+      <button type="button" className="primary-button" disabled={!done} onClick={() => go(1)}>
+        Next
+      </button>
+    </div>
+  );
 
   return (
     <section className="quiz-card">
@@ -148,36 +162,34 @@ function TopicSession({ session, setSession }) {
                   type="button"
                   className={`quiz-choice${state}`}
                   disabled={Boolean(answered)}
-                  onClick={() => setSession({ ...session, answered: choice })}
+                  onClick={() => update({ answered: choice, gained: choice === correct ? 1 : 0 })}
                 >
                   {choice}
                 </button>
               );
             })}
           </div>
-          {answered && (
-            <div className="quiz-actions">
-              <button type="button" className="primary-button" onClick={() => next(answered === correct ? 1 : 0)}>
-                Next
-              </button>
-            </div>
-          )}
         </>
       ) : revealed ? (
         <>
           <p className="quiz-answer">{item.answers.join(' · ')}</p>
-          <div className="quiz-actions">
-            <button type="button" className="secondary-button" onClick={() => next(0)}>Missed it</button>
-            <button type="button" className="primary-button" onClick={() => next(1)}>Got it</button>
-          </div>
+          {item.gained === undefined ? (
+            <div className="quiz-actions">
+              <button type="button" className="secondary-button" onClick={() => update({ gained: 0 })}>Missed it</button>
+              <button type="button" className="primary-button" onClick={() => update({ gained: 1 })}>Got it</button>
+            </div>
+          ) : (
+            <p className="quiz-meta">{item.gained ? 'Marked: got it' : 'Marked: missed it'}</p>
+          )}
         </>
       ) : (
         <div className="quiz-actions">
-          <button type="button" className="primary-button" onClick={() => setSession({ ...session, revealed: true })}>
+          <button type="button" className="primary-button" onClick={() => update({ revealed: true })}>
             Reveal answer
           </button>
         </div>
       )}
+      {nav}
     </section>
   );
 }
