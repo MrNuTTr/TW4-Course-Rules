@@ -110,18 +110,6 @@ reviewed, authoritative data.
 
 The Contact page (and the small "Report an issue" links on wiki pages, chair fly cards and quiz questions) posts to the Static Web Apps function in `api/`, which opens a GitHub issue labelled `user-report`. Configure these in the Static Web App's Environment variables: `GITHUB_TOKEN` (fine-grained token, Issues: read/write on this repo only) and `GITHUB_REPO` (`owner/name`). The form doesn't work under plain `npm run dev` since `/api` isn't served; use the SWA CLI to test it locally.
 
-## Known gaps (v1)
-
-Open items to resolve against the current SOP or an instructor before relying on them:
-
-- **Aransas Wildlife Refuge minimum altitude:** sources conflict on 3,000' MSL vs 3,000' AGL.
-- **Southern Arrival check-in altitude:** one source says 1,500'; the arrival is flown at 1,000'.
-- **Mustang Central roll call:** procedure not confirmed.
-- **Western / Lex arrivals and Cabaniss:** not loaded.
-- **KNGP taxi paths:** not built.
-- **Aransas ELP/PPEL card:** not built.
-- Items marked "Check with an instructor" in the app were assumed, not sourced.
-
 ## Run locally
 
 Requires Node.js 20.19+ or 22.12+.
