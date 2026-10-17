@@ -18,6 +18,13 @@ export default function Home() {
           </Link>
         ))}
       </div>
+      <p className="home-credit">
+        Huge thank you to Francis Chval for the{' '}
+        <a href="https://drive.google.com/drive/folders/1zRndKMJi24wtqIwm_tSC3z71ZMJgFVEk?usp=sharing" target="_blank" rel="noopener noreferrer">
+          map data
+        </a>
+        .
+      </p>
     </div>
   );
 }

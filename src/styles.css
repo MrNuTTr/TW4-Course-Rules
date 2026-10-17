@@ -1433,3 +1433,5 @@ h3 {
 .map-area-label-active { background: #ffd467; color: #533d0a; }
 :root[data-theme='dark'] .map-area-label { color: #d9c4f2; }
 :root[data-theme='dark'] .map-area-label-active { color: #533d0a; }
+.home-credit { margin: 28px 0 0; color: var(--muted, #5b6b7a); font-size: 13px; font-style: italic; text-align: center; }
+.home-credit a { color: inherit; }
