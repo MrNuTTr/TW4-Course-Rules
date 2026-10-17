@@ -126,9 +126,12 @@ function TopicSession({ session, setSession }) {
 
   return (
     <section className="quiz-card">
-      <p className="quiz-meta">
-        {index + 1} / {items.length} · {item.topic} · {item.context}
-      </p>
+      <div className="quiz-header">
+        <p className="quiz-meta">
+          {index + 1} / {items.length} · {item.topic} · {item.context}
+        </p>
+        <button type="button" className="home-button" onClick={() => setSession(null)}>Quit</button>
+      </div>
       <p className="quiz-text">{item.text}</p>
       {mc ? (
         <>
@@ -153,9 +156,11 @@ function TopicSession({ session, setSession }) {
             })}
           </div>
           {answered && (
-            <button type="button" className="primary-button" onClick={() => next(answered === correct ? 1 : 0)}>
-              Next
-            </button>
+            <div className="quiz-actions">
+              <button type="button" className="primary-button" onClick={() => next(answered === correct ? 1 : 0)}>
+                Next
+              </button>
+            </div>
           )}
         </>
       ) : revealed ? (
@@ -167,14 +172,12 @@ function TopicSession({ session, setSession }) {
           </div>
         </>
       ) : (
-        <button type="button" className="primary-button" onClick={() => setSession({ ...session, revealed: true })}>
-          Reveal answer
-        </button>
+        <div className="quiz-actions">
+          <button type="button" className="primary-button" onClick={() => setSession({ ...session, revealed: true })}>
+            Reveal answer
+          </button>
+        </div>
       )}
-      <div className="quiz-footer">
-        <span />
-        <button type="button" className="quiz-link" onClick={() => setSession(null)}>Quit</button>
-      </div>
     </section>
   );
 }
@@ -223,9 +226,12 @@ function ChairFlyQuiz() {
     };
     return (
       <section className="quiz-card">
-        <p className="quiz-meta">
-          Leg {session.leg + 1} / {session.legs.length} · Card {session.card + 1} / {leg.cards.length}
-        </p>
+        <div className="quiz-header">
+          <p className="quiz-meta">
+            Leg {session.leg + 1} / {session.legs.length} · Card {session.card + 1} / {leg.cards.length}
+          </p>
+          <button type="button" className="home-button" onClick={() => setSession(null)}>Quit</button>
+        </div>
         <p className="quiz-leg">
           {leg.fromNode} {leg.fromPicks.join(', ')} → {leg.toNode} {leg.toPicks.join(', ')}
         </p>
@@ -237,16 +243,14 @@ function ChairFlyQuiz() {
             <p className="quiz-text">What do you do, and what do you say?</p>
           </>
         )}
-        {session.revealed ? (
-          <button type="button" className="primary-button" onClick={advance}>Next</button>
-        ) : (
-          <button type="button" className="primary-button" onClick={() => setSession({ ...session, revealed: true })}>
-            Reveal
-          </button>
-        )}
-        <div className="quiz-footer">
-          <span />
-          <button type="button" className="quiz-link" onClick={() => setSession(null)}>Quit</button>
+        <div className="quiz-actions">
+          {session.revealed ? (
+            <button type="button" className="primary-button" onClick={advance}>Next</button>
+          ) : (
+            <button type="button" className="primary-button" onClick={() => setSession({ ...session, revealed: true })}>
+              Reveal
+            </button>
+          )}
         </div>
       </section>
     );
@@ -317,4 +321,7 @@ export default function Quiz() {
     </div>
   );
 }
+
+
+
 
