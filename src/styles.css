@@ -1197,3 +1197,9 @@ h3 {
     padding: 20px 16px 48px;
   }
 }
+
+.map-layers-rwy {
+  min-width: 64px;
+  align-self: center;
+  font-size: 0.85rem;
+}

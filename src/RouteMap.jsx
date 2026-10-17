@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+﻿import { useEffect, useMemo, useRef, useState } from 'react';
 import L from 'leaflet';
 import { GeoJSON, MapContainer, TileLayer, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -21,6 +21,35 @@ function layerLabel(feature) {
     return parent.startsWith('(') ? `RWY ${name}` : `${parent} ${name}`;
   }
   return name;
+}
+
+const FIELD_ROOT = /^\(K(?!NGP)[A-Z]{3}\)/;
+const AIRPORT_RING = /^(\d+ NM Radius|Class D Airspace)$/;
+
+// Runway number (e.g. "13") a feature belongs to at an outlying field, or null.
+function runwayOf(feature) {
+  const { mapLabel: name, mapFolder } = feature.properties;
+  if (!FIELD_ROOT.test(mapFolder)) return null;
+  const initial = /^Initial (\d{2}[LR]?)$/.exec(name);
+  if (initial) return initial[1];
+  return /^\d{2}[LR]?$/.test(name) ? name : null;
+}
+
+// The pattern track sits at the airfield root or in a plain "Arrivals" folder;
+// every other per-runway track is an initial/transition path.
+function isPatternTrack(feature) {
+  const parts = feature.properties.mapFolder.split('/');
+  return parts.length === 1 || (parts.length === 2 && parts[1] === 'Arrivals');
+}
+
+function defaultHidden(features) {
+  const hidden = new Set();
+  for (const f of features) {
+    if (runwayOf(f) && !isPatternTrack(f)) hidden.add(f.id);
+    if (f.properties.customKind === 'initial') hidden.add(f.id);
+    if (/^5 NM/.test(f.properties.mapLabel)) hidden.add(f.id);
+  }
+  return hidden;
 }
 
 function MapViewport({ features, focusFeatureId: focusIds, maxZoom, focusOnField }) {
@@ -87,22 +116,44 @@ export default function RouteMap({
   fitToField = false,
   layerToggles = false,
 }) {
-  const [hidden, setHidden] = useState(() => new Set());
   const focusKey = [focusFeatureId].flat().filter(Boolean).join('|');
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const focusIds = useMemo(() => focusKey.split('|').filter(Boolean), [focusKey]);
   const mapFeatures = useMemo(
     () =>
-      getCourseRulesMapFeatures(mapData.featureIds).map((feature) => ({
-        ...feature,
-        properties: {
-          ...feature.properties,
-          isActive: focusIds.includes(feature.id),
-        },
-      })),
-    [mapData, focusIds],
+      getCourseRulesMapFeatures(mapData.featureIds)
+        .filter((f) => !(layerToggles && AIRPORT_RING.test(f.properties.mapLabel)))
+        .map((feature) => ({
+          ...feature,
+          properties: {
+            ...feature.properties,
+            isActive: focusIds.includes(feature.id),
+          },
+        })),
+    [mapData, focusIds, layerToggles],
   );
-  const toggleItems = useMemo(() => mapFeatures.map((f) => ({ id: f.id, label: layerLabel(f) })), [mapFeatures]);
+  const [hidden, setHidden] = useState(() => (layerToggles ? defaultHidden(mapFeatures) : new Set()));
+  const { runwayGroups, otherItems } = useMemo(() => {
+    const groups = new Map();
+    const others = [];
+    for (const f of mapFeatures) {
+      const rwy = runwayOf(f);
+      if (!rwy) {
+        if (!/^\d{2}[LR]?\/\d{2}[LR]?$/.test(f.properties.mapLabel)) {
+          others.push({ id: f.id, label: layerLabel(f) });
+        }
+        continue;
+      }
+      const group = groups.get(rwy) ?? { rwy, pattern: [], paths: [] };
+      (isPatternTrack(f) && f.properties.customKind !== 'initial' ? group.pattern : group.paths).push(f.id);
+      groups.set(rwy, group);
+    }
+    return { runwayGroups: [...groups.values()].sort((a, b) => a.rwy.localeCompare(b.rwy)), otherItems: others };
+  }, [mapFeatures]);
+  const toggleItems = useMemo(
+    () => [...runwayGroups.flatMap((g) => [...g.pattern, ...g.paths]), ...otherItems.map((i) => i.id)].map((id) => ({ id })),
+    [runwayGroups, otherItems],
+  );
   const visibleFeatures = useMemo(
     () => mapFeatures.filter((f) => !hidden.has(f.id)),
     [mapFeatures, hidden],
@@ -115,6 +166,30 @@ export default function RouteMap({
       else next.add(id);
       return next;
     });
+  }
+
+  function toggleGroup(ids) {
+    setHidden((prev) => {
+      const next = new Set(prev);
+      const allVisible = ids.every((id) => !next.has(id));
+      ids.forEach((id) => (allVisible ? next.add(id) : next.delete(id)));
+      return next;
+    });
+  }
+
+  function groupButton(ids, label) {
+    if (!ids.length) return null;
+    const on = ids.every((id) => !hidden.has(id));
+    return (
+      <button
+        type="button"
+        className={on ? 'map-layer-on' : 'map-layer-off'}
+        aria-pressed={on}
+        onClick={() => toggleGroup(ids)}
+      >
+        {label}
+      </button>
+    );
   }
 
   function featureStyle(feature) {
@@ -201,23 +276,33 @@ export default function RouteMap({
         <summary>Map layers</summary>
         <div className="map-layers-actions">
           <button type="button" onClick={() => setHidden(new Set())}>Show all</button>
+          <button type="button" onClick={() => setHidden(defaultHidden(mapFeatures))}>Reset</button>
           <button type="button" onClick={() => setHidden(new Set(toggleItems.map((i) => i.id)))}>
             Hide all
           </button>
         </div>
-        <div className="map-layers-list">
-          {toggleItems.map((item) => (
-            <button
-              type="button"
-              key={item.id}
-              className={hidden.has(item.id) ? 'map-layer-off' : 'map-layer-on'}
-              aria-pressed={!hidden.has(item.id)}
-              onClick={() => toggleLayer(item.id)}
-            >
-              {item.label}
-            </button>
-          ))}
-        </div>
+        {runwayGroups.map((g) => (
+          <div className="map-layers-list" key={g.rwy}>
+            <strong className="map-layers-rwy">RWY {g.rwy}</strong>
+            {groupButton(g.pattern, 'Pattern')}
+            {groupButton(g.paths, 'Initial / paths')}
+          </div>
+        ))}
+        {otherItems.length > 0 && (
+          <div className="map-layers-list">
+            {otherItems.map((item) => (
+              <button
+                type="button"
+                key={item.id}
+                className={hidden.has(item.id) ? 'map-layer-off' : 'map-layer-on'}
+                aria-pressed={!hidden.has(item.id)}
+                onClick={() => toggleLayer(item.id)}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+        )}
       </details>
     )}
     <div
