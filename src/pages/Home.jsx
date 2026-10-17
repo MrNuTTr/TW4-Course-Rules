@@ -19,6 +19,8 @@ export default function Home() {
         ))}
       </div>
       <p className="home-credit">
+        Not an official source, only a study reference.
+        <br />
         Huge thank you to Francis Chval for the{' '}
         <a href="https://drive.google.com/drive/folders/1zRndKMJi24wtqIwm_tSC3z71ZMJgFVEk?usp=sharing" target="_blank" rel="noopener noreferrer">
           map data
