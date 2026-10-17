@@ -7,7 +7,7 @@ describe('quiz bank', () => {
   it('only quizzes sourced content and always blanks something', () => {
     expect(bank.length).toBeGreaterThan(100);
     for (const item of bank) {
-      if (!item.kind) expect(item.text).toContain('_____');
+      if (!item.kind && !item.curated) expect(item.text).toContain('_____');
       expect(item.answers.length).toBeGreaterThan(0);
     }
   });
@@ -22,10 +22,20 @@ describe('quiz bank', () => {
     }
   });
 
+  it('files every curated question under an existing topic', () => {
+    const topics = new Set(bank.filter((i) => !i.curated).map((i) => i.topic));
+    for (const item of bank.filter((i) => i.curated)) {
+      expect(topics.has(item.topic), item.topic).toBe(true);
+      expect(item.choices).toContain(item.answers[0]);
+      expect(new Set(item.choices).size).toBe(item.choices.length);
+    }
+  });
+
   it('offers chair-fly legs with cards', () => {
     const legs = chairFlyLegs();
     expect(legs.length).toBeGreaterThan(0);
     expect(legs.every((leg) => leg.cards.length > 0)).toBe(true);
   });
 });
+
 

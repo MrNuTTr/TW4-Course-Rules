@@ -1,4 +1,4 @@
-﻿import { Suspense, lazy, useMemo, useState } from 'react';
+﻿import { Suspense, lazy, useEffect, useMemo, useRef, useState } from 'react';
 import CardView from '../components/CardView.jsx';
 import { buildBank, chairFlyLegs, choicesFor, mcEligible, shuffle } from '../quiz/bank.js';
 
@@ -6,7 +6,7 @@ const RouteMap = lazy(() => import('../RouteMap.jsx'));
 
 const unique = (list) => [...new Set(list)];
 
-function TopicQuiz({ session, setSession }) {
+function TopicQuiz({ session, setSession, browsing }) {
   const bank = useMemo(buildBank, []);
   const topics = useMemo(() => {
     const byGroup = {};
@@ -53,11 +53,12 @@ function TopicQuiz({ session, setSession }) {
 
   if (session) return <TopicSession session={session} setSession={setSession} />;
 
+  const listed = browsing ? pool : null;
   const available = format === 'mc' ? pool.filter(mcEligible).length : pool.length;
 
   return (
     <section className="quiz-setup">
-      <h2>Pick topics</h2>
+      <h2>{browsing ? 'Question bank' : 'Pick topics'}</h2>
       {Object.entries(topics).map(([group, entries]) => (
         <div key={group} className="quiz-group">
           <div className="quiz-group-head">
@@ -80,30 +81,66 @@ function TopicQuiz({ session, setSession }) {
           </div>
         </div>
       ))}
-      <div className="quiz-options">
-        <label>
-          Format
-          <select value={format} onChange={(e) => setFormat(e.target.value)}>
-            <option value="mc">Multiple choice</option>
-            <option value="blank">Fill in the blank (reveal)</option>
-          </select>
-        </label>
-        <label>
-          Questions
-          <select value={count} onChange={(e) => setCount(e.target.value === 'all' ? 'all' : Number(e.target.value))}>
-            <option value={10}>10</option>
-            <option value={20}>20</option>
-            <option value="all">All</option>
-          </select>
-        </label>
-      </div>
-      <button type="button" className="primary-button" disabled={available === 0} onClick={start}>
-        {available === 0 ? 'Select a topic' : `Start (${available} available)`}
-      </button>
+      {browsing ? (
+        <BankList items={listed} />
+      ) : (
+        <>
+          <div className="quiz-options">
+            <label>
+              Format
+              <select value={format} onChange={(e) => setFormat(e.target.value)}>
+                <option value="mc">Multiple choice</option>
+                <option value="blank">Fill in the blank (reveal)</option>
+              </select>
+            </label>
+            <label>
+              Questions
+              <select value={count} onChange={(e) => setCount(e.target.value === 'all' ? 'all' : Number(e.target.value))}>
+                <option value={10}>10</option>
+                <option value={20}>20</option>
+                <option value="all">All</option>
+              </select>
+            </label>
+          </div>
+          <button type="button" className="primary-button" disabled={available === 0} onClick={start}>
+            {available === 0 ? 'Select a topic' : `Start (${available} available)`}
+          </button>
+        </>
+      )}
     </section>
   );
 }
 
+function BankList({ items }) {
+  const [shown, setShown] = useState(30);
+  const sentinel = useRef(null);
+  useEffect(() => setShown(30), [items.length]);
+  useEffect(() => {
+    const node = sentinel.current;
+    if (!node) return undefined;
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) setShown((n) => n + 30);
+    });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [items.length, shown]);
+
+  if (!items.length) return <p className="quiz-meta">Select a topic to list its questions.</p>;
+  return (
+    <div className="bank-list">
+      <p className="quiz-meta">{items.length} questions</p>
+      {items.slice(0, shown).map((item, i) => (
+        <article key={item.id} className="bank-item">
+          <p className="quiz-meta">{i + 1} · {item.topic}{item.curated ? ' · Curated' : ''}</p>
+          {item.scenario && <p className="quiz-scenario">{item.scenario}</p>}
+          <p className="quiz-text">{item.text}</p>
+          <p className="quiz-answer">{item.answers.join(' · ')}</p>
+        </article>
+      ))}
+      {shown < items.length && <div ref={sentinel} className="bank-sentinel">Loading…</div>}
+    </div>
+  );
+}
 function TopicSession({ session, setSession }) {
   const { items, index } = session;
   const score = items.reduce((sum, entry) => sum + (entry.gained || 0), 0);
@@ -341,6 +378,7 @@ function ChairFlyQuiz({ session, setSession }) {
 export default function Quiz() {
   const [mode, setMode] = useState('topic');
   const [sessions, setSessions] = useState({ topic: null, chair: null });
+  const [browsing, setBrowsing] = useState(false);
   const setSessionFor = (key) => (value) => setSessions((prev) => ({ ...prev, [key]: value }));
   return (
     <div className="page-container quiz-page">
@@ -352,6 +390,11 @@ export default function Quiz() {
         <button type="button" role="tab" aria-selected={mode === 'chair'} className={mode === 'chair' ? 'active' : ''} onClick={() => setMode('chair')}>
           Chair fly quiz
         </button>
+        {mode === 'topic' && !sessions.topic && (
+          <button type="button" className="home-button quiz-quit" onClick={() => setBrowsing((on) => !on)}>
+            {browsing ? 'Back to quiz' : 'Question bank'}
+          </button>
+        )}
         {sessions[mode] && (
           <button type="button" className="home-button quiz-quit" onClick={() => setSessionFor(mode)(null)}>
             Quit
@@ -359,13 +402,14 @@ export default function Quiz() {
         )}
       </div>
       {mode === 'topic' ? (
-        <TopicQuiz session={sessions.topic} setSession={setSessionFor('topic')} />
+        <TopicQuiz session={sessions.topic} setSession={setSessionFor('topic')} browsing={browsing && !sessions.topic} />
       ) : (
         <ChairFlyQuiz session={sessions.chair} setSession={setSessionFor('chair')} />
       )}
     </div>
   );
 }
+
 
 
 

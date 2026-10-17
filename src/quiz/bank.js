@@ -1,4 +1,5 @@
 ﻿import { GRAPH, expandLegs, getNode } from '../routePlanner.js';
+import { CURATED } from './curated.js';
 
 // A blankable value: a number with a unit, a channel, a count, or a pattern side.
 const TOKEN = new RegExp(
@@ -89,7 +90,7 @@ function addCard(items, seen, topic, group, card, flight) {
   }
 }
 
-export const mcEligible = (item) => item.kind === 'channel' || (!item.kind && item.answers.length === 1);
+export const mcEligible = (item) => Boolean(item.choices) || item.kind === 'channel' || (!item.kind && item.answers.length === 1);
 
 export function buildBank() {
   const items = [];
@@ -102,7 +103,8 @@ export function buildBank() {
     const topic = `${getNode(leg.from).name} → ${getNode(leg.to).name}`;
     for (const card of leg.cards) addCard(items, seen, topic, 'Routes', card, `Flying ${leg.title}`);
   }
-  return items;
+  const curated = CURATED.map((item, i) => ({ ...item, id: `curated/${i}` }));
+  return [...curated, ...items];
 }
 export const shuffle = (list) => {
   const copy = [...list];
@@ -116,6 +118,7 @@ export const shuffle = (list) => {
 // Multiple choice is only offered for single-blank questions.
 export function choicesFor(item, bank) {
   if (!mcEligible(item)) return null;
+  if (item.choices) return shuffle(item.choices);
   const answer = item.answers[0];
   if (item.kind === 'channel') {
     const others = [...new Set(bank.filter((o) => o.kind === 'channel').map((o) => o.answers[0]))].filter((c) => c !== answer);
@@ -124,7 +127,7 @@ export function choicesFor(item, bank) {
   const kind = kindOf(answer);
   if (kind === 'side') return shuffle(['left', 'right']);
   const pool = new Set();
-  for (const other of bank.filter((o) => !o.kind)) {
+  for (const other of bank.filter((o) => !o.kind && !o.curated)) {
     for (const a of other.answers) if (kindOf(a) === kind && a !== answer) pool.add(a);
   }
   if (pool.size < 2) return null;
@@ -153,6 +156,8 @@ export function chairFlyLegs() {
   }
   return [...seen.values()];
 }
+
+
 
 
 

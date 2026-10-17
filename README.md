@@ -16,7 +16,7 @@ A top bar links Home, Chair Fly (`/chair-fly`), Wiki (`/wiki/*`) and Quiz
 resolve legs from the same data as Chair Fly, with pickers for runway/area, a
 map and every card. A route can fix or restrict options (`fixedTo`,
 `filterFrom`...). The KNGP page holds the taxi, run-up and arrival-initial content. The
-The Quiz is generated from the same data (`src/quiz/bank.js`): numbers, channels and pattern sides in sourced cards become blanks, and cards with a situation (lead-in) also yield scenario questions (which frequency, what do you do, what restriction applies). Every question states the route and situation rather than naming a card, plus a chair-fly quiz that hides each card until you reveal it. The `staticwebapp.config.json` fallback makes deep links
+The Quiz mixes hand-written questions (`src/quiz/curated.js`) with questions generated from the same data (`src/quiz/bank.js`), and a Question Bank button lists every question for the chosen topics: numbers, channels and pattern sides in sourced cards become blanks, and cards with a situation (lead-in) also yield scenario questions (which frequency, what do you do, what restriction applies). Every question states the route and situation rather than naming a card, plus a chair-fly quiz that hides each card until you reveal it. The `staticwebapp.config.json` fallback makes deep links
 work on Azure.
 
 ## Features
@@ -121,6 +121,7 @@ npm run build
 The production site is generated in `dist/`, ready to configure as the app
 artifact for Azure Static Web Apps. No Azure Functions API is needed for this
 static site.
+
 
 
 

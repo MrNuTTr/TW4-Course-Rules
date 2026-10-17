@@ -1247,3 +1247,7 @@ h3 {
 .quiz-map-controls label { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 0.9rem; }
 .quiz-card .map-card { width: 100%; }
 .quiz-scenario { margin: 0 0 8px; padding: 8px 12px; border-left: 3px solid var(--blue-dark); background: #eef3f8; border-radius: 4px; color: #33475b; }
+.bank-list { display: grid; gap: 12px; margin-top: 16px; }
+.bank-item { padding: 14px 16px; border: 1px solid #d5dde5; border-radius: 8px; background: #fff; }
+.bank-item .quiz-text { margin: 4px 0 8px; }
+.bank-sentinel { padding: 16px; text-align: center; color: #5b6b7a; }
