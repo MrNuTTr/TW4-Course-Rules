@@ -112,7 +112,9 @@ The Contact page (and the small "Report an issue" links on wiki pages, chair fly
 
 ## License
 
-The code is licensed under the [PolyForm Noncommercial License 1.0.0](LICENSE): free for personal and other noncommercial use, with commercial rights reserved by the author. The license covers the code only, not the source SOP material or third-party map data.
+The code is licensed under the [PolyForm Noncommercial License 1.0.0](LICENSE): free for personal and other noncommercial use, with commercial rights reserved by the author. The license covers the code only.
+
+It does not cover the course-rules map data in `kml/` (credited to Francis Chval, with no license of its own) or the SOP material the content is based on. Those remain under their original owners' terms.
 
 ## Run locally
 
