@@ -2,6 +2,11 @@
 import CardView from '../components/CardView.jsx';
 import ReportLink from '../components/ReportLink.jsx';
 import { buildBank, chairFlyLegs, choicesFor, mcEligible, shuffle } from '../quiz/bank.js';
+import { clearSaved, loadSaved, save } from '../storage.js';
+
+const QUIZ_KEY = 'quiz';
+// Bump when question or session shapes change so stale saved quizzes are dropped.
+const QUIZ_VERSION = 1;
 
 const RouteMap = lazy(() => import('../RouteMap.jsx'));
 
@@ -381,10 +386,16 @@ function ChairFlyQuiz({ session, setSession }) {
 }
 
 export default function Quiz() {
-  const [mode, setMode] = useState('topic');
-  const [sessions, setSessions] = useState({ topic: null, chair: null });
+  const [saved] = useState(() => loadSaved(QUIZ_KEY, QUIZ_VERSION));
+  const [mode, setMode] = useState(saved?.mode ?? 'topic');
+  const [sessions, setSessions] = useState(saved?.sessions ?? { topic: null, chair: null });
   const [browsing, setBrowsing] = useState(false);
   const setSessionFor = (key) => (value) => setSessions((prev) => ({ ...prev, [key]: value }));
+
+  useEffect(() => {
+    if (sessions.topic || sessions.chair) save(QUIZ_KEY, QUIZ_VERSION, { mode, sessions });
+    else clearSaved(QUIZ_KEY);
+  }, [mode, sessions]);
   return (
     <div className="page-container quiz-page">
       <h1>Quiz</h1>

@@ -110,6 +110,10 @@ reviewed, authoritative data.
 
 The Contact page (and the small "Report an issue" links on wiki pages, chair fly cards and quiz questions) posts to the Static Web Apps function in `api/`, which opens a GitHub issue labelled `user-report`. Configure these in the Static Web App's Environment variables: `GITHUB_TOKEN` (fine-grained token, Issues: read/write on this repo only) and `GITHUB_REPO` (`owner/name`). The form doesn't work under plain `npm run dev` since `/api` isn't served; use the SWA CLI to test it locally.
 
+## Saved progress
+
+The chair fly route and any quiz in progress are saved in the browser's `localStorage` (keys `tw4:chairfly` and `tw4:quiz`), so they survive closing the tab. Nothing is sent to a server. "New route", "Quit" and finishing a quiz clear it. Bump `SAVE_VERSION` / `QUIZ_VERSION` when the saved shapes change.
+
 ## Analytics
 
 Page views are tracked with Azure Application Insights (cookie-free) when the `VITE_APPINSIGHTS_CONNECTION_STRING` GitHub secret is set. Without it, no analytics code runs.

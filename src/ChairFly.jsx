@@ -1,4 +1,4 @@
-import { Suspense, lazy, useState } from 'react';
+import { Suspense, lazy, useCallback, useEffect, useRef, useState } from 'react';
 import {
   describeChoices,
   findLeg,
@@ -9,9 +9,37 @@ import {
 } from './routePlanner.js';
 import CardView from './components/CardView.jsx';
 import ReportLink from './components/ReportLink.jsx';
+import { clearSaved, loadSaved, save } from './storage.js';
 const RouteMap = lazy(() => import('./RouteMap.jsx'));
 
 const START_NODE_ID = 'kngp';
+const SAVE_KEY = 'chairfly';
+const SAVE_VERSION = 1;
+
+// Rebuilds the full state from the compact saved form; returns null if the route no longer resolves.
+function restoreRoute() {
+  const saved = loadSaved(SAVE_KEY, SAVE_VERSION);
+  if (!saved) return null;
+  try {
+    const trail = saved.trail.map(({ from, to }) => {
+      const leg = findLeg(from.nodeId, from.choices, to.nodeId, to.choices);
+      if (!leg) throw new Error('Leg no longer exists');
+      return { leg, from, to };
+    });
+    let activeLeg = null;
+    if (saved.phase === 'leg') {
+      const { to, destChoices, atEnd } = saved.activeLeg;
+      const leg = findLeg(saved.place.nodeId, saved.place.choices, to, destChoices);
+      if (!leg) throw new Error('Leg no longer exists');
+      activeLeg = { leg, destChoices, atEnd };
+    }
+    getNode(saved.place.nodeId);
+    return { place: saved.place, trail, phase: saved.phase, activeLeg, cardIndex: saved.cardIndex ?? 0 };
+  } catch {
+    clearSaved(SAVE_KEY);
+    return null;
+  }
+}
 
 // A node flagged endsRoute finishes the route when you arrive there.
 function canContinueFrom(nodeId, choices) {
@@ -43,10 +71,16 @@ function CardPlayer({
   onComplete,
   onPreviousFromFirst,
   startAtEnd = false,
+  initialIndex = null,
+  onIndexChange,
 }) {
-  const [index, setIndex] = useState(startAtEnd ? cards.length - 1 : 0);
+  const [index, setIndex] = useState(initialIndex ?? (startAtEnd ? cards.length - 1 : 0));
   const card = cards[index];
   const isLast = index === cards.length - 1;
+
+  useEffect(() => {
+    onIndexChange?.(index);
+  }, [index, onIndexChange]);
 
   return (
     <>
@@ -247,10 +281,32 @@ function PlanScreen({ place, isStart, onStart }) {
 }
 
 export default function ChairFly() {
-  const [place, setPlace] = useState({ nodeId: START_NODE_ID, choices: {} });
-  const [trail, setTrail] = useState([]);
-  const [phase, setPhase] = useState('plan'); // plan | leg | arrived | done
-  const [activeLeg, setActiveLeg] = useState(null);
+  const [restored] = useState(restoreRoute);
+  const [place, setPlace] = useState(restored?.place ?? { nodeId: START_NODE_ID, choices: {} });
+  const [trail, setTrail] = useState(restored?.trail ?? []);
+  const [phase, setPhase] = useState(restored?.phase ?? 'plan'); // plan | leg | arrived | done
+  const [activeLeg, setActiveLeg] = useState(restored?.activeLeg ?? null);
+  const [cardIndex, setCardIndex] = useState(restored?.cardIndex ?? 0);
+  // Only the first card player after a restore opens mid-way; later ones start fresh.
+  const resumeIndex = useRef(restored ? restored.cardIndex : null);
+  const trackIndex = useCallback((index) => {
+    resumeIndex.current = null;
+    setCardIndex(index);
+  }, []);
+
+  useEffect(() => {
+    if (phase === 'plan' && trail.length === 0) {
+      clearSaved(SAVE_KEY);
+      return;
+    }
+    save(SAVE_KEY, SAVE_VERSION, {
+      place,
+      phase,
+      cardIndex,
+      trail: trail.map(({ from, to }) => ({ from, to })),
+      activeLeg: activeLeg && { to: activeLeg.leg.to, destChoices: activeLeg.destChoices, atEnd: activeLeg.atEnd },
+    });
+  }, [place, trail, phase, activeLeg, cardIndex]);
 
   const node = getNode(place.nodeId);
   const isStart = trail.length === 0;
@@ -366,6 +422,8 @@ export default function ChairFly() {
               onComplete={finishLeg}
               onPreviousFromFirst={goPlan}
               startAtEnd={Boolean(activeLeg.atEnd)}
+              initialIndex={resumeIndex.current}
+              onIndexChange={trackIndex}
             />
           </section>
         )}
@@ -384,6 +442,8 @@ export default function ChairFly() {
                   : 'Finish'
               }
               onComplete={finishInfo}
+              initialIndex={resumeIndex.current}
+              onIndexChange={trackIndex}
             />
           </section>
         )}
