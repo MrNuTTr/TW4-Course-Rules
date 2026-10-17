@@ -132,9 +132,7 @@ npm test
 npm run build
 ```
 
-The production site is generated in `dist/`, ready to configure as the app
-artifact for Azure Static Web Apps. No Azure Functions API is needed for this
-static site.
+The production site is generated in `dist/`, ready to configure as the app artifact for Azure Static Web Apps.
 
 
 
