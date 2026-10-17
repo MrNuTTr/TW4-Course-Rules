@@ -38,7 +38,7 @@ function BaseLayer() {
     };
   }, []);
   const base = MAPTILER && !failed ? MAPTILER : USGS;
-  return <TileLayer key={base.url} attribution={base.attribution} url={base.url} maxZoom={base.maxZoom} />;
+  return <TileLayer key={base.url} attribution={base.attribution} url={base.url} maxZoom={base.maxZoom} referrerPolicy="origin" />;
 }
 
 // Hazard circles sit below the tracks so they never block clicks on them.

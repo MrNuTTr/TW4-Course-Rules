@@ -7,6 +7,10 @@ The starter was modernized from Create React App to Vite; the original
 `staticwebapp.config.json` is retained for Azure Static Web Apps navigation
 fallback behavior.
 
+## AI-generated content disclosure
+
+This project was built with generative AI assistance (GitHub Copilot). AI helped write the application code and tooling, and helped transcribe and organise the course-rules content, radio calls and quiz questions from the source material (the binder, the Feb 2026 PowerPoints, and the 3710.14 manual). AI can make mistakes, so this site is an unofficial study aid. It is not an official TW-4 document. Always verify against the current SOP and check with an instructor. Report anything that looks wrong through the Contact page.
+
 ## Site layout
 
 A top bar links Home, Chair Fly (`/chair-fly`), Wiki (`/wiki/*`) and Quiz
