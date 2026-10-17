@@ -9,6 +9,16 @@ import { WIKI_TREE, findWikiPage } from '../wiki/structure.js';
 import { COURSE_RULES_MAP_FEATURES } from '../courseRulesMap.js';
 const RouteMap = lazy(() => import('../RouteMap.jsx'));
 
+// Working-area pages map every area in the group, labelled; sub-pages highlight their own.
+const AREA_GROUPS = {
+  'working-areas/kings-4': { folder: 'Kings 4 MOAs' },
+  'working-areas/mustang': {
+    folder: 'Mustang Working Areas',
+    focus: { north: 'Mustang North', central: 'Mustang Central', south: 'Mustang South' },
+  },
+  'working-areas/foxtrot': { folder: 'Foxtrot Working Areas' },
+};
+
 function TreeItem({ item, parentPath, depth, onNavigate }) {
   const path = parentPath ? `${parentPath}/${item.slug}` : item.slug;
   const { '*': current = '' } = useParams();
@@ -72,6 +82,14 @@ function WikiPage({ page }) {
     : page.node === 'kngp'
       ? COURSE_RULES_MAP_FEATURES.filter((f) => f.id.startsWith('(KNGP) Corpus Christi NAS/') && f.id.split('/').length === 2).map((f) => f.id)
       : arrivalIds;
+  const areaGroup = AREA_GROUPS[page.path] ?? AREA_GROUPS[page.trail.slice(0, 2).join('/')];
+  const areaIds = areaGroup
+    ? COURSE_RULES_MAP_FEATURES.filter((f) => f.id.startsWith(`${areaGroup.folder}/`)).map((f) => f.id)
+    : null;
+  const areaFocus = areaGroup?.focus?.[page.slug]
+    ? areaIds.filter((id) => id.includes(areaGroup.focus[page.slug]))
+    : [];
+  const shownIds = areaIds ?? mapIds;
 
   return (
     <article className="wiki-article">
@@ -88,10 +106,19 @@ function WikiPage({ page }) {
         })}
       </nav>
       <h1>{page.title}</h1>
-      {mapIds && (
+      {shownIds && (
         <div className="map-card">
           <Suspense fallback={<p className="map-unavailable">Loading map…</p>}>
-            <RouteMap key={page.path} mapData={{ featureIds: mapIds }} maxZoom={showWholeField || page.node === 'kngp' ? 13 : 11} labelKeyPoints fitToField={showWholeField || page.node === 'kngp'} layerToggles />
+            <RouteMap
+              key={page.path}
+              mapData={{ featureIds: shownIds }}
+              focusFeatureId={areaFocus}
+              maxZoom={areaIds ? 10 : showWholeField || page.node === 'kngp' ? 13 : 11}
+              labelKeyPoints
+              labelAreas={Boolean(areaIds)}
+              fitToField={!areaIds && (showWholeField || page.node === 'kngp')}
+              layerToggles={!areaIds}
+            />
           </Suspense>
         </div>
       )}

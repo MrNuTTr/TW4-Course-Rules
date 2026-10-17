@@ -1419,3 +1419,8 @@ h3 {
   .top-nav.menu-open .top-nav-links { display: flex; }
   .top-nav-links a { padding: 14px 12px; font-size: 1.05rem; }
 }
+.map-area-label { padding: 2px 6px; border: 0; border-radius: 3px; background: rgb(var(--white-rgb) / 78%); box-shadow: none; color: #5a3a82; font-size: 12px; font-weight: 800; white-space: nowrap; }
+.map-area-label::before { display: none; }
+.map-area-label-active { background: #ffd467; color: #533d0a; }
+:root[data-theme='dark'] .map-area-label { color: #d9c4f2; }
+:root[data-theme='dark'] .map-area-label-active { color: #533d0a; }

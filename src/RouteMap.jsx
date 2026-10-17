@@ -89,6 +89,13 @@ function layerLabel(feature) {
 const FIELD_ROOT = /^\(K(?!NGP)[A-Z]{3}\)/;
 const AIRPORT_RING = /^(\d+ NM Radius|Class D Airspace)$/;
 
+// "Kings 4 MOA 3" and "Mustang North 3" both read as "Area 3" on the map.
+function areaLabel(name) {
+  const numbered = /^(?:Kings 4 MOA|Mustang (?:North|South)) (\d+)$/.exec(name);
+  if (numbered) return `Area ${numbered[1]}`;
+  return name.replace(/^Mustang /, '').replace(/ Area$/, '');
+}
+
 // Runway numbers (e.g. ["11","29"]) a feature belongs to at an outlying field.
 // Pattern ovals are drawn per runway pair, so a "11/29" feature belongs to both.
 function runwaysOf(feature) {
@@ -176,6 +183,7 @@ export default function RouteMap({
   focusFeatureId,
   maxZoom = 9,
   labelKeyPoints = false,
+  labelAreas = false,
   fitToField = false,
   layerToggles = false,
 }) {
@@ -310,12 +318,20 @@ export default function RouteMap({
   function onEachFeature(feature, layer) {
     const name = feature.properties.mapLabel;
     const isKeyPoint = labelKeyPoints && feature.properties.customKind === 'initial';
-    layer.bindTooltip(name, {
-      permanent: feature.properties.isActive || isKeyPoint,
-      direction: 'top',
-      offset: [0, -7],
-      className: 'map-waypoint-label',
-    });
+    if (labelAreas && ['Polygon', 'MultiPolygon'].includes(feature.geometry.type)) {
+      layer.bindTooltip(areaLabel(name), {
+        permanent: true,
+        direction: 'center',
+        className: `map-area-label${feature.properties.isActive ? ' map-area-label-active' : ''}`,
+      });
+    } else {
+      layer.bindTooltip(name, {
+        permanent: feature.properties.isActive || isKeyPoint,
+        direction: 'top',
+        offset: [0, -7],
+        className: 'map-waypoint-label',
+      });
+    }
     const description = String(feature.properties.description ?? '')
       .replace(/<[^>]*>/g, ' ')
       .replace(/\s+/g, ' ')
