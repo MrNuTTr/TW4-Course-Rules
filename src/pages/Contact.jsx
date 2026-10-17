@@ -78,7 +78,7 @@ export default function Contact() {
         <label>
           Contact (optional)
           <input type="text" maxLength={100} value={form.contact} onChange={set('contact')}
-            placeholder="Email or name, if you'd like a reply" />
+            placeholder="Email, if you'd like a reply" />
         </label>
         <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true"
           className="contact-hp" value={form.website} onChange={set('website')} />
