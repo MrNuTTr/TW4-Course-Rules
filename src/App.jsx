@@ -1,5 +1,6 @@
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import ChairFly from './ChairFly.jsx';
+import ThemeToggle from './components/ThemeToggle.jsx';
 import Contact from './pages/Contact.jsx';
 import Home from './pages/Home.jsx';
 import Quiz from './pages/Quiz.jsx';
@@ -15,6 +16,7 @@ export default function App() {
           <NavLink to="/wiki">Wiki</NavLink>
           <NavLink to="/quiz">Quiz</NavLink>
           <NavLink to="/contact">Contact</NavLink>
+          <ThemeToggle />
         </div>
       </nav>
       <Routes>
