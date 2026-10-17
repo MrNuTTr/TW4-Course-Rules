@@ -1441,3 +1441,10 @@ h3 {
 .site-footer a { color: inherit; }
 
 .contact-help { margin: 28px 0 0; color: var(--muted, #5b6b7a); font-size: 14px; }
+
+.wiki-search { box-sizing: border-box; width: 100%; min-height: 40px; margin-bottom: 10px; padding: 8px 12px; border: 1px solid var(--c-aebbc6); border-radius: 8px; background: var(--c-ffffff); color: var(--ink); }
+.wiki-results li a { display: grid; gap: 2px; padding: 8px 10px; border-radius: 6px; color: var(--ink); text-decoration: none; }
+.wiki-results li a:hover { background: var(--blue-pale); }
+.wiki-result-trail { color: var(--muted, #5b6b7a); font-size: 12px; }
+.wiki-result-snippet { color: var(--muted, #5b6b7a); font-size: 13px; }
+.wiki-no-results { padding: 8px 10px; color: var(--muted, #5b6b7a); }

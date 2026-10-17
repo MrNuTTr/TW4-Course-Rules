@@ -1,4 +1,4 @@
-﻿import { Suspense, lazy, useState } from 'react';
+﻿import { Suspense, lazy, useMemo, useState } from 'react';
 import { Link, NavLink, useParams } from 'react-router-dom';
 import CardView from '../components/CardView.jsx';
 import ReportLink from '../components/ReportLink.jsx';
@@ -6,6 +6,7 @@ import { getNode } from '../routePlanner.js';
 import RouteExplorer from '../wiki/RouteExplorer.jsx';
 import { resolveRoute } from '../wiki/routes.js';
 import { WIKI_TREE, findWikiPage } from '../wiki/structure.js';
+import { searchWiki } from '../wiki/search.js';
 import { COURSE_RULES_MAP_FEATURES } from '../courseRulesMap.js';
 const RouteMap = lazy(() => import('../RouteMap.jsx'));
 
@@ -164,7 +165,15 @@ function WikiPage({ page }) {
 export default function Wiki() {
   const { '*': path = '' } = useParams();
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [query, setQuery] = useState('');
   const page = path ? findWikiPage(path) : null;
+  const results = useMemo(() => searchWiki(query), [query]);
+  const searching = query.trim().length > 0;
+
+  function closeSearch() {
+    setQuery('');
+    setDrawerOpen(false);
+  }
 
   return (
     <div className="wiki-layout">
@@ -178,17 +187,40 @@ export default function Wiki() {
         {page && <span className="wiki-drawer-current">{page.title}</span>}
       </button>
       <aside className={`wiki-sidebar${drawerOpen ? ' open' : ''}`} aria-label="Wiki sections">
-        <ul>
-          {WIKI_TREE.map((item) => (
-            <TreeItem
-              key={item.slug}
-              item={item}
-              parentPath=""
-              depth={0}
-              onNavigate={() => setDrawerOpen(false)}
-            />
-          ))}
-        </ul>
+        <input
+          type="search"
+          className="wiki-search"
+          placeholder="Search the wiki…"
+          aria-label="Search the wiki"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        {searching ? (
+          <ul className="wiki-results">
+            {results.length === 0 && <li className="wiki-no-results">No matches.</li>}
+            {results.map(({ page: hit, snippet }) => (
+              <li key={hit.path}>
+                <Link to={`/wiki/${hit.path}`} onClick={closeSearch}>
+                  <strong>{hit.title}</strong>
+                  {hit.trail.length > 0 && <span className="wiki-result-trail">{hit.trail.join(' › ')}</span>}
+                  {snippet && <span className="wiki-result-snippet">{snippet}</span>}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <ul>
+            {WIKI_TREE.map((item) => (
+              <TreeItem
+                key={item.slug}
+                item={item}
+                parentPath=""
+                depth={0}
+                onNavigate={() => setDrawerOpen(false)}
+              />
+            ))}
+          </ul>
+        )}
       </aside>
       <div className="wiki-content">
         {page ? (
