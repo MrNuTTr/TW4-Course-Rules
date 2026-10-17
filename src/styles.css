@@ -1439,3 +1439,5 @@ h3 {
 .site-footer { padding: 20px 16px 28px; color: var(--muted, #5b6b7a); font-size: 12px; font-style: italic; text-align: center; }
 .site-footer p { margin: 6px 0; }
 .site-footer a { color: inherit; }
+
+.contact-help { margin: 28px 0 0; color: var(--muted, #5b6b7a); font-size: 14px; }

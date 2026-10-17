@@ -87,6 +87,10 @@ export default function Contact() {
           {status.state === 'sending' ? 'Sending…' : 'Submit'}
         </button>
       </form>
+      <p className="contact-help">
+        Want to help develop? Join us on{' '}
+        <a href="https://github.com/MrNuTTr/TW4-Course-Rules" target="_blank" rel="noopener noreferrer">GitHub</a>.
+      </p>
     </div>
   );
 }
