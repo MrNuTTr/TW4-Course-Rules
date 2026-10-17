@@ -146,6 +146,7 @@ function TopicSession({ session, setSession }) {
           {index + 1} / {items.length} · {item.topic} · {item.context}
         </p>
       </div>
+      {item.scenario && <p className="quiz-scenario">{item.scenario}</p>}
       <p className="quiz-text">{item.text}</p>
       {mc ? (
         <>
@@ -365,6 +366,7 @@ export default function Quiz() {
     </div>
   );
 }
+
 
 
 

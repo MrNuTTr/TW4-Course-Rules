@@ -44,88 +44,66 @@ function cardLines(card) {
   return lines.filter((line) => !/check with an instructor/i.test(line));
 }
 
-function addCard(items, seen, topic, group, card) {
-  if (!card.source) return;
-  addRecall(items, seen, topic, group, card);
-  for (const line of cardLines(card)) {
-    const q = lineQuestions(line);
-    if (!q) continue;
-    const key = `${topic}|${q.text}`;
-    if (seen.has(key)) continue;
-    seen.add(key);
-    items.push({
-      id: `${topic}/${items.length}`,
-      topic,
-      group,
-      context: card.title,
-      text: q.text,
-      answers: q.answers,
-    });
-  }
-}
+const clean = (text) => text.replace(/:\s*$/, '');
+const RESTRICTION = /\b(avoid|do not|don't|remain clear|stay (?:clear|outside|south|north|below|above|\d)|not overfly|never|no turns)\b/i;
 
-// Non-numeric questions: which frequency, what to do, and what comes next.
-function addRecall(items, seen, topic, group, card) {
+// Every question carries a scenario (the route you are flying plus the situation on the card),
+// so it tests what to do rather than what a card is called.
+function addCard(items, seen, topic, group, card, flight) {
+  if (!card.source) return;
+  const lead = card.leadIn && !/^do not/i.test(card.leadIn) ? clean(card.leadIn) : '';
+  const situation = lead;
+  const scenario = [flight, lead || (group === 'Routes' ? card.title : '')].filter(Boolean).join(' · ');
   const push = (kind, text, answers, extra = {}) => {
-    const key = `${kind}|${topic}|${text}`;
+    const key = `${kind ?? 'blank'}|${topic}|${situation}|${text}`;
     if (seen.has(key)) return;
     seen.add(key);
-    items.push({ id: `${topic}/${items.length}`, kind, topic, group, context: card.title, text, answers, ...extra });
-  };
-  if (card.radio?.channel) {
-    push('channel', `Which frequency do you use for “${card.title}”?`, [card.radio.channel]);
-  }
-  const steps = (card.instructions ?? []).filter((line) => !/check with an instructor/i.test(line));
-  if (card.type !== 'radio' && steps.length) {
-    push('recall', `What do you do at “${card.title}”?`, steps);
-  }
-}
-
-function addSequence(items, seen, topic, cards) {
-  const titled = cards.filter((card) => card.source && card.title);
-  const pairs = new Map();
-  for (let i = 0; i < titled.length - 1; i += 1) {
-    const set = pairs.get(titled[i].title) ?? new Set();
-    set.add(titled[i + 1].title);
-    pairs.set(titled[i].title, set);
-  }
-  for (let i = 0; i < titled.length - 1; i += 1) {
-    const { title } = titled[i];
-    const nextTitle = titled[i + 1].title;
-    const key = `next|${topic}|${title}`;
-    if (seen.has(key) || pairs.get(title).size !== 1 || title === nextTitle) continue;
-    seen.add(key);
     items.push({
       id: `${topic}/${items.length}`,
-      kind: 'next',
+      kind,
       topic,
-      group: 'Routes',
-      context: 'Sequence',
-      text: `What comes right after “${title}”?`,
-      answers: [nextTitle],
-      distractors: [...new Set(titled.map((card) => card.title))].filter((t) => t !== nextTitle && t !== title),
+      group,
+      context: group === 'Reference' ? card.title : 'Route',
+      scenario,
+      text,
+      answers,
+      ...extra,
     });
+  };
+
+  for (const line of cardLines(card)) {
+    if (line === card.leadIn) continue;
+    const q = lineQuestions(line);
+    if (q) push(undefined, q.text, q.answers);
+  }
+
+  if (card.radio?.channel && situation) {
+    push('channel', 'Which frequency do you use?', [card.radio.channel]);
+  }
+
+  const steps = (card.instructions ?? []).filter((line) => !/check with an instructor/i.test(line));
+  const limits = steps.filter((line) => RESTRICTION.test(line));
+  if (limits.length) push('recall', 'What restriction applies here?', limits);
+  if (situation && card.type !== 'radio' && steps.length) {
+    push('recall', 'What do you do?', steps);
   }
 }
 
-export const mcEligible = (item) =>
-  item.kind === 'channel' || item.kind === 'next' || (!item.kind && item.answers.length === 1);
+export const mcEligible = (item) => item.kind === 'channel' || (!item.kind && item.answers.length === 1);
 
 export function buildBank() {
   const items = [];
   const seen = new Set();
   for (const node of GRAPH.nodes.values()) {
-    for (const card of node.info ?? []) addCard(items, seen, node.name, 'Reference', card);
+    for (const card of node.info ?? []) addCard(items, seen, node.name, 'Reference', card, node.name);
   }
   for (const { leg } of expandLegs(GRAPH)) {
     if (getNode(leg.from).hidden || getNode(leg.to).hidden) continue;
     const topic = `${getNode(leg.from).name} → ${getNode(leg.to).name}`;
-    for (const card of leg.cards) addCard(items, seen, topic, 'Routes', card);
-    addSequence(items, seen, topic, leg.cards);
+    for (const card of leg.cards) addCard(items, seen, topic, 'Routes', card, `Flying ${leg.title}`);
   }
   return items;
 }
-
 export const shuffle = (list) => {
   const copy = [...list];
   for (let i = copy.length - 1; i > 0; i -= 1) {
@@ -139,10 +117,6 @@ export const shuffle = (list) => {
 export function choicesFor(item, bank) {
   if (!mcEligible(item)) return null;
   const answer = item.answers[0];
-  if (item.kind === 'next') {
-    const options = shuffle(item.distractors).slice(0, 3);
-    return options.length < 2 ? null : shuffle([answer, ...options]);
-  }
   if (item.kind === 'channel') {
     const others = [...new Set(bank.filter((o) => o.kind === 'channel').map((o) => o.answers[0]))].filter((c) => c !== answer);
     return others.length < 2 ? null : shuffle([answer, ...shuffle(others).slice(0, 3)]);
@@ -179,6 +153,9 @@ export function chairFlyLegs() {
   }
   return [...seen.values()];
 }
+
+
+
 
 
 
