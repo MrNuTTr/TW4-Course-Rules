@@ -105,6 +105,22 @@ function worthKeeping(item) {
   return item.answers.length === 1 && words(item.text) >= 5 && !/(?:VHF|UHF) _____/.test(item.text);
 }
 
+// Route questions are filed under the field or area they are about; KNGP-only routes go under KNGP.
+const KNGP_SIDE = new Set(['KNGP', 'Shamrock Re-entry', 'Corpus Christi Intl']);
+
+function foldRoutes(items) {
+  const refs = new Set(items.filter((i) => i.group === 'Reference').map((i) => i.topic));
+  const refTopic = (route) => {
+    const [a, b] = route.split(' → ');
+    if (KNGP_SIDE.has(a) && refs.has(b)) return b;
+    if (KNGP_SIDE.has(b) && refs.has(a)) return a;
+    if (refs.has(b)) return b;
+    if (refs.has(a)) return a;
+    return 'KNGP';
+  };
+  return items.map((i) => (i.group === 'Routes' ? { ...i, group: 'Reference', topic: refTopic(i.topic) } : i));
+}
+
 export function buildBank() {
   const items = [];
   const seen = new Set();
@@ -126,7 +142,7 @@ export function buildBank() {
     factSeen.add(key);
     return true;
   });
-  return [...curated, ...kept];
+  return foldRoutes([...curated, ...kept]);
 }
 export const shuffle = (list) => {
   const copy = [...list];

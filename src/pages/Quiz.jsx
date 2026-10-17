@@ -16,7 +16,7 @@ function TopicQuiz({ session, setSession, browsing }) {
     }
     return byGroup;
   }, [bank]);
-  const [selected, setSelected] = useState(new Set());
+  const [selected, setSelected] = useState(() => new Set(bank.map((item) => item.topic)));
   const [format, setFormat] = useState('mc');
   const [count, setCount] = useState(10);
 
@@ -62,7 +62,7 @@ function TopicQuiz({ session, setSession, browsing }) {
       {Object.entries(topics).map(([group, entries]) => (
         <div key={group} className="quiz-group">
           <div className="quiz-group-head">
-            <h3>{group}</h3>
+            {Object.keys(topics).length > 1 && <h3>{group}</h3>}
             <button type="button" className="quiz-link" onClick={() => setGroup(group, true)}>All</button>
             <button type="button" className="quiz-link" onClick={() => setGroup(group, false)}>None</button>
           </div>
