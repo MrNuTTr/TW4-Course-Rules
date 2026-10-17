@@ -391,7 +391,7 @@ export default function Quiz() {
           Chair fly quiz
         </button>
         {mode === 'topic' && !sessions.topic && (
-          <button type="button" className="home-button quiz-quit" onClick={() => setBrowsing((on) => !on)}>
+          <button type="button" className={`home-button quiz-quit${browsing ? ' active' : ''}`} onClick={() => setBrowsing((on) => !on)}>
             {browsing ? 'Back to quiz' : 'Question bank'}
           </button>
         )}

@@ -1243,6 +1243,7 @@ h3 {
 
 
 .quiz-quit { margin-left: auto; }
+.quiz-tabs button.quiz-quit.active { background: var(--blue-dark); border-color: var(--blue-dark); color: #fff; }
 .quiz-map-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
 .quiz-map-controls label { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 0.9rem; }
 .quiz-card .map-card { width: 100%; }
