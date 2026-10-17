@@ -4,7 +4,7 @@ import { buildBank, chairFlyLegs, choicesFor, shuffle } from '../quiz/bank.js';
 
 const unique = (list) => [...new Set(list)];
 
-function TopicQuiz() {
+function TopicQuiz({ session, setSession }) {
   const bank = useMemo(buildBank, []);
   const topics = useMemo(() => {
     const byGroup = {};
@@ -17,7 +17,6 @@ function TopicQuiz() {
   const [selected, setSelected] = useState(new Set());
   const [format, setFormat] = useState('mc');
   const [count, setCount] = useState(10);
-  const [session, setSession] = useState(null);
 
   const pool = bank.filter((item) => selected.has(item.topic));
   const toggle = (topic) =>
@@ -130,7 +129,6 @@ function TopicSession({ session, setSession }) {
         <p className="quiz-meta">
           {index + 1} / {items.length} · {item.topic} · {item.context}
         </p>
-        <button type="button" className="home-button" onClick={() => setSession(null)}>Quit</button>
       </div>
       <p className="quiz-text">{item.text}</p>
       {mc ? (
@@ -182,13 +180,12 @@ function TopicSession({ session, setSession }) {
   );
 }
 
-function ChairFlyQuiz() {
+function ChairFlyQuiz({ session, setSession }) {
   const legs = useMemo(chairFlyLegs, []);
   const [from, setFrom] = useState('');
   const [fromPick, setFromPick] = useState('');
   const [to, setTo] = useState('');
   const [toPick, setToPick] = useState('');
-  const [session, setSession] = useState(null);
 
   const matches = legs.filter(
     (leg) =>
@@ -230,8 +227,7 @@ function ChairFlyQuiz() {
           <p className="quiz-meta">
             Leg {session.leg + 1} / {session.legs.length} · Card {session.card + 1} / {leg.cards.length}
           </p>
-          <button type="button" className="home-button" onClick={() => setSession(null)}>Quit</button>
-        </div>
+          </div>
         <p className="quiz-leg">
           {leg.fromNode} {leg.fromPicks.join(', ')} → {leg.toNode} {leg.toPicks.join(', ')}
         </p>
@@ -306,6 +302,8 @@ function ChairFlyQuiz() {
 
 export default function Quiz() {
   const [mode, setMode] = useState('topic');
+  const [sessions, setSessions] = useState({ topic: null, chair: null });
+  const setSessionFor = (key) => (value) => setSessions((prev) => ({ ...prev, [key]: value }));
   return (
     <div className="page-container quiz-page">
       <h1>Quiz</h1>
@@ -316,11 +314,21 @@ export default function Quiz() {
         <button type="button" role="tab" aria-selected={mode === 'chair'} className={mode === 'chair' ? 'active' : ''} onClick={() => setMode('chair')}>
           Chair fly quiz
         </button>
+        {sessions[mode] && (
+          <button type="button" className="home-button quiz-quit" onClick={() => setSessionFor(mode)(null)}>
+            Quit
+          </button>
+        )}
       </div>
-      {mode === 'topic' ? <TopicQuiz /> : <ChairFlyQuiz />}
+      {mode === 'topic' ? (
+        <TopicQuiz session={sessions.topic} setSession={setSessionFor('topic')} />
+      ) : (
+        <ChairFlyQuiz session={sessions.chair} setSession={setSessionFor('chair')} />
+      )}
     </div>
   );
 }
+
 
 
 
