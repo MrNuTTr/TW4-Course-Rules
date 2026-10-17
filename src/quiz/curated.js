@@ -1,16 +1,11 @@
-﻿// Hand-written scenario questions. Each answer comes from the sourced route and reference data
-// (Binder, Feb 2026 PPT Parts 1–2). `choices` includes the answer; `topic` must match a topic chip.
-const q = (topic, group, scenario, text, answer, wrong) => ({
-  curated: true,
-  topic,
-  group,
-  scenario,
-  text,
-  answers: [answer],
-  choices: [answer, ...wrong],
-});
+﻿import { q } from './q.js';
+import { CURATED_A } from './curated-a.js';
+import { CURATED_B } from './curated-b.js';
+import { CURATED_C } from './curated-c.js';
 
-export const CURATED = [
+// Hand-written scenario questions. Each answer comes from the sourced route and reference data
+// (Binder, Feb 2026 PPT Parts 1–2). `choices` includes the answer; `topic` must match a topic chip.
+const BASE = [
   q('Goliad', 'Reference', 'You are inbound to Goliad on course rules, setting up for the initial.',
     'Which town must you not overfly?', 'Berclair', ['Woodsboro', 'Bayside', 'Refugio']),
   q('Goliad', 'Reference', 'You are inbound to Goliad and have not yet set up on the initial.',
@@ -59,4 +54,12 @@ export const CURATED = [
   q('Foxtrot', 'Reference', 'You are operating in or departing from Foxtrot.',
     'Which airspace must you avoid at all times?', 'North Mustang (6,500–17,500 ft MSL)', ['Central Mustang', 'South Mustang (below 6,500 ft)', 'KINGS 4']),
 ];
+
+const seen = new Set();
+export const CURATED = [...BASE, ...CURATED_A, ...CURATED_B, ...CURATED_C].filter((item) => {
+  const key = `${item.topic}|${item.scenario}|${item.text}`;
+  if (seen.has(key)) return false;
+  seen.add(key);
+  return true;
+});
 
