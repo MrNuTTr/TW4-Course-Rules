@@ -92,6 +92,19 @@ function addCard(items, seen, topic, group, card, flight) {
 
 export const mcEligible = (item) => Boolean(item.choices) || item.kind === 'channel' || (!item.kind && item.answers.length === 1);
 
+// Generated questions must stand on their own: one blank, enough surrounding context,
+// and no duplicates of the same fact repeated across runway variants.
+const words = (text) => text.replace(/_____/g, ' ').split(/[^A-Za-z]+/).filter((w) => w.length > 1).length;
+
+const RADIO_CUE = /\b(contact|call|check in|terminate|switch|monitor|report|announce|when directed|before leaving|crossing|abeam|at point|numbers)\b/i;
+
+function worthKeeping(item) {
+  if (item.curated) return true;
+  if (item.kind === 'recall') return false;
+  if (item.kind === 'channel') return RADIO_CUE.test(item.scenario) && !/then contact|intercept/i.test(item.scenario);
+  return item.answers.length === 1 && words(item.text) >= 5 && !/(?:VHF|UHF) _____/.test(item.text);
+}
+
 export function buildBank() {
   const items = [];
   const seen = new Set();
@@ -104,7 +117,16 @@ export function buildBank() {
     for (const card of leg.cards) addCard(items, seen, topic, 'Routes', card, `Flying ${leg.title}`);
   }
   const curated = CURATED.map((item, i) => ({ ...item, id: `curated/${i}` }));
-  return [...curated, ...items];
+  const factSeen = new Set();
+  const kept = items.filter((item) => {
+    if (!worthKeeping(item)) return false;
+    const lead = item.scenario.split(' · ').slice(1).join(' · ');
+    const key = item.kind === 'channel' ? `channel|${lead}|${item.answers[0]}` : `blank|${item.text}|${item.answers[0]}`;
+    if (factSeen.has(key)) return false;
+    factSeen.add(key);
+    return true;
+  });
+  return [...curated, ...kept];
 }
 export const shuffle = (list) => {
   const copy = [...list];
@@ -156,6 +178,7 @@ export function chairFlyLegs() {
   }
   return [...seen.values()];
 }
+
 
 
 

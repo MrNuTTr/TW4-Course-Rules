@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { GRAPH } from '../routePlanner.js';
 import { buildBank, chairFlyLegs, choicesFor } from './bank.js';
 
 describe('quiz bank', () => {
@@ -23,7 +24,7 @@ describe('quiz bank', () => {
   });
 
   it('files every curated question under an existing topic', () => {
-    const topics = new Set(bank.filter((i) => !i.curated).map((i) => i.topic));
+    const topics = new Set([...chairFlyLegs().map((l) => `${l.fromNode} → ${l.toNode}`), ...GRAPH.nodes.values().map((n) => n.name)]);
     for (const item of bank.filter((i) => i.curated)) {
       expect(topics.has(item.topic), item.topic).toBe(true);
       expect(item.choices).toContain(item.answers[0]);
