@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ChairFly from './ChairFly.jsx';
 import TopNav from './components/TopNav.jsx';
+import SiteFooter from './components/SiteFooter.jsx';
 import Contact from './pages/Contact.jsx';
 import Home from './pages/Home.jsx';
 import Quiz from './pages/Quiz.jsx';
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<Home />} />
       </Routes>
+      <SiteFooter />
     </BrowserRouter>
   );
 }

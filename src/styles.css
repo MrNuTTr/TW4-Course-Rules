@@ -1435,3 +1435,7 @@ h3 {
 :root[data-theme='dark'] .map-area-label-active { color: #533d0a; }
 .home-credit { margin: 28px 0 0; color: var(--muted, #5b6b7a); font-size: 13px; font-style: italic; text-align: center; }
 .home-credit a { color: inherit; }
+
+.site-footer { padding: 20px 16px 28px; color: var(--muted, #5b6b7a); font-size: 12px; font-style: italic; text-align: center; }
+.site-footer p { margin: 2px 0; }
+.site-footer a { color: inherit; }
