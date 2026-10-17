@@ -88,7 +88,7 @@ function WikiPage({ page }) {
       {mapIds && (
         <div className="map-card">
           <Suspense fallback={<p className="map-unavailable">Loading map…</p>}>
-            <RouteMap mapData={{ featureIds: mapIds }} maxZoom={showWholeField ? 13 : 11} labelKeyPoints fitToField={showWholeField} />
+            <RouteMap mapData={{ featureIds: mapIds }} maxZoom={showWholeField ? 13 : 11} labelKeyPoints fitToField={showWholeField} layerToggles />
           </Suspense>
         </div>
       )}

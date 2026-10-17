@@ -1077,6 +1077,48 @@ h3 {
   cursor: pointer;
 }
 
+.map-layers {
+  margin-bottom: 8px;
+  padding: 8px 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.map-layers summary {
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.map-layers-actions,
+.map-layers-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.map-layers button {
+  padding: 5px 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--blue-dark);
+  cursor: pointer;
+}
+
+.map-layers .map-layer-on {
+  background: var(--blue-pale);
+  border-color: var(--blue-dark);
+}
+
+.map-layers .map-layer-off {
+  color: #777;
+  text-decoration: line-through;
+}
+
 .wiki-article .map-card {
   margin-top: 18px;
 }

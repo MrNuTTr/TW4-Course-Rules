@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import L from 'leaflet';
 import { GeoJSON, MapContainer, TileLayer, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -11,6 +11,16 @@ function HazardPane() {
     map.createPane('hazardPane').style.zIndex = 350;
   }
   return null;
+}
+
+// Short, readable name for the layer toggle buttons.
+function layerLabel(feature) {
+  const { mapLabel: name, mapFolder } = feature.properties;
+  const parent = mapFolder.split('/').pop();
+  if (/^\d{2}[LR]?(\/\d{2}[LR]?)?$/.test(name)) {
+    return parent.startsWith('(') ? `RWY ${name}` : `${parent} ${name}`;
+  }
+  return name;
 }
 
 function MapViewport({ features, focusFeatureId: focusIds, maxZoom, focusOnField }) {
@@ -68,7 +78,15 @@ function MapViewport({ features, focusFeatureId: focusIds, maxZoom, focusOnField
   return null;
 }
 
-export default function RouteMap({ mapData, focusFeatureId, maxZoom = 9, labelKeyPoints = false, fitToField = false }) {
+export default function RouteMap({
+  mapData,
+  focusFeatureId,
+  maxZoom = 9,
+  labelKeyPoints = false,
+  fitToField = false,
+  layerToggles = false,
+}) {
+  const [hidden, setHidden] = useState(() => new Set());
   const focusKey = [focusFeatureId].flat().filter(Boolean).join('|');
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const focusIds = useMemo(() => focusKey.split('|').filter(Boolean), [focusKey]);
@@ -83,6 +101,20 @@ export default function RouteMap({ mapData, focusFeatureId, maxZoom = 9, labelKe
       })),
     [mapData, focusIds],
   );
+  const toggleItems = useMemo(() => mapFeatures.map((f) => ({ id: f.id, label: layerLabel(f) })), [mapFeatures]);
+  const visibleFeatures = useMemo(
+    () => mapFeatures.filter((f) => !hidden.has(f.id)),
+    [mapFeatures, hidden],
+  );
+
+  function toggleLayer(id) {
+    setHidden((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  }
 
   function featureStyle(feature) {
     if (feature.properties.customKind === 'hazard') {
@@ -162,6 +194,31 @@ export default function RouteMap({ mapData, focusFeatureId, maxZoom = 9, labelKe
   }
 
   return (
+    <>
+    {layerToggles && toggleItems.length > 1 && (
+      <details className="map-layers">
+        <summary>Map layers</summary>
+        <div className="map-layers-actions">
+          <button type="button" onClick={() => setHidden(new Set())}>Show all</button>
+          <button type="button" onClick={() => setHidden(new Set(toggleItems.map((i) => i.id)))}>
+            Hide all
+          </button>
+        </div>
+        <div className="map-layers-list">
+          {toggleItems.map((item) => (
+            <button
+              type="button"
+              key={item.id}
+              className={hidden.has(item.id) ? 'map-layer-off' : 'map-layer-on'}
+              aria-pressed={!hidden.has(item.id)}
+              onClick={() => toggleLayer(item.id)}
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
+      </details>
+    )}
     <div
       className="route-map"
       aria-label="Interactive map with KML course-rule waypoints"
@@ -178,8 +235,8 @@ export default function RouteMap({ mapData, focusFeatureId, maxZoom = 9, labelKe
         />
         <HazardPane />
         <GeoJSON
-          key={focusKey}
-          data={{ type: 'FeatureCollection', features: mapFeatures }}
+          key={`${focusKey}|${[...hidden].join('|')}`}
+          data={{ type: 'FeatureCollection', features: visibleFeatures }}
           style={featureStyle}
           pointToLayer={pointToLayer}
           onEachFeature={onEachFeature}
@@ -187,5 +244,6 @@ export default function RouteMap({ mapData, focusFeatureId, maxZoom = 9, labelKe
         <MapViewport features={mapFeatures} focusFeatureId={focusIds} maxZoom={maxZoom} focusOnField={fitToField} />
       </MapContainer>
     </div>
+    </>
   );
 }
