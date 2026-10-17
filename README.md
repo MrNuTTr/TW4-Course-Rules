@@ -15,7 +15,7 @@ A top bar links Home, Chair Fly (`/chair-fly`), Wiki (`/wiki/*`) and Quiz
 `routes` become collapsible route explorers (`src/wiki/RouteExplorer.jsx`) that
 resolve legs from the same data as Chair Fly, with pickers for runway/area, a
 map and every card. A route can fix or restrict options (`fixedTo`,
-`filterFrom`...). Taxi pages are placeholders until their content exists. The
+`filterFrom`...). The KNGP page holds the taxi, run-up and arrival-initial content. The
 Quiz is a placeholder. The `staticwebapp.config.json` fallback makes deep links
 work on Azure.
 

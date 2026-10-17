@@ -102,6 +102,17 @@
     },
     {
       "type": "checkpoint",
+      "title": "Pattern direction and ELPs (Wacky Waldron)",
+      "instructions": [
+        "RWY 13: right · RWY 31: left · RWY 18: right · RWY 36: left",
+        "Pattern PPELs (PPEL/P) go the PATTERN direction",
+        "Full ELPs go OPPOSITE of the landing pattern"
+      ],
+      "mapFocus": ["(KNWL) Waldron NOLF/KNWL"],
+      "source": "Feb 2026 PPT, Part 2, slide 51."
+    },
+    {
+      "type": "checkpoint",
       "title": "Warnings",
       "mapFocus": ["(KNWL) Waldron NOLF/KNWL"],
       "instructions": [

@@ -8,14 +8,6 @@ const SOUTH_AREAS = ['Area 3', 'Area 4', 'Area 7', 'Area 8'];
 
 export const WIKI_TREE = [
   {
-    slug: 'taxi',
-    title: 'Taxi',
-    children: [
-      { slug: 'north-flow', title: 'North Flow – Outbound' },
-      { slug: 'south-flow', title: 'South Flow – Outbound' },
-    ],
-  },
-  {
     slug: 'departures',
     title: 'Departures',
     children: [

@@ -51,6 +51,20 @@
     },
     {
       "type": "checkpoint",
+      "title": "Pattern direction and ELPs (Goofy Goliad)",
+      "instructions": [
+        "Pattern side: RWY 11/29 north · RWY 17/35 west",
+        "Pattern PPELs (PPEL/P) go the PATTERN direction",
+        "Full ELPs go OPPOSITE of the landing pattern",
+        "ELP means traffic entering the OLF on an ELP profile, whether a PPEL or a simulated power loss",
+        "PPEL/P means traffic established in the pattern proceeding to pattern low key",
+        "Practice ELPs are not authorized with solos in the pattern or inbound to it. PPEL/Ps are permitted with solos in the pattern"
+      ],
+      "mapFocus": ["(KNGT) Goliad NOLF/KNGT"],
+      "source": "Feb 2026 PPT, Part 2, slides 8–9."
+    },
+    {
+      "type": "checkpoint",
       "title": "Discontinued entry",
       "leadIn": "Execute immediately if:",
       "instructions": [

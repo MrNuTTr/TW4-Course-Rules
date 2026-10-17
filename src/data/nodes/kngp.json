@@ -161,5 +161,212 @@
       }
     }
   ],
-  "info": []
+  "info": [
+    {
+      "type": "checkpoint",
+      "title": "KNGP at a glance",
+      "instructions": [
+        "Truax Field, NAS Corpus Christi · Field elevation 19' MSL",
+        "Class D: surface to 2,500' AGL, 4.3 NM from the center of the airport",
+        "Runways: 13R/31L 8,002' × 200' · 13L/31R 5,000' × 200' · 18/36 5,003' × 200' · 04/22 5,004' × 200'",
+        "Pattern altitudes: Initial/Break 1,000' MSL · Pattern 800' MSL · Delta 2,000' MSL",
+        "Delta conforms to the pattern for the runway in use; with parallel runways it conforms to 13L/31R"
+      ],
+      "source": "Feb 2026 PPT, Part 1, slides 7, 36."
+    },
+    {
+      "type": "checkpoint",
+      "title": "Taxi: general rules",
+      "instructions": [
+        "Stay 5' from the edge of all taxiways",
+        "Establish radio contact with Ground before entering an active taxiway",
+        "The TW-4 line is the non-controlled movement area, from the Transient Line to the intersection of Runway 4-22 and Charlie. Tower cannot see it, so you may taxi at a safe speed without calling Ground",
+        "Monitor Ground (CH 3, 118.7) while in the line",
+        "Speeds: 5–7 kts in the line · 10–12 kts elsewhere",
+        "Outbound aircraft have right of way; do not overtake or pass without Ground approval",
+        "Get a crossing clearance for every runway on your route. Without one, hold short even if the runway is inactive",
+        "Transponder in altitude mode from 'Transponder and FLT No.' in the Before Taxi Checklist through 'Transponder' on the Engine Shutdown Checklist"
+      ],
+      "source": "Feb 2026 PPT, Part 1, slides 16, 19, 20."
+    },
+    {
+      "type": "checkpoint",
+      "title": "Taxi: Kilo line loop",
+      "instructions": [
+        "Leave your parking line and go counterclockwise around Kilo line",
+        "East side of Kilo (closest to the hangars): taxi north",
+        "West side of Kilo (closest to RWY 13L): taxi south",
+        "Aircraft already on the loop have right of way over aircraft entering from a parking line or the Bravo turnaround",
+        "Bravo turnaround: the break in Kilo parking near Bravo can be used to turn around in either direction. It is not cleared for two aircraft, so make sure it is clear before turning in",
+        "Keep wingtips abeam or aft of the APE's post during the brake checks of the Before Taxi Checklist",
+        "Engine starts are prohibited within 50' of fueling (nozzle in tank). A plane captain or lineman is required for all starts when maintenance is on duty"
+      ],
+      "source": "Feb 2026 PPT, Part 1, slides 17–19."
+    },
+    {
+      "type": "checkpoint",
+      "title": "South flow: RWY 13L/R, 18, 22",
+      "instructions": [
+        "Run-ups: Sierra run-ups (inside the non-controlled movement area, so no call to Ground is needed to get there)",
+        "Enter by taxiing inbound through Alfa line, between the tails, and enter from the east to park in the westernmost spot available",
+        "Pull forward only enough to turn the aircraft south, perpendicular to the taxiway; do not pull up to the black boxes",
+        "Fill from west to east. Do not taxi behind another aircraft",
+        "Tell Boomer and Ranger Base whenever the run-ups become full",
+        "Aircraft in Sierra run-ups give way to aircraft established on the Kilo loop",
+        "Once the run-up is complete, call Ground (see the taxi calls below)"
+      ],
+      "source": "Feb 2026 PPT, Part 1, slides 20–23, 26."
+    },
+    {
+      "type": "checkpoint",
+      "title": "North flow: RWY 04, 31L/R, 36",
+      "instructions": [
+        "Run-ups: taxiway Echo",
+        "Taxi to the Charlie / Compass Rose intersection, hold short, and call Navy Corpus Ground for taxi clearance",
+        "Ground clears you to the Echo run-ups via Compass Rose, Echo",
+        "Fill from west to east; align the aircraft perpendicular to the taxiway. Do not taxi behind another aircraft",
+        "Once the run-up is complete, call Ground for further taxi"
+      ],
+      "source": "Feb 2026 PPT, Part 1, slides 20, 24–26."
+    },
+    {
+      "type": "checkpoint",
+      "title": "Holding short on RWY 04/22",
+      "instructions": [
+        "Applies when holding short of RWY 18, 13L or 13R on 04/22",
+        "VFR aircraft offset to the right side of 04/22; IFR aircraft offset to the left side",
+        "Offset all the way to that side so another aircraft can taxi between the aircraft holding short",
+        "With several aircraft holding short of 13L, do not block taxiway Yankee",
+        "All other runways: hold short in sequence, in one line"
+      ],
+      "source": "Feb 2026 PPT, Part 1, slides 27–28."
+    },
+    {
+      "type": "radio",
+      "title": "Taxi to RWY 18",
+      "leadIn": "South flow, once the Sierra run-up is complete:",
+      "radio": {
+        "channel": "Navy Corpus Ground · UHF CH 3",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Navy Corpus Ground, <callsign>, Sierra run-up, taxi information <ATIS>, <routing>." },
+          { "speaker": "Ground", "text": "<callsign>, Navy Corpus Ground, taxi to Runway 18 via Sierra, Charlie, 22." }
+        ]
+      },
+      "instructions": ["Line up on the right edge of the hold short line if VFR, left side if IFR"],
+      "source": "Feb 2026 PPT, Part 1, slide 29."
+    },
+    {
+      "type": "radio",
+      "title": "Taxi to RWY 13L",
+      "leadIn": "South flow, once the Sierra run-up is complete:",
+      "radio": {
+        "channel": "Navy Corpus Ground · UHF CH 3",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Navy Corpus Ground, <callsign>, Sierra run-up, taxi information <ATIS>, <routing>." },
+          { "speaker": "Ground", "text": "<callsign>, Navy Corpus Ground, taxi to Runway 13L via Sierra, Charlie, 22, cross Runway 18." }
+        ]
+      },
+      "instructions": ["Line up on the right edge of the hold short line if VFR, left side if IFR"],
+      "source": "Feb 2026 PPT, Part 1, slide 30."
+    },
+    {
+      "type": "radio",
+      "title": "Taxi to RWY 13R",
+      "leadIn": "South flow, once the Sierra run-up is complete. Intersection departure from 04/22:",
+      "radio": {
+        "channel": "Navy Corpus Ground · UHF CH 3",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Navy Corpus Ground, <callsign>, Sierra run-up, taxi information <ATIS>, <routing>." },
+          { "speaker": "Ground", "text": "<callsign>, Navy Corpus Ground, taxi to Runway 13R via Sierra, Charlie, 22, cross Runway 18 and 13L." }
+        ]
+      },
+      "instructions": [
+        "Full length instead: \"taxi to Runway 13R full length via Sierra, Charlie, 22, Yankee, cross Runway 18\"",
+        "Line up on the right edge of the hold short line if VFR, left side if IFR"
+      ],
+      "source": "Feb 2026 PPT, Part 1, slide 31."
+    },
+    {
+      "type": "radio",
+      "title": "Taxi to RWY 31L/R",
+      "leadIn": "North flow, at Compass Rose:",
+      "radio": {
+        "channel": "Navy Corpus Ground · UHF CH 3",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Navy Corpus Ground, <callsign>, holding short Compass Rose, taxi information <ATIS>, <routing>." },
+          { "speaker": "Ground", "text": "<callsign>, Navy Corpus Ground, taxi to the run-ups for Runway 31L/R via Compass Rose, Echo." },
+          { "speaker": "Pilot", "text": "Navy Corpus Ground, <callsign>, further taxi." },
+          { "speaker": "Ground", "text": "<callsign>, Navy Corpus Ground, taxi to Runway 31L/R via Echo, Yankee." }
+        ]
+      },
+      "instructions": ["The second pair of calls is made once the run-up is complete"],
+      "source": "Feb 2026 PPT, Part 1, slide 32."
+    },
+    {
+      "type": "radio",
+      "title": "Taxi to RWY 36",
+      "leadIn": "North flow, at Compass Rose:",
+      "radio": {
+        "channel": "Navy Corpus Ground · UHF CH 3",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Navy Corpus Ground, <callsign>, holding short Compass Rose, taxi information <ATIS>, <routing>." },
+          { "speaker": "Ground", "text": "<callsign>, Navy Corpus Ground, taxi to the run-ups for Runway 36 via Compass Rose, Echo." },
+          { "speaker": "Pilot", "text": "Navy Corpus Ground, <callsign>, further taxi." },
+          { "speaker": "Ground", "text": "<callsign>, Navy Corpus Ground, taxi to Runway 36 via Echo, Yankee, Zulu, cross Runways 31 Left, 31 Right." }
+        ]
+      },
+      "instructions": ["The second pair of calls is made once the run-up is complete"],
+      "source": "Feb 2026 PPT, Part 1, slide 33."
+    },
+    {
+      "type": "radio",
+      "title": "Taxi to RWY 04",
+      "leadIn": "North flow, at Compass Rose:",
+      "radio": {
+        "channel": "Navy Corpus Ground · UHF CH 3",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Navy Corpus Ground, <callsign>, holding short Compass Rose, taxi information <ATIS>, <routing>." },
+          { "speaker": "Ground", "text": "<callsign>, Navy Corpus Ground, taxi to the run-ups for Runway 04 via Compass Rose, Echo." },
+          { "speaker": "Pilot", "text": "Navy Corpus Ground, <callsign>, further taxi." },
+          { "speaker": "Ground", "text": "<callsign>, Navy Corpus Ground, taxi to Runway 04 via Echo, cross Runways 31L/R, 36." }
+        ]
+      },
+      "instructions": ["The second pair of calls is made once the run-up is complete"],
+      "source": "Feb 2026 PPT, Part 1, slide 34."
+    },
+    {
+      "type": "checkpoint",
+      "title": "Parking",
+      "instructions": [
+        "Kilo, Alfa North, Bravo and Alfa lines: taxi into the line by taxiing between the tails"
+      ],
+      "source": "Feb 2026 PPT, Part 1, slide 35."
+    },
+    {
+      "type": "checkpoint",
+      "title": "Arrival: Shamrock entry initial points",
+      "instructions": [
+        "North flow (04, 31L/R, 36): at PT Shamrock turn 200°, maintain 1,000' MSL and slow to 200 KIAS toward PT Dimmit",
+        "RWY 31L/R: report initial abeam PT Dimmit, then proceed to the Low Bridge at 1,000' MSL and 200 KIAS",
+        "RWY 04, 36: initial is PT Dimmit; from the Low Bridge, maneuver to intercept a 1 NM final",
+        "South flow (13L/R, 18, 22): at PT Shamrock turn 255° toward the northwest corner of TAMUCC, maintain 1,000' MSL, slow to 200 KIAS",
+        "RWY 22: report initial intercepting the extended centerline of 22, no closer than 3 NM (NGP 4 DME)",
+        "RWY 18: report initial crossing the extended centerline of 22, then turn inbound to 18",
+        "RWY 13L/R: report initial crossing the extended centerline of 18, then turn inbound to 13L/R"
+      ],
+      "source": "Feb 2026 PPT, Part 2, slides 109–117."
+    },
+    {
+      "type": "checkpoint",
+      "title": "Arrival: pattern side by runway",
+      "instructions": [
+        "RWY 13L: left · RWY 13R: right · RWY 18: right",
+        "RWY 04: left · RWY 31L: left · RWY 31R: right · RWY 36: left",
+        "RWY 22: not listed in the sources. Check with an instructor",
+        "VFR straight-in: south flow (13L/R, 18, 22) level at 800' MSL; north flow (04, 31L/R, 36) level at 500' MSL",
+        "Straight-in calls: south flow \"Left base/Final, gear down\"; north flow \"Right base, gear down\""
+      ],
+      "source": "Binder, p. 2; Feb 2026 PPT, Part 2, slides 109–117."
+    }
+  ]
 }
