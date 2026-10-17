@@ -1291,16 +1291,31 @@ h3 {
 @media (max-width: 760px) {
   .wiki-layout {
     grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    align-content: start;
+    min-height: 0;
   }
 
   .wiki-drawer-toggle {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
     margin: 12px 16px 0;
-    padding: 10px 14px;
+    padding: 12px 14px;
     font-weight: 700;
+    color: var(--ink);
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: 10px;
+  }
+
+  .wiki-drawer-current {
+    overflow: hidden;
+    color: var(--muted);
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .wiki-sidebar {

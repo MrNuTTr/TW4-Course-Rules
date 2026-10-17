@@ -147,7 +147,8 @@ export default function Wiki() {
         aria-expanded={drawerOpen}
         onClick={() => setDrawerOpen(!drawerOpen)}
       >
-        ☰ Browse wiki
+        <span>{drawerOpen ? '✕' : '☰'} Browse wiki</span>
+        {page && <span className="wiki-drawer-current">{page.title}</span>}
       </button>
       <aside className={`wiki-sidebar${drawerOpen ? ' open' : ''}`} aria-label="Wiki sections">
         <ul>
