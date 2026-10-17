@@ -1252,3 +1252,14 @@ h3 {
 .bank-item { padding: 14px 16px; border: 1px solid #d5dde5; border-radius: 8px; background: #fff; }
 .bank-item .quiz-text { margin: 4px 0 8px; }
 .bank-sentinel { padding: 16px; text-align: center; color: #5b6b7a; }
+
+.report-link { display: inline-block; margin-top: 12px; font-size: 0.82rem; color: #5b6b7a; text-decoration: underline; }
+.wiki-report { margin-top: 32px; }
+.contact-page { max-width: 640px; }
+.contact-intro { color: #44566a; }
+.contact-form { display: grid; gap: 14px; margin-top: 16px; }
+.contact-form label { display: grid; gap: 6px; font-weight: 650; }
+.contact-form input, .contact-form select, .contact-form textarea { font: inherit; font-weight: 400; padding: 10px 12px; border: 1px solid #aebbc6; border-radius: 8px; background: #fff; }
+.contact-form .primary-button { justify-self: start; min-height: 48px; padding: 9px 26px; border: 1px solid var(--blue-dark); border-radius: 8px; font: inherit; font-weight: 750; cursor: pointer; }
+.contact-hp { position: absolute; left: -9999px; }
+.contact-error { color: #b3261e; margin: 0; }

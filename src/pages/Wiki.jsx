@@ -1,6 +1,7 @@
 ﻿import { Suspense, lazy, useState } from 'react';
 import { Link, NavLink, useParams } from 'react-router-dom';
 import CardView from '../components/CardView.jsx';
+import ReportLink from '../components/ReportLink.jsx';
 import { getNode } from '../routePlanner.js';
 import RouteExplorer from '../wiki/RouteExplorer.jsx';
 import { resolveRoute } from '../wiki/routes.js';
@@ -129,6 +130,7 @@ function WikiPage({ page }) {
           </ul>
         </section>
       )}
+      <p className="wiki-report"><ReportLink context={`Wiki: ${page.title}`} /></p>
     </article>
   );
 }

@@ -228,6 +228,7 @@ function TopicSession({ session, setSession }) {
         </div>
       )}
       {nav}
+      <ReportLink context={`Quiz (${item.topic}): ${item.text}`} />
     </section>
   );
 }

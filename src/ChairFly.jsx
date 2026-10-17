@@ -8,6 +8,7 @@ import {
   optionLabel,
 } from './routePlanner.js';
 import CardView from './components/CardView.jsx';
+import ReportLink from './components/ReportLink.jsx';
 const RouteMap = lazy(() => import('./RouteMap.jsx'));
 
 const START_NODE_ID = 'kngp';
@@ -27,6 +28,7 @@ function GuideEvent({ event, eventIndex, eventCount, label }) {
         </span>
       </div>
       <CardView event={event} />
+      <ReportLink context={`Chair fly: ${label} – ${event.title}`} />
     </article>
   );
 }
