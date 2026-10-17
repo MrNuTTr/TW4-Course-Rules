@@ -110,6 +110,10 @@ reviewed, authoritative data.
 
 The Contact page (and the small "Report an issue" links on wiki pages, chair fly cards and quiz questions) posts to the Static Web Apps function in `api/`, which opens a GitHub issue labelled `user-report`. Configure these in the Static Web App's Environment variables: `GITHUB_TOKEN` (fine-grained token, Issues: read/write on this repo only) and `GITHUB_REPO` (`owner/name`). The form doesn't work under plain `npm run dev` since `/api` isn't served; use the SWA CLI to test it locally.
 
+## License
+
+The code is licensed under the [PolyForm Noncommercial License 1.0.0](LICENSE): free for personal and other noncommercial use, with commercial rights reserved by the author. The license covers the code only, not the source SOP material or third-party map data.
+
 ## Run locally
 
 Requires Node.js 20.19+ or 22.12+.
