@@ -1052,6 +1052,99 @@ h3 {
   line-height: 1.8;
 }
 
+.wiki-cards {
+  display: grid;
+  gap: 12px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wiki-card {
+  padding: 16px 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.wiki-card .guide-title {
+  margin: 6px 0 8px;
+  font-size: 1.15rem;
+}
+
+.wiki-card .event-instructions {
+  margin-bottom: 12px;
+  font-size: 1rem;
+}
+
+.wiki-card .instruction-list {
+  gap: 8px;
+}
+
+.wiki-card .instruction-list li {
+  font-weight: 500;
+}
+
+.wiki-card .instruction-lead-in {
+  margin-bottom: 8px;
+}
+
+.wiki-show-map {
+  margin-top: 10px;
+  padding: 6px 12px;
+  color: var(--blue-dark);
+  font-weight: 700;
+  background: var(--blue-pale);
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.wiki-article .map-card {
+  margin-top: 18px;
+}
+
+.wiki-route {
+  margin-top: 10px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.wiki-route > summary {
+  padding: 14px 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.wiki-route-body {
+  padding: 0 16px 16px;
+}
+
+.wiki-pickers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.wiki-picker {
+  display: grid;
+  gap: 4px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.wiki-picker select {
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.wiki-leg-title {
+  margin: 16px 0 0;
+  font-size: 1.05rem;
+}
+
 @media (max-width: 760px) {
   .wiki-layout {
     grid-template-columns: 1fr;

@@ -8,7 +8,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <nav className="top-nav" aria-label="Main">
-        <NavLink to="/" end className="top-nav-brand">TW4 Course Rules</NavLink>
+        <NavLink to="/" end className="top-nav-brand">TW-4 Course Rules</NavLink>
         <div className="top-nav-links">
           <NavLink to="/chair-fly">Chair Fly</NavLink>
           <NavLink to="/wiki">Wiki</NavLink>

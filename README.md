@@ -10,10 +10,14 @@ fallback behavior.
 ## Site layout
 
 A top bar links Home, Chair Fly (`/chair-fly`), Wiki (`/wiki/*`) and Quiz
-(`/quiz`), using React Router. The Wiki is currently a skeleton: its folder tree
-lives in `src/wiki/structure.js` and pages show placeholders until content is
-filled in from the data files. The Quiz is a placeholder. The
-`staticwebapp.config.json` fallback makes deep links work on Azure.
+(`/quiz`), using React Router. The Wiki folder tree lives in
+`src/wiki/structure.js`. A page's `node` shows that place's info cards, and its
+`routes` become collapsible route explorers (`src/wiki/RouteExplorer.jsx`) that
+resolve legs from the same data as Chair Fly, with pickers for runway/area, a
+map and every card. A route can fix or restrict options (`fixedTo`,
+`filterFrom`...). Taxi pages are placeholders until their content exists. The
+Quiz is a placeholder. The `staticwebapp.config.json` fallback makes deep links
+work on Azure.
 
 ## Features
 
@@ -56,7 +60,7 @@ filled in from the data files. The Quiz is a placeholder. The
   area exits lead to KNGP (Northern, Southern or Eastern Arrival), Aransas
   County, Waldron (Southern or North-to-South Transition) and Ingleside. Outlying fields
   Aransas County, Waldron and Ingleside are reachable from KNGP (Goliad and
-  KINGS 4 also reach Aransas County, Goliad also reaches Ingleside) and return
+  KINGS 4 also reach Aransas County, Goliad also reaches Ingleside and KINGS 4) and return
   to KNGP via the Northern/Southern Arrivals. A `when` value may be an array
   of options so one leg covers several areas. A node's own top-level fields
   (`intent`, `foxtrotCall`) are available as `{to.node.intent}` tokens. Legs use `{from.X}`, `{to.X}` and `{to.X.detail}` tokens, resolved from the

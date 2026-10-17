@@ -1,0 +1,16 @@
+{
+  "id": "kings4-work",
+  "cards": [
+    {
+      "type": "action",
+      "title": "Work Area {to.area}",
+      "mapFocus": "{to.area.moa}",
+      "instructions": [
+        "Maintain a listening watch with Houston Center",
+        "Use the ATC-supplied altimeter setting",
+        "Block limits: {to.area.limits}; these are limits, not an assigned altitude"
+      ],
+      "source": "Binder, p. 11; Feb 2026 PPT, Part 1, slide 68."
+    }
+  ]
+}

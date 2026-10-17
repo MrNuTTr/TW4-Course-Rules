@@ -1,6 +1,11 @@
-import { useState } from 'react';
+import { Suspense, lazy, useState } from 'react';
 import { Link, NavLink, useParams } from 'react-router-dom';
+import CardView from '../components/CardView.jsx';
+import { getNode } from '../routePlanner.js';
+import RouteExplorer from '../wiki/RouteExplorer.jsx';
+import { resolveRoute } from '../wiki/routes.js';
 import { WIKI_TREE, findWikiPage } from '../wiki/structure.js';
+const RouteMap = lazy(() => import('../RouteMap.jsx'));
 
 function TreeItem({ item, parentPath, depth, onNavigate }) {
   const path = parentPath ? `${parentPath}/${item.slug}` : item.slug;
@@ -54,6 +59,10 @@ function TreeItem({ item, parentPath, depth, onNavigate }) {
 }
 
 function WikiPage({ page }) {
+  const node = page.node ? getNode(page.node) : null;
+  const arrival = page.routes?.find((route) => route.to === page.node);
+  const mapIds = arrival ? resolveRoute(arrival).leg?.arrivalFeatureIds : undefined;
+
   return (
     <article className="wiki-article">
       <nav className="wiki-crumbs" aria-label="Breadcrumb">
@@ -69,19 +78,36 @@ function WikiPage({ page }) {
         })}
       </nav>
       <h1>{page.title}</h1>
-      <div className="wiki-map-placeholder">Map and markers for this page</div>
-      <section>
-        <h2>Overview</h2>
+      {mapIds && (
+        <div className="map-card">
+          <Suspense fallback={<p className="map-unavailable">Loading map…</p>}>
+            <RouteMap mapData={{ featureIds: mapIds }} />
+          </Suspense>
+        </div>
+      )}
+      {node?.info?.length > 0 && (
+        <section>
+          <h2>Overview</h2>
+          <ol className="wiki-cards">
+            {node.info.map((card, index) => (
+              <li className="wiki-card" key={`${card.title}-${index}`}>
+                <CardView event={card} />
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
+      {page.routes && (
+        <section>
+          <h2>Routes</h2>
+          {page.routes.map((route, index) => (
+            <RouteExplorer key={`${page.path}-${index}`} route={route} />
+          ))}
+        </section>
+      )}
+      {!node && !page.routes && !page.children && (
         <p className="wiki-placeholder">Content coming soon.</p>
-      </section>
-      <section>
-        <h2>Radio calls</h2>
-        <p className="wiki-placeholder">Content coming soon.</p>
-      </section>
-      <section>
-        <h2>Altitudes, speeds and warnings</h2>
-        <p className="wiki-placeholder">Content coming soon.</p>
-      </section>
+      )}
       {page.children && (
         <section>
           <h2>In this section</h2>
@@ -97,7 +123,6 @@ function WikiPage({ page }) {
     </article>
   );
 }
-
 export default function Wiki() {
   const { '*': path = '' } = useParams();
   const [drawerOpen, setDrawerOpen] = useState(false);

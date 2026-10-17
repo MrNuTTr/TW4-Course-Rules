@@ -1,0 +1,56 @@
+const RADIO_LABEL = { radio: 'Radio call', action: 'Action', checkpoint: 'Checkpoint' };
+
+// The body of a single card: title, instructions and radio script/exchange.
+export default function CardView({ event }) {
+  const radio = event.radio;
+
+  return (
+    <>
+      <div className={`event-type event-type-${event.type}`}>{RADIO_LABEL[event.type]}</div>
+      <h2 className="guide-title">{event.title}</h2>
+      {(event.leadIn || event.instructions?.length > 0 || event.prompt) && (
+        <div className="event-instructions">
+          {event.leadIn && <p className="instruction-lead-in">{event.leadIn}</p>}
+          {event.instructions?.length > 0 && (
+            <ul className="instruction-list">
+              {event.instructions.map((instruction) => (
+                <li key={instruction}>{instruction}</li>
+              ))}
+            </ul>
+          )}
+          {!event.instructions?.length && event.prompt && (
+            <p className="guide-prompt">{event.prompt}</p>
+          )}
+        </div>
+      )}
+      {radio && (
+        <div className="script-panel">
+          <div className="script-heading">
+            <span className="detail-label">
+              {radio.exchange ? 'Exchange' : radio.script ? 'Say' : 'Radio'}
+            </span>
+            <span className="channel-label">{radio.channel}</span>
+          </div>
+          {radio.exchange ? (
+            <div className="script-exchange">
+              {radio.exchange.map(({ speaker, text }, index) => (
+                <div
+                  className={`script-exchange-line ${
+                    speaker === 'Pilot' ? 'exchange-pilot' : 'exchange-other'
+                  }`}
+                  key={`${speaker}-${index}`}
+                >
+                  <span className="exchange-speaker">{speaker}</span>
+                  <p>{text}</p>
+                </div>
+              ))}
+            </div>
+          ) : (
+            radio.script && <p>{radio.script}</p>
+          )}
+        </div>
+      )}
+      {event.detail && <p className="event-note">{event.detail}</p>}
+    </>
+  );
+}

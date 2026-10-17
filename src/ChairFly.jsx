@@ -7,6 +7,7 @@ import {
   getOriginInputs,
   optionLabel,
 } from './routePlanner.js';
+import CardView from './components/CardView.jsx';
 const RouteMap = lazy(() => import('./RouteMap.jsx'));
 
 const START_NODE_ID = 'kngp';
@@ -17,13 +18,6 @@ function canContinueFrom(nodeId, choices) {
 }
 
 function GuideEvent({ event, eventIndex, eventCount, label }) {
-  const radio = event.radio;
-  const eventLabel = {
-    radio: 'Radio call',
-    action: 'Action',
-    checkpoint: 'Checkpoint',
-  }[event.type];
-
   return (
     <article className="guide-event" aria-live="polite">
       <div className="guide-progress">
@@ -32,51 +26,7 @@ function GuideEvent({ event, eventIndex, eventCount, label }) {
           ITEM {eventIndex + 1} OF {eventCount}
         </span>
       </div>
-      <div className={`event-type event-type-${event.type}`}>{eventLabel}</div>
-      <h2 className="guide-title">{event.title}</h2>
-      {(event.leadIn || event.instructions?.length > 0 || event.prompt) && (
-        <div className="event-instructions">
-          {event.leadIn && <p className="instruction-lead-in">{event.leadIn}</p>}
-          {event.instructions?.length > 0 && (
-            <ul className="instruction-list">
-              {event.instructions.map((instruction) => (
-                <li key={instruction}>{instruction}</li>
-              ))}
-            </ul>
-          )}
-          {!event.instructions?.length && event.prompt && (
-            <p className="guide-prompt">{event.prompt}</p>
-          )}
-        </div>
-      )}
-      {radio && (
-        <div className="script-panel">
-          <div className="script-heading">
-            <span className="detail-label">
-              {radio.exchange ? 'Exchange' : radio.script ? 'Say' : 'Radio'}
-            </span>
-            <span className="channel-label">{radio.channel}</span>
-          </div>
-          {radio.exchange ? (
-            <div className="script-exchange">
-              {radio.exchange.map(({ speaker, text }, index) => (
-                <div
-                  className={`script-exchange-line ${
-                    speaker === 'Pilot' ? 'exchange-pilot' : 'exchange-other'
-                  }`}
-                  key={`${speaker}-${index}`}
-                >
-                  <span className="exchange-speaker">{speaker}</span>
-                  <p>{text}</p>
-                </div>
-              ))}
-            </div>
-          ) : (
-            radio.script && <p>{radio.script}</p>
-          )}
-        </div>
-      )}
-      {event.detail && <p className="event-note">{event.detail}</p>}
+      <CardView event={event} />
     </article>
   );
 }
@@ -160,10 +110,12 @@ function PlanScreen({ place, isStart, onStart }) {
       : {},
   );
   const selected = destinations.find(({ node }) => node.id === destId);
-  const categoryOf = (entry) => (entry.node.kind === 'work-area' ? 'working' : 'outlying');
+  const categoryOf = (entry) =>
+    entry.node.id === 'kngp' ? 'return' : entry.node.kind === 'work-area' ? 'working' : 'outlying';
   const categories = [
     { id: 'outlying', label: 'Outlying Fields' },
     { id: 'working', label: 'Working Areas' },
+    { id: 'return', label: 'Return to KNGP' },
   ].filter((c) => destinations.some((entry) => categoryOf(entry) === c.id));
   const [category, setCategory] = useState(() =>
     destinations.length === 1 ? categoryOf(destinations[0]) : '',
@@ -359,7 +311,6 @@ export default function ChairFly() {
     <main className="app-shell">
       <header className={`site-header${phase !== 'plan' || !isStart ? ' site-header-practice' : ''}`}>
         <div>
-          <p className="eyebrow">COURSE RULES · CHAIR FLY</p>
           <h1>
             {phase === 'leg'
               ? activeLeg.leg.title

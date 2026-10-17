@@ -39,7 +39,7 @@ describe('course rules graph data', () => {
     const legCards = expandLegs(GRAPH).flatMap(({ leg }) => leg.cards);
     const nodeCards = [...GRAPH.nodes.values()].flatMap((node) => node.info ?? []);
     for (const card of [...legCards, ...nodeCards]) {
-      if (card.source) expect(card.source).toMatch(/^(Binder, pp?\.|Feb 2026 PPT, Part \d, slides? )/);
+      if (card.source) expect(card.source).toMatch(/^(Binder, pp?\.|Feb 2026 PPT, Part \d, slides? |3710\.14, )/);
       if (card.radio) expect(card.radio.channel).toBeTruthy();
     }
   });

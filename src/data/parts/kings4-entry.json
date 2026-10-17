@@ -59,29 +59,7 @@
       },
       "source": "Binder, p. 10."
     },
-    {
-      "type": "radio",
-      "title": "Claim Area {to.area}",
-      "mapFocus": "{to.area.moa}",
-      "leadIn": "Before proceeding to the block:",
-      "instructions": [
-        "Wait for responses before claiming the area"
-      ],
-      "radio": {
-        "channel": "KINGS 4 Common · UHF CH 20",
-        "exchange": [
-          {
-            "speaker": "Pilot",
-            "text": "99 KINGS 4, anybody working area {to.area.spoken}?"
-          },
-          {
-            "speaker": "Pilot",
-            "text": "99 KINGS 4, <callsign> claims area {to.area.spoken}."
-          }
-        ]
-      },
-      "source": "Binder, p. 10; Feb 2026 PPT, Part 1, slide 70."
-    },
+    { "use": "kings4-claim" },
     {
       "type": "action",
       "title": "Enter KINGS 4",
@@ -94,16 +72,6 @@
       ],
       "source": "Binder, pp. 10–11; Feb 2026 PPT, Part 1, slides 70–71."
     },
-    {
-      "type": "action",
-      "title": "Work Area {to.area}",
-      "mapFocus": "{to.area.moa}",
-      "instructions": [
-        "Maintain a listening watch with Houston Center",
-        "Use the ATC-supplied altimeter setting",
-        "Block limits: {to.area.limits}; these are limits, not an assigned altitude"
-      ],
-      "source": "Binder, p. 11; Feb 2026 PPT, Part 1, slide 68."
-    }
+    { "use": "kings4-work" }
   ]
 }

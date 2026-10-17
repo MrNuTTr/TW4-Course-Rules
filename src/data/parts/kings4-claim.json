@@ -1,0 +1,28 @@
+{
+  "id": "kings4-claim",
+  "cards": [
+    {
+      "type": "radio",
+      "title": "Claim Area {to.area}",
+      "mapFocus": "{to.area.moa}",
+      "leadIn": "Before proceeding to the block:",
+      "instructions": [
+        "Wait for responses before claiming the area"
+      ],
+      "radio": {
+        "channel": "KINGS 4 Common · UHF CH 20",
+        "exchange": [
+          {
+            "speaker": "Pilot",
+            "text": "99 KINGS 4, anybody working area {to.area.spoken}?"
+          },
+          {
+            "speaker": "Pilot",
+            "text": "99 KINGS 4, <callsign> claims area {to.area.spoken}."
+          }
+        ]
+      },
+      "source": "Binder, p. 10; Feb 2026 PPT, Part 1, slide 70."
+    }
+  ]
+}
