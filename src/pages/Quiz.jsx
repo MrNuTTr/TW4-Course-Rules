@@ -1,5 +1,6 @@
 ﻿import { Suspense, lazy, useEffect, useMemo, useRef, useState } from 'react';
 import CardView from '../components/CardView.jsx';
+import ReportLink from '../components/ReportLink.jsx';
 import { buildBank, chairFlyLegs, choicesFor, mcEligible, shuffle } from '../quiz/bank.js';
 
 const RouteMap = lazy(() => import('../RouteMap.jsx'));
