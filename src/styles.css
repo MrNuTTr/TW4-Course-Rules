@@ -1229,3 +1229,9 @@ h3 {
 .quiz-choice.correct { background: #def5e3; border-color: #3a9b57; }
 .quiz-choice.wrong { background: #fde3e3; border-color: #c0392b; }
 .quiz-actions { display: flex; gap: 10px; }
+
+.quiz-card .primary-button, .quiz-card .secondary-button, .quiz-setup .primary-button { min-height: 48px; padding: 9px 22px; border: 1px solid #aebbc6; border-radius: 8px; font: inherit; font-weight: 750; cursor: pointer; }
+.quiz-card .primary-button, .quiz-setup .primary-button { border-color: var(--blue-dark); }
+.quiz-setup .primary-button:disabled { border-color: #aebbc6; cursor: not-allowed; }
+.quiz-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; margin-top: 4px; }
+.quiz-footer .quiz-link { padding: 12px 8px; }

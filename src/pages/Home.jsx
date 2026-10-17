@@ -9,7 +9,6 @@ const SECTIONS = [
 export default function Home() {
   return (
     <div className="page-container">
-      <p className="eyebrow">TW-4 · NAS CORPUS CHRISTI</p>
       <h1>TW-4 Course Rules</h1>
       <div className="home-cards">
         {SECTIONS.map((s) => (

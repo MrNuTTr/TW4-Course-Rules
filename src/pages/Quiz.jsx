@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+﻿import { useMemo, useState } from 'react';
 import CardView from '../components/CardView.jsx';
 import { buildBank, chairFlyLegs, choicesFor, shuffle } from '../quiz/bank.js';
 
@@ -171,7 +171,10 @@ function TopicSession({ session, setSession }) {
           Reveal answer
         </button>
       )}
-      <button type="button" className="quiz-link" onClick={() => setSession(null)}>Quit</button>
+      <div className="quiz-footer">
+        <span />
+        <button type="button" className="quiz-link" onClick={() => setSession(null)}>Quit</button>
+      </div>
     </section>
   );
 }
@@ -241,7 +244,10 @@ function ChairFlyQuiz() {
             Reveal
           </button>
         )}
-        <button type="button" className="quiz-link" onClick={() => setSession(null)}>Quit</button>
+        <div className="quiz-footer">
+          <span />
+          <button type="button" className="quiz-link" onClick={() => setSession(null)}>Quit</button>
+        </div>
       </section>
     );
   }
@@ -298,7 +304,6 @@ export default function Quiz() {
   const [mode, setMode] = useState('topic');
   return (
     <div className="page-container quiz-page">
-      <p className="eyebrow">QUIZ</p>
       <h1>Quiz</h1>
       <div className="quiz-tabs" role="tablist">
         <button type="button" role="tab" aria-selected={mode === 'topic'} className={mode === 'topic' ? 'active' : ''} onClick={() => setMode('topic')}>
@@ -312,3 +317,4 @@ export default function Quiz() {
     </div>
   );
 }
+
