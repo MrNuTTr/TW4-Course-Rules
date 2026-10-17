@@ -20,19 +20,25 @@ const MAPTILER = MAPTILER_KEY && {
   maxZoom: 18,
 };
 
-// MapTiler when a key is configured; falls back to USGS if no key or its tiles fail to load.
+// MapTiler when a key is configured; falls back to USGS if the key is rejected.
+// MapTiler serves a 403 as a PNG, so Leaflet never reports a tile error. Probe one tile instead.
 function BaseLayer() {
   const [failed, setFailed] = useState(false);
+  useEffect(() => {
+    if (!MAPTILER) return undefined;
+    const probe = MAPTILER.url.replace('{z}', '0').replace('{x}', '0').replace('{y}', '0');
+    let cancelled = false;
+    fetch(probe)
+      .then((res) => {
+        if (!res.ok && !cancelled) setFailed(true);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
   const base = MAPTILER && !failed ? MAPTILER : USGS;
-  return (
-    <TileLayer
-      key={base.url}
-      attribution={base.attribution}
-      url={base.url}
-      maxZoom={base.maxZoom}
-      eventHandlers={base === MAPTILER ? { tileerror: () => setFailed(true) } : undefined}
-    />
-  );
+  return <TileLayer key={base.url} attribution={base.attribution} url={base.url} maxZoom={base.maxZoom} />;
 }
 
 // Hazard circles sit below the tracks so they never block clicks on them.
