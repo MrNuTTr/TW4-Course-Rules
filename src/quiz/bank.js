@@ -46,6 +46,7 @@ function cardLines(card) {
 
 function addCard(items, seen, topic, group, card) {
   if (!card.source) return;
+  addRecall(items, seen, topic, group, card);
   for (const line of cardLines(card)) {
     const q = lineQuestions(line);
     if (!q) continue;
@@ -63,6 +64,53 @@ function addCard(items, seen, topic, group, card) {
   }
 }
 
+// Non-numeric questions: which frequency, what to do, and what comes next.
+function addRecall(items, seen, topic, group, card) {
+  const push = (kind, text, answers, extra = {}) => {
+    const key = `${kind}|${topic}|${text}`;
+    if (seen.has(key)) return;
+    seen.add(key);
+    items.push({ id: `${topic}/${items.length}`, kind, topic, group, context: card.title, text, answers, ...extra });
+  };
+  if (card.radio?.channel) {
+    push('channel', `Which frequency do you use for “${card.title}”?`, [card.radio.channel]);
+  }
+  const steps = (card.instructions ?? []).filter((line) => !/check with an instructor/i.test(line));
+  if (card.type !== 'radio' && steps.length) {
+    push('recall', `What do you do at “${card.title}”?`, steps);
+  }
+}
+
+function addSequence(items, seen, topic, cards) {
+  const titled = cards.filter((card) => card.source && card.title);
+  const pairs = new Map();
+  for (let i = 0; i < titled.length - 1; i += 1) {
+    const set = pairs.get(titled[i].title) ?? new Set();
+    set.add(titled[i + 1].title);
+    pairs.set(titled[i].title, set);
+  }
+  for (let i = 0; i < titled.length - 1; i += 1) {
+    const { title } = titled[i];
+    const nextTitle = titled[i + 1].title;
+    const key = `next|${topic}|${title}`;
+    if (seen.has(key) || pairs.get(title).size !== 1 || title === nextTitle) continue;
+    seen.add(key);
+    items.push({
+      id: `${topic}/${items.length}`,
+      kind: 'next',
+      topic,
+      group: 'Routes',
+      context: 'Sequence',
+      text: `What comes right after “${title}”?`,
+      answers: [nextTitle],
+      distractors: [...new Set(titled.map((card) => card.title))].filter((t) => t !== nextTitle && t !== title),
+    });
+  }
+}
+
+export const mcEligible = (item) =>
+  item.kind === 'channel' || item.kind === 'next' || (!item.kind && item.answers.length === 1);
+
 export function buildBank() {
   const items = [];
   const seen = new Set();
@@ -73,6 +121,7 @@ export function buildBank() {
     if (getNode(leg.from).hidden || getNode(leg.to).hidden) continue;
     const topic = `${getNode(leg.from).name} → ${getNode(leg.to).name}`;
     for (const card of leg.cards) addCard(items, seen, topic, 'Routes', card);
+    addSequence(items, seen, topic, leg.cards);
   }
   return items;
 }
@@ -88,12 +137,20 @@ export const shuffle = (list) => {
 
 // Multiple choice is only offered for single-blank questions.
 export function choicesFor(item, bank) {
-  if (item.answers.length !== 1) return null;
+  if (!mcEligible(item)) return null;
   const answer = item.answers[0];
+  if (item.kind === 'next') {
+    const options = shuffle(item.distractors).slice(0, 3);
+    return options.length < 2 ? null : shuffle([answer, ...options]);
+  }
+  if (item.kind === 'channel') {
+    const others = [...new Set(bank.filter((o) => o.kind === 'channel').map((o) => o.answers[0]))].filter((c) => c !== answer);
+    return others.length < 2 ? null : shuffle([answer, ...shuffle(others).slice(0, 3)]);
+  }
   const kind = kindOf(answer);
   if (kind === 'side') return shuffle(['left', 'right']);
   const pool = new Set();
-  for (const other of bank) {
+  for (const other of bank.filter((o) => !o.kind)) {
     for (const a of other.answers) if (kindOf(a) === kind && a !== answer) pool.add(a);
   }
   if (pool.size < 2) return null;
@@ -122,5 +179,7 @@ export function chairFlyLegs() {
   }
   return [...seen.values()];
 }
+
+
 
 

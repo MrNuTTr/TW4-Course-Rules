@@ -7,7 +7,7 @@ describe('quiz bank', () => {
   it('only quizzes sourced content and always blanks something', () => {
     expect(bank.length).toBeGreaterThan(100);
     for (const item of bank) {
-      expect(item.text).toContain('_____');
+      if (!item.kind) expect(item.text).toContain('_____');
       expect(item.answers.length).toBeGreaterThan(0);
     }
   });
@@ -28,3 +28,4 @@ describe('quiz bank', () => {
     expect(legs.every((leg) => leg.cards.length > 0)).toBe(true);
   });
 });
+

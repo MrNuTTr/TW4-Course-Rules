@@ -1,6 +1,6 @@
 ﻿import { Suspense, lazy, useMemo, useState } from 'react';
 import CardView from '../components/CardView.jsx';
-import { buildBank, chairFlyLegs, choicesFor, shuffle } from '../quiz/bank.js';
+import { buildBank, chairFlyLegs, choicesFor, mcEligible, shuffle } from '../quiz/bank.js';
 
 const RouteMap = lazy(() => import('../RouteMap.jsx'));
 
@@ -40,7 +40,7 @@ function TopicQuiz({ session, setSession }) {
 
   const start = () => {
     let items = shuffle(pool);
-    if (format === 'mc') items = items.filter((item) => item.answers.length === 1);
+    if (format === 'mc') items = items.filter(mcEligible);
     if (count !== 'all') items = items.slice(0, count);
     setSession({
       items: items.map((item) => ({ ...item, choices: format === 'mc' ? choicesFor(item, bank) : null })),
@@ -53,7 +53,7 @@ function TopicQuiz({ session, setSession }) {
 
   if (session) return <TopicSession session={session} setSession={setSession} />;
 
-  const available = format === 'mc' ? pool.filter((item) => item.answers.length === 1).length : pool.length;
+  const available = format === 'mc' ? pool.filter(mcEligible).length : pool.length;
 
   return (
     <section className="quiz-setup">
@@ -365,6 +365,7 @@ export default function Quiz() {
     </div>
   );
 }
+
 
 
 
