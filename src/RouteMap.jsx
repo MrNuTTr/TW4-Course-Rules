@@ -4,6 +4,37 @@ import { GeoJSON, MapContainer, TileLayer, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { getCourseRulesMapFeatures } from './courseRulesMap.js';
 
+const MAPTILER_KEY = import.meta.env.VITE_MAPTILER_KEY;
+
+const USGS = {
+  attribution:
+    'Map data: <a href="https://www.usgs.gov/programs/national-geospatial-program/national-map">USGS The National Map</a>',
+  url: 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}',
+  maxZoom: 16,
+};
+
+const MAPTILER = MAPTILER_KEY && {
+  attribution:
+    '&copy; <a href="https://www.maptiler.com/copyright/">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  url: `https://api.maptiler.com/maps/streets-v2/256/{z}/{x}/{y}.png?key=${MAPTILER_KEY}`,
+  maxZoom: 18,
+};
+
+// MapTiler when a key is configured; falls back to USGS if no key or its tiles fail to load.
+function BaseLayer() {
+  const [failed, setFailed] = useState(false);
+  const base = MAPTILER && !failed ? MAPTILER : USGS;
+  return (
+    <TileLayer
+      key={base.url}
+      attribution={base.attribution}
+      url={base.url}
+      maxZoom={base.maxZoom}
+      eventHandlers={base === MAPTILER ? { tileerror: () => setFailed(true) } : undefined}
+    />
+  );
+}
+
 // Hazard circles sit below the tracks so they never block clicks on them.
 function HazardPane() {
   const map = useMap();
@@ -315,11 +346,7 @@ export default function RouteMap({
         scrollWheelZoom
         aria-label="Course-rules route map"
       >
-        <TileLayer
-          attribution='Map data: <a href="https://www.usgs.gov/programs/national-geospatial-program/national-map">USGS The National Map</a>'
-          url="https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}"
-          maxZoom={16}
-        />
+        <BaseLayer />
         <HazardPane />
         <GeoJSON
           key={`${focusKey}|${[...hidden].join('|')}`}
