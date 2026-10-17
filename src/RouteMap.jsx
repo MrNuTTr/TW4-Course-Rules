@@ -33,7 +33,8 @@ function MapViewport({ features, focusFeatureId: focusIds, maxZoom, focusOnField
     const fitFeatures = focusOnField
       ? features.filter(
           (f) =>
-            f.geometry.type === 'Point' ||
+            f.properties.customKind === 'initial' ||
+            /^K[A-Z]{3}$/.test(f.properties.mapLabel) ||
             /^\d{2}[LR]?\/\d{2}[LR]?$/.test(f.properties.mapLabel),
         )
       : features;

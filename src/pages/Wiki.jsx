@@ -65,9 +65,9 @@ function WikiPage({ page }) {
   const arrivalIds = arrival ? resolveRoute(arrival).leg?.arrivalFeatureIds : undefined;
   const airfieldRoot = arrivalIds?.[0]?.split('/')[0];
   // Outlying-field pages show the whole field: every initial, runway and arrival track.
-  const showWholeField = node?.kind === 'olf' && airfieldRoot && !airfieldRoot.startsWith('(KNGP)');
+  const showWholeField = node?.kind !== 'work-area' && airfieldRoot && !airfieldRoot.startsWith('(KNGP)');
   const mapIds = showWholeField
-    ? COURSE_RULES_MAP_FEATURES.filter((f) => f.id.startsWith(`${airfieldRoot}/`) && !f.id.includes('/Departures/')).map((f) => f.id)
+    ? COURSE_RULES_MAP_FEATURES.filter((f) => f.id.startsWith(`${airfieldRoot}/`) && !f.id.includes('Departures')).map((f) => f.id)
     : arrivalIds;
 
   return (
@@ -88,7 +88,7 @@ function WikiPage({ page }) {
       {mapIds && (
         <div className="map-card">
           <Suspense fallback={<p className="map-unavailable">Loading map…</p>}>
-            <RouteMap mapData={{ featureIds: mapIds }} maxZoom={showWholeField ? 13 : 11} labelKeyPoints fitToField={showWholeField} layerToggles />
+            <RouteMap key={page.path} mapData={{ featureIds: mapIds }} maxZoom={showWholeField ? 13 : 11} labelKeyPoints fitToField={showWholeField} layerToggles />
           </Suspense>
         </div>
       )}

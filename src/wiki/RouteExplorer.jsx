@@ -74,7 +74,7 @@ export default function RouteExplorer({ route, defaultOpen = false }) {
               <h3 className="wiki-leg-title">{leg.title}</h3>
               <div className="map-card">
                 <Suspense fallback={<p className="map-unavailable">Loading map…</p>}>
-                  <RouteMap mapData={{ featureIds: leg.featureIds }} focusFeatureId={focus} layerToggles />
+                  <RouteMap key={leg.featureIds.join('|')} mapData={{ featureIds: leg.featureIds }} focusFeatureId={focus} layerToggles />
                 </Suspense>
               </div>
               <ol className="wiki-cards">
