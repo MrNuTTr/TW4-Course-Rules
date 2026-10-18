@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { GRAPH } from '../routePlanner.js';
 import { flattenWiki } from '../wiki/structure.js';
 import { buildBank, chairFlyLegs, choicesFor } from './bank.js';
+import { EXPLANATIONS, explanationKey } from './explanations.js';
 
 describe('quiz bank', () => {
   const bank = buildBank();
@@ -37,6 +38,15 @@ describe('quiz bank', () => {
     const paths = new Set(flattenWiki().map((p) => p.path));
     for (const item of bank.filter((i) => i.wikiPath)) expect(paths.has(item.wikiPath), item.wikiPath).toBe(true);
     expect(bank.some((i) => i.wikiPath)).toBe(true);
+  });
+
+  it('keeps every explanation attached to a current question', () => {
+    const keys = new Set(bank.map(explanationKey));
+    for (const key of Object.keys(EXPLANATIONS)) expect(keys.has(key), key).toBe(true);
+    for (const why of Object.values(EXPLANATIONS)) {
+      expect(why.length).toBeGreaterThan(10);
+      expect(why.length).toBeLessThanOrEqual(320);
+    }
   });
 
   it('offers chair-fly legs with cards', () => {

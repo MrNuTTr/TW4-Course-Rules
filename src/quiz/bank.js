@@ -1,5 +1,6 @@
 ﻿import { GRAPH, expandLegs, getNode } from '../routePlanner.js';
 import { flattenWiki } from '../wiki/structure.js';
+import { EXPLANATIONS, explanationKey } from './explanations.js';
 import { CURATED } from './curated.js';
 
 // A blankable value: a number with a unit, a channel, a count, or a pattern side.
@@ -148,9 +149,11 @@ export function buildBank() {
       .filter((page) => page.node)
       .map((page) => [getNode(page.node).name, page.path]),
   );
-  return foldRoutes([...curated, ...kept]).map((item) =>
-    wikiByTopic.has(item.topic) ? { ...item, wikiPath: wikiByTopic.get(item.topic) } : item,
-  );
+  return foldRoutes([...curated, ...kept]).map((item) => {
+    const why = item.why ?? EXPLANATIONS[explanationKey(item)];
+    const withWhy = why ? { ...item, why } : item;
+    return wikiByTopic.has(item.topic) ? { ...withWhy, wikiPath: wikiByTopic.get(item.topic) } : withWhy;
+  });
 }
 export const shuffle = (list) => {
   const copy = [...list];
