@@ -31,7 +31,7 @@ export const CURATED_A = [
   q('KNGP → Mustang', 'Routes', 'You departed RWY 04 on the beach line departure and are climbing through 500 ft MSL.',
     'When do you turn to HDG 105°?', 'Once clear of the pattern', ['Abeam the High Bridge', 'Once cleared by Tower', 'At 300 ft AGL']),
   q('KNGP → Mustang', 'Routes', 'You are on HDG 105° heading to the beach line after the High Bridge.',
-    'Which altitude and airspeed do you climb to and accelerate to?', '2,500\' MSL · 240 KIAS', ['5,500\' MSL · 240 KIAS', '2,500\' MSL · 200 KIAS', '1,000\' MSL · 200 KIAS']),
+    'Which altitude and airspeed is your initial climb after turning at the High Bridge?', '2,500\' MSL · 180 KIAS', ['5,500\' MSL · 240 KIAS', '2,500\' MSL · 200 KIAS', '1,000\' MSL · 200 KIAS']),
   q('KNGP → Mustang', 'Routes', 'You were directed by Tower to Corpus Departure and are now switching, bound for Area 3.',
     'What do you say on CH 8 in your check-in?', '"500 feet off Navy Corpus, Mustang South"', ['"500 feet off Navy Corpus, Mustang North"', '"500 feet off Navy Corpus, Mustang 3 Low"', '"500 feet off Navy Corpus, Foxtrot"']),
   q('KNGP → Mustang', 'Routes', 'You crossed the beach line bound for Mustang Area 4.',
@@ -41,13 +41,13 @@ export const CURATED_A = [
 
   // KNGP -> KINGS 4
   q('KNGP → KINGS 4', 'Routes', 'You are about to taxi for a KINGS 4 flight from the Kilo line.',
-    'Before taxi, what do you ask Navy Corpus Clearance (CH 2) for?', 'A ZOMBIE 1 on request, time immediate', ['A VFR squawk and ATIS', 'A KINGS 4 MOA clearance', 'Flight following with Houston Center']),
+    'Before taxi, what do you ask Navy Corpus Clearance (CH 2) for?', 'A ZOMBIE 1 on request', ['A VFR squawk and ATIS', 'A KINGS 4 MOA clearance', 'Flight following with Houston Center']),
   q('KNGP → KINGS 4', 'Routes', 'You are airborne from KNGP past 500 ft MSL and Tower has directed you to Corpus Departure.',
     'What is your check-in call?', '"500 feet off Navy Corpus, KINGS 4"', ['"500 feet off Navy Corpus, Mustang North"', '"Passing 500 feet, working KINGS 4"', '"500 feet off Navy Corpus, Rusty"']),
   q('KNGP → KINGS 4', 'Routes', 'You departed RWY 31L on the Rusty departure and are clear of the pattern.',
-    'Which course do you fly direct to PT Rusty?', '~015°', ['~010°', '~350°', '~105°']),
+    'Which course do you fly direct to PT Rusty?', '~350°', ['~010°', '~015°', '~105°']),
   q('KNGP → KINGS 4', 'Routes', 'You were cleared on course by Corpus Approach on the Rusty departure.',
-    'What altitude do you climb to and maintain up to Point Rusty?', '5,500\' MSL', ['2,500\' MSL', '14,500\' MSL', '6,500\' MSL']),
+    'What altitude and airspeed do you climb to and maintain up to Point Rusty?', '5,500\' MSL · 240 KIAS', ['2,500\' MSL · 240 KIAS', '14,500\' MSL · 240 KIAS', '5,500\' MSL · 200 KIAS']),
   q('KNGP → KINGS 4', 'Routes', 'You are crossing Point Rusty bound for KINGS 4.',
     'What do you do at Point Rusty?', 'Turn right toward Bayside (~360°) and climb to 14,500\' MSL', ['Turn left toward Woodsboro and climb to 14,500\' MSL', 'Turn right toward Bayside and climb to 5,500\' MSL', 'Continue direct and climb to 15,000\' MSL']),
   q('KNGP → KINGS 4', 'Routes', 'Corpus Departure directs you to contact Houston Center as you proceed to KINGS 4.',
@@ -73,7 +73,7 @@ export const CURATED_A = [
   q('Mustang', 'Reference', 'You are cleared into Mustang Central and arriving at your altitude.',
     'Which frequency do you auto-switch to and self-announce on?', 'CH 18', ['CH 17', 'CH 8', 'CH 22']),
   q('Mustang', 'Reference', 'You are north of the Mustang Beach abeam point bound for Area 6.',
-    'How do you turn into your area?', 'Turn away from the beach toward it', ['Turn toward the beach toward it', 'Continue straight until under the area', 'Climb 270° before turning in']),
+    'How do you turn into your area?', 'Turn away from the beach toward your assigned area', ['Turn toward the beach toward your assigned area', 'Continue straight until under the area', 'Climb 270° before turning in']),
 
   // Foxtrot reference
   q('Foxtrot', 'Reference', 'You are claiming the high block in Fox 2 on CH 22.',

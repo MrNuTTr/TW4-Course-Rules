@@ -33,27 +33,8 @@
           }
         ]
       },
-      "detail": "Monitor IP Common 126.2.",
+      "detail": "Monitor IP Common (VHF CH 20, 126.2).",
       "source": "Binder, p. 20; Feb 2026 PPT, Part 1, slide 79."
-    },
-    {
-      "type": "radio",
-      "title": "Check in on CH 17",
-      "mapFocus": "{to.area.poly}",
-      "radio": {
-        "channel": "Corpus Approach · UHF CH 17",
-        "exchange": [
-          {
-            "speaker": "Pilot",
-            "text": "Corpus Approach, <callsign>, on CH 17 for Mustang {to.area.spoken}."
-          },
-          {
-            "speaker": "Approach",
-            "text": "<callsign>, Corpus Approach, roger."
-          }
-        ]
-      },
-      "source": "Binder, p. 20."
     },
     {
       "type": "action",

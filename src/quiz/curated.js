@@ -40,7 +40,7 @@ const BASE = [
   q('KNGP → Waldron', 'Routes', 'You are inbound to Waldron, passing the Camel Humps.',
     'Which waterway do you parallel as you proceed north toward the Shrimp Ponds?', 'The Intracoastal Waterway', ['The Crosstown Expressway', 'The Nueces River', 'The Aransas Causeway']),
   q('Aransas County', 'Reference', 'You are inbound to Aransas County from the north.',
-    'What is the minimum altitude when overflying the wildlife refuge?', '3,000\' MSL', ['1,000\' MSL', '2,500\' MSL', '1,500\' MSL']),
+    'What is the minimum altitude when overflying the wildlife refuge?', '3,000\' AGL', ['1,000\' AGL', '2,500\' AGL', '1,500\' AGL']),
   q('Aransas County', 'Reference', 'You are inbound to Aransas County and crossing the Intracoastal Waterway.',
     'What is the minimum altitude when crossing it?', '2,500\' MSL', ['1,000\' MSL', '1,500\' MSL', '3,000\' MSL']),
   q('Aransas County', 'Reference', 'You are descending to the Aransas County 2 NM initial.',
