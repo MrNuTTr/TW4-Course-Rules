@@ -11,15 +11,21 @@ const USGS = {
     'Map data: <a href="https://www.usgs.gov/programs/national-geospatial-program/national-map">USGS The National Map</a>',
   url: 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}',
   maxZoom: 16,
+  tileSize: 256,
+  zoomOffset: 0,
 };
 
 const maptiler = (style) =>
   MAPTILER_KEY && {
     attribution:
       '&copy; <a href="https://www.maptiler.com/copyright/">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    url: `https://api.maptiler.com/maps/${style}/256/{z}/{x}/{y}.png?key=${MAPTILER_KEY}`,
+    // 512px tiles with zoomOffset -1 cover 4x the area per request.
+    url: `https://api.maptiler.com/maps/${style}/{z}/{x}/{y}.png?key=${MAPTILER_KEY}`,
     maxZoom: 18,
+    tileSize: 512,
+    zoomOffset: -1,
   };
+const PROBE_KEY = 'maptilerKeyProbe:v2';
 const MAPTILER = maptiler('streets-v2');
 const MAPTILER_DARK = maptiler('streets-v2-dark');
 
@@ -42,10 +48,17 @@ function BaseLayer() {
   const dark = useDarkTheme();
   useEffect(() => {
     if (!MAPTILER) return undefined;
+    // Probe once per session; the result is cached to avoid a request on every load.
+    const cached = sessionStorage.getItem(PROBE_KEY);
+    if (cached) {
+      if (cached === 'bad') setFailed(true);
+      return undefined;
+    }
     const probe = MAPTILER.url.replace('{z}', '0').replace('{x}', '0').replace('{y}', '0');
     let cancelled = false;
     fetch(probe)
       .then((res) => {
+        sessionStorage.setItem(PROBE_KEY, res.ok ? 'ok' : 'bad');
         if (!res.ok && !cancelled) setFailed(true);
       })
       .catch(() => {});
@@ -61,6 +74,8 @@ function BaseLayer() {
       attribution={base.attribution}
       url={base.url}
       maxZoom={base.maxZoom}
+      tileSize={base.tileSize}
+      zoomOffset={base.zoomOffset}
       referrerPolicy="origin"
       className={useMaptiler ? '' : 'usgs-tiles'}
     />
@@ -391,6 +406,7 @@ export default function RouteMap({
       <MapContainer
         center={[27.8, -97.25]}
         zoom={8}
+        minZoom={1}
         scrollWheelZoom
         aria-label="Course-rules route map"
       >
