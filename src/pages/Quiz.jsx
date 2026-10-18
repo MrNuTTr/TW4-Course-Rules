@@ -1,4 +1,5 @@
 ﻿import { Suspense, lazy, useEffect, useMemo, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import CardView from '../components/CardView.jsx';
 import ReportLink from '../components/ReportLink.jsx';
 import { buildBank, chairFlyLegs, choicesFor, mcEligible, shuffle } from '../quiz/bank.js';
@@ -150,6 +151,26 @@ function BankList({ items }) {
     </div>
   );
 }
+function Explanation({ item }) {
+  if (!item.why && !item.rule && !item.source && !item.wikiPath) return null;
+  return (
+    <div className="quiz-explain">
+      <p className="quiz-explain-title">{item.why || item.rule ? 'Explanation' : 'Reference'}</p>
+      {item.why && <p>{item.why}</p>}
+      {item.rule && <p>{item.rule}</p>}
+      <p className="quiz-meta">
+        {item.source}
+        {item.wikiPath && (
+          <>
+            {item.source ? ' · ' : ''}
+            <Link to={`/wiki/${item.wikiPath}`}>Open in wiki</Link>
+          </>
+        )}
+      </p>
+    </div>
+  );
+}
+
 function TopicSession({ session, setSession }) {
   const { items, index } = session;
   const score = items.reduce((sum, entry) => sum + (entry.gained || 0), 0);
@@ -216,10 +237,12 @@ function TopicSession({ session, setSession }) {
               );
             })}
           </div>
+          {answered && <Explanation item={item} />}
         </>
       ) : revealed ? (
         <>
           <p className="quiz-answer">{item.answers.join(' · ')}</p>
+          <Explanation item={item} />
           {item.gained === undefined ? (
             <div className="quiz-actions">
               <button type="button" className="secondary-button" onClick={() => update({ gained: 0 })}>Missed it</button>

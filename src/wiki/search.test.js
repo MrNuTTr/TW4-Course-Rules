@@ -21,4 +21,23 @@ describe('wiki search', () => {
   it('returns nothing for an empty query', () => {
     expect(searchWiki('  ')).toEqual([]);
   });
+
+  it('tolerates typos in longer words', () => {
+    expect(searchWiki('shamrok')[0].page.title).toMatch(/Shamrock/);
+  });
+
+  it('matches as you type', () => {
+    expect(searchWiki('foxt')[0].page.title).toMatch(/Foxtrot/);
+  });
+
+  it('expands course shorthand', () => {
+    const paths = (q) => searchWiki(q).map((hit) => hit.page.path);
+    expect(paths('ktfp')).toContain('airfields/ingleside');
+    expect(paths('kings4')).toContain('working-areas/kings-4');
+  });
+
+  it('does not blur runway numbers together', () => {
+    const snippets = searchWiki('13l').map((hit) => hit.snippet);
+    expect(snippets.some((s) => /13R/i.test(s) && !/13L/i.test(s))).toBe(false);
+  });
 });

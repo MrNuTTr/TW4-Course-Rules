@@ -1,4 +1,5 @@
 ﻿import { GRAPH, expandLegs, getNode } from '../routePlanner.js';
+import { flattenWiki } from '../wiki/structure.js';
 import { CURATED } from './curated.js';
 
 // A blankable value: a number with a unit, a channel, a count, or a pattern side.
@@ -68,6 +69,7 @@ function addCard(items, seen, topic, group, card, flight) {
       scenario,
       text,
       answers,
+      source: card.source,
       ...extra,
     });
   };
@@ -75,7 +77,7 @@ function addCard(items, seen, topic, group, card, flight) {
   for (const line of cardLines(card)) {
     if (line === card.leadIn) continue;
     const q = lineQuestions(line);
-    if (q) push(undefined, q.text, q.answers);
+    if (q) push(undefined, q.text, q.answers, { rule: line });
   }
 
   if (card.radio?.channel && situation) {
@@ -142,7 +144,14 @@ export function buildBank() {
     factSeen.add(key);
     return true;
   });
-  return foldRoutes([...curated, ...kept]);
+  const wikiByTopic = new Map(
+    flattenWiki()
+      .filter((page) => page.node)
+      .map((page) => [getNode(page.node).name, page.path]),
+  );
+  return foldRoutes([...curated, ...kept]).map((item) =>
+    wikiByTopic.has(item.topic) ? { ...item, wikiPath: wikiByTopic.get(item.topic) } : item,
+  );
 }
 export const shuffle = (list) => {
   const copy = [...list];

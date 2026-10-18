@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { GRAPH } from '../routePlanner.js';
+import { flattenWiki } from '../wiki/structure.js';
 import { buildBank, chairFlyLegs, choicesFor } from './bank.js';
 
 describe('quiz bank', () => {
@@ -30,6 +31,15 @@ describe('quiz bank', () => {
       expect(item.choices).toContain(item.answers[0]);
       expect(new Set(item.choices).size).toBe(item.choices.length);
     }
+  });
+
+  it('explains generated questions from their source and links to real wiki pages', () => {
+    const generated = bank.filter((i) => !i.curated);
+    expect(generated.every((i) => i.source)).toBe(true);
+    expect(generated.filter((i) => !i.kind).every((i) => i.rule && i.rule.includes(i.answers[0]))).toBe(true);
+    const paths = new Set(flattenWiki().map((p) => p.path));
+    for (const item of bank.filter((i) => i.wikiPath)) expect(paths.has(item.wikiPath), item.wikiPath).toBe(true);
+    expect(bank.some((i) => i.wikiPath)).toBe(true);
   });
 
   it('offers chair-fly legs with cards', () => {
