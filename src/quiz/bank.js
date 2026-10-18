@@ -69,7 +69,6 @@ function addCard(items, seen, topic, group, card, flight) {
       scenario,
       text,
       answers,
-      source: card.source,
       ...extra,
     });
   };
@@ -77,7 +76,7 @@ function addCard(items, seen, topic, group, card, flight) {
   for (const line of cardLines(card)) {
     if (line === card.leadIn) continue;
     const q = lineQuestions(line);
-    if (q) push(undefined, q.text, q.answers, { rule: line });
+    if (q) push(undefined, q.text, q.answers);
   }
 
   if (card.radio?.channel && situation) {

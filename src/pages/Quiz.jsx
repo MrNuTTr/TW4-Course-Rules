@@ -152,21 +152,20 @@ function BankList({ items }) {
   );
 }
 function Explanation({ item }) {
-  if (!item.why && !item.rule && !item.source && !item.wikiPath) return null;
+  if (!item.why && !item.wikiPath) return null;
   return (
     <div className="quiz-explain">
-      <p className="quiz-explain-title">{item.why || item.rule ? 'Explanation' : 'Reference'}</p>
-      {item.why && <p>{item.why}</p>}
-      {item.rule && <p>{item.rule}</p>}
-      <p className="quiz-meta">
-        {item.source}
-        {item.wikiPath && (
-          <>
-            {item.source ? ' · ' : ''}
-            <Link to={`/wiki/${item.wikiPath}`}>Open in wiki</Link>
-          </>
-        )}
-      </p>
+      {item.why && (
+        <>
+          <p className="quiz-explain-title">Explanation</p>
+          <p>{item.why}</p>
+        </>
+      )}
+      {item.wikiPath && (
+        <p className="quiz-meta">
+          <Link to={`/wiki/${item.wikiPath}`}>Open in wiki</Link>
+        </p>
+      )}
     </div>
   );
 }

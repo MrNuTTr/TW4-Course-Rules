@@ -33,10 +33,7 @@ describe('quiz bank', () => {
     }
   });
 
-  it('explains generated questions from their source and links to real wiki pages', () => {
-    const generated = bank.filter((i) => !i.curated);
-    expect(generated.every((i) => i.source)).toBe(true);
-    expect(generated.filter((i) => !i.kind).every((i) => i.rule && i.rule.includes(i.answers[0]))).toBe(true);
+  it('links questions only to real wiki pages', () => {
     const paths = new Set(flattenWiki().map((p) => p.path));
     for (const item of bank.filter((i) => i.wikiPath)) expect(paths.has(item.wikiPath), item.wikiPath).toBe(true);
     expect(bank.some((i) => i.wikiPath)).toBe(true);
