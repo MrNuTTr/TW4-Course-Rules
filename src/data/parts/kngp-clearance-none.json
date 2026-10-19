@@ -1,4 +1,17 @@
 {
   "id": "kngp-clearance-none",
-  "cards": [{ "use": "kngp-base-outbound" }]
+  "cards": [
+    {
+      "type": "checkpoint",
+      "title": "No clearance: company squawk",
+      "mapFocus": "(KNGP) Corpus Christi NAS/KNGP",
+      "instructions": [
+        "No clearance is required: squawk the local VFR T-6 \"Company\" code",
+        "7XX series aircraft: 55XX · 8XX series aircraft: 56XX",
+        "XX = the last two digits of the aircraft callsign (Boomer 824 → 5624)"
+      ],
+      "source": "Feb 2026 PPT, Part 1, slide 11."
+    },
+    { "use": "kngp-base-outbound" }
+  ]
 }

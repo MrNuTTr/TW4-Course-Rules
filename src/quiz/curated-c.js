@@ -147,4 +147,21 @@ export const CURATED_C = [
   q('KNGP → Shamrock Re-entry', 'Routes', 'You are on a south-flow Beach-Line Departure and receive clearance after passing the High Bridge.',
     'What should you do to join the Southern Arrival?', 'Climb or descend to 1,000\' MSL, parallel the beach line 1 WTD, and accelerate to 240 KIAS',
     ['Climb or descend to 2,500\' MSL, parallel the beach line 2 WTD, and maintain 200 KIAS', 'Descend to 500\' MSL, cross the beach line, and accelerate to 200 KIAS', 'Maintain 1,500\' MSL, parallel the beach line 1 WTD, and slow to 200 KIAS']),
+
+  // UHF vs VHF channel pairs
+  q('KNGP', 'Radio', 'You are on an Instrument Navigation event and need to contact Corpus Departure.',
+    'Which radio do you use?', 'VHF',
+    ['UHF', 'Either; the controller picks', 'UHF, then VHF after 10,000\' MSL']),
+  q('KNGP', 'Radio', 'You are on a Formation event and need to contact Corpus Departure.',
+    'Which radio do you use?', 'UHF',
+    ['VHF', 'Either; the controller picks', 'VHF, then UHF after 10,000\' MSL']),
+  q('Foxtrot', 'Radio', 'You are on UHF CH 22 in the Foxtrot area.',
+    'Who answers on CH 22 when you are on VHF instead?', 'Houston Center',
+    ['Foxtrot Common', 'KINGS 4 Common', 'Corpus Approach']),
+  q('KINGS 4', 'Radio', 'You are on UHF CH 20 in the KINGS 4 MOA.',
+    'What is the VHF counterpart of this channel?', 'IP Common',
+    ['Houston Center', 'CTAF', 'Foxtrot Common']),
+  q('KNGP', 'Radio', 'You are listening on UHF CH 21.',
+    'Which VHF function matches CH 21?', 'CTAF',
+    ['IP Common', 'Houston Center', 'Corpus Approach']),
 ];

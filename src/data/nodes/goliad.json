@@ -51,6 +51,15 @@
     },
     {
       "type": "checkpoint",
+      "title": "Arrival entry options",
+      "instructions": [
+        "Arrivals may enter via the break or a PPEL"
+      ],
+      "mapFocus": ["(KNGT) Goliad NOLF/KNGT"],
+      "source": "Feb 2026 PPT, Part 2, slides 12–13."
+    },
+    {
+      "type": "checkpoint",
       "title": "Pattern direction and ELPs (Goofy Goliad)",
       "instructions": [
         "Pattern side: RWY 11/29 north · RWY 17/35 west",

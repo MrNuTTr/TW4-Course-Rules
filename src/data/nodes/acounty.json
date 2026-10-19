@@ -98,6 +98,18 @@
     },
     {
       "type": "checkpoint",
+      "title": "North Mustang Area 5/6 to KRKP",
+      "instructions": [
+        "Contact Corpus Approach · UHF CH 17 and advise complete and intentions",
+        "Proceed toward Beach-Line and descend to 4,500' MSL",
+        "Join the Northern Arrival or execute a PPEL into KRKP",
+        "Maintain 4,500' MSL until clear of Mustang Areas unless otherwise approved by ATC"
+      ],
+      "mapFocus": ["(KRKP) Aransas County Airport/KRKP"],
+      "source": "Feb 2026 PPT, Part 1, slides 88–89."
+    },
+    {
+      "type": "checkpoint",
       "title": "Warnings",
       "mapFocus": ["(KRKP) Aransas County Airport/KRKP"],
       "instructions": [

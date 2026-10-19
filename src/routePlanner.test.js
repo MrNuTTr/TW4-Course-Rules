@@ -125,7 +125,7 @@ describe('graph integrity (run on every data import)', () => {
 describe('leg planning', () => {
   it('offers only loaded runways at KNGP', () => {
     const [runway] = getOriginInputs('kngp');
-    expect(runway.options).toEqual(['13L', '13R', '18', '04', '31L', '31R', '36']);
+    expect(runway.options).toEqual(['13L', '13R', '18', '22', '04', '31L', '31R', '36']);
   });
 
   it('offers KINGS 4 and Goliad from KNGP, with all high and low areas', () => {

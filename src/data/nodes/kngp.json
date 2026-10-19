@@ -10,7 +10,7 @@
     {
       "id": "runway",
       "label": "Runway",
-      "options": ["13L", "13R", "18", "04", "31L", "31R", "36"],
+      "options": ["13L", "13R", "18", "22", "04", "31L", "31R", "36"],
       "details": {
         "13L": {
           "flow": "south",
@@ -57,6 +57,24 @@
           "viaC": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/TAMUCC NW Corner",
           "initialWhen": "Report initial when crossing the extended centerline of Runway 22",
           "taxiRoute": "via Sierra, Charlie, 22",
+          "holdShort": "VFR: hold short offset to the right side of RWY 04/22.",
+          "firstTurn": "At the upwind numbers, turn left to HDG 105° until the High Bridge",
+          "turnTitle": "Abeam the High Bridge",
+          "turnCourse": "~350°",
+          "turnFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/High Bridge",
+          "beachTitle": "Abeam the High Bridge",
+          "beachTurn": "Continue HDG 105°",
+          "beachFocus": "(KNGP) Corpus Christi NAS/Beach Line Departures/High Bridge"
+        },
+        "22": {
+          "flow": "south",
+          "entryLine": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/22",
+          "patternSide": "right",
+          "viaA": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/TAMUCC NW Corner",
+          "viaB": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/TAMUCC NW Corner",
+          "viaC": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/TAMUCC NW Corner",
+          "initialWhen": "Report initial upon reaching the extended centerline of Runway 22, no later than 3 NM (NGP 4 DME)",
+          "taxiRoute": "via Sierra, Charlie",
           "holdShort": "VFR: hold short offset to the right side of RWY 04/22.",
           "firstTurn": "At the upwind numbers, turn left to HDG 105° until the High Bridge",
           "turnTitle": "Abeam the High Bridge",
@@ -170,9 +188,37 @@
         "Class D: surface to 2,500' AGL, 4.3 NM from the center of the airport",
         "Runways: 13R/31L 8,002' × 200' · 13L/31R 5,000' × 200' · 18/36 5,003' × 200' · 04/22 5,004' × 200'",
         "Pattern altitudes: Initial/Break 1,000' MSL · Pattern 800' MSL · Delta 2,000' MSL",
-        "Delta conforms to the pattern for the runway in use; with parallel runways it conforms to 13L/31R"
+        "Delta conforms to the pattern for the runway in use; with parallel runways it conforms to 13L/31R",
+        "ATIS · UHF/VHF CH 1"
       ],
-      "source": "Feb 2026 PPT, Part 1, slides 7, 36."
+      "source": "Feb 2026 PPT, Part 1, slides 7, 36; Part 2 (ATIS CH 1)."
+    },
+    {
+      "type": "checkpoint",
+      "title": "CNATRA reduced runway separation",
+      "instructions": [
+        "Successive full-stop landings: 1,500'",
+        "Successive touch-and-gos: the preceding aircraft is airborne",
+        "Successive VFR departures: 1,000' between aircraft",
+        "Full stop behind a touch-and-go: the preceding aircraft is airborne and 1,500' of runway remains",
+        "Distances are measured from the landing threshold, except departures, which are measured between aircraft",
+        "Applies only at NAS Corpus Christi, NOLF Waldron and NOLF Goliad, in daytime only. You do not request it, but Tower can rescind it",
+        "TW-4 solo aircraft never touch down unless the runway is completely clear"
+      ],
+      "source": "Feb 2026 PPT, Part 1, slide 37."
+    },
+    {
+      "type": "checkpoint",
+      "title": "Corpus radio channels",
+      "instructions": [
+        "Corpus Approach and Corpus Departure are the same controller on the same channels",
+        "UHF vs VHF by event type: Familiarization and Formation events use UHF; Instrument and Visual Navigation events use VHF",
+        "CH 20: KINGS 4 Common (UHF) · IP Common (VHF)",
+        "CH 21: TW-4/KRKP Common (UHF) · CTAF (VHF)",
+        "CH 22: Foxtrot Common (UHF) · Houston Center (VHF)",
+        "CH 23: Houston Center, KINGS 4 (UHF and VHF)"
+      ],
+      "source": "Feb 2026 PPT, Part 1, slide 45; Binder; IFG channel list."
     },
     {
       "type": "checkpoint",

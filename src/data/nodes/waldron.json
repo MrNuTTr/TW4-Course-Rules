@@ -91,10 +91,13 @@
       "title": "Waldron at a glance",
       "instructions": [
         "Waldron Tower · UHF CH 30",
+        "Field elevation 25' MSL · RWY 13/31: 4,365' × 150' · RWY 18/36: 4,821' × 150'",
+        "All runways have displaced thresholds",
         "Unlit, daytime VFR touch and go only; Tower open and crash crew on station",
         "Mon–Fri, from 30 min after KNGP opens until 1900 or sunset",
         "RWY 13 and 18 right pattern; RWY 31 and 36 left pattern",
         "Break/initial 1,000' · Pattern 800' · Delta 2,000'",
+        "Takeoffs, touch-and-goes and waveoffs: climb to 500' MSL; turn downwind no lower than 300' MSL and with Tower clearance",
         "Max 6 in the pattern (Tower supervisor may reduce it) · IFR arrivals not available (check with an instructor)"
       ],
       "mapFocus": ["(KNWL) Waldron NOLF/KNWL"],
@@ -110,6 +113,19 @@
       ],
       "mapFocus": ["(KNWL) Waldron NOLF/KNWL"],
       "source": "Feb 2026 PPT, Part 2, slide 51."
+    },
+    {
+      "type": "checkpoint",
+      "title": "Practice PPEL",
+      "instructions": [
+        "High key 3,000' MSL · Low key 1,500' MSL",
+        "Request a PPEL to Waldron with Corpus Approach · UHF CH 8; Approach relays the landing runway",
+        "At high key, or when directed, terminate with Approach and switch to Waldron Tower · UHF CH 30",
+        "Turn to low key opposite the landing pattern or as directed by Waldron Tower",
+        "Instructor pilots: request Tower clearance before simulating a PPEL and comply with Tower directions"
+      ],
+      "mapFocus": ["(KNWL) Waldron NOLF/KNWL"],
+      "source": "Feb 2026 PPT, Part 2, slides 48–50; Binder, pp. 47–48; Manual, 2-43, 2-45."
     },
     {
       "type": "checkpoint",

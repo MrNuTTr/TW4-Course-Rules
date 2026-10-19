@@ -34,16 +34,19 @@
     },
     {
       "type": "action",
-      "title": "Climb out RWY {from.runway} toward Point Silver",
+      "title": "Climb out RWY {from.runway} toward PT Silver",
       "mapFocus": [
         "(KNGP) Corpus Christi NAS/Portland Departures/{from.runway}",
         "(KNGP) Corpus Christi NAS/Portland Departures/PT Silver"
       ],
       "instructions": [
-        "Follow the Portland departure track from RWY {from.runway} to Point Silver, due north of KNGP"
+        "Climb on runway heading to 500' MSL at 200 KIAS",
+        "RWY 4, 13L/R: turn left HDG 350°",
+        "RWY 22, 31L/R, 36: turn right HDG 350°",
+        "RWY 18: turn left HDG 025°; at 5 DME, turn left HDG 320°",
+        "Then fly direct to PT Silver; maintain 500' MSL and 200 KIAS until clear of Class D (4.3 NM), then 240 KIAS"
       ],
-      "detail": "The sources give only the name, the Tower call and the track on the map. Altitudes, airspeeds and turn points are not written down. Check with an instructor.",
-      "source": "Feb 2026 PPT, Part 1, slides 43, 46."
+      "source": "Feb 2026 PPT, Part 1, slides 43, 46; Manual, 2-7."
     },
     {
       "type": "radio",
@@ -52,10 +55,9 @@
       "leadIn": "When directed by Tower, contact Corpus Departure (UHF CH 8):",
       "radio": {
         "channel": "Corpus Departure · UHF CH 8",
-        "script": "“Corpus Departure, <callsign>, off Navy Corpus, Portland low.”"
+        "script": "“Corpus Departure, <callsign>, 500 feet off Navy Corpus, Portland Low followed by <VFR intentions>.”"
       },
-      "detail": "The check-in phrase is assumed. Check with an instructor.",
-      "source": "Feb 2026 PPT, Part 1, slide 46."
+      "source": "Feb 2026 PPT, Part 1, slide 46; Manual, 2-7."
     }
   ]
 }

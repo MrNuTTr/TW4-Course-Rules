@@ -27,7 +27,7 @@ export const CURATED_B = [
     'Which way do you turn to depart the pattern?', '45° away from the runway heading, opposite the pattern', ['45° toward the pattern side', '90° toward the runway heading', 'Directly toward the downwind']),
   q('Aransas County', 'Reference',
     'You are inbound to Aransas County and preparing to make your traffic calls.',
-    'Which frequency is the airport CTAF?', 'KRKP CTAF · VHF CH 21', ['UHF CH 21', 'VHF CH 14 (119.275)', 'UHF CH 8']),
+    'Which frequency is the airport CTAF?', 'KRKP CTAF · VHF CH 21', ['UHF CH 21', 'VHF CH 14', 'UHF CH 8']),
   q('Aransas County', 'Reference',
     'You are joining the Aransas County pattern for a touch-and-go.',
     'Which direction is the traffic pattern, and which side of the field does it use?', 'Left-hand, infield side', ['Right-hand, infield side', 'Left-hand, shoreline side', 'Right-hand, shoreline side']),
