@@ -94,17 +94,6 @@ work on Azure.
   OpenStreetMap tiles provide the map background and require an internet
   connection. KML tracks are drawn as supplied; the app does not invent
   connecting legs where the KML has no geometry.
-- Binder details that do not specify a transition or timing are not inferred.
-  The guide marks the CH 12 transfer timing and the altitude change between
-  the Goliad Arrival and Northern Arrival for instructor confirmation.
-- Private source PDFs are not bundled with the application. Extracted text is
-  a draft for UI evaluation, not approved flight guidance, and must be checked
-  by a qualified reviewer against current authorized material before
-  operational use. Items assumed rather than sourced are marked "Check with an
-  instructor."
-
-Specific route compatibility and all unpopulated procedure branches require
-reviewed, authoritative data.
 
 ## Issue reporting
 
