@@ -24,7 +24,7 @@
         "channel": "Ingleside CTAF · 122.7",
         "script": "“Ingleside Traffic, <callsign>, <direction and distance from airfield> at <altitude>, inbound for a left overhead RWY {to.runway}, Ingleside Traffic.”"
       },
-      "detail": "Pattern calls follow the Aransas County format: initial, numbers, left crosswind, left base. Pattern is left-hand at 800', break at 1,000'. The CTAF call wording is assumed from Aransas County; check with an instructor.",
+      "note": "Pattern calls follow the Aransas County format: initial, numbers, left crosswind, left base. Pattern is left-hand at 800', break at 1,000'. The CTAF call wording is assumed from Aransas County; check with an instructor.",
       "source": "Binder, pp. 55–58; Feb 2026 PPT, Part 2, slides 85–93."
     }
   ]

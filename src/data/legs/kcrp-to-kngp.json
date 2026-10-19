@@ -29,7 +29,7 @@
         "Remain clear of NOLF Cabaniss and the Crosstown Expressway",
         "Maintain 1,000' MSL · 200 KIAS, north of SPID, to Point Sunrise"
       ],
-      "detail": "The KCRP tower frequency and phraseology are not in the sources. Check with an instructor.",
+      "note": "The KCRP tower frequency and phraseology are not in the sources. Check with an instructor.",
       "source": "Feb 2026 PPT, Part 2, slides 119–121."
     },
     {
@@ -41,7 +41,7 @@
         "channel": "Navy Corpus Tower · UHF CH 4",
         "script": "“Navy Corpus Tower, <callsign>, Point Sunrise, Nueces Transition, with information <code>.”"
       },
-      "detail": "The sources give no check-in phrase for this call; this one is assumed. Check with an instructor.",
+      "note": "The sources give no check-in phrase for this call; this one is assumed. Check with an instructor.",
       "source": "Feb 2026 PPT, Part 2, slides 119–121."
     },
     { "use": "kngp-tower-directed-entry" }

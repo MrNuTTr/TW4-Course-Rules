@@ -1,7 +1,5 @@
-// Small print is for source gaps and map caveats; any other detail is real course information.
-const CAVEAT = /instructor|assumed|not in the (KML|map data)/i;
-
 // The body of a single card: title, instructions and radio script/exchange.
+// `detail` is course information; `note` is small print (source gaps, map caveats).
 export default function CardView({ event }) {
   const radio = event.radio;
 
@@ -50,9 +48,8 @@ export default function CardView({ event }) {
           )}
         </div>
       )}
-      {event.detail && (
-        <p className={CAVEAT.test(event.detail) ? 'event-note' : 'event-info'}>{event.detail}</p>
-      )}
+      {event.detail && <p className="event-info">{event.detail}</p>}
+      {event.note && <p className="event-note">{event.note}</p>}
     </>
   );
 }

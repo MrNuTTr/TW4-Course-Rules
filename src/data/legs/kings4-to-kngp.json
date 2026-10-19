@@ -32,7 +32,7 @@
           { "speaker": "Pilot", "text": "<callsign>, squawk <code>, frequency change approved." }
         ]
       },
-      "detail": "The binder gives the destination examples Goliad, Aransas County and PPEL Goliad. The destination wording for KNGP is assumed. Check with an instructor.",
+      "note": "The binder gives the destination examples Goliad, Aransas County and PPEL Goliad. The destination wording for KNGP is assumed. Check with an instructor.",
       "source": "Binder, p. 12; Feb 2026 PPT, Part 1, slides 73–74."
     },
     {
@@ -43,7 +43,7 @@
         "channel": "KINGS 4 Common · UHF CH 20",
         "script": "“99 KINGS 4, <callsign> departing area {from.area.spoken}, Navy Corpus.”"
       },
-      "detail": "The destination wording for KNGP is assumed. Check with an instructor.",
+      "note": "The destination wording for KNGP is assumed. Check with an instructor.",
       "source": "Binder, p. 12; Feb 2026 PPT, Part 1, slide 73."
     },
     {

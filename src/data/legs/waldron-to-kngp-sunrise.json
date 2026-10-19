@@ -31,7 +31,7 @@
           { "speaker": "Pilot", "text": "<callsign>, Sunrise Transition approved, at Point Chapman contact Cabaniss Tower." }
         ]
       },
-      "detail": "The readback is written in the same pattern as the other approvals. Check with an instructor.",
+      "note": "The readback is written in the same pattern as the other approvals. Check with an instructor.",
       "source": "Binder, p. 26; Feb 2026 PPT, Part 2, slides 80–84."
     },
     {
@@ -87,7 +87,7 @@
         "channel": "Navy Corpus Tower · UHF CH 4",
         "script": "“Navy Corpus Tower, <callsign>, Point Sunrise, Sunrise Transition, with information <code>.”"
       },
-      "detail": "The binder gives no check-in phrase for this call; this one is assumed. Check with an instructor.",
+      "note": "The binder gives no check-in phrase for this call; this one is assumed. Check with an instructor.",
       "source": "Binder, p. 26."
     },
     { "use": "kngp-tower-directed-entry" }

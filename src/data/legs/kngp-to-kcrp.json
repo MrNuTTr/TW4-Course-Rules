@@ -31,7 +31,7 @@
           { "speaker": "Pilot", "text": "<callsign>, cleared for takeoff RWY {from.runway}." }
         ]
       },
-      "detail": "The sources do not give the Nueces request phrase. Check with an instructor.",
+      "note": "The sources do not give the Nueces request phrase. Check with an instructor.",
       "source": "Feb 2026 PPT, Part 1, slides 58–61."
     },
     {
@@ -64,7 +64,7 @@
         "channel": "Cabaniss Tower · UHF CH 27",
         "script": "“Cabaniss Tower, <callsign>, Nueces transition.”"
       },
-      "detail": "Handoff per the Manual, §2-9. Check with an instructor for the exact CRP Tower frequency.",
+      "note": "Handoff per the Manual, §2-9. Check with an instructor for the exact CRP Tower frequency.",
       "source": "Feb 2026 PPT, Part 1, slides 58–61; Part 2, slides 119–121."
     }
   ]

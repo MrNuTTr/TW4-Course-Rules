@@ -10,7 +10,7 @@
         "Passing abeam the High Bridge, descend to 2,500' MSL and maintain 240 KIAS",
         "Fly to the Camel Humps"
       ],
-      "detail": "The binder limits this transition to the northern working areas (Mustang 1/2 and Fox 1/2); the PPT says North/Central Mustang. Check with an instructor before using it from Mustang 5/6.",
+      "note": "The binder limits this transition to the northern working areas (Mustang 1/2 and Fox 1/2); the PPT says North/Central Mustang. Check with an instructor before using it from Mustang 5/6.",
       "source": "Binder, pp. 24, 48; Feb 2026 PPT, Part 1, slide 92; Part 2, slides 52, 54."
     },
     { "use": "waldron-terminate-camel-humps" },

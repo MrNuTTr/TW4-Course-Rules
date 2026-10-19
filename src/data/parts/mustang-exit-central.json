@@ -21,7 +21,7 @@
         "Remain clear of the maintenance area and other Central traffic",
         "Descend after clearing the Central lateral boundaries, just north of Fish Pass"
       ],
-      "detail": "Fish Pass is not in the map data, so it is not drawn.",
+      "note": "Fish Pass is not in the map data, so it is not drawn.",
       "source": "Binder, p. 25."
     }
   ]

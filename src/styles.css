@@ -511,10 +511,12 @@ h3 {
 
 .event-info {
   margin: 14px 0 0;
-  padding-left: 10px;
-  border-left: 3px solid var(--blue-dark);
   font-weight: 700;
   line-height: 1.4;
+}
+
+.wiki-card .event-info {
+  font-weight: 500;
 }
 
 .event-note {

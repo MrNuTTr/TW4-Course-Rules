@@ -61,7 +61,7 @@
         "channel": "Navy Corpus Tower · UHF CH 4",
         "script": "“Navy Corpus Tower, <callsign>, Oso Bridge, Oso Transition inbound, with information <code>.”"
       },
-      "detail": "The binder says to contact Navy Corpus Tower but does not give the check-in phrase; this one is assumed. Check with an instructor.",
+      "note": "The binder says to contact Navy Corpus Tower but does not give the check-in phrase; this one is assumed. Check with an instructor.",
       "source": "Binder, p. 26."
     },
     { "use": "kngp-tower-directed-entry" }

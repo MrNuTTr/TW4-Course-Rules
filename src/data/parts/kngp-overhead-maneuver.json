@@ -11,7 +11,7 @@
         "Break, then pattern altitude 800' MSL",
         "Tower may instead specify a straight-in, downwind or base entry"
       ],
-      "detail": "Normal entry is from the initial to an overhead maneuver. The break point and landing-checklist timing are not written in the sources used here. Check with an instructor.",
+      "note": "Normal entry is from the initial to an overhead maneuver. The break point and landing-checklist timing are not written in the sources used here. Check with an instructor.",
       "source": "Binder, p. 3; Manual 3710.14, p. 3-38; CR2025 summary of changes."
     }
   ]

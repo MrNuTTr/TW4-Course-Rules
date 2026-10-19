@@ -14,6 +14,7 @@ function cardText(card) {
     radio?.script,
     ...(radio?.exchange ?? []).map((line) => line.text),
     card.detail,
+    card.note,
   ].filter(Boolean);
 }
 
