@@ -25,17 +25,16 @@ export function kindOf(token) {
   return 'number';
 }
 
-// One question per value, with the other values left visible as context. On multi-value
-// lines only altitudes, airspeeds, headings and channels are drilled; sides, distances and
-// counts are too guessable or too incidental to quiz out of a list.
+// Compound lines are skipped: splitting them into several questions inflated the bank
+// with repetitive or low-signal items.
 function lineQuestions(text) {
   const tokens = [...text.matchAll(TOKEN)].map((m) => ({ value: m[0], index: m.index }));
-  if (!tokens.length) return null;
-  const drilled = tokens.length === 1 ? tokens : tokens.filter((t) => ['altitude', 'airspeed', 'heading', 'channel'].includes(kindOf(t.value)));
-  return drilled.map(({ value, index }) => ({
+  if (tokens.length !== 1) return null;
+  const [{ value, index }] = tokens;
+  return [{
     text: `${text.slice(0, index)}_____${text.slice(index + value.length)}`,
     answers: [value],
-  }));
+  }];
 }
 
 function cardLines(card) {
@@ -217,7 +216,6 @@ export function chairFlyLegs() {
   }
   return [...seen.values()];
 }
-
 
 
 

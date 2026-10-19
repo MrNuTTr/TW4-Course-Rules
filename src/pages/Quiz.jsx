@@ -401,7 +401,7 @@ function ChairFlyQuiz({ session, setSession }) {
           setSession({ legs: shuffle(matches).slice(0, 5), leg: 0, card: 0, revealed: false })
         }
       >
-        {matches.length === 0 ? 'No matching routes' : `Start (${Math.min(matches.length, 5)} of ${matches.length} routes)`}
+        {matches.length === 0 ? 'No matching routes' : 'Start'}
       </button>
     </section>
   );
@@ -447,7 +447,6 @@ export default function Quiz() {
     </div>
   );
 }
-
 
 
 

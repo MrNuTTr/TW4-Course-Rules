@@ -15,6 +15,10 @@ describe('quiz bank', () => {
     }
   });
 
+  it('does not expand compound source lines into a large batch of generated questions', () => {
+    expect(bank.length).toBeLessThan(300);
+  });
+
   it('includes the correct answer among multiple-choice options', () => {
     for (const item of bank) {
       const choices = choicesFor(item, bank);
@@ -55,5 +59,4 @@ describe('quiz bank', () => {
     expect(legs.every((leg) => leg.cards.length > 0)).toBe(true);
   });
 });
-
 
