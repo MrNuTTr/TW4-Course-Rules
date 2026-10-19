@@ -12,8 +12,8 @@ export const CURATED_C = [
   q('Aransas County → KNGP', 'Routes', 'You have crossed the LBJ Causeway and are preparing to check in with Corpus Approach.',
     'Which channel do you use to contact Approach?', 'UHF CH 8',
     ['UHF CH 6', 'UHF CH 12', 'UHF CH 30']),
-  q('Aransas County → KNGP', 'Routes', 'You are southbound on the Northern Arrival and approaching the Aransas Pass Causeway.',
-    'What altitude and airspeed must you have at the causeway?', '1,000\' MSL · 240 KIAS',
+  q('Aransas County → KNGP', 'Routes', 'You are on the Goliad/Northern Arrival, descending toward the Aransas Pass Causeway.',
+    'What altitude and airspeed must you have prior to the causeway?', '1,000\' MSL · 240 KIAS',
     ['1,500\' MSL · 240 KIAS', '1,000\' MSL · 200 KIAS', '2,500\' MSL · 240 KIAS']),
 
   // Goliad → KNGP

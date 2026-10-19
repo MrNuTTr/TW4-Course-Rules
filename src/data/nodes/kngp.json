@@ -58,7 +58,7 @@
           "initialWhen": "Report initial when crossing the extended centerline of Runway 22",
           "taxiRoute": "via Sierra, Charlie, 22",
           "holdShort": "VFR: hold short offset to the right side of RWY 04/22.",
-          "firstTurn": "When clear of the pattern, turn left to HDG 105° until the High Bridge",
+          "firstTurn": "At the upwind numbers, turn left to HDG 105° until the High Bridge",
           "turnTitle": "Abeam the High Bridge",
           "turnCourse": "~350°",
           "turnFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/High Bridge",

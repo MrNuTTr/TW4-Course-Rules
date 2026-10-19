@@ -55,7 +55,7 @@ export const CURATED_A = [
 
   // KNGP -> Foxtrot
   q('KNGP → Foxtrot', 'Routes', 'You crossed the beach line on the beach line departure bound for Fox 1.',
-    'Which way do you turn and how do you proceed?', 'North, parallel the beach line at ½ WTD, climb to 5,500\' MSL', ['South, parallel the beach line at ½ WTD, climb to 5,500\' MSL', 'North, parallel the beach line at ½ WTD, climb to 2,500\' MSL', 'Continue east to Foxtrot at 2,500\' MSL']),
+    'Which way do you turn and how do you proceed?', 'North, parallel the beach line at ½ WTD and 240 KIAS, climb to 5,500\' MSL', ['South, parallel the beach line at ½ WTD and 240 KIAS, climb to 5,500\' MSL', 'North, parallel the beach line at ½ WTD and 240 KIAS, climb to 2,500\' MSL', 'Continue east to Foxtrot at 2,500\' MSL']),
   q('KNGP → Foxtrot', 'Routes', 'You are approaching the southern boundary of Foxtrot and have not yet deconflicted.',
     'What heading do you fly to remain clear of the lateral boundaries?', '~055°', ['~105°', '~035°', '~360°']),
   q('KNGP → Foxtrot', 'Routes', 'You are approaching Foxtrot and have terminated with Corpus Approach.',

@@ -52,7 +52,7 @@
       "type": "radio",
       "title": "Numbers call",
       "mapFocus": "{to.runway.entryLine}",
-      "leadIn": "At the approach end numbers:",
+      "leadIn": "At the approach end numbers, call Tower:",
       "radio": {
         "channel": "Navy Corpus Tower · UHF CH 4",
         "script": "“Navy Corpus Tower, <callsign>, numbers RWY {to.runway}.”"
