@@ -1,4 +1,4 @@
-﻿{
+{
   "id": "foxtrot-entry",
   "cards": [
     {
@@ -7,11 +7,11 @@
       "mapFocus": "{to.area.poly}",
       "instructions": [
         "Terminate with Corpus Approach",
-        "Houston Center will not provide flight following without an explicit request (VHF CH 22 / CH 23)",
+        "Houston Center will not provide flight following without an explicit request (Houston Center · VHF CH 22 / VHF CH 23)",
         "Switch to Foxtrot Common, UHF CH 22, for advisories and area coordination",
         "Fly ~055° to remain clear of the lateral boundaries until de-conflicted",
         "Avoid the North Mustang areas at all times",
-        "Minimum altitude over the Aransas Wildlife Refuge is 3,000 ft AGL"
+        "Minimum altitude over the Aransas Wildlife Refuge is 3,000' AGL"
       ],
       "source": "Binder, p. 28; Feb 2026 PPT, Part 1, slides 93 and 95."
     },

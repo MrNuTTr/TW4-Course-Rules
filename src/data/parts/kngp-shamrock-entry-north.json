@@ -11,7 +11,7 @@
       "instructions": [
         "Slow to 200 KIAS",
         "Turn HDG 200° toward the High Bridge",
-        "Maintain 1,000 ft MSL"
+        "Maintain 1,000' MSL"
       ],
       "source": "Binder, pp. 64–66; Feb 2026 PPT, Part 2, slide 111."
     },
@@ -58,7 +58,7 @@
       ],
       "instructions": [
         "{to.runway.afterDimmit}",
-        "Maintain 1,000 ft MSL · 200 KIAS"
+        "Maintain 1,000' MSL · 200 KIAS"
       ],
       "source": "Binder, p. 66; Feb 2026 PPT, Part 2, slides 112–113."
     },

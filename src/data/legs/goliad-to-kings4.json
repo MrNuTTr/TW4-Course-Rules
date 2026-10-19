@@ -1,4 +1,4 @@
-﻿{
+{
   "id": "goliad-to-kings4",
   "from": "goliad",
   "to": "kings4",
@@ -77,7 +77,7 @@
       "leadIn": "Once cleared into the MOA:",
       "instructions": [
         "Switch to KINGS 4 Common (UHF CH 20) no later than 8,000' MSL",
-        "Switch to VHF CH 22 or CH 23 when directed by Center"
+        "Switch to Houston Center · VHF CH 22 or VHF CH 23 when directed by Center"
       ],
       "source": "3710.14, para 2.j(2)."
     },

@@ -33,7 +33,7 @@
       "type": "radio",
       "title": "Check in with Corpus Departure",
       "mapFocus": "(KNGP) Corpus Christi NAS/Beach Line Departures/{from.runway}",
-      "leadIn": "At 500 ft MSL, when directed by Tower, contact Corpus Departure (UHF CH 8):",
+      "leadIn": "At 500' MSL, when directed by Tower, contact Corpus Departure (UHF CH 8):",
       "radio": {
         "channel": "Corpus Departure · UHF CH 8",
         "exchange": [
@@ -44,8 +44,7 @@
           { "speaker": "Pilot", "text": "<callsign>, proceed course rules Waldron." }
         ]
       },
-      "detail": "The binder gives the Approach request \"course rules / high key to Waldron\" but no Departure-specific phrase; this follows the Mustang check-in pattern. Check with an instructor.",
-      "source": "Binder, pp. 16, 48–49."
+      "source": "Binder, pp. 16, 48–49; Manual 2-4."
     },
     {
       "type": "action",

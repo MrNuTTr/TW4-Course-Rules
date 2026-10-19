@@ -11,7 +11,7 @@
       "instructions": [
         "Slow to 200 KIAS",
         "Turn HDG 255° toward the northwest corner of TAMUCC",
-        "Maintain 1,000 ft MSL"
+        "Maintain 1,000' MSL"
       ],
       "source": "Binder, p. 67; Feb 2026 PPT, Part 2, slides 110, 114."
     },
@@ -38,7 +38,7 @@
         "{to.runway.entryLine}"
       ],
       "instructions": [
-        "Descend and level off at 800 ft MSL",
+        "Descend and level off at 800' MSL",
         "Approaching initial: slow below 150 KIAS",
         "Gear down, flaps as required, Before Landing checklist"
       ],

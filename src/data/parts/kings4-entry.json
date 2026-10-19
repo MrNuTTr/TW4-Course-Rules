@@ -1,4 +1,4 @@
-﻿{
+{
   "id": "kings4-entry",
   "cards": [
     {
@@ -10,7 +10,7 @@
       ],
       "instructions": [
         "Turn right toward Bayside (~360°)",
-        "Climb to 14,500 ft MSL",
+        "Climb to 14,500' MSL",
         "Execute the area entry procedures"
       ],
       "source": "Binder, pp. 8–9; Feb 2026 PPT, Part 1, slide 57."
@@ -65,7 +65,7 @@
       "title": "Enter KINGS 4",
       "mapFocus": "{to.area.moa}",
       "instructions": [
-        "Do not enter the MOA until established at 14,500 ft MSL and cleared by Houston Center",
+        "Do not enter the MOA until established at 14,500' MSL and cleared by Houston Center",
         "Enter via the transition layer, except border areas where no transition altitude is needed (see below)",
         "If you need extra climb or a weather deviation, climb while paralleling the eastern MOA boundary and advise ATC",
         "{to.area.entryNote}"

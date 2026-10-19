@@ -40,7 +40,7 @@
       "title": "Self-announce on A-County CTAF",
       "mapFocus": "(KRKP) Aransas County Airport/KRKP",
       "radio": {
-        "channel": "A-County CTAF · VHF CH 21 (123.05)",
+        "channel": "KRKP CTAF · VHF CH 21",
         "script": "“Aransas County Traffic, <callsign>, <direction and distance from airfield> at <altitude>, inbound for a left overhead RWY {to.runway}, Aransas County Traffic.”"
       },
       "source": "Binder, pp. 40–41."

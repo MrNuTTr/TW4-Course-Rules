@@ -1,4 +1,4 @@
-﻿import { q } from './q.js';
+import { q } from './q.js';
 
 // Hand-curated return and arrival scenarios, based on sourced route and reference data.
 export const CURATED_C = [
@@ -60,7 +60,7 @@ export const CURATED_C = [
 
   // Mustang → KNGP
   q('Mustang → KNGP', 'Routes', 'You are finishing work in a southern Mustang area and preparing to exit toward KNGP.',
-    'Which traffic should you specifically scan for as you clear toward the beach line?', 'Mustang entry traffic at 5,500\' MSL',
+    'Which traffic should you specifically scan for as you clear toward the beach line?', 'Mustang arrival traffic at 5,500\' MSL',
     ['Northern Arrival traffic at 1,500\' MSL', 'Goliad arrival traffic at 2,500\' MSL', 'Nueces Transition traffic at 1,000\' MSL']),
   q('Mustang → KNGP', 'Routes', 'You have exited a southern Mustang area and are joining the Southern Arrival.',
     'What position, altitude, and airspeed should you establish?', '1 WTD northbound at 1,000\' MSL · 240 KIAS',
@@ -74,8 +74,8 @@ export const CURATED_C = [
 
   // Foxtrot → KNGP
   q('Foxtrot → KNGP', 'Routes', 'You are exiting a Foxtrot working block toward the Northern Arrival.',
-    'Which area must you avoid at all times?', 'North Mustang, 6,500–17,500 ft MSL',
-    ['Central Mustang, 1,000–5,500 ft MSL', 'South Mustang, below 6,500 ft MSL', 'The KINGS 4 MOA, 9,000–14,000 ft MSL']),
+    'Which area must you avoid at all times?', 'North Mustang, 6,500–17,500\' MSL',
+    ['Central Mustang, 1,000–5,500\' MSL', 'South Mustang, below 6,500\' MSL', 'The KINGS 4 MOA, 9,000–14,000\' MSL']),
   q('Foxtrot → KNGP', 'Routes', 'You are about to vacate your Foxtrot block for the Northern Arrival.',
     'Which channel do you use for the departure call on Foxtrot Common?', 'UHF CH 22',
     ['UHF CH 6', 'UHF CH 8', 'UHF CH 20']),
@@ -130,8 +130,8 @@ export const CURATED_C = [
 
   // KNGP → Shamrock Re-entry
   q('KNGP → Shamrock Re-entry', 'Routes', 'You are departing KNGP on the Beach-Line Departure for a Shamrock Re-entry.',
-    'Before what height are turns prohibited?', '300 ft AGL',
-    ['100 ft AGL', '500 ft AGL', '800 ft AGL']),
+    'Before what height are turns prohibited?', '300\' AGL',
+    ['100\' AGL', '500\' AGL', '800\' AGL']),
   q('KNGP → Shamrock Re-entry', 'Routes', 'You have reached the point on the Beach-Line Departure where the procedure directs you toward the beach line.',
     'What heading, altitude, and airspeed are specified?', 'HDG 105° · 2,500\' MSL · 180 KIAS',
     ['HDG 125° · 1,500\' MSL · 240 KIAS', 'HDG 105° · 1,000\' MSL · 200 KIAS', 'HDG 200° · 2,500\' MSL · 200 KIAS']),

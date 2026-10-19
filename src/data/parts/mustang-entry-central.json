@@ -16,7 +16,7 @@
     },
     {
       "type": "radio",
-      "title": "Switch to CH 18 and self-announce",
+      "title": "Switch to Central Common · UHF CH 18 and self-announce",
       "mapFocus": "{to.area.poly}",
       "leadIn": "Auto-switch to Central Common · UHF CH 18 and self-announce:",
       "radio": {

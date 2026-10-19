@@ -1,4 +1,4 @@
-﻿import { q } from './q.js';
+import { q } from './q.js';
 
 export const CURATED_B = [
   q('Goliad', 'Reference',
@@ -27,7 +27,7 @@ export const CURATED_B = [
     'Which way do you turn to depart the pattern?', '45° away from the runway heading, opposite the pattern', ['45° toward the pattern side', '90° toward the runway heading', 'Directly toward the downwind']),
   q('Aransas County', 'Reference',
     'You are inbound to Aransas County and preparing to make your traffic calls.',
-    'Which frequency is the airport CTAF?', 'VHF CH 21 (123.05)', ['UHF CH 21', 'VHF CH 14 (119.275)', 'UHF CH 8']),
+    'Which frequency is the airport CTAF?', 'KRKP CTAF · VHF CH 21', ['UHF CH 21', 'VHF CH 14 (119.275)', 'UHF CH 8']),
   q('Aransas County', 'Reference',
     'You are joining the Aransas County pattern for a touch-and-go.',
     'Which direction is the traffic pattern, and which side of the field does it use?', 'Left-hand, infield side', ['Right-hand, infield side', 'Left-hand, shoreline side', 'Right-hand, shoreline side']),
@@ -50,7 +50,7 @@ export const CURATED_B = [
     'You have reached the Camel Humps inbound to Waldron for touch-and-goes.',
     'What call and frequency should you use to contact the tower?', '“Camel Humps for touch and gos” on UHF CH 30', ['“Initial for touch and gos” on UHF CH 8', '“Camel Humps for touch and gos” on VHF CH 21', '“Two-mile initial” on UHF CH 15']),
   q('Waldron', 'Reference',
-    'You are flying the North-to-South Transition toward Waldron and pass abeam the High Bridge.',
+    'You are flying the North-to-South Transition toward Waldron and pass abeam the High Bridge and are cleared to descend.',
     'What altitude and airspeed do you maintain after descending?', '2,500\' MSL · 240 KIAS', ['1,000\' MSL · 200 KIAS', '2,500\' MSL · 200 KIAS', '4,500\' MSL · 240 KIAS']),
   q('Waldron', 'Reference',
     'You are inbound to the initial for Runway 13 at Waldron.',
@@ -102,7 +102,7 @@ export const CURATED_B = [
     'By what altitude must you switch to KINGS 4 Common?', 'No later than 8,000\' MSL', ['No later than 4,500\' MSL', 'No later than 9,000\' MSL', 'No later than 10,000\' MSL']),
   q('KINGS 4 → Goliad', 'Routes',
     'You are completing KINGS 4 and preparing to exit the MOA for Goliad.',
-    'Which controller do you contact to terminate before leaving the MOA?', 'Houston Center on VHF CH 22', ['Corpus Approach on UHF CH 8', 'Goliad Common on UHF CH 15', 'Houston Center on UHF CH 20']),
+    'Which controller do you contact to terminate before leaving the MOA?', 'Houston Center · VHF CH 22', ['Corpus Approach · UHF CH 8', 'Goliad RDO · UHF CH 15', 'Houston Center · UHF CH 20']),
   q('KINGS 4 → Goliad', 'Routes',
     'You are descending from KINGS 4 toward Goliad and pass below 9,000\' MSL.',
     'Which frequency should you switch to?', 'Goliad Common · CH 15', ['KINGS 4 Common · CH 20', 'Corpus Approach · UHF CH 8', 'Aransas County CTAF · VHF CH 21']),
@@ -126,5 +126,5 @@ export const CURATED_B = [
     'What altitude and airspeed do you use while proceeding down the Intracoastal?', '1,500\' MSL · 240 KIAS', ['2,500\' MSL · 240 KIAS', '1,500\' MSL · 200 KIAS', '1,000\' MSL · 200 KIAS']),
   q('Foxtrot → Waldron', 'Routes',
     'You are leaving Foxtrot for Waldron and checking your route clearances.',
-    'Which airspace must you avoid at all times?', 'North Mustang (6,500–17,500 ft MSL)', ['South Mustang (below 6,500 ft MSL)', 'Central Mustang', 'KINGS 4']),
+    'Which airspace must you avoid at all times?', 'North Mustang (6,500–17,500\' MSL)', ['South Mustang (below 6,500\' MSL)', 'Central Mustang', 'KINGS 4']),
 ];

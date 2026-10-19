@@ -11,7 +11,7 @@
       "instructions": [
         "Slow to 200 KIAS",
         "Turn HDG 200° toward the High Bridge",
-        "Maintain 1,000 ft MSL"
+        "Maintain 1,000' MSL"
       ],
       "source": "Binder, p. 68; Feb 2026 PPT, Part 2, slides 110–111."
     },
@@ -38,7 +38,7 @@
         "{to.runway.viaB}"
       ],
       "instructions": [
-        "Descend and level off at 500 ft MSL",
+        "Descend and level off at 500' MSL",
         "Approaching initial: slow below 150 KIAS",
         "Gear down, flaps as required, Before Landing checklist"
       ],

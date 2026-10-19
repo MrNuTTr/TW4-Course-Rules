@@ -1,4 +1,4 @@
-﻿import { q } from './q.js';
+import { q } from './q.js';
 import { CURATED_A } from './curated-a.js';
 import { CURATED_B } from './curated-b.js';
 import { CURATED_C } from './curated-c.js';
@@ -48,11 +48,11 @@ const BASE = [
   q('Aransas County', 'Reference', 'You are descending to the Aransas County initial.',
     'What should you be wary of over the Intracoastal?', 'Traffic on course rules at 1,500\'', ['Traffic at 3,000\' MSL', 'IFR traffic at 5,500\'', 'Parachute operations']),
   q('KNGP → Mustang', 'Routes', 'You are climbing out of KNGP on the beach line departure.',
-    'Until what height may you not turn?', '300 ft AGL', ['100 ft AGL', '500 ft AGL', '800 ft AGL']),
+    'Until what height may you not turn?', '300\' AGL', ['100\' AGL', '500\' AGL', '800\' AGL']),
   q('KNGP → Mustang', 'Routes', 'You are climbing out of KNGP on the beach line departure.',
-    'What altitude and airspeed do you climb to first?', '500 ft MSL · 200 KIAS', ['500 ft MSL · 240 KIAS', '800 ft MSL · 200 KIAS', '1,000 ft MSL · 200 KIAS']),
+    'What altitude and airspeed do you climb to first?', '500\' MSL · 200 KIAS', ['500\' MSL · 240 KIAS', '800\' MSL · 200 KIAS', '1,000\' MSL · 200 KIAS']),
   q('Foxtrot', 'Reference', 'You are operating in or departing from Foxtrot.',
-    'Which airspace must you avoid at all times?', 'North Mustang (6,500–17,500 ft MSL)', ['Central Mustang', 'South Mustang (below 6,500 ft)', 'KINGS 4']),
+    'Which airspace must you avoid at all times?', 'North Mustang (6,500–17,500\' MSL)', ['Central Mustang', 'South Mustang (below 6,500 ft)', 'KINGS 4']),
 ];
 
 const seen = new Set();

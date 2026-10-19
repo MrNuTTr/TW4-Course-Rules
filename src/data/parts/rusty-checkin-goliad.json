@@ -5,7 +5,7 @@
       "type": "radio",
       "title": "Check in with Corpus Departure",
       "mapFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/{from.runway}",
-      "leadIn": "At 500 ft MSL, when directed by Tower:",
+      "leadIn": "At 500' MSL, when directed by Tower:",
       "radio": {
         "channel": "Corpus Departure · UHF CH 12",
         "exchange": [

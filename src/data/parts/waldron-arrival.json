@@ -53,7 +53,7 @@
           { "speaker": "Pilot", "text": "Waldron Tower, <callsign>, numbers RWY {to.runway}." }
         ]
       },
-      "detail": "Pattern is {to.runway.patternSide}-hand. If two-way contact is not established by the Shrimp Ponds, or the pattern is full, turn right, fly south along the center of the ICW at 1,000' MSL and contact Corpus Approach (CH 8).",
+      "detail": "Pattern is {to.runway.patternSide}-hand. If two-way contact is not established by the Shrimp Ponds, or the pattern is full, turn right, fly south along the center of the ICW at 1,000' MSL and contact Corpus Approach · UHF CH 8.",
       "source": "Binder, pp. 49–50; Feb 2026 PPT, Part 2, slides 56, 62."
     }
   ]

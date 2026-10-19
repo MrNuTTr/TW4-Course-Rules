@@ -1,4 +1,4 @@
-﻿import { q } from './q.js';
+import { q } from './q.js';
 
 // Hand-written scenario questions: KNGP departures, KNGP reference, Mustang, Foxtrot, KINGS 4.
 // Answers come from the sourced route and reference data (Binder, Feb 2026 PPT Parts 1–2).
@@ -15,21 +15,21 @@ export const CURATED_A = [
   q('KNGP', 'Reference', 'You are VFR and holding short of RWY 13L on 04/22 behind other aircraft.',
     'Where do you position yourself?', 'Offset all the way to the right side', ['Offset all the way to the left side', 'In one line behind the lead aircraft', 'On the Yankee taxiway']),
   q('KNGP', 'Reference', 'You are inbound for the Shamrock arrival and checking which pattern you will fly.',
-    'Which runway has a right-hand pattern?', 'RWY 18', ['RWY 13L', 'RWY 31L', 'RWY 36']),
+    'Which of these runways has a right-hand pattern?', 'RWY 18', ['RWY 13L', 'RWY 31L', 'RWY 36']),
   q('KNGP', 'Reference', 'Tower has parallel runways 13L and 13R in use and you are flying the Delta pattern.',
     'Which runway does Delta conform to?', '13L/31R', ['13R/31L', '18/36', '04/22']),
   q('KNGP', 'Reference', 'You are on a north flow day, taxiing out from parking toward the run-ups.',
     'Where do you hold short and call Ground for taxi clearance?', 'Charlie / Compass Rose', ['Sierra run-up', 'Echo / Yankee', 'Zulu / 36']),
 
   // KNGP -> Mustang
-  q('KNGP → Mustang', 'Routes', 'You are departing RWY 13L on the beach line departure, past 300 ft AGL.',
+  q('KNGP → Mustang', 'Routes', 'You are departing RWY 13L on the beach line departure, past 300\' AGL.',
     'What heading do you fly until the High Bridge?', '125°', ['105°', '135°', '305°']),
-  q('KNGP → Mustang', 'Routes', 'You are departing RWY 13R on the beach line departure, past 300 ft AGL.',
+  q('KNGP → Mustang', 'Routes', 'You are departing RWY 13R on the beach line departure, past 300\' AGL.',
     'What heading do you fly until the High Bridge?', '135°', ['125°', '105°', '315°']),
   q('KNGP → Mustang', 'Routes', 'You are departing RWY 31L on the beach line departure.',
     'What heading do you fly until cleared by Tower?', '305°', ['315°', '125°', '105°']),
-  q('KNGP → Mustang', 'Routes', 'You departed RWY 04 on the beach line departure and are climbing through 500 ft MSL.',
-    'When do you turn to HDG 105°?', 'Once clear of the pattern', ['Abeam the High Bridge', 'Once cleared by Tower', 'At 300 ft AGL']),
+  q('KNGP → Mustang', 'Routes', 'You departed RWY 04 on the beach line departure and are climbing through 500\' MSL.',
+    'When do you turn to HDG 105°?', 'Once clear of the pattern', ['Abeam the High Bridge', 'Once cleared by Tower', 'At 300\' AGL']),
   q('KNGP → Mustang', 'Routes', 'You are on HDG 105° heading to the beach line after the High Bridge.',
     'Which altitude and airspeed is your initial climb after turning at the High Bridge?', '2,500\' MSL · 180 KIAS', ['5,500\' MSL · 240 KIAS', '2,500\' MSL · 200 KIAS', '1,000\' MSL · 200 KIAS']),
   q('KNGP → Mustang', 'Routes', 'You were directed by Tower to Corpus Departure and are now switching, bound for Area 3.',
@@ -42,7 +42,7 @@ export const CURATED_A = [
   // KNGP -> KINGS 4
   q('KNGP → KINGS 4', 'Routes', 'You are about to taxi for a KINGS 4 flight from the Kilo line.',
     'Before taxi, what do you ask Navy Corpus Clearance (CH 2) for?', 'A ZOMBIE 1 on request', ['A VFR squawk and ATIS', 'A KINGS 4 MOA clearance', 'Flight following with Houston Center']),
-  q('KNGP → KINGS 4', 'Routes', 'You are airborne from KNGP past 500 ft MSL and Tower has directed you to Corpus Departure.',
+  q('KNGP → KINGS 4', 'Routes', 'You are airborne from KNGP past 500\' MSL and Tower has directed you to Corpus Departure.',
     'What is your check-in call?', '"500 feet off Navy Corpus, KINGS 4"', ['"500 feet off Navy Corpus, Mustang North"', '"Passing 500 feet, working KINGS 4"', '"500 feet off Navy Corpus, Rusty"']),
   q('KNGP → KINGS 4', 'Routes', 'You departed RWY 31L on the Rusty departure and are clear of the pattern.',
     'Which course do you fly direct to PT Rusty?', '~350°', ['~010°', '~015°', '~105°']),
@@ -59,7 +59,7 @@ export const CURATED_A = [
   q('KNGP → Foxtrot', 'Routes', 'You are approaching the southern boundary of Foxtrot and have not yet deconflicted.',
     'What heading do you fly to remain clear of the lateral boundaries?', '~055°', ['~105°', '~035°', '~360°']),
   q('KNGP → Foxtrot', 'Routes', 'You are approaching Foxtrot and have terminated with Corpus Approach.',
-    'Which frequency do you switch to for advisories and area coordination?', 'Foxtrot Common, CH 22', ['Central Common, CH 18', 'KINGS 4 Common, CH 20', 'Corpus Approach, CH 17']),
+    'Which frequency do you switch to for advisories and area coordination?', 'Foxtrot Common · UHF CH 22', ['Central Common · UHF CH 18', 'KINGS 4 Common · UHF CH 20', 'Corpus Approach · UHF CH 17']),
 
   // Mustang reference
   q('Mustang', 'Reference', 'You are a solo student planning your working area in Mustang.',
@@ -77,11 +77,11 @@ export const CURATED_A = [
 
   // Foxtrot reference
   q('Foxtrot', 'Reference', 'You are claiming the high block in Fox 2 on CH 22.',
-    'What altitudes does the high block cover?', '13,000–17,999 ft MSL', ['7,000–11,999 ft MSL', '4,000–5,999 ft MSL', '12,000–12,999 ft MSL']),
+    'What altitudes does the high block cover?', '13,000–17,999\' MSL', ['7,000–11,999\' MSL', '4,000–5,999\' MSL', '12,000–12,999\' MSL']),
   q('Foxtrot', 'Reference', 'You are leaving the Foxtrot low block southbound and need a transition altitude.',
     'What is the low transition altitude for south/west flight?', '6,200\' MSL', ['6,700\' MSL', '12,200\' MSL', '12,700\' MSL']),
   q('Foxtrot', 'Reference', 'You want flight following from Houston Center while working in Foxtrot.',
-    'What must you do to get it?', 'Explicitly request it (VHF CH 22 or CH 23)', ['Nothing, it is automatic', 'Check in on CH 22', 'Call Corpus Approach on CH 17']),
+    'What must you do to get it?', 'Explicitly request it (Houston Center · VHF CH 22 / VHF CH 23)', ['Nothing, it is automatic', 'Check in on CH 22', 'Call Corpus Approach on CH 17']),
 
   // KINGS 4 reference
   q('KINGS 4', 'Reference', 'You are inbound to Area 2 High and approaching the MOA boundary.',
@@ -91,7 +91,7 @@ export const CURATED_A = [
   q('KINGS 4', 'Reference', 'You are westbound inside the MOA bound for Area 4 Low.',
     'What transition altitude do you use?', '14,200\' MSL', ['14,700\' MSL', '14,500\' MSL', '15,000\' MSL']),
   q('KINGS 4', 'Reference', 'Houston has cleared you into KINGS 4 for Area 7 High.',
-    'Which frequency do you use to ask who is working the area?', 'KINGS 4 Common, CH 20', ['Foxtrot Common, CH 22', 'Corpus Approach, CH 17', 'Central Common, CH 18']),
+    'Which frequency do you use to ask who is working the area?', 'KINGS 4 Common · UHF CH 20', ['Foxtrot Common · UHF CH 22', 'Corpus Approach · UHF CH 17', 'Central Common · UHF CH 18']),
   q('KINGS 4', 'Reference', 'You are transiting KINGS 4 between Goliad and the MOA.',
     'Which area is transit only and never assigned?', 'Area 5 Low', ['Area 1 High', 'Area 9 Low', 'Area 6 Low']),
   q('KINGS 4', 'Reference', 'You are working in KINGS 4 and need extra climb or a weather deviation.',

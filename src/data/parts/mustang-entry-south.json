@@ -14,7 +14,7 @@
     },
     {
       "type": "radio",
-      "title": "Abeam Padre Balli Park: switch to CH 17",
+      "title": "Abeam Padre Balli Park: switch to UHF CH 17",
       "mapFocus": "{to.area.waypoint}",
       "leadIn": "Abeam Padre Balli Park, expect ATC to switch you to CH 17. If ATC has not directed the switch by abeam Padre Balli Park, request it:",
       "radio": {
@@ -38,7 +38,7 @@
     },
     {
       "type": "radio",
-      "title": "Check in on CH 17",
+      "title": "Check in on Corpus Approach · UHF CH 17",
       "mapFocus": "{to.area.poly}",
       "radio": {
         "channel": "Corpus Approach · UHF CH 17",

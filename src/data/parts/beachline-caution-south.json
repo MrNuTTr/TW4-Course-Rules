@@ -6,7 +6,7 @@
       "title": "Watch for Southern Arrival traffic",
       "mapFocus": "(KNGP) Corpus Christi NAS/Beach Line Departures/{from.runway}",
       "instructions": [
-        "Be alert for traffic established on the Southern Arrival at 1,000 ft MSL"
+        "Be alert for traffic established on the Southern Arrival at 1,000' MSL"
       ],
       "source": "Binder, p. 16."
     }

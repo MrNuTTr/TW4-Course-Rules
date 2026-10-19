@@ -29,7 +29,7 @@
       "type": "radio",
       "title": "Check in with Corpus Departure",
       "mapFocus": "(KNGP) Corpus Christi NAS/Beach Line Departures/{from.runway}",
-      "leadIn": "At 500 ft MSL, when directed by Tower, contact Corpus Departure (UHF CH 8):",
+      "leadIn": "At 500' MSL, when directed by Tower, contact Corpus Departure (UHF CH 8):",
       "radio": {
         "channel": "Corpus Departure · UHF CH 8",
         "exchange": [
@@ -40,7 +40,6 @@
           { "speaker": "Pilot", "text": "<callsign>, proceed course rules Aransas County." }
         ]
       },
-      "detail": "The binder gives no check-in phrase for a Beach Line departure to Aransas County; this follows the Mustang pattern. Check with an instructor.",
       "source": "Binder, p. 16."
     },
     {
@@ -49,7 +48,7 @@
       "mapFocus": "(KNGP) Corpus Christi NAS/Beach Line Departures/Foxtrot/Noth Mustang Transition",
       "instructions": [
         "Turn north and parallel the beach line at ½ WTD",
-        "Climb to 5,500 ft MSL · 240 KIAS",
+        "Climb to 5,500' MSL · 240 KIAS",
         "Cross the island north of San Jose"
       ],
       "source": "Feb 2026 PPT, Part 2, slides 38–39."

@@ -6,12 +6,12 @@
       "title": "Prepare to leave {from.area} {from.block}",
       "mapFocus": "{from.area.poly}",
       "instructions": [
-        "Exit by climbing or descending to a transition layer within the area, through an unoccupied area (coordinate on CH 22), or laterally",
-        "Avoid North Mustang (6,500–17,500 ft MSL) at all times",
-        "Minimum altitude over the Aransas Wildlife Refuge is 3,000 ft AGL"
+        "Exit by climbing or descending to a transition layer within the area, through an unoccupied area (coordinate on Foxtrot Common · UHF CH 22), or laterally",
+        "Avoid North Mustang (6,500–17,500' MSL) at all times",
+        "Minimum altitude over the Aransas Wildlife Refuge is 3,000' AGL"
       ],
-      "detail": "Proceeding north instead? Contact Houston Center on CH 23 and request flight following. Houston Center will not provide it without an explicit request. Make a courtesy call to IFR traffic on CH 22 (337.8) as needed.",
-      "source": "Binder, p. 14; Feb 2026 PPT, Part 1, slide 96."
+      "detail": "Proceeding north instead? Contact Houston Center · UHF CH 23 and request flight following. Houston Center will not provide it without an explicit request. Make a courtesy call to IFR traffic on Houston Center · UHF CH 22 as needed.",
+      "source": "Binder, p. 28; Feb 2026 PPT, Part 1, slide 96."
     },
     {
       "type": "radio",
@@ -22,7 +22,7 @@
         "channel": "Foxtrot Common · UHF CH 22",
         "script": "99 Fox, <callsign> departing {from.area} {from.block} for {to.node.foxtrotCall}."
       },
-      "source": "Binder, p. 14."
+      "source": "Binder, p. 28."
     },
     {
       "type": "radio",
@@ -36,8 +36,7 @@
           { "speaker": "Pilot", "text": "<callsign>, proceed as requested." }
         ]
       },
-      "detail": "The binder gives \"complete Foxtrot, request (transition)\" and a \"Roger, proceed as requested\" reply. Check with an instructor for the exact wording.",
-      "source": "Binder, p. 14."
+      "source": "Binder, p. 28."
     }
   ]
 }

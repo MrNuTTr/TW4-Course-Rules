@@ -6,9 +6,9 @@
       "title": "Climb out RWY {from.runway}",
       "mapFocus": "(KNGP) Corpus Christi NAS/Rusty Departures/{from.runway}",
       "instructions": [
-        "Climb to 500 ft MSL, 200 KIAS",
+        "Climb to 500' MSL, 200 KIAS",
         "{from.runway.firstTurn}",
-        "No turns before 300 ft AGL"
+        "No turns before 300' AGL"
       ],
       "source": "Binder, p. 8; Feb 2026 PPT, Part 1, slide 45."
     }
