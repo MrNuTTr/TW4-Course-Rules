@@ -33,13 +33,13 @@
           "spoken": "1 high",
           "limits": "15,000–22,000' MSL",
           "moa": "Kings 4 MOAs/Kings 4 MOA 1",
-          "entryNote": "Not a border area: stay at 14,500 ft until inside the MOA, then climb or descend to the transition altitude for your direction of flight (14,700 ft east / 14,200 ft west), then climb into the claimed area."
+          "entryNote": "Not a border area: stay at 14,500' until inside the MOA, then climb or descend to the transition altitude for your direction of flight (14,700' east / 14,200' west), then climb into the claimed area."
         },
         "2 High": {
           "spoken": "2 high",
           "limits": "15,000–22,000' MSL",
           "moa": "Kings 4 MOAs/Kings 4 MOA 2",
-          "entryNote": "Not a border area: stay at 14,500 ft until inside the MOA, then climb or descend to the transition altitude for your direction of flight (14,700 ft east / 14,200 ft west), then climb into the claimed area."
+          "entryNote": "Not a border area: stay at 14,500' until inside the MOA, then climb or descend to the transition altitude for your direction of flight (14,700' east / 14,200' west), then climb into the claimed area."
         },
         "3 High": {
           "spoken": "3 high",
@@ -51,13 +51,13 @@
           "spoken": "4 high",
           "limits": "15,000–22,000' MSL",
           "moa": "Kings 4 MOAs/Kings 4 MOA 4",
-          "entryNote": "Not a border area: stay at 14,500 ft until inside the MOA, then climb or descend to the transition altitude for your direction of flight (14,700 ft east / 14,200 ft west), then climb into the claimed area."
+          "entryNote": "Not a border area: stay at 14,500' until inside the MOA, then climb or descend to the transition altitude for your direction of flight (14,700' east / 14,200' west), then climb into the claimed area."
         },
         "5 High": {
           "spoken": "5 high",
           "limits": "15,000–22,000' MSL",
           "moa": "Kings 4 MOAs/Kings 4 MOA 5",
-          "entryNote": "Not a border area: stay at 14,500 ft until inside the MOA, then climb or descend to the transition altitude for your direction of flight (14,700 ft east / 14,200 ft west), then climb into the claimed area."
+          "entryNote": "Not a border area: stay at 14,500' until inside the MOA, then climb or descend to the transition altitude for your direction of flight (14,700' east / 14,200' west), then climb into the claimed area."
         },
         "6 High": {
           "spoken": "6 high",
@@ -69,13 +69,13 @@
           "spoken": "7 high",
           "limits": "15,000–22,000' MSL",
           "moa": "Kings 4 MOAs/Kings 4 MOA 7",
-          "entryNote": "Not a border area: stay at 14,500 ft until inside the MOA, then climb or descend to the transition altitude for your direction of flight (14,700 ft east / 14,200 ft west), then climb into the claimed area."
+          "entryNote": "Not a border area: stay at 14,500' until inside the MOA, then climb or descend to the transition altitude for your direction of flight (14,700' east / 14,200' west), then climb into the claimed area."
         },
         "8 High": {
           "spoken": "8 high",
           "limits": "15,000–22,000' MSL",
           "moa": "Kings 4 MOAs/Kings 4 MOA 8",
-          "entryNote": "Not a border area: stay at 14,500 ft until inside the MOA, then climb or descend to the transition altitude for your direction of flight (14,700 ft east / 14,200 ft west), then climb into the claimed area."
+          "entryNote": "Not a border area: stay at 14,500' until inside the MOA, then climb or descend to the transition altitude for your direction of flight (14,700' east / 14,200' west), then climb into the claimed area."
         },
         "9 High": {
           "spoken": "9 high",
@@ -87,13 +87,13 @@
           "spoken": "1 low",
           "limits": "9,000–14,000' MSL",
           "moa": "Kings 4 MOAs/Kings 4 MOA 1",
-          "entryNote": "Not a border area: stay at 14,500 ft until inside the MOA, then climb or descend to the transition altitude for your direction of flight (14,700 ft east / 14,200 ft west), then descend into the claimed area."
+          "entryNote": "Not a border area: stay at 14,500' until inside the MOA, then climb or descend to the transition altitude for your direction of flight (14,700' east / 14,200' west), then descend into the claimed area."
         },
         "2 Low": {
           "spoken": "2 low",
           "limits": "9,000–14,000' MSL",
           "moa": "Kings 4 MOAs/Kings 4 MOA 2",
-          "entryNote": "Not a border area: stay at 14,500 ft until inside the MOA, then climb or descend to the transition altitude for your direction of flight (14,700 ft east / 14,200 ft west), then descend into the claimed area."
+          "entryNote": "Not a border area: stay at 14,500' until inside the MOA, then climb or descend to the transition altitude for your direction of flight (14,700' east / 14,200' west), then descend into the claimed area."
         },
         "3 Low": {
           "spoken": "3 low",
@@ -105,7 +105,7 @@
           "spoken": "4 low",
           "limits": "9,000–14,000' MSL",
           "moa": "Kings 4 MOAs/Kings 4 MOA 4",
-          "entryNote": "Not a border area: stay at 14,500 ft until inside the MOA, then climb or descend to the transition altitude for your direction of flight (14,700 ft east / 14,200 ft west), then descend into the claimed area."
+          "entryNote": "Not a border area: stay at 14,500' until inside the MOA, then climb or descend to the transition altitude for your direction of flight (14,700' east / 14,200' west), then descend into the claimed area."
         },
         "6 Low": {
           "spoken": "6 low",
@@ -117,13 +117,13 @@
           "spoken": "7 low",
           "limits": "9,000–14,000' MSL",
           "moa": "Kings 4 MOAs/Kings 4 MOA 7",
-          "entryNote": "Not a border area: stay at 14,500 ft until inside the MOA, then climb or descend to the transition altitude for your direction of flight (14,700 ft east / 14,200 ft west), then descend into the claimed area."
+          "entryNote": "Not a border area: stay at 14,500' until inside the MOA, then climb or descend to the transition altitude for your direction of flight (14,700' east / 14,200' west), then descend into the claimed area."
         },
         "8 Low": {
           "spoken": "8 low",
           "limits": "9,000–14,000' MSL",
           "moa": "Kings 4 MOAs/Kings 4 MOA 8",
-          "entryNote": "Not a border area: stay at 14,500 ft until inside the MOA, then climb or descend to the transition altitude for your direction of flight (14,700 ft east / 14,200 ft west), then descend into the claimed area."
+          "entryNote": "Not a border area: stay at 14,500' until inside the MOA, then climb or descend to the transition altitude for your direction of flight (14,700' east / 14,200' west), then descend into the claimed area."
         },
         "9 Low": {
           "spoken": "9 low",
@@ -141,8 +141,8 @@
       "instructions": [
         "Houston Center · VHF CH 22",
         "KINGS 4 Common · UHF CH 20",
-        "High blocks 15,000–22,000 ft · Low blocks 9,000–14,000 ft",
-        "Transition layer: 14,700 ft east · 14,200 ft west",
+        "High blocks 15,000–22,000' · Low blocks 9,000–14,000'",
+        "Transition layer: 14,700' east · 14,200' west",
         "Altimeter: ATC-supplied",
         "Area 5 Low is transit only (to/from Goliad), never assigned",
         "Stay clear of Randolph 1A/1B MOA",

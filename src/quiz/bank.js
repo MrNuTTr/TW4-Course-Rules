@@ -25,17 +25,17 @@ export function kindOf(token) {
   return 'number';
 }
 
+// One question per value, with the other values left visible as context. On multi-value
+// lines only altitudes, airspeeds, headings and channels are drilled; sides, distances and
+// counts are too guessable or too incidental to quiz out of a list.
 function lineQuestions(text) {
   const tokens = [...text.matchAll(TOKEN)].map((m) => ({ value: m[0], index: m.index }));
   if (!tokens.length) return null;
-  let blanked = '';
-  let cursor = 0;
-  for (const { value, index } of tokens) {
-    blanked += `${text.slice(cursor, index)}_____`;
-    cursor = index + value.length;
-  }
-  blanked += text.slice(cursor);
-  return { text: blanked, answers: tokens.map((t) => t.value) };
+  const drilled = tokens.length === 1 ? tokens : tokens.filter((t) => ['altitude', 'airspeed', 'heading', 'channel'].includes(kindOf(t.value)));
+  return drilled.map(({ value, index }) => ({
+    text: `${text.slice(0, index)}_____${text.slice(index + value.length)}`,
+    answers: [value],
+  }));
 }
 
 function cardLines(card) {
@@ -76,8 +76,8 @@ function addCard(items, seen, topic, group, card, flight) {
 
   for (const line of cardLines(card)) {
     if (line === card.leadIn) continue;
-    const q = lineQuestions(line);
-    if (q) push(undefined, q.text, q.answers);
+    const qs = lineQuestions(line);
+    for (const q of qs ?? []) push(undefined, q.text, q.answers);
   }
 
   if (card.radio?.channel && situation) {

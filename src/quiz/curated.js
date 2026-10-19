@@ -52,7 +52,7 @@ const BASE = [
   q('KNGP → Mustang', 'Routes', 'You are climbing out of KNGP on the beach line departure.',
     'What altitude and airspeed do you climb to first?', '500\' MSL · 200 KIAS', ['500\' MSL · 240 KIAS', '800\' MSL · 200 KIAS', '1,000\' MSL · 200 KIAS']),
   q('Foxtrot', 'Reference', 'You are operating in or departing from Foxtrot.',
-    'Which airspace must you avoid at all times?', 'North Mustang (6,500–17,500\' MSL)', ['Central Mustang', 'South Mustang (below 6,500 ft)', 'KINGS 4']),
+    'Which airspace must you avoid at all times?', 'North Mustang (6,500–17,500\' MSL)', ['Central Mustang', 'South Mustang (below 6,500\')', 'KINGS 4']),
 ];
 
 const seen = new Set();
