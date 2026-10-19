@@ -16,7 +16,7 @@
           "initialLandmark": "Abeam Redfish Point",
           "feetWet": "Proceed northeast in Copano Bay, then turn to intercept the 2 NM initial",
           "beachNote": "Cross the Intracoastal Waterway at 2,500' MSL · 240 KIAS",
-          "depWhen": "When #1 downwind at the 180:",
+          "depWhen": "Enter downwind at 800' MSL · 120 KIAS and hold both until #1 downwind at the 180:",
           "depAlt": "Descend to 500' MSL",
           "depTurn": "Continue northbound and circle around Redfish Point to the east",
           "depCall": "<callsign>, number one downwind, departing to the east, Aransas County Traffic."
@@ -26,7 +26,7 @@
           "initialLandmark": "Over Copano Bay, 2 NM north of the field on the RWY 18 extended centerline, about 0.7 NM east of the RWY 14 initial. Neither the binder nor the PPT names a landmark; check with an instructor",
           "feetWet": "Proceed northeast in Copano Bay, then turn to intercept the 2 NM initial",
           "beachNote": "Cross the Intracoastal Waterway at 2,500' MSL · 240 KIAS",
-          "depWhen": "When #1 downwind at the 180:",
+          "depWhen": "Enter downwind at 800' MSL · 120 KIAS and hold both until #1 downwind at the 180:",
           "depAlt": "Descend to 500' MSL",
           "depTurn": "Going \"feet wet\", turn east",
           "depCall": "<callsign>, number one downwind, departing to the east, Aransas County Traffic."

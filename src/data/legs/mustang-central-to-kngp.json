@@ -20,7 +20,7 @@
   ],
   "cards": [
     { "use": "mustang-exit-central" },
-    { "use": "mustang-exit-call" },
+    { "use": "mustang-exit-call-central" },
     { "use": "kngp-arrival-from-central" },
     { "use": "kngp-{to.entry.part}-{to.runway.flow}" }
   ]

@@ -16,10 +16,10 @@
         "channel": "KNGT Common · UHF/VHF CH 15",
         "exchange": [
           { "speaker": "Pilot", "text": "Goliad, <callsign>, landing." },
-          { "speaker": "RDO", "text": "<callsign>, Goliad landing RWY {to.runway}, <number> in the pattern. No solos." }
+          { "speaker": "RDO", "text": "<callsign>, Goliad landing RWY {to.runway}, <number> in the pattern. <number of solos, or \"no solos\">." }
         ]
       },
-      "detail": "The RDO reports the actual number of solos in the pattern; \"No solos\" is the PPT example. Check with an instructor.",
+      "detail": "The RDO reports how many solos are in the pattern, or \"no solos\".",
       "source": "Binder, pp. 14, 30; Feb 2026 PPT, Part 2, slides 12–14."
     },
     {

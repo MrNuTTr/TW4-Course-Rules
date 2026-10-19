@@ -181,7 +181,7 @@
         "Stay 5' from the edge of all taxiways",
         "Establish radio contact with Ground before entering an active taxiway",
         "The TW-4 line is the non-controlled movement area, from the Transient Line to the intersection of Runway 4-22 and Charlie. Tower cannot see it, so you may taxi at a safe speed without calling Ground",
-        "Monitor Ground (CH 3, 118.7) while in the line",
+        "Monitor Navy Corpus Ground · UHF CH 3 while in the line",
         "Speeds: 5–7 kts in the line · 10–12 kts elsewhere",
         "Outbound aircraft have right of way; do not overtake or pass without Ground approval",
         "Get a crossing clearance for every runway on your route. Without one, hold short even if the runway is inactive",
@@ -347,7 +347,7 @@
       "title": "Arrival: Shamrock entry initial points",
       "instructions": [
         "North flow (04, 31L/R, 36): at PT Shamrock turn 200°, maintain 1,000' MSL and slow to 200 KIAS toward PT Dimmit",
-        "RWY 31L/R: report initial abeam PT Dimmit, then proceed to the Low Bridge at 1,000' MSL and 200 KIAS",
+        "RWY 31L/R: report initial abeam PT Dimmit, then turn right and proceed direct to the runway numbers at 1,000' MSL and 200 KIAS",
         "RWY 04, 36: initial is PT Dimmit; from the Low Bridge, maneuver to intercept a 1 NM final",
         "South flow (13L/R, 18, 22): at PT Shamrock turn 255° toward the northwest corner of TAMUCC, maintain 1,000' MSL, slow to 200 KIAS",
         "RWY 22: report initial intercepting the extended centerline of 22, no closer than 3 NM (NGP 4 DME)",
@@ -360,13 +360,12 @@
       "type": "checkpoint",
       "title": "Arrival: pattern side by runway",
       "instructions": [
-        "RWY 13L: left · RWY 13R: right · RWY 18: right",
+        "RWY 13L: left · RWY 13R: right · RWY 18: right · RWY 22: right",
         "RWY 04: left · RWY 31L: left · RWY 31R: right · RWY 36: left",
-        "RWY 22: not listed in the sources. Check with an instructor",
         "VFR straight-in: south flow (13L/R, 18, 22) level at 800' MSL; north flow (04, 31L/R, 36) level at 500' MSL",
         "Straight-in calls: south flow \"Left base/Final, gear down\"; north flow \"Right base, gear down\""
       ],
-      "source": "Binder, p. 2; Feb 2026 PPT, Part 2, slides 109–117."
+      "source": "Binder, p. 2; Manual 2-3; Feb 2026 PPT, Part 2, slides 109–117."
     }
   ]
 }

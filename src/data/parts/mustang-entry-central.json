@@ -12,13 +12,13 @@
         "If the climb will take you north of Central, make a right 270° climbing turn to enter at your assigned altitude. Do not enter Mustang Area 2",
         "If you have not reached your altitude by the southern boundary of Area 2, make a right 270° turn to continue the climb before entering Central"
       ],
-      "source": "Binder, p. 24; Feb 2026 PPT, Part 1, slide 81."
+      "source": "Binder, p. 24; Manual 2-15."
     },
     {
       "type": "radio",
       "title": "Switch to CH 18 and self-announce",
       "mapFocus": "{to.area.poly}",
-      "leadIn": "Auto-switch to CH 18 UHF (Central Common) and self-announce:",
+      "leadIn": "Auto-switch to Central Common · UHF CH 18 and self-announce:",
       "radio": {
         "channel": "Central Common · UHF CH 18",
         "script": "99 Central, <callsign>, working <altitude>."

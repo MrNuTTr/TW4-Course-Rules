@@ -16,7 +16,7 @@
       "type": "radio",
       "title": "Abeam Padre Balli Park: switch to CH 17",
       "mapFocus": "{to.area.waypoint}",
-      "leadIn": "Abeam Padre Balli Park, auto-switch to CH 17 (no check-in on CH 17 is required). Expect ATC to switch you. If not directed, request the switch:",
+      "leadIn": "Abeam Padre Balli Park, expect ATC to switch you to CH 17. If ATC has not directed the switch by abeam Padre Balli Park, request it:",
       "radio": {
         "channel": "Corpus Departure · UHF CH 8",
         "exchange": [
@@ -34,7 +34,26 @@
           }
         ]
       },
-      "detail": "Monitor IP Common (VHF CH 20, 126.2).",
+      "source": "Binder, p. 22."
+    },
+    {
+      "type": "radio",
+      "title": "Check in on CH 17",
+      "mapFocus": "{to.area.poly}",
+      "radio": {
+        "channel": "Corpus Approach · UHF CH 17",
+        "exchange": [
+          {
+            "speaker": "Pilot",
+            "text": "Corpus Approach, <callsign>, on CH 17 for Mustang {to.area.spoken}."
+          },
+          {
+            "speaker": "Approach",
+            "text": "<callsign>, Corpus Approach, roger."
+          }
+        ]
+      },
+      "detail": "Monitor IP Common · VHF CH 20.",
       "source": "Binder, p. 22."
     },
     {

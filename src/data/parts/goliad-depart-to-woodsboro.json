@@ -17,6 +17,20 @@
       "source": "Feb 2026 PPT, Part 2, slide 29."
     },
     {
+      "type": "radio",
+      "title": "Call departing",
+      "mapFocus": "(KNGT) Goliad NOLF/KNGT",
+      "leadIn": "Once clear of the pattern:",
+      "radio": {
+        "channel": "Goliad RDO · UHF CH 15",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Goliad RDO, <callsign>, departing." },
+          { "speaker": "RDO", "text": "<callsign>, Goliad RDO, roger departing, have a safe flight home." }
+        ]
+      },
+      "source": "Binder, p. 62; Manual 2-37."
+    },
+    {
       "type": "action",
       "title": "Direct Woodsboro",
       "mapFocus": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Goliad Arrivals",

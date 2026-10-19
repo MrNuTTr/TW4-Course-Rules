@@ -9,11 +9,11 @@
         "channel": "Corpus Approach · UHF CH 17",
         "exchange": [
           { "speaker": "Pilot", "text": "Corpus Approach, <callsign>, complete Mustang {from.area.spoken}, request {to.node.intent}." },
-          { "speaker": "Approach", "text": "<callsign>, Corpus Departure, roger, proceed as requested." },
+          { "speaker": "Approach", "text": "<callsign>, Corpus Approach, roger, proceed as requested." },
           { "speaker": "Pilot", "text": "<callsign>, proceed as requested." }
         ]
       },
-      "detail": "The binder's arrival pages show this call on CH 8 and the exit pages show CH 17. Check with an instructor which frequency to use. If you are told to return to KNGP when directed, contact Approach on CH 8 and join the arrival.",
+      "detail": "North and South Mustang exit on CH 17. If you are then told to return to KNGP when directed, contact Approach on CH 8 and join the arrival.",
       "source": "Binder, pp. 10–12, 31–32."
     }
   ]

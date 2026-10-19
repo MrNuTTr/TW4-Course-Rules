@@ -65,6 +65,18 @@
     },
     {
       "type": "checkpoint",
+      "title": "Pattern full",
+      "instructions": [
+        "The RDO will advise if the pattern is full and of any traffic holding at the initial or at high key",
+        "Solos shall not hold",
+        "Stack at the appropriate initial with right-hand turns at 1,500', 2,500', 3,500', 4,500', etc.",
+        "Avoid overflying the town of Berclair due to noise complaints"
+      ],
+      "mapFocus": ["(KNGT) Goliad NOLF/KNGT"],
+      "source": "Feb 2026 PPT, Part 2, slide 28."
+    },
+    {
+      "type": "checkpoint",
       "title": "Discontinued entry",
       "leadIn": "Execute immediately if:",
       "instructions": [

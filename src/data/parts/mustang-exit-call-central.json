@@ -1,0 +1,20 @@
+{
+  "id": "mustang-exit-call-central",
+  "cards": [
+    {
+      "type": "radio",
+      "title": "Report complete",
+      "mapFocus": "{from.area.poly}",
+      "radio": {
+        "channel": "Corpus Approach · UHF CH 8",
+        "exchange": [
+          { "speaker": "Pilot", "text": "Corpus Approach, <callsign>, complete Mustang {from.area.spoken}, request {to.node.intent}." },
+          { "speaker": "Approach", "text": "<callsign>, Corpus Approach, roger, proceed as requested." },
+          { "speaker": "Pilot", "text": "<callsign>, proceed as requested." }
+        ]
+      },
+      "detail": "Mustang Central exits on CH 8, after the 99 call on Central Common · UHF CH 18. North and South exits use CH 17.",
+      "source": "Binder, p. 25; Manual 2-16."
+    }
+  ]
+}

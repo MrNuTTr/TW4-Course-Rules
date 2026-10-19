@@ -5,7 +5,7 @@
       "type": "radio",
       "title": "Copy ZOMBIE 1 clearance",
       "mapFocus": "(KNGP) Corpus Christi NAS/KNGP",
-      "leadIn": "At the run-up:",
+      "leadIn": "In the run-ups, after the overspeed governor and before-takeoff checklists, but before calling for taxi:",
       "radio": {
         "channel": "Navy Corpus Clearance · UHF CH 2",
         "exchange": [
