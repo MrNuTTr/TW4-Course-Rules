@@ -27,6 +27,7 @@ export const SOURCE_HINTS = [
   { q: 'What must be established by no later than 9 Mile Point?', title: 'Southbound on the Northern Arrival', ends: ['Aransas County', 'KNGP'] },
   { q: 'How do you establish on the arrival?', title: 'Join the Southern Arrival' },
   { q: 'What do you do at the upwind numbers?', title: 'Climb out RWY 18' },
+  { q: 'What routing does Ground give you?', title: 'Taxi to RWY 13L' },
 ];
 
 export const hintFor = (item) =>
