@@ -164,7 +164,14 @@ function WikiPage({ page, focus, search }) {
           <h2>Routes</h2>
           {page.routes.map((route, index) => {
             const routeFocus = focus?.route === index ? focus : undefined;
-            return <RouteExplorer key={`${page.path}-${index}-${routeFocus ? search : ''}`} route={route} target={routeFocus} />;
+            return (
+              <RouteExplorer
+                key={`${page.path}-${index}-${routeFocus ? search : ''}`}
+                route={route}
+                target={routeFocus}
+                defaultOpen={page.routes.length === 1}
+              />
+            );
           })}
         </section>
       )}

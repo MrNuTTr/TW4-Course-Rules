@@ -7,12 +7,10 @@
   "featureIds": [
     "(KNGP) Corpus Christi NAS/Nueces Transition / East Arrivals & Departures/KCRP",
     "(KNGP) Corpus Christi NAS/Nueces Transition / East Arrivals & Departures/PT Sunrise",
-    "(KNGP) Corpus Christi NAS/KNGP",
-    "{to.runway.entryLine}"
+    "(KNGP) Corpus Christi NAS/KNGP"
   ],
   "arrivalFeatureIds": [
-    "(KNGP) Corpus Christi NAS/KNGP",
-    "{to.runway.entryLine}"
+    "(KNGP) Corpus Christi NAS/KNGP"
   ],
   "cards": [
     {

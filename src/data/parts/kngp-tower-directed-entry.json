@@ -4,7 +4,7 @@
     {
       "type": "action",
       "title": "Enter the pattern as Tower directs",
-      "mapFocus": "{to.runway.entryLine}",
+      "mapFocus": "(KNGP) Corpus Christi NAS/KNGP",
       "instructions": [
         "Expect an overhead, downwind, base, or straight-in entry at Tower's discretion",
         "Comply with Navy Corpus Tower instructions for RWY {to.runway}"

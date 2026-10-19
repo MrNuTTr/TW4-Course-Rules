@@ -11,12 +11,10 @@
     "(KNWL) Waldron NOLF/Sunrise Transition / North Departures/PT Chapman",
     "(KNWL) Waldron NOLF/Sunrise Transition / North Departures/PT Sunrise",
     "(KNGP) Corpus Christi NAS/Sunrise Transition / South Arrivals/PT Sunrise",
-    "(KNGP) Corpus Christi NAS/KNGP",
-    "{to.runway.entryLine}"
+    "(KNGP) Corpus Christi NAS/KNGP"
   ],
   "arrivalFeatureIds": [
-    "(KNGP) Corpus Christi NAS/KNGP",
-    "{to.runway.entryLine}"
+    "(KNGP) Corpus Christi NAS/KNGP"
   ],
   "cards": [
     {

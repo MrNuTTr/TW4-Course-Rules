@@ -45,6 +45,13 @@ describe('Wiki quiz links', () => {
     await unmount();
   });
 
+  it('opens the route by itself when a page has only one', async () => {
+    const { container, unmount } = await renderAt('/wiki/arrivals/sunrise-transition');
+    expect(container.querySelectorAll('details.wiki-route').length).toBe(1);
+    expect(container.querySelector('details.wiki-route').open).toBe(true);
+    await unmount();
+  });
+
   it('highlights an overview card', async () => {
     const { container, unmount } = await renderAt('/wiki/airfields/aransas-county?card=info.4');
     expect(container.querySelector('.wiki-card-focus h2').textContent).toBe('Warnings');

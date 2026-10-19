@@ -13,12 +13,10 @@
     "(KNWL) Waldron NOLF/Oso Transition / North Departures/Water Tower",
     "(KNGP) Corpus Christi NAS/Oso Transition / South Arrivals & Departures/Oso Bridge (West Side)",
     "(KNGP) Corpus Christi NAS/Oso Transition / South Arrivals & Departures/{to.runway}",
-    "(KNGP) Corpus Christi NAS/KNGP",
-    "{to.runway.entryLine}"
+    "(KNGP) Corpus Christi NAS/KNGP"
   ],
   "arrivalFeatureIds": [
-    "(KNGP) Corpus Christi NAS/KNGP",
-    "{to.runway.entryLine}"
+    "(KNGP) Corpus Christi NAS/KNGP"
   ],
   "cards": [
     {
