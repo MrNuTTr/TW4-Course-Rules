@@ -1,5 +1,5 @@
-﻿import { Suspense, lazy, useMemo, useState } from 'react';
-import { Link, NavLink, useParams } from 'react-router-dom';
+import { Suspense, lazy, useEffect, useMemo, useRef, useState } from 'react';
+import { Link, NavLink, Navigate, useLocation, useParams } from 'react-router-dom';
 import CardView from '../components/CardView.jsx';
 import ReportLink from '../components/ReportLink.jsx';
 import { getNode } from '../routePlanner.js';
@@ -8,7 +8,12 @@ import { resolveRoute } from '../wiki/routes.js';
 import { WIKI_TREE, findWikiPage } from '../wiki/structure.js';
 import { searchWiki } from '../wiki/search.js';
 import { COURSE_RULES_MAP_FEATURES } from '../courseRulesMap.js';
+import { loadSaved, save } from '../storage.js';
 const RouteMap = lazy(() => import('../RouteMap.jsx'));
+
+const DEFAULT_WIKI_PATH = 'airfields/kngp';
+const LAST_PAGE_KEY = 'wiki-last';
+const LAST_PAGE_VERSION = 2;
 
 // Working-area pages map every area in the group, labelled; sub-pages highlight their own.
 const AREA_GROUPS = {
@@ -95,7 +100,7 @@ function WikiPage({ page }) {
   return (
     <article className="wiki-article">
       <nav className="wiki-crumbs" aria-label="Breadcrumb">
-        <Link to="/wiki">Wiki</Link>
+        <Link to={`/wiki/${DEFAULT_WIKI_PATH}`}>Wiki</Link>
         {page.trail.map((slug, i) => {
           const crumb = findWikiPage(page.trail.slice(0, i + 1).join('/'));
           return (
@@ -169,6 +174,36 @@ export default function Wiki() {
   const page = path ? findWikiPage(path) : null;
   const results = useMemo(() => searchWiki(query), [query]);
   const searching = query.trim().length > 0;
+  const { state } = useLocation();
+  const scrollRef = useRef(0);
+
+  // Remember the open page and how far down it is scrolled; a redirect from the bare /wiki
+  // link passes the saved position back in through router state.
+  useEffect(() => {
+    if (!page) return undefined;
+    if (state?.restoreScroll) window.scrollTo(0, state.restoreScroll);
+    scrollRef.current = window.scrollY;
+    const store = () => save(LAST_PAGE_KEY, LAST_PAGE_VERSION, { path: page.path, scroll: scrollRef.current });
+    let frame = 0;
+    const onScroll = () => {
+      scrollRef.current = window.scrollY;
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(store);
+    };
+    store();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      cancelAnimationFrame(frame);
+      store();
+    };
+  }, [page?.path]);
+
+  if (!path) {
+    const last = loadSaved(LAST_PAGE_KEY, LAST_PAGE_VERSION);
+    const target = last && findWikiPage(last.path) ? last : { path: DEFAULT_WIKI_PATH, scroll: 0 };
+    return <Navigate to={`/wiki/${target.path}`} state={{ restoreScroll: target.scroll }} replace />;
+  }
 
   function closeSearch() {
     setQuery('');
