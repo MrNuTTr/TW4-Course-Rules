@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "chrome",
+            "type": "editor-browser",
             "request": "launch",
             "name": "Launch site (Vite + embedded browser)",
             "url": "http://localhost:5173",
