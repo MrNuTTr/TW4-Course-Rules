@@ -510,12 +510,16 @@ h3 {
 }
 
 .event-info {
-  margin: 14px 0 0;
+  margin: 14px 0 20px;
+  color: var(--c-24394b);
+  font-size: clamp(1.1rem, 3.4vw, 1.35rem);
   font-weight: 700;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 .wiki-card .event-info {
+  margin-bottom: 12px;
+  font-size: 1rem;
   font-weight: 500;
 }
 
