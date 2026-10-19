@@ -13,7 +13,6 @@
         "Area 1": {
           "region": "north",
           "checkin": "Mustang North",
-          "exitArrival": "Mustang Working Areas/Exits/Area 1 exit to the Northern Arrival", "exitAcounty": "Mustang Working Areas/Exits/Area 1 exit to Aransas County",
           "spoken": "1", "exit": "north-direct",
           "poly": "Mustang Working Areas/Mustang North 1",
           "transition": "(KNGP) Corpus Christi NAS/Beach Line Departures/Foxtrot/Noth Mustang Transition",
@@ -24,7 +23,6 @@
         "Area 2": {
           "region": "north",
           "checkin": "Mustang North",
-          "exitArrival": "Mustang Working Areas/Exits/Area 2 exit to the Northern Arrival", "exitAcounty": "Mustang Working Areas/Exits/Area 2 exit to Aransas County",
           "spoken": "2", "exit": "north-direct",
           "poly": "Mustang Working Areas/Mustang North 2",
           "transition": "(KNGP) Corpus Christi NAS/Beach Line Departures/Foxtrot/Noth Mustang Transition",
@@ -35,7 +33,6 @@
         "Area 3": {
           "region": "south",
           "checkin": "Mustang South",
-          "exitArrival": "Mustang Working Areas/Exits/Area 3 exit to the Southern Arrival", "exitWaldron": "Mustang Working Areas/Exits/Area 3 exit to Waldron",
           "spoken": "3", "exit": "south-direct",
           "poly": "Mustang Working Areas/Mustang South 3",
           "transition": "(KNGP) Corpus Christi NAS/Beach Line Departures/South Mustang Transition",
@@ -46,7 +43,6 @@
         "Area 4": {
           "region": "south",
           "checkin": "Mustang South",
-          "exitArrival": "Mustang Working Areas/Exits/Area 4 exit to the Southern Arrival", "exitWaldron": "Mustang Working Areas/Exits/Area 4 exit to Waldron",
           "spoken": "4", "exit": "south-direct",
           "poly": "Mustang Working Areas/Mustang South 4",
           "transition": "(KNGP) Corpus Christi NAS/Beach Line Departures/South Mustang Transition",
@@ -57,7 +53,6 @@
         "Area 5": {
           "region": "north",
           "checkin": "Mustang North",
-          "exitArrival": "Mustang Working Areas/Exits/Area 5 exit to the Northern Arrival", "exitAcounty": "Mustang Working Areas/Exits/Area 5 exit to Aransas County",
           "spoken": "5", "exit": "north-under",
           "poly": "Mustang Working Areas/Mustang North 5",
           "transition": "(KNGP) Corpus Christi NAS/Beach Line Departures/Foxtrot/Noth Mustang Transition",
@@ -68,7 +63,6 @@
         "Area 6": {
           "region": "north",
           "checkin": "Mustang North",
-          "exitArrival": "Mustang Working Areas/Exits/Area 6 exit to the Northern Arrival", "exitAcounty": "Mustang Working Areas/Exits/Area 6 exit to Aransas County",
           "spoken": "6", "exit": "north-under",
           "poly": "Mustang Working Areas/Mustang North 6",
           "transition": "(KNGP) Corpus Christi NAS/Beach Line Departures/Foxtrot/Noth Mustang Transition",
@@ -79,7 +73,6 @@
         "Area 7": {
           "region": "south",
           "checkin": "Mustang South",
-          "exitArrival": "Mustang Working Areas/Exits/Area 7 exit to the Southern Arrival", "exitWaldron": "Mustang Working Areas/Exits/Area 7 exit to Waldron",
           "spoken": "7", "exit": "south-under",
           "poly": "Mustang Working Areas/Mustang South 7",
           "transition": "(KNGP) Corpus Christi NAS/Beach Line Departures/South Mustang Transition",
@@ -90,7 +83,6 @@
         "Area 8": {
           "region": "south",
           "checkin": "Mustang South",
-          "exitArrival": "Mustang Working Areas/Exits/Area 8 exit to the Southern Arrival", "exitWaldron": "Mustang Working Areas/Exits/Area 8 exit to Waldron",
           "spoken": "8", "exit": "south-under",
           "poly": "Mustang Working Areas/Mustang South 8",
           "transition": "(KNGP) Corpus Christi NAS/Beach Line Departures/South Mustang Transition",

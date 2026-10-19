@@ -6,7 +6,6 @@
   "title": "Mustang {from.area} → KNGP RWY {to.runway}",
   "featureIds": [
     "{from.area.poly}",
-    "{from.area.exitArrival}",
     "(KNGP) Corpus Christi NAS/Shamrock Arrivals/South Arrivals",
     "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Twin Condos",
     "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Port Royal",

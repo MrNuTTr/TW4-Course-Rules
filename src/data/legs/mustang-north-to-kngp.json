@@ -6,7 +6,6 @@
   "title": "Mustang {from.area} → KNGP RWY {to.runway}",
   "featureIds": [
     "{from.area.poly}",
-    "{from.area.exitArrival}",
     "(KNGP) Corpus Christi NAS/Shamrock Arrivals/North Arrivals",
     "(KNGP) Corpus Christi NAS/Shamrock Arrivals/9 Mile Point",
     "(KNGP) Corpus Christi NAS/Shamrock Arrivals/Aransas Pass Causeway",

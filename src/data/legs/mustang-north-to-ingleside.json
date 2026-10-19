@@ -6,7 +6,6 @@
   "title": "Mustang {from.area} → Ingleside RWY {to.runway}",
   "featureIds": [
     "{from.area.poly}",
-    "{from.area.exitArrival}",
     "(KTFP) Ingleside Regional Airport/KTFP",
     "(KTFP) Ingleside Regional Airport/{to.runway}",
     "(KTFP) Ingleside Regional Airport/North Arrivals/9 Mile Point",
