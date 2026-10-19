@@ -81,7 +81,7 @@ export const CURATED_B = [
     'What approximate heading do you fly from Point Rusty to Bayside?', 'Approximately 360°', ['Approximately 322°', 'Approximately 145°', 'Approximately 140°']),
   q('KNGP → Aransas County', 'Routes',
     'You have departed KNGP on the Beach Line for Aransas County and Tower directs you to contact Corpus Departure at 500 feet.',
-    'Which frequency do you contact first?', 'UHF CH 12', ['UHF CH 8', 'UHF CH 6', 'UHF CH 21']),
+    'Which frequency do you contact first?', 'UHF CH 8', ['UHF CH 12', 'UHF CH 6', 'UHF CH 21']),
   q('KNGP → Waldron', 'Routes',
     'You are departing KNGP for Waldron on the Beach Line Departure.',
     'Which course and altitude do you fly southbound toward the Camel Humps?', 'Parallel the beach line southbound at 2,500\' MSL · 240 KIAS', ['Parallel the beach line northbound at 2,500\' MSL · 240 KIAS', 'Parallel the beach line southbound at 5,500\' MSL · 240 KIAS', 'Fly direct southbound at 1,000\' MSL · 200 KIAS']),
