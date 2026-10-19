@@ -116,17 +116,6 @@
     },
     {
       "type": "checkpoint",
-      "title": "Maintenance Area",
-      "instructions": [
-        "Functional Check Flights work in the Maintenance Area",
-        "Upon check-in, Corpus Departure advises of any other traffic in the area",
-        "Use Maintenance Area Common · VHF CH 24 to de-conflict (UHF CH 24 is FCF Common)",
-        "If the area is saturated, coordinate with Corpus Approach"
-      ],
-      "source": "3710.14, Maintenance Area; IFG channel list."
-    },
-    {
-      "type": "checkpoint",
       "title": "Stay 3 NM clear of KRAS",
       "mapFocus": "(KRAS) Mustang Beach Airport/KRAS Stand Off",
       "instructions": [

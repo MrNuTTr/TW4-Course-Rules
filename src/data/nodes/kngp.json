@@ -75,7 +75,7 @@
           "viaC": "(KNGP) Corpus Christi NAS/Shamrock Arrivals/PT Shamrock/TAMUCC NW Corner",
           "initialWhen": "Report initial upon reaching the extended centerline of Runway 22, no later than 3 NM (NGP 4 DME)",
           "taxiRoute": "via Sierra, Charlie",
-          "holdShort": "VFR: hold short offset to the right side of RWY 04/22.",
+          "holdShort": "Hold short in sequence, in one line.",
           "firstTurn": "At the upwind numbers, turn left to HDG 105° until the High Bridge",
           "turnTitle": "Abeam the High Bridge",
           "turnCourse": "~350°",
