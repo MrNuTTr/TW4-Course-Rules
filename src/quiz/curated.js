@@ -2,6 +2,7 @@ import { q } from './q.js';
 import { CURATED_A } from './curated-a.js';
 import { CURATED_B } from './curated-b.js';
 import { CURATED_C } from './curated-c.js';
+import { CURATED_D } from './curated-d.js';
 
 // Hand-written scenario questions. Each answer comes from the sourced route and reference data
 // (Binder, Feb 2026 PPT Parts 1–2). `choices` includes the answer; `topic` must match a topic chip.
@@ -56,7 +57,7 @@ const BASE = [
 ];
 
 const seen = new Set();
-export const CURATED = [...BASE, ...CURATED_A, ...CURATED_B, ...CURATED_C].filter((item) => {
+export const CURATED = [...BASE, ...CURATED_A, ...CURATED_B, ...CURATED_C, ...CURATED_D].filter((item) => {
   const key = `${item.topic}|${item.scenario}|${item.text}`;
   if (seen.has(key)) return false;
   seen.add(key);

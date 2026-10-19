@@ -12,35 +12,25 @@ import { SOURCE_HINTS, hintFor } from './sources.js';
 describe('quiz bank', () => {
   const bank = buildBank();
 
-  it('only quizzes sourced content and always blanks something', () => {
+  it('has hand-written questions with answers and options', () => {
     expect(bank.length).toBeGreaterThan(100);
     for (const item of bank) {
-      if (!item.kind && !item.curated) expect(item.text).toContain('_____');
       expect(item.answers.length).toBeGreaterThan(0);
+      expect(item.scenario, item.text).toBeTruthy();
     }
-  });
-
-  it('does not expand compound source lines into a large batch of generated questions', () => {
-    expect(bank.length).toBeLessThan(300);
   });
 
   it('includes the correct answer among multiple-choice options', () => {
     for (const item of bank) {
-      const choices = choicesFor(item, bank);
-      if (choices) {
-        expect(choices).toContain(item.answers[0]);
-        expect(new Set(choices).size).toBe(choices.length);
-      }
+      const choices = choicesFor(item);
+      expect(choices).toContain(item.answers[0]);
+      expect(new Set(choices).size).toBe(choices.length);
     }
   });
 
-  it('files every curated question under an existing topic', () => {
+  it('files every question under an existing topic', () => {
     const topics = new Set([...chairFlyLegs().map((l) => `${l.fromNode} → ${l.toNode}`), ...GRAPH.nodes.values().map((n) => n.name)]);
-    for (const item of bank.filter((i) => i.curated)) {
-      expect(topics.has(item.topic), item.topic).toBe(true);
-      expect(item.choices).toContain(item.answers[0]);
-      expect(new Set(item.choices).size).toBe(item.choices.length);
-    }
+    for (const item of CURATED) expect(topics.has(item.topic), item.topic).toBe(true);
   });
 
   it('links every question to the wiki card that holds its answer', () => {
@@ -55,8 +45,8 @@ describe('quiz bank', () => {
           ? getNode(page.node).info[focus.info]
           : resolveRoute(page.routes[focus.route], focus.picks).leg?.cards[focus.card];
       expect(card?.title, item.text).toBe(item.wiki.cardTitle);
-      // Generated answers are copied from the card; hand-written ones may paraphrase it.
-      expect(answerCoverage(item.answers[0], card).hit, item.text).toBeGreaterThanOrEqual(item.curated ? 0.5 : 1);
+      // Answers may paraphrase the card, but most of their numbers and key words must be on it.
+      expect(answerCoverage(item.answers[0], card).hit, item.text).toBeGreaterThanOrEqual(0.5);
     }
   });
 
@@ -64,12 +54,13 @@ describe('quiz bank', () => {
     for (const hint of SOURCE_HINTS) expect(CURATED.some((item) => hintFor(item) === hint), hint.q).toBe(true);
   });
 
-  it('keeps every explanation attached to a current question', () => {
+  it('explains every question and keeps every keyed explanation attached to one', () => {
     const keys = new Set(bank.map(explanationKey));
     for (const key of Object.keys(EXPLANATIONS)) expect(keys.has(key), key).toBe(true);
-    for (const why of Object.values(EXPLANATIONS)) {
-      expect(why.length).toBeGreaterThan(10);
-      expect(why.length).toBeLessThanOrEqual(320);
+    for (const item of bank) {
+      expect(item.why, item.text).toBeTruthy();
+      expect(item.why.length).toBeGreaterThan(10);
+      expect(item.why.length).toBeLessThanOrEqual(320);
     }
   });
 

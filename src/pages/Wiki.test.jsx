@@ -37,7 +37,7 @@ describe('Wiki quiz links', () => {
   beforeEach(() => window.localStorage.clear());
 
   it('opens the route and highlights the card a quiz question came from', async () => {
-    const item = buildBank().find((i) => i.text.startsWith('Fly direct to Point Chapman'));
+    const item = buildBank().find((i) => i.text.includes('direct to Point Chapman'));
     expect(item.wiki.path).toBe('arrivals/sunrise-transition');
     const { container, unmount } = await renderAt(wikiHref(item.wiki));
     expect(container.querySelector('details.wiki-route').open).toBe(true);

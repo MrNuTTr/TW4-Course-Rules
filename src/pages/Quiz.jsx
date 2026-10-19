@@ -8,7 +8,7 @@ import { clearSaved, loadSaved, save } from '../storage.js';
 
 const QUIZ_KEY = 'quiz';
 // Bump when question or session shapes change so stale saved quizzes are dropped.
-const QUIZ_VERSION = 2;
+const QUIZ_VERSION = 3;
 
 const RouteMap = lazy(() => import('../RouteMap.jsx'));
 
@@ -51,7 +51,7 @@ function TopicQuiz({ session, setSession, browsing }) {
     if (format === 'mc') items = items.filter(mcEligible);
     if (count !== 'all') items = items.slice(0, count);
     setSession({
-      items: items.map((item) => ({ ...item, choices: format === 'mc' ? choicesFor(item, bank) : null })),
+      items: items.map((item) => ({ ...item, choices: format === 'mc' ? choicesFor(item) : null })),
       index: 0,
       score: 0,
       answered: null,
@@ -98,7 +98,7 @@ function TopicQuiz({ session, setSession, browsing }) {
               Format
               <select value={format} onChange={(e) => setFormat(e.target.value)}>
                 <option value="mc">Multiple choice</option>
-                <option value="blank">Fill in the blank (reveal)</option>
+                <option value="blank">Recall (reveal the answer)</option>
               </select>
             </label>
             <label>
@@ -142,7 +142,7 @@ function BankList({ items }) {
       <p className="quiz-meta">{items.length} questions</p>
       {items.slice(0, shown).map((item, i) => (
         <article key={item.id} className="bank-item">
-          <p className="quiz-meta">{i + 1} · {item.topic}{item.curated ? ' · Curated' : ''}</p>
+          <p className="quiz-meta">{i + 1} · {item.topic}</p>
           {item.scenario && <p className="quiz-scenario">{item.scenario}</p>}
           <p className="quiz-text">{item.text}</p>
           <p className="quiz-answer">{item.answers.join(' · ')}</p>
