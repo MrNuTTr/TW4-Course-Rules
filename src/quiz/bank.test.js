@@ -1,8 +1,13 @@
 import { describe, expect, it } from 'vitest';
-import { GRAPH } from '../routePlanner.js';
-import { flattenWiki } from '../wiki/structure.js';
+import { GRAPH, getNode } from '../routePlanner.js';
+import { findWikiPage, flattenWiki } from '../wiki/structure.js';
+import { parseFocus } from '../wiki/focus.js';
+import { resolveRoute } from '../wiki/routes.js';
 import { buildBank, chairFlyLegs, choicesFor } from './bank.js';
+import { CURATED } from './curated.js';
 import { EXPLANATIONS, explanationKey } from './explanations.js';
+import { answerCoverage } from './locate.js';
+import { SOURCE_HINTS, hintFor } from './sources.js';
 
 describe('quiz bank', () => {
   const bank = buildBank();
@@ -38,10 +43,25 @@ describe('quiz bank', () => {
     }
   });
 
-  it('links questions only to real wiki pages', () => {
+  it('links every question to the wiki card that holds its answer', () => {
     const paths = new Set(flattenWiki().map((p) => p.path));
-    for (const item of bank.filter((i) => i.wikiPath)) expect(paths.has(item.wikiPath), item.wikiPath).toBe(true);
-    expect(bank.some((i) => i.wikiPath)).toBe(true);
+    for (const item of bank) {
+      expect(item.wiki, item.text).toBeTruthy();
+      expect(paths.has(item.wiki.path), item.wiki.path).toBe(true);
+      const page = findWikiPage(item.wiki.path);
+      const focus = parseFocus(`?${item.wiki.query}`);
+      const card =
+        focus.info !== undefined
+          ? getNode(page.node).info[focus.info]
+          : resolveRoute(page.routes[focus.route], focus.picks).leg?.cards[focus.card];
+      expect(card?.title, item.text).toBe(item.wiki.cardTitle);
+      // Generated answers are copied from the card; hand-written ones may paraphrase it.
+      expect(answerCoverage(item.answers[0], card).hit, item.text).toBeGreaterThanOrEqual(item.curated ? 0.5 : 1);
+    }
+  });
+
+  it('keeps every source hint attached to a question', () => {
+    for (const hint of SOURCE_HINTS) expect(CURATED.some((item) => hintFor(item) === hint), hint.q).toBe(true);
   });
 
   it('keeps every explanation attached to a current question', () => {

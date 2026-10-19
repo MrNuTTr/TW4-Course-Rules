@@ -1093,7 +1093,6 @@ h3 {
   list-style: none;
 }
 
-.wiki-folder,
 .wiki-link {
   display: block;
   width: 100%;
@@ -1108,11 +1107,30 @@ h3 {
   cursor: pointer;
 }
 
-.wiki-folder {
-  font-weight: 700;
+.wiki-folder-row {
+  display: flex;
+  align-items: center;
 }
 
-.wiki-folder:hover,
+.wiki-folder-link {
+  flex: 1;
+  font-weight: 700;
+  padding-left: 4px;
+}
+
+.wiki-folder-toggle {
+  flex: none;
+  padding: 9px 0;
+  background: none;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.wiki-folder-toggle:hover {
+  background: var(--c-e8edf2);
+}
+
 .wiki-link:hover {
   background: var(--c-e8edf2);
 }
@@ -1189,6 +1207,12 @@ h3 {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 12px;
+}
+
+.wiki-card-focus {
+  border-color: var(--blue-dark);
+  background: var(--blue-pale);
+  box-shadow: 0 0 0 3px var(--blue-dark);
 }
 
 .wiki-card .guide-title {

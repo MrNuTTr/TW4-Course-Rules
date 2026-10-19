@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import CardView from '../components/CardView.jsx';
 import ReportLink from '../components/ReportLink.jsx';
 import { buildBank, chairFlyLegs, choicesFor, mcEligible, shuffle } from '../quiz/bank.js';
+import { wikiHref } from '../wiki/focus.js';
 import { clearSaved, loadSaved, save } from '../storage.js';
 
 const QUIZ_KEY = 'quiz';
 // Bump when question or session shapes change so stale saved quizzes are dropped.
-const QUIZ_VERSION = 1;
+const QUIZ_VERSION = 2;
 
 const RouteMap = lazy(() => import('../RouteMap.jsx'));
 
@@ -152,7 +153,7 @@ function BankList({ items }) {
   );
 }
 function Explanation({ item }) {
-  if (!item.why && !item.wikiPath) return null;
+  if (!item.why && !item.wiki) return null;
   return (
     <div className="quiz-explain">
       {item.why && (
@@ -161,9 +162,11 @@ function Explanation({ item }) {
           <p>{item.why}</p>
         </>
       )}
-      {item.wikiPath && (
+      {item.wiki && (
         <p className="quiz-meta">
-          <Link to={`/wiki/${item.wikiPath}`}>Open in wiki</Link>
+          <Link to={wikiHref(item.wiki)} target="_blank" rel="noopener noreferrer">
+            Open in wiki
+          </Link>
         </p>
       )}
     </div>

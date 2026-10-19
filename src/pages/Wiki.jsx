@@ -9,6 +9,8 @@ import { WIKI_TREE, findWikiPage } from '../wiki/structure.js';
 import { searchWiki } from '../wiki/search.js';
 import { COURSE_RULES_MAP_FEATURES } from '../courseRulesMap.js';
 import { loadSaved, save } from '../storage.js';
+import { parseFocus } from '../wiki/focus.js';
+import { revealCard } from '../wiki/reveal.js';
 const RouteMap = lazy(() => import('../RouteMap.jsx'));
 
 const DEFAULT_WIKI_PATH = 'airfields/kngp';
@@ -30,7 +32,11 @@ function TreeItem({ item, parentPath, depth, onNavigate }) {
   const { '*': current = '' } = useParams();
   const isOpen = current === path || current.startsWith(`${path}/`);
   const [expanded, setExpanded] = useState(isOpen);
-  const open = expanded || isOpen;
+
+  // Arriving inside a folder opens it; the arrow can still collapse it afterwards.
+  useEffect(() => {
+    if (isOpen) setExpanded(true);
+  }, [isOpen]);
 
   if (!item.children) {
     return (
@@ -47,19 +53,25 @@ function TreeItem({ item, parentPath, depth, onNavigate }) {
     );
   }
 
+  // The arrow opens and closes the folder; the name opens the folder's own page.
   return (
     <li>
-      <button
-        type="button"
-        className="wiki-folder"
-        style={{ paddingLeft: 10 + depth * 16 }}
-        aria-expanded={open}
-        onClick={() => setExpanded(!open)}
-      >
-        <span className="wiki-caret" aria-hidden="true">{open ? '▾' : '▸'}</span>
-        {item.title}
-      </button>
-      {open && (
+      <div className="wiki-folder-row">
+        <button
+          type="button"
+          className="wiki-folder-toggle"
+          style={{ paddingLeft: 10 + depth * 16 }}
+          aria-expanded={expanded}
+          aria-label={`${expanded ? 'Collapse' : 'Expand'} ${item.title}`}
+          onClick={() => setExpanded(!expanded)}
+        >
+          <span className="wiki-caret" aria-hidden="true">{expanded ? '▾' : '▸'}</span>
+        </button>
+        <NavLink to={`/wiki/${path}`} end className="wiki-link wiki-folder-link" onClick={onNavigate}>
+          {item.title}
+        </NavLink>
+      </div>
+      {expanded && (
         <ul>
           {item.children.map((child) => (
             <TreeItem
@@ -76,7 +88,7 @@ function TreeItem({ item, parentPath, depth, onNavigate }) {
   );
 }
 
-function WikiPage({ page }) {
+function WikiPage({ page, focus, search }) {
   const node = page.node ? getNode(page.node) : null;
   const arrival = page.routes?.find((route) => route.to === page.node);
   const arrivalIds = arrival ? resolveRoute(arrival).leg?.arrivalFeatureIds : undefined;
@@ -132,20 +144,28 @@ function WikiPage({ page }) {
         <section>
           <h2>Overview</h2>
           <ol className="wiki-cards">
-            {node.info.map((card, index) => (
-              <li className="wiki-card" key={`${card.title}-${index}`}>
-                <CardView event={card} />
-              </li>
-            ))}
+            {node.info.map((card, index) => {
+              const focused = focus?.info === index;
+              return (
+                <li
+                  className={`wiki-card${focused ? ' wiki-card-focus' : ''}`}
+                  key={`${card.title}-${index}`}
+                  ref={focused ? revealCard : undefined}
+                >
+                  <CardView event={card} />
+                </li>
+              );
+            })}
           </ol>
         </section>
       )}
       {page.routes && (
         <section>
           <h2>Routes</h2>
-          {page.routes.map((route, index) => (
-            <RouteExplorer key={`${page.path}-${index}`} route={route} />
-          ))}
+          {page.routes.map((route, index) => {
+            const routeFocus = focus?.route === index ? focus : undefined;
+            return <RouteExplorer key={`${page.path}-${index}-${routeFocus ? search : ''}`} route={route} target={routeFocus} />;
+          })}
         </section>
       )}
       {!node && !page.routes && !page.children && (
@@ -174,7 +194,7 @@ export default function Wiki() {
   const page = path ? findWikiPage(path) : null;
   const results = useMemo(() => searchWiki(query), [query]);
   const searching = query.trim().length > 0;
-  const { state } = useLocation();
+  const { state, search } = useLocation();
   const scrollRef = useRef(0);
 
   // Remember the open page and how far down it is scrolled; a redirect from the bare /wiki
@@ -259,7 +279,7 @@ export default function Wiki() {
       </aside>
       <div className="wiki-content">
         {page ? (
-          <WikiPage page={page} />
+          <WikiPage page={page} focus={parseFocus(search)} search={search} />
         ) : (
           <article className="wiki-article">
             <h1>Course Rules Wiki</h1>

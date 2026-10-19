@@ -1,7 +1,8 @@
-﻿import { GRAPH, expandLegs, getNode } from '../routePlanner.js';
-import { flattenWiki } from '../wiki/structure.js';
+﻿import { GRAPH, getNode } from '../routePlanner.js';
 import { EXPLANATIONS, explanationKey } from './explanations.js';
 import { CURATED } from './curated.js';
+import { allLegs, findCuratedSource, locateSource } from './locate.js';
+import { hintFor } from './sources.js';
 
 // A blankable value: a number with a unit, a channel, a count, or a pattern side.
 const TOKEN = new RegExp(
@@ -51,7 +52,7 @@ const RESTRICTION = /\b(avoid|do not|don't|remain clear|stay (?:clear|outside|so
 
 // Every question carries a scenario (the route you are flying plus the situation on the card),
 // so it tests what to do rather than what a card is called.
-function addCard(items, seen, topic, group, card, flight) {
+function addCard(items, seen, topic, group, card, flight, source) {
   if (!card.source) return;
   const lead = card.leadIn && !/^do not/i.test(card.leadIn) ? clean(card.leadIn) : '';
   const situation = lead;
@@ -69,6 +70,7 @@ function addCard(items, seen, topic, group, card, flight) {
       scenario,
       text,
       answers,
+      source,
       ...extra,
     });
   };
@@ -138,14 +140,30 @@ export function buildBank() {
   const items = [];
   const seen = new Set();
   for (const node of GRAPH.nodes.values()) {
-    for (const card of node.info ?? []) addCard(items, seen, node.name, 'Reference', card, node.name);
+    (node.info ?? []).forEach((card, index) =>
+      addCard(items, seen, node.name, 'Reference', card, node.name, { kind: 'node', nodeId: node.id, index, card }),
+    );
   }
-  for (const { leg } of expandLegs(GRAPH)) {
+  for (const { leg, fromChoices, toChoices } of allLegs()) {
     if (getNode(leg.from).hidden || getNode(leg.to).hidden) continue;
     const topic = `${getNode(leg.from).name} → ${getNode(leg.to).name}`;
-    for (const card of leg.cards) addCard(items, seen, topic, 'Routes', card, `Flying ${leg.title}`);
+    leg.cards.forEach((card, index) =>
+      addCard(items, seen, topic, 'Routes', card, `Flying ${leg.title}`, {
+        kind: 'leg',
+        from: leg.from,
+        to: leg.to,
+        fromChoices,
+        toChoices,
+        index,
+        card,
+      }),
+    );
   }
-  const curated = CURATED.map((item, i) => ({ ...item, id: `curated/${i}` }));
+  const curated = CURATED.map((item, i) => ({
+    ...item,
+    id: `curated/${i}`,
+    source: findCuratedSource(item, hintFor(item))?.source,
+  }));
   const factSeen = new Set();
   const kept = items.filter((item) => {
     if (!worthKeeping(item)) return false;
@@ -155,15 +173,11 @@ export function buildBank() {
     factSeen.add(key);
     return true;
   });
-  const wikiByTopic = new Map(
-    flattenWiki()
-      .filter((page) => page.node)
-      .map((page) => [getNode(page.node).name, page.path]),
-  );
-  return foldRoutes([...curated, ...kept]).map((item) => {
+  const nodeIdByName = new Map([...GRAPH.nodes.values()].map((node) => [node.name, node.id]));
+  return foldRoutes([...curated, ...kept]).map(({ source, ...item }) => {
     const why = item.why ?? EXPLANATIONS[explanationKey(item)];
-    const withWhy = why ? { ...item, why } : item;
-    return wikiByTopic.has(item.topic) ? { ...withWhy, wikiPath: wikiByTopic.get(item.topic) } : withWhy;
+    const wiki = source && locateSource(source, nodeIdByName.get(item.topic));
+    return { ...item, ...(why ? { why } : {}), ...(wiki ? { wiki } : {}) };
   });
 }
 export const shuffle = (list) => {
@@ -197,7 +211,7 @@ export function choicesFor(item, bank) {
 // Every distinct chair-fly leg. `fromPicks`/`toPicks` are the runway, area or entry choices.
 export function chairFlyLegs() {
   const seen = new Map();
-  for (const { leg, fromChoices, toChoices } of expandLegs(GRAPH)) {
+  for (const { leg, fromChoices, toChoices } of allLegs()) {
     if (getNode(leg.from).hidden || getNode(leg.to).hidden) continue;
     const fromPicks = Object.values(fromChoices);
     const toPicks = Object.values(toChoices);
