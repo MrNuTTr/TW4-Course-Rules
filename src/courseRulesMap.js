@@ -1,6 +1,7 @@
 import { kmlWithFolders } from '@tmcw/togeojson';
 import courseRulesKml from '../kml/TW-4 Primary Course Rules (with notes).kml?raw';
 import mapExtras from './data/map-extras.json';
+import exitTracks from './data/map-exit-tracks.json';
 
 function removeAltitude(coordinates) {
   if (typeof coordinates[0] === 'number') {
@@ -54,7 +55,7 @@ function parseCourseRulesKml() {
 
 // Waypoints that are not in the KML, kept in a separate data file.
 function buildExtraFeatures() {
-  return mapExtras.map((extra) => {
+  return [...mapExtras, ...exitTracks].map((extra) => {
     const id = `${extra.folder}/${extra.name}`;
     return {
       type: 'Feature',

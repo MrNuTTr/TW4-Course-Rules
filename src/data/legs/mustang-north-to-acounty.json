@@ -6,6 +6,7 @@
   "title": "Mustang {from.area} → Aransas County RWY {to.runway}",
   "featureIds": [
     "{from.area.poly}",
+    "{from.area.exitAcounty}",
     "(KRKP) Aransas County Airport/KRKP",
     "(KRKP) Aransas County Airport/{to.runway.runwayLine}",
     "(KRKP) Aransas County Airport/Arrivals/{to.runway}",

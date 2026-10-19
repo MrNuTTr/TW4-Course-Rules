@@ -6,6 +6,7 @@
   "title": "Mustang {from.area} → Waldron RWY {to.runway}",
   "featureIds": [
     "{from.area.poly}",
+    "{from.area.exitWaldron}",
     "(KNWL) Waldron NOLF/KNWL",
     "(KNWL) Waldron NOLF/{to.runway.runwayLine}",
     "(KNWL) Waldron NOLF/South Arrivals/Camel Humps",
