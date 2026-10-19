@@ -100,8 +100,20 @@ const words = (text) => text.replace(/_____/g, ' ').split(/[^A-Za-z]+/).filter((
 
 const RADIO_CUE = /\b(contact|call|check in|terminate|switch|monitor|report|announce|when directed|before leaving|crossing|abeam|at point|numbers)\b/i;
 
+// Generated questions dropped after review: duplicates of a curated or sibling question, or too vague to stand alone.
+const REVIEWED_OUT = [
+  /avoid North Mustang \(_____\)/,
+  /stand-off applies to working altitudes/,
+  /Proceed direct to Point Shamrock, maintain _____/,
+  /recovery traffic inbound from PT Shamrock at _____/,
+  /Maintain _____ up to Point Rusty/,
+  /Goliad arrival traffic at _____ between Woodsboro/,
+  /on _____ for Mustang \d/,
+];
+
 function worthKeeping(item) {
   if (item.curated) return true;
+  if (REVIEWED_OUT.some((re) => re.test(item.text))) return false;
   if (item.kind === 'recall') return false;
   if (item.kind === 'channel') return RADIO_CUE.test(item.scenario) && !/then contact|intercept/i.test(item.scenario);
   return item.answers.length === 1 && words(item.text) >= 5 && !/(?:VHF|UHF) _____/.test(item.text);
