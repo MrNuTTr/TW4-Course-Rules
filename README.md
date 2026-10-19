@@ -88,7 +88,7 @@ work on Azure.
   features at once.
 - Some radio cards store a turn-by-turn exchange so the pilot call,
   controller response, and readback stay legible on narrow screens. Cards are
-  transcribed from the user's binder images; the images are not bundled.- Map features are parsed from `kml/TW-4 Primary Course Rules (with notes).kml`
+  transcribed from the profsit binder images; the images are not bundled.- Map features are parsed from `kml/TW-4 Primary Course Rules (with notes).kml`
   in the browser and selected by folder/name references in the route JSON.
   The file is user-provided reference material, not official documentation;
   OpenStreetMap tiles provide the map background and require an internet
